@@ -1,0 +1,136 @@
+define D_RedBlfNP {timeseries kind 'DEMAND' units 'CFS'}!Red Bluff Non-Project Diversion
+define D_RedBlfP {std kind 'FLOW-DELIVERY' units 'CFS'}!Red Bluff Project Diversion
+define D_RedBlf {std kind 'FLOW-DELIVERY' units 'CFS'}!Red Bluff Diversion
+goal Diversion_RedBlf {D_RedBlf = D_RedBlfP + D_RedBlfNP}
+define D_WilknsNP {timeseries kind 'DEMAND' units 'CFS'}!Wilkins Slough Non-Project Diversion
+define D_WilknsP {std kind 'FLOW-DELIVERY' units 'CFS'}!Wilkins Slough Project Diversion
+define D_Wilkns {std kind 'FLOW-DELIVERY' units 'CFS'}!Wilkins Slough Diversion
+goal Diversion_Wilkns {D_Wilkns = D_WilknsP + D_WilknsNP}
+define D_FreWeirP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Fremont WEIR DIVERSION
+define D_FreWeir {std kind 'FLOW-DELIVERY' units 'CFS'} !Fremont WEIR DIVERSION
+goal Diversion_FreWeir {D_FreWeir=D_FreWeirP}
+define D_SacAmeNP {timeseries kind 'DEMAND' units 'CFS'}!Non-Project DIVERSION AT SACRAMETO AND AMERICAN RIVER CONFLUENCE
+define D_SacAmeP {std kind 'FLOW-DELIVERY' units 'CFS'}!Project DIVERSION AT SACRAMETO AND AMERICAN RIVER CONFLUENCE
+define D_SacAme {std kind 'FLOW-DELIVERY' units 'CFS'}!DIVERSION AT SACRAMETO AND AMERICAN RIVER CONFLUENCE
+goal Diversion_SacAme {D_SacAme = D_SacAmeP + D_SacAmeNP}
+define D_SacWeir {std kind 'FLOW-DELIVERY' units 'CFS'} !SACRAMENTO WEIR SPILL
+define D_OrovlP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion from Oroville Lake
+define D_Orovl {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion from Oroville Lake
+goal Diversion_Orovl {D_Orovl = D_OrovlP}
+define D_ThermP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at Thermalito
+define D_Therm {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Thermalito
+goal Diversion_Therm {D_Therm = D_ThermP}
+define D_YubFeaP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at Yuba Feather Confluence
+define D_YubFea {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Yuba Feather Confluence
+goal Diversion_YubFea {D_YubFea = D_YubFeaP}
+define D_DaguerP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at Daguerre Point
+define D_Daguer {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Daguerre Point
+goal Diversion_Daguer {D_Daguer=D_DaguerP}
+define D_FolsmNP {timeseries kind 'DEMAND' units 'CFS'}!Non-Project Diversion from Folsom reservoir
+define D_FolsmP {std kind 'FLOW-DELIVERY' units 'CFS'}!Project Diversion from Folsom reservoir
+define D_Folsm {std kind 'FLOW-DELIVERY' units 'CFS'}!Diversion from Folsom reservoir
+goal Diversion_Folsm {D_Folsm=D_FolsmP+D_FolsmNP}
+define D_NimbusNP {timeseries kind 'DEMAND' units 'CFS'} !Non-Project Diversion at Nimbus
+define D_NimbusP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at Nimbus
+define D_Nimbus {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Nimbus
+goal Diversion_Nimbus {D_Nimbus=D_NimbusP+D_NimbusNP}
+define D_HStNP {timeseries kind 'DEMAND' units 'CFS'}!Non-Project Diversion at H St
+define D_HSt {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at H St
+goal Diversion_HSt {D_HSt=D_HStNP}
+
+define demand_D_HoodP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_HoodP {lower 0. upper demand_D_HoodP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_Hood {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Hood
+goal Diversion_Hood {D_Hood=D_HoodP}
+define demand_D_BrananIsP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_BrananIsP {lower 0. upper demand_D_BrananIsP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_BrananIs {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Brannan Island
+goal Diversion_BrananIs {D_BrananIs=D_BrananIsP}
+define D_MarshCrP {std kind 'FLOW-DELIVERY' units 'CFS'}! Project Diversion at Marsh Creek
+define D_MarshCr {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Marsh Creek
+goal Diversion_MarshCr {D_MarshCr=D_MarshCrP}
+define demand_D_SacSJRP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_SacSJRP {lower 0. upper demand_D_SacSJRP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_SacSJR {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Sac SJR Confuluence
+goal Diversion_SacSJR {D_SacSJR=D_SacSJRP}
+define D_ReqdDO {std kind 'FLOW-DELIVERY' units 'CFS'}! Requirede Delta Outflow
+define demand_D_MedfordIsP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_MedfordIsP {lower 0. upper demand_D_MedfordIsP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_MedfordIs {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Medford Island
+goal Diversion_MedfordIs {D_MedfordIs=D_MedfordIsP}
+define demand_D_TerminousP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_TerminousP {lower 0. upper demand_D_TerminousP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_Terminous {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Terminous
+goal Diversion_Terminous {D_Terminous=D_TerminousP}
+define demand_D_StocktonP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_StocktonP {lower 0. upper demand_D_StocktonP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_Stockton {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Stockton
+goal Diversion_Stockton {D_Stockton=D_StocktonP}
+define D_CalaverasNP {timeseries kind 'DEMAND' units 'CFS'}!Non-Project Diversion at Calaveras
+define D_Calaveras {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Calaveras
+goal Diversion_Calaveras {D_Calaveras=D_CalaverasNP}
+define D_CCWDNP {timeseries kind 'DEMAND' units 'CFS'}!Non-Project Diversion to CCWD
+define D_CCWD {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion to CCWD
+goal Diversion_CCWD {D_CCWD=D_CCWDNP}
+define demand_D_ConeyIsP {timeseries kind 'NETDICU_POS' units 'TAF' convert 'CFS'}
+define D_ConeyIsP {lower 0. upper demand_D_ConeyIsP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
+define D_ConeyIs {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Coney Island
+goal Diversion_ConeyIs {D_ConeyIs=D_ConeyIsP}
+define D_Vallejo {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Vallejo
+define D_Napa {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Napa
+define D_Solano {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Solano 
+define D_FVB {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at FVB 
+
+define D_SBayP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion to South Bay
+define D_SBay {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion to South Bay
+goal Diversion_SBay {D_SBay=D_SBayP}
+define D_UpDMCP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion from Upper DMC
+define D_UpDMC {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion from Upper DMC
+goal Diversion_UpDMC {D_UpDMC=D_UpDMCP}
+define D_OFBSWP {std kind 'FLOW-DELIVERY' units 'CFS'}
+define D_OFBCVP {std kind 'FLOW-DELIVERY' units 'CFS'}
+define D_SLCVPP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion from San Luis CVP reservoir
+define D_SLCVP {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion from San Luis CVP reservoir
+goal Diversion_SLCVP {D_SLCVP=D_SLCVPP}
+define D_CVPJU_LDMCP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion from CVPJU_LDMC
+define D_CVPJU_LDMC {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion from CVPJU_LDMC
+goal Diversion_D_CVPJU_LDMC {D_CVPJU_LDMC=D_CVPJU_LDMCP}
+define D_SWPJUCVP {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at SWPJUCVP 
+define D_CVPJUSWP {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at CVPJUSWP
+
+define D_DosAmigosSWPP {std kind 'FLOW-DELIVERY' units 'CFS'} !Proejct Diversion at Dos Amigos SWP
+define D_DosAmigosSWP {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Dos Amigos SWP
+goal Diversion_DosAmigosSWP {D_DosAmigosSWP=D_DosAmigosSWPP}
+define D_DosAmigosCVPP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at Dos Amigos CVP
+define D_DosAmigosCVP {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Dos Amigos CVP
+goal Diversion_DosAmigosCVP{D_DosAmigosCVP=D_DosAmigosCVPP}
+define D_CoastAqdctP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion to Coastal Aqueduct
+define D_CoastAqdct {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion to Coastal Aqueduct
+goal Diversion_CoastAqdct {D_CoastAqdct=D_CoastAqdctP}
+define D_Emp2DudP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion u/s of Las Perillas
+define D_Emp2Dud {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion u/s of Las Perillas
+goal Diversion_Emp2Dud {D_Emp2Dud=D_Emp2DudP}
+define D_KCWAP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at KCWA
+define D_KCWA {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at KCWA
+goal Diversion_KCWA {D_KCWA=D_KCWAP}
+define D_CVP_CVCP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Cross Valley Canal Diversion
+define D_CVP_CVC {std kind 'FLOW-DELIVERY' units 'CFS'} !Cross Valley Canal Diversion
+goal Diversion_CVP_CVC {D_CVP_CVC=D_CVP_CVCP}
+define D_CVPRfg_854P {std kind 'FLOW-DELIVERY' units 'CFS'} !Project CVP refuge and D854
+define D_CVPRfg_854 {std kind 'FLOW-DELIVERY' units 'CFS'} !CVP refuge and D854
+goal Diversion_CVPRfg_854 {D_CVPRfg_854=D_CVPRfg_854P}
+define D_CVC2ChrisP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion u/s of Chrisman PP
+define D_CVC2Chris {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion u/s of Chrisman PP
+goal Diversion_CVC2Chris {D_CVC2Chris=D_CVC2ChrisP}
+define D_OsoP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at OSO pumping Plant
+define D_Oso {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at OSO pumping Plant
+goal Diversion_Oso {D_Oso=D_OsoP}
+define D_WarnePPP {std kind 'FLOW-DELIVERY' units 'CFS'} !Proejct Total Demand after Warne Power Plant
+define D_WarnePP {std kind 'FLOW-DELIVERY' units 'CFS'} !Total Demand after Warne Power Plant
+goal Diversion_WarnePP{D_WarnePP=D_WarnePPP}
+define D_AlamoP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project Diversion at Alamo PP
+define D_Alamo {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Alamo PP
+goal Diversion_Alamo {D_Alamo=D_AlamoP}
+define D_PearBlPPP {std kind 'FLOW-DELIVERY' units 'CFS'} !Project total Demand after Pearblossom Pumping Plant
+define D_PearBlPP {std kind 'FLOW-DELIVERY' units 'CFS'} !Total Demand after Pearblossom Pumping Plant
+goal Diversion_PearBlPP{D_PearBlPP=D_PearBlPPP}
