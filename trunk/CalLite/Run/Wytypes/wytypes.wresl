@@ -115,3 +115,45 @@ define mod_wyt_SAC {
 }
 
 define wyt_ann {value mod_wyt_SAC}
+
+! the 60-20-20 index for San Joaquin basin
+define wyt_SJR {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     SJRindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     SJRindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+! Previous year's SJR water year type index, select water year type from lookup table
+define wyt_SJR_prv1 {
+    case OCTtoJAN {
+         condition     month >= OCT .and. month <= JAN
+         select        index
+         from        wytypeSJR
+         where        wateryear=wateryear - 2.}
+    case rest {
+         condition    always
+         select        index
+         from        wytypeSJR
+         where        wateryear=wateryear -1. }
+        }
+
+! Two years ago's SJR water year type index, select water year type from lookup table
+define wyt_SJR_prv2 {
+    case OCTtoJAN {
+         condition     month >= OCT .and. month <= JAN
+         select        index
+         from        wytypeSJR
+         where        wateryear=wateryear - 3.}
+    case rest {
+         condition    always
+         select        index
+         from        wytypeSJR
+         where        wateryear=wateryear -2. }
+        }

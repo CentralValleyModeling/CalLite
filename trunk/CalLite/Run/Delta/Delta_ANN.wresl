@@ -53,6 +53,3 @@ INCLUDE 'Ann\Collins_output.wresl'
 !Tie ANN constraints to outflow for proper coa balance
 INCLUDE 'Ann\ANN_COA_MRDO.wresl'
 
-Include 'Ann\lastX2_ANN_KM.wresl'
-Include 'Ann\x2days.wresl'
-Include 'Ann\X2req_ann_KM.wresl'

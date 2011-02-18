@@ -60,4 +60,4 @@ goal setDXC {DXC_daysopen = DXC_est * int_SAC_below}
 goal open_cond_flow { C_DXC_DXC = 0.160*SAC_threshold*int_SAC_below*fract_open - 0.160*SAC_below*fract_open + int_SAC_below*1261.0*fract_open }
 
 ! What is this, do we need this?
-GOAL HELP_INTEGER {LHS C_DXC RHS 0.0 LHS>RHS PENALTY 0.000001}
+GOAL HELP_INTEGER {LHS C_SACDXC RHS 0.0 LHS>RHS PENALTY 0.000001}

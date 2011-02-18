@@ -1,5 +1,5 @@
 /*************************************
-Export_index_CVP.wresl
+Export_index_delivery_CVP.wresl
  
 Tom FitzHugh BOR 5/7/2010
 
@@ -10,7 +10,12 @@ dltidx_expidx_cvp_s.  The Export Index is the Mar-Aug estimated export capabilit
 Using the Export Based rule for CVP SOD Delivery, Maximum Delivery is computed from the
 Export Index.  The Export Index (Mar-Aug) is increased by the EOFeb CVP SL over low point 
 target, and also any inflow through James Bypass and dedicated capacity for CVP at Banks.
+
+11/9/2010: added switch for preBO vs BO allocation procedures.
 *************************************/
+
+!whether implement export estimates for BO actions: no: value=0; yes: value=1
+define BOExportEst_switch {select Option from options where Index=6}
 
 ! Determination of Delta Index
 define Delta_Index_CVP_south {
@@ -28,16 +33,20 @@ define Delta_Index_CVP_south {
 define Dlt_Idx_CVP_sdv {alias Delta_Index_CVP_south kind 'delta-index' units 'taf'}
 
 ! Determination of Export Index  
-/*** NOTE: currently table dltidx_expidx_cvp_s has all 9999s, but leaving code in case we decide to 
-change the contents of that file ***/
+/*** NOTE: For pre-BO runs, pull value from the table dltidx_expidx_cvp_s. For BO runs just set the value = 9999,  
+this replicates how it was set in the Apr BO Calsim study (though there it was read from a table), so effectively 
+there is no limit from this Index for BO conditions (though a different limit is still set in delcar_cvp_south_B2BO.wresl).  */
+
 define Export_Index_CVP_south {
-    case MartoMay {
-           condition  month >= MAR .and. month <= MAY
+    case MartoMaypreBO {
+           condition  month >= MAR .and. month <= MAY .and. int(BOExportEst_switch) == 0
            select     Exp_Idx
            from       dltidx_expidx_cvp_s
            given      Dlt_Idx=Delta_Index_CVP_south
            use        linear }
-
+    case MartoMayBO {
+           condition  month >= MAR .and. month <= MAY .and. int(BOExportEst_switch) == 1
+           value 9999 }
     case JuntoFeb {
            condition  always
            value      0 }

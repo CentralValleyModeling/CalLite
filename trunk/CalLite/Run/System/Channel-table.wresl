@@ -14,12 +14,14 @@ define C_Kswck_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}
 goal C_Kswcktotal {C_Kswck=C_Kswck_MIF+C_Kswck_EXC}
 define C_RedBlf {lower 0. upper 150000. kind 'FLOW-CHANNEL' units 'CFS'} !SACRAMENTO RIVER DOWNSTREAM OF REDBLUFF DIVERSION DAM (C112)
 define C_RedBlf_MIF {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
+define C_RedBlf_MIF_DAILY {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
 define C_RedBlf_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}
-goal C_RedBlftotal {C_RedBlf=C_RedBlf_MIF+C_RedBlf_EXC}
+goal C_RedBlftotal {C_RedBlf=C_RedBlf_MIF+C_RedBlf_MIF_DAILY+C_RedBlf_EXC}
 define C_Wilkns {lower 0. upper 6150.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !"SACRAMENTO RIVER DOWNSTREAM OF WILKINS SLOUGH (C114
 define C_Wilkns_MIF {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
+define C_Wilkns_MIF_DAILY {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
 define C_Wilkns_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}
-goal C_Wilknstotal {C_Wilkns=C_Wilkns_MIF+C_Wilkns_EXC}
+goal C_Wilknstotal {C_Wilkns=C_Wilkns_MIF+C_Wilkns_MIF_DAILY+C_Wilkns_EXC}
 define C_Orovl {lower 0. upper 12913.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !FEATHER RIVER DOWNSTREAM OF OROVILLE
 define minflow_C_Orovl {select minflow from minflow where C_arc=200.1,month=month} !use values in the range of 700-800 to replace 600 cfs
 define C_Orovl_MIF {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}

@@ -30,7 +30,7 @@ goal meetRS_1 {
     lhs<rhs penalty 0}
   case Normal {
     condition always
-    rhs RS_m_1_sv*C_Hood_ANN /*+ RS_m_1_sv*C_YoloBP*/ + RS_b_1_sv
+    rhs RS_m_1_sv*C_Hood_ANN + RS_m_1_sv*C_YoloBP + RS_b_1_sv
     lhs<rhs penalty 0}
 }
 
@@ -59,7 +59,7 @@ goal meetRS_2 {
     lhs<rhs penalty 0}
   case Normal {
     condition always
-    rhs RS_m_2_sv*C_Hood_ANN /*+ RS_m_2_sv*C_YoloBP*/ + RS_b_2_sv
+    rhs RS_m_2_sv*C_Hood_ANN + RS_m_2_sv*C_YoloBP + RS_b_2_sv
     lhs<rhs penalty 0}
 }
 
@@ -89,6 +89,6 @@ goal meetRS_3 {
     lhs<rhs penalty 0}
   case Normal {
     condition always
-    rhs RS_m_3_sv*C_Hood_ANN /*+ RS_m_3_sv*C_YoloBP*/ + RS_b_3_sv
+    rhs RS_m_3_sv*C_Hood_ANN + RS_m_3_sv*C_YoloBP + RS_b_3_sv
     lhs<rhs penalty 0}
 }
