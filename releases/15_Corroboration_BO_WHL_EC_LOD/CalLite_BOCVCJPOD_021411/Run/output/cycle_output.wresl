@@ -1,0 +1,84 @@
+/*************************************
+cycle_output.wresl
+
+Save values of solutions from cycle 1 for debugging reference
+
+**************************************/
+
+define D_BanksBASE {alias D_Banks[BASE] kind 'flow-delivery' units 'cfs'}
+define D_Banks_swpBASE  {alias D_Banks_swp[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define D_JonesBASE  {alias D_Jones[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define c_YubFeaBASE  {alias c_YubFea[Base]      kind 'FLOW-CHANNEL'  units 'CFS'}
+define C_Kswck_base {alias c_kswck[base] kind 'cycle-out-cfs' units 'cfs'}
+define C_Nimbus_base {alias c_nimbus[base] kind 'cycle-out-cfs' units 'cfs'}
+define C_Hood_base {alias c_Hood[base] kind 'cycle-out-cfs' units 'cfs'}
+define C_Delta_base {alias c_delta[base] kind 'cycle-out-cfs' units 'cfs'}
+define D_Delta_base {alias d_deltareqd[base] kind 'cycle-out-cfs' units 'cfs'}
+
+define IBU_base {alias IBU[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define UWFE_base {alias UWFE[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define SHADS_Base {alias shads[base] kind 'cycle-out-cfs' units 'cfs'}
+define FOLDS_Base {alias FOLDS[base] kind 'cycle-out-cfs' units 'cfs'}
+define WHSSW_Base {alias WHSSW[base] kind 'cycle-out-cfs' units 'cfs'}
+define SWPDS_Base {alias SWPDS[base] kind 'cycle-out-cfs' units 'cfs'}
+define UNUSED_FS_Base {alias UNUSED_FS[base] kind 'cycle-out-cfs' units 'cfs'}
+define UNUSED_SS_Base {alias UNUSED_SS[base] kind 'cycle-out-cfs' units 'cfs'}
+define C_Delta_CVP_Base {alias C_Delta_CVP[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_Delta_SWP_Base {alias C_Delta_SWP[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define D_CCWD_Base {alias D_CCWD[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define D_Napa_BASE  {alias D_NAPA[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define D_Solano_Base {alias D_Solano[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define D_Jones_EXP1_Base {alias D_Jones_EXP1[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define D_Banks_EXP1_Base {alias D_Banks_EXP1[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define Surp1Terms_Base {alias Surp1Terms[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define Surp2Terms_Base {alias Surp2Terms[BASE] kind 'cycle-out-cfs' units 'cfs'}
+
+define C_ConyIsBase {alias C_ConyIs[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_IndnSlBase {alias C_IndnSl[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_OMRBase {alias C_OMR[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRMIBase {alias C_SJRMI[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRVIBase {alias C_SJRVI[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRStoBase {alias C_SJRSto[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRCDBase {alias C_SJRCD[BASE] kind 'cycle-out-cfs' units 'cfs'}
+define C_TrmnsBase {alias C_Trmns[BASE] kind 'cycle-out-cfs' units 'cfs'}
+
+
+
+/*
+define D_BanksCyc2 {alias D_Banks[weir_dailyops] kind 'flow-delivery' units 'cfs'}
+define D_Banks_swpCyc2  {alias D_Banks_swp[weir_dailyops]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define D_JonesCyc2  {alias D_Jones[weir_dailyops]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define c_YubFeaCyc2  {alias c_YubFea[weir_dailyops]      kind 'FLOW-CHANNEL'  units 'CFS'}
+define C_Kswck_Cyc2 {alias c_kswck[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_Nimbus_Cyc2 {alias c_nimbus[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_Hood_Cyc2 {alias c_Hood[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_Delta_Cyc2 {alias c_delta[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define D_Delta_Cyc2 {alias d_deltareqd[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+
+define IBU_Cyc2 {alias IBU[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define UWFE_Cyc2 {alias UWFE[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define SHADS_Cyc2 {alias shads[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define FOLDS_Cyc2 {alias FOLDS[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define WHSSW_Cyc2 {alias WHSSW[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define SWPDS_Cyc2 {alias SWPDS[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define UNUSED_FS_Cyc2 {alias UNUSED_FS[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define UNUSED_SS_Cyc2 {alias UNUSED_SS[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_Delta_CVP_Cyc2 {alias C_Delta_CVP[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_Delta_SWP_Cyc2 {alias C_Delta_SWP[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define D_CCWD_Cyc2 {alias D_CCWD[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define D_Napa_Cyc2  {alias D_NAPA[weir_dailyops]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define D_Solano_Cyc2 {alias D_Solano[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define D_Jones_EXP1_Cyc2 {alias D_Jones_EXP1[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define D_Banks_EXP1_Cyc2 {alias D_Banks_EXP1[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define Surp1Terms_Cyc2 {alias Surp1Terms[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define Surp2Terms_Cyc2 {alias Surp2Terms[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+
+define C_ConyIsCyc2 {alias C_ConyIs[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_IndnSlCyc2 {alias C_IndnSl[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_OMRCyc2 {alias C_OMR[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRMICyc2 {alias C_SJRMI[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRVICyc2 {alias C_SJRVI[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRStoCyc2 {alias C_SJRSto[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_SJRCDCyc2 {alias C_SJRCD[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+define C_TrmnsCyc2 {alias C_Trmns[weir_dailyops] kind 'cycle-out-cfs' units 'cfs'}
+*/

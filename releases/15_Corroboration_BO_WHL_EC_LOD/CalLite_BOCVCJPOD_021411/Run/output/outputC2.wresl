@@ -1,0 +1,10 @@
+/** B2SetBaseline.wresl
+
+Nazrul Islam, DWR, 10/14/2010
+
+**/
+
+!get output from B2
+define maxJonescalc {value maxJonescalc[WEIR_DAILYOPS]}
+
+

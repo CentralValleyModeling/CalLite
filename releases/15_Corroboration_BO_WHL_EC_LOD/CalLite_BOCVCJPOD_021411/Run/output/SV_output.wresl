@@ -1,0 +1,11 @@
+ /*************************************
+SV_Output.wresl
+ 
+Nazrul Islam DWR (02/04/2011)
+
+!This file stores data from SV file to DV for report tool
+**************************************/
+ 
+
+define C_SJR  {alias AD_SJR kind 'FLOW-ACCRDEPL'  units 'CFS'}
+define C_MoklmnR  {alias Ad_Mokelumne kind 'FLOW-ACCRDEPL'  units 'CFS'}

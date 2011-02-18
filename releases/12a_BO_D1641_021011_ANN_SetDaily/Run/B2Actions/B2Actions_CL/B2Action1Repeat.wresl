@@ -1,0 +1,42 @@
+/** 
+B2Action1Repeat.wresl
+
+Nazrul Islam, DWR, 10/13/2010
+
+This file imposes all the (b)(2) upstream actions that are taken in the (b)(2) run.
+If this code is active, Keswick, Clear Cr and Nimbus minflow goal have to be inactive.
+
+NMFS BO Action I.1.1 Clear Creek - Spring Attraction Flows; 600 cfs for 3 days twice in the month of May
+**/
+
+/*define ClrCk_NMFS_target {
+    case May {
+        condition month == MAY
+        value max(C3_NMFSBase, C3MIF__z3) * (daysin - 6.)/daysin + 600.*6./daysin }
+    case otherwise {
+        condition always
+        value 0. }
+} */
+
+! B2 Action 1: Upstream AFRP Actions
+goal b2action1Whi_1 {
+  lhs C_Wkytn_MIF
+!    rhs       max(ClrCk_NMFS_target, C3MIF__z3, clear_min)
+    rhs       max(C_Wkytn_MIF_b2, ClearCrk_min)
+    lhs>rhs   constrain
+    lhs<rhs   penalty 99 }
+
+goal b2action1Sha_2 {
+  lhs C_Kswck_MIF
+    rhs       max(C_Kswck_MIF_b2, effective_C_Keswick_min)
+    lhs>rhs   constrain
+    lhs<rhs   penalty 99 }
+
+
+! B2 Action 1: Upstream AFRP Actions continued
+goal b2action1Fol_3 {
+  lhs C_Nimbus_mif
+    rhs       max(C_Nimbus_mif_b2, /*nimbus_hist_std,*/ minflowFMPAmer)
+    lhs>rhs   constrain
+    lhs<rhs   penalty 0 }
+

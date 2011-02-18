@@ -1,0 +1,4 @@
+! set different option for CalLite model
+options
+Index	Option	
+0	0	!Calculate X2 by using ANN or KM equation: ANN: value=0; KM: value =1;
