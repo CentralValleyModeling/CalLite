@@ -1,0 +1,3 @@
+1. Table update: amerian_prj_wr
+2. weight table: add weight for C_YoloBP_MIF
+3. delta\ann\AnnSacFlow.wresl: turn on C_YoloBP_mif and C_YoloBP_exc and add BO/D1641 switch for setAnnSacFlow goal
