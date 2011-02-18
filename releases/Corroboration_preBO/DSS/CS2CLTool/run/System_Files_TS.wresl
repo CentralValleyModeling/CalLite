@@ -1,0 +1,299 @@
+/***********************
+
+System_Files_TS.wresl
+
+Cody L. Milligan BOR
+
+07-20-2010
+
+This file contains the logic in the system folder
+
+08-30-2010
+Modified by Z.Q. Richard Chen DWR
+added SWP SOD terminal reservoir storage diversion and withdrawal arc (ET included)
+added Delta DICU demands modified by Transfer (TX)
+one correction on AD_JamesBP -- I607 (TAF) is converted to cfs  
+***********************/
+
+/* Delivery-table_CS.wresl */
+
+define D100         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Clear Creek Tunnel Diversion
+define D113A        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !WBA4 diversion
+define D113B        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Sacramento River diversion to meet WBA5 demand
+define D302         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !City of Sacramento Diversion
+define D408         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CCWD DELTA DIVERSION
+define D408_RS      {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CCWD DELTA DIVERSION at Intake 
+define D408_OR      {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CCWD DELTA DIVERSION at OR
+define D408_VC      {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CCWD DELTA DIVERSION at VC
+define demand_D400B {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define demand_D404  {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define demand_D406  {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define demand_D410  {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define demand_D412  {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define demand_D409B {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define demand_D413  {timeseries kind 'NETDICU_POS'   units 'TAF' convert 'CFS'}
+define D3           {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Spring Creek Tunnel Diversion
+define D104         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !DSA58 Diversion from Stream
+define D112         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Tehama-Colusa Canal
+define D114        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Glenn-Colusa Canal
+define D122A        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Sac Diversion to CB
+define D122B        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Sacramento River West Bank Diversions
+define D182A       {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CBD diversion
+define D182B       {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CBD diversion
+define D18302       {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !CBD diversion
+define D18201       {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Delevan and Colusa refuges
+define D128         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !DSA15 Diversion from Stream
+define D129A        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !WBA8S diversion from Sacramento River
+define D160         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Freemont Weir Spills to Yolo Bypass
+define D166A        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Sacramento Weir Spills
+define D165         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !West Sacramento Diversion
+define D162         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Sacramento River Left Bank Diversions
+define D167         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !City of Sacramento Diversion
+define D201         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Butte County Diversion
+define D202         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Themolito ID Diversion
+define D7A          {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Western Canal
+define D7B          {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Joint Canal
+define D204         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Yuba City
+define D206A        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Feather Water District
+define D206B        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Misc FRSA
+define D206C        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Joint Board at Sunset Pumps
+define D207A	    {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Non-project Feather River diversions
+define D217        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Butte Creek diversion
+define D285        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Camp Far West I.D.
+define D9           {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !FOLSOM SOUTH CANAL
+
+define D404         {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
+define D406         {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
+define D409B        {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
+define D410         {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
+define D412         {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
+define D413         {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
+
+define D811         {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Del Valle
+define D25          {timeseries kind 'FLOW-DELIVERY' units 'CFS'} ! 
+define D27          {timeseries kind 'FLOW-DELIVERY' units 'CFS'} ! 
+define D28          {timeseries kind 'FLOW-DELIVERY' units 'CFS'} ! 
+define D29          {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !VENTURA R-30 DIV FROM CASTAIC LAKE
+
+
+/* Delivery-table_TS.wresl */
+
+define D104_NP {timeseries kind 'FLOW-DELIVERY' units 'CFS'}!Red Bluff Non-Project Diversion
+define D162_NP {timeseries kind 'FLOW-DELIVERY' units 'CFS'}!Non-Project DIVERSION AT SACRAMETO AND AMERICAN RIVER CONFLUENCE
+define D167_NP {timeseries kind 'FLOW-DELIVERY' units 'CFS'}!Non-Project DIVERSION AT SACRAMETO AND AMERICAN RIVER CONFLUENCE
+define D8_NP   {timeseries kind 'FLOW-DELIVERY' units 'CFS'}!Non-Project Diversion from Folsom reservoir
+define D9_NP   {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Non-Project Diversion at Nimbus
+define D9A_PLS {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Non-Project Diversion at Nimbus
+
+!== DeliveryNP
+define demand_D_RedBlf_NP {alias D104_NP         kind 'DEMAND' units 'CFS'}!Red Bluff Non-Project Diversion
+define demand_D_Wilkns_NP {alias D113A+D113B     kind 'DEMAND' units 'CFS'}!Wilkins Slough Non-Project Diversion
+define demand_D_SacAme_NP {alias D162_NP+D167_NP kind 'DEMAND' units 'CFS'}!Non-Project DIVERSION AT SACRAMETO AND AMERICAN RIVER CONFLUENCE
+define demand_D_Folsm_NP  {alias D8_NP           kind 'DEMAND' units 'CFS'}!Non-Project Diversion from Folsom reservoir
+define demand_D_Nimbus_NP {alias D9_NP+D9A_PLS   kind 'DEMAND' units 'CFS'} !Non-Project Diversion at Nimbus
+define demand_D_HSt_NP    {alias D302            kind 'DEMAND' units 'CFS'}!Non-Project Diversion at H St
+define demand_D_CCWDVCOR  {alias D408_VC+D408_OR kind 'DEMAND' units 'CFS'}!Project Diversion to CCWD VC OR
+define demand_D_CCWDIntk  {alias D408_RS         kind 'DEMAND' units 'CFS'}!Project Diversion to CCWD intake
+define demand_D_Hood_NP      {alias demand_D400B kind 'NETDICU_POS' units 'CFS'}
+
+
+/** Demand_DICU for CalSim SV file 
+define demand_D_BrananIs_NP  {alias demand_D404  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_SacSJR_NP    {alias demand_D406  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_MedfordIs_NP {alias demand_D410  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_Stockton_NP  {alias demand_D412  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_ConeyIs_NP   {alias demand_D409B kind 'NETDICU_POS' units 'CFS'}
+define demand_D_Terminous_NP {alias demand_D413  kind 'NETDICU_POS' units 'CFS'}
+**/
+
+/* Diversion_DICU from CalSim */
+define demand_D_BrananIs_NP  {alias D404  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_SacSJR_NP    {alias D406  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_MedfordIs_NP {alias D410  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_Stockton_NP  {alias D412  kind 'NETDICU_POS' units 'CFS'}
+define demand_D_ConeyIs_NP   {alias D409B kind 'NETDICU_POS' units 'CFS'}
+define demand_D_Terminous_NP {alias D413  kind 'NETDICU_POS' units 'CFS'}
+
+
+/* Channel-table_CS.wresl */
+
+define C300  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !American River Inflow to Folsom
+define C5    {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Downstream of Keswick Reservoir
+define C4    {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Downstream of Shasta Lake
+define C112  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Downstream of Red Bluff Diversion Dam
+define C3    {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Clear Creek
+define C129  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River Downstream of DSA15 Returns
+define C160  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River Downstream of Fremont Weir
+define C223  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Feather River
+define C169  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River Downstream of DSA70 Returns
+define C303  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !American River Inflow to Sacramento River
+define C156  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !DSA65 flow to Yolo Bypass
+define C203  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Feather River Below Thermolito Return
+define C6    {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Feather River Downstream of Oroville
+define C230  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Yuba River
+define C9    {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !American River Below Natoma
+define C8    {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !American River Below Folsom Dam
+define C504  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !
+define C644  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin Inflow to Delta
+
+define C173B_StCr {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Tehama-Colusa Canal
+define C17502A {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !TC-GC Intertie
+define C17502B {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Williams Outlet
+
+define C882  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} ! 
+define C892  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} ! 
+define C894  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !SWP Reach 30  Rec + Losses
+define C899  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !   
+
+define C15   {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !Del Valle
+define C25   {timeseries kind 'FLOW-CHANNEL' units 'CFS'} ! 
+define C28   {timeseries kind 'FLOW-CHANNEL' units 'CFS'} ! 
+define C29   {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !CASTAIC LAKE
+
+
+
+/* Inflow-table_CS.wresl */
+
+define I607  {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !James Bypass
+define I1    {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !TRINITY R. INFLOW TO CLAIR ENGLE LAKE
+define I100  {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !Lewiston Lake Inflow
+define I3    {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !CLEAR CR. INFLOW TO WHISKEYTOWN LAKE
+define I4    {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !SACRAMENTO R. INFLOW TO SHASTA LAKE
+define I6    {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !FEATHER R. INFLOW TO LAKE OROVILLE
+define I230  {timeseries kind 'FLOW-INFLOW' units       'CFS'} !Yuba River Upstream Inflow
+define I200  {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !INFLOW AT KELLY RIDGE
+define I8    {timeseries kind 'FLOW-INFLOW' units       'CFS'} !LOCAL INFLOW TO FOLSOM LAKE
+define I9    {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !LOCAL INFLOW TO NIMBUS
+define I400  {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+define I404  {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+define I406  {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !MARSH CREEK INFLOW
+define I406B {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+define I409  {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+define I410  {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+define I412  {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+define I860  {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !KERN R. INTERTIE & BUENA VISTA PP
+define I413  {timeseries kind 'NETDICU_NEG' units 'TAF' convert 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - NEGATIVE VALUES
+
+/* Inflow-table_TS.wresl */
+
+define I_Trnty      {alias I1      kind 'FLOW-INFLOW' units 'CFS'} !Trinity Lake inflow
+define I_Lewiston   {alias I100    kind 'FLOW-INFLOW' units 'CFS'} !Inflow to Lewiston node
+define I_Wkytn      {alias I3      kind 'FLOW-INFLOW' units 'CFS'} !Wiskeytown Lake Infolw
+define I_Shsta      {alias I4      kind 'FLOW-INFLOW' units 'CFS'} !Shasta Lake Inflow
+define I_Orovl      {alias I6      kind 'FLOW-INFLOW' units 'CFS'} !Oroville Lake Inflow
+define I_Yuba       {alias I230    kind 'FLOW-INFLOW' units 'CFS'} !Engle Bright flow
+define I_KellyRidge {alias I200    kind 'FLOW-INFLOW' units 'CFS'}
+define I_Folsm      {alias I8+C300 kind 'FLOW-INFLOW' units 'CFS'} !Folsom Lake inflow
+define I_Nimbus     {alias I9      kind 'FLOW-INFLOW' units 'CFS'}
+define I_Hood       {alias I400    kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Hood (I400)
+define I_BrananIS   {alias I404    kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion u/s of RioVista (I404)
+define I_MarshCr    {alias I406    kind 'FLOW-INFLOW' units 'CFS'} !Marsh Creek local accretion
+define I_SacSJR     {alias I406B   kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Sac and SJR confluence(I406B)
+define I_ConeyIS    {alias I409    kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Coney Island (I409)
+define I_MedfordIS  {alias I410    kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Medford Island (I410)
+define I_Terminous  {alias I413    kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Terminous (I413)
+define I_Stockton   {alias I412    kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Stockton (I412)
+define I_Kern       {alias I860    kind 'FLOW-INFLOW' units 'CFS'} !Kern River Interties flow
+
+/* SWP SOD terminal reservoir storage diversion and withdrawal arc */
+define SW_DelValle   {alias max(0.0,  C15-D811) kind 'STORAGE-WITHDRAWAL' units 'CFS'}  
+define SD_DelValle   {alias max(0.0, -C15+D811) kind 'STORAGE-DIVERSION' units 'CFS'}  
+define SW_Pyramid    {alias max(0.0,  C28+D28-C892) kind 'STORAGE-WITHDRAWAL' units 'CFS'}  
+define SD_Pyramid    {alias max(0.0, -C28-D28+C892) kind 'STORAGE-DIVERSION' units 'CFS'}  
+define SW_Castaic    {alias max(0.0,  C29+D29-C894) kind 'STORAGE-WITHDRAWAL' units 'CFS'}  
+define SD_Castaic    {alias max(0.0, -C29-D29+C894) kind 'STORAGE-DIVERSION' units 'CFS'}  
+define SW_Silverwood {alias max(0.0,  C25+D25-C882) kind 'STORAGE-WITHDRAWAL' units 'CFS'}  
+define SD_Silverwood {alias max(0.0, -C25-D25+C882) kind 'STORAGE-DIVERSION' units 'CFS'} 
+define SW_Perris     {alias max(0.0,  D27-C899) kind 'STORAGE-WITHDRAWAL' units 'CFS'}  
+define SD_Perris     {alias max(0.0, -D27+C899) kind 'STORAGE-DIVERSION' units 'CFS'}  
+
+/* Reservoir-table_CS.wresl */
+
+define S1LEVEL2 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S1LEVEL3 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S4LEVEL2 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S4LEVEL4 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S4LEVEL5 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S6LEVEL5 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S8LEVEL2 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S8LEVEL4 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+define S8LEVEL5 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
+
+define EVAP_S1  {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+define EVAP_S3  {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+define EVAP_S4  {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+define EVAP_S6  {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+define EVAP_S8  {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+define EVAP_S11 {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+define EVAP_S12 {timeseries kind 'EVAPORATION-RATE' units 'IN'}
+
+/* Reservoir-table_TS.wresl */
+
+define S_Trntylevel2 {alias S1LEVEL2 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Trntylevel3 {alias S1LEVEL3 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Shstalevel2 {alias S4LEVEL2 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Shstalevel4 {alias S4LEVEL4 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Shstalevel5 {alias S4LEVEL5 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Orovllevel5 {alias S6LEVEL5 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Folsmlevel2 {alias S8LEVEL2 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Folsmlevel4 {alias S8LEVEL4 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_Folsmlevel5 {alias S8LEVEL5 kind 'STORAGE-LEVEL' units 'TAF'}
+
+define evap_S_Trnty {alias EVAP_S1  kind 'EVAPORATION-RATE' units 'IN'}
+define evap_S_Wkytn {alias EVAP_S3  kind 'EVAPORATION-RATE' units 'IN'}
+define evap_S_Shsta {alias EVAP_S4  kind 'EVAPORATION-RATE' units 'IN'}
+define evap_S_Orovl {alias EVAP_S6  kind 'EVAPORATION-RATE' units 'IN'}
+define evap_S_Folsm {alias EVAP_S8  kind 'EVAPORATION-RATE' units 'IN'}
+define evap_S_SLCVP {alias EVAP_S11 kind 'EVAPORATION-RATE' units 'IN'}
+define evap_S_SLSWP {alias EVAP_S12 kind 'EVAPORATION-RATE' units 'IN'}
+
+
+
+/* AccrDepl-table_TS.wresl */
+
+!=================================================
+define D163_PRJ {timeseries KIND 'FLOW-DELIVERY' UNITS 'CFS'}    !demand_65.wresl
+define C508     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'} !Calaveras R above SJR .\SystemTables_SJR\Channel-table.wresl
+define R514A    {timeseries kind 'FLOW-RETURN'   units 'CFS'} !.\SystemTables_SJR\return-table.wresl
+define R514B    {timeseries kind 'FLOW-RETURN'   units 'CFS'} !.\SystemTables_SJR\return-table.wresl
+define D514A    {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Riparian Diversion from Delta for COSMA Ag DWSP .\SystemTables_SJR\Delivery-table.wresl
+define D514B    {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !DWSP Diversion M&I .\SystemTables_SJR\Delivery-table.wresl
+define C605A    {timeseries kind 'FLOW-CHANNEL'  units 'CFS'} !SJR below Chowchilla Bypass .\SystemTables_SJR\Channel-table.wresl
+define C605C    {timeseries kind 'FLOW-CHANNEL'  units 'CFS'} !Proposed channel .\SystemTables_SJR\Channel-table.wresl
+define R607West {timeseries kind 'FLOW-RETURN'   units 'CFS'} !
+!=================================================
+
+!Sacramento River
+define AD_Kswck  {alias C5-D3-C4 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_RedBlf {alias C112-C5-C3+D104+D112 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_Wilkns {alias C129-C112+D113A+D113B+D114+D122A+D122B+D128+D129A kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SacFea {alias C160-C129-C223+D160 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SacAme {alias C169-C160-C303+D166A+D163_PRJ+D165+D162+D167 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_YoloBP {alias C156 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define C_StCr_TC {alias C173B_StCr kind 'FLOW-CHANNEL' units 'CFS'} !Diversion from Stony Creek into Tehama-Colusa Canal
+define C_TC_GC {alias C17502A + C17502B kind 'flow-channel' units 'cfs'}
+define D182A {alias D182A kind 'flow-delivery' units 'cfs'}
+define D182B {alias D182B kind 'flow-delivery' units 'cfs'}
+define D18302 {alias D18302 kind 'flow-delivery' units 'cfs'}
+
+!Feather River
+define AD_Therm  {alias C203-C6+D201+D202+D7A+D7B kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_YubFea {alias C223-C203-C230+D204+D206A+D206B+D206C+D207A kind 'FLOW-ACCRDEPL' units 'CFS'}
+define D285 {alias D285 kind 'flow-delivery' units 'cfs'}
+define D217 {alias D217 kind 'flow-delivery' units 'cfs'}
+
+!American River
+define AD_Nimbus {alias C9-C8+D9 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_HSt    {alias C303-C9+D302 kind 'FLOW-ACCRDEPL' units 'CFS'}
+
+!Delta
+define AD_Mokelumne {alias C504 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_Calaveras {alias C508+R514A+R514B-D514A-D514B kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SJR       {alias C644 kind 'FLOW-ACCRDEPL' units 'CFS'}
+
+!South of Delta
+define AD_JamesBP {alias C605A+R607West+I607 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_Castaic {alias C29+D29-C894 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define I_JamesBP {alias I607 kind 'FLOW-INFLOW' units 'CFS'}
+
+

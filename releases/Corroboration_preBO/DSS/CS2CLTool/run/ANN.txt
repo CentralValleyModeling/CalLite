@@ -1,0 +1,22 @@
+/***********************
+
+ANN_CCWD_NOD_WYTypes_CycleOutput_TS.wresl
+
+Cody L. Milligan BOR
+
+07-19-2010
+
+This file contains the logic from run/common/ANN, 
+run/common/CCWD, run/common/CycleOutput, 
+run/common/WYTypes, and run/NorthOfDelta
+
+***********************/
+
+/** From: run/common/ANN **/
+
+
+define VernWQfinal  {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+
+!CalLite definition
+define VernWQfinal {alias VernWQfinal  kind 'Salinity-EC' units 'umhos/cm'}
+

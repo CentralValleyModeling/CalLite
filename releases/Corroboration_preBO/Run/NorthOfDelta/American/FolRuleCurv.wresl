@@ -1,0 +1,50 @@
+/*************************************
+FolRuleCurv.wresl
+ 
+Tom FitzHugh BOR 4/7/2010
+
+Sets Shasta rule curve.  From May through September Level 3 value is adjusted based 
+on supply estimate through September. 
+**************************************/
+
+define OctMarRunoffEst {select OctMar from SacValleyIndex where wateryear=wateryear}
+
+define S_FolsmLevel3 {
+    case OctthruMar {
+        condition month >= Oct .and. month <= Mar .and. OctMarRunoffEst > 14.33 !25% Exceedence level for Oct-Mar 40-30-30 Runoff
+        value 300.0 }
+    case Other {
+        condition always
+        value 400.0 }
+}
+
+define FolInf {value (I_Folsm + AD_Nimbus)*cfs_taf }   !AD_Nimbus used here since Calsim combined together Folsom and Nimbus inflows for this term too
+
+define FolInfEst {sum(i=0,SEP-month,1) (I_Folsm(i)+ AD_Nimbus(i))*cfs_taf(i) }
+
+define FolDiv {value 100}    /* {value D_Folsm}   Eventually, this needs to be set to a demand term for Folsom, but this hasn't been developed yet*/
+
+define FolDivEst {value 100}     /* {sum(i=0,SEP-month,1) D_Folsm }  Eventualy, this needs to be set to a demand term for Folsom, but this hasn't been developed yet*/
+
+define FolSupEst {value max(0.0,FolInfEst - FolDivEst + S_Folsm(-1) - S_FolsmLevel3)}
+
+define FolSupEstdv {alias FolSupEst kind 'FORECAST' units 'TAF'}
+
+define FolFlowTarg {value (FolSupEst/cfs_taf)/(Sep-month+1.) }
+
+define FolRuleCalc {
+    case MaythruSep {
+        condition month >= may .and. month <= sep
+        value     FolInf - FolDiv + S_Folsm(-1) - FolFlowTarg*cfs_taf }
+    case Other {
+        condition always
+        value     S_FolsmLevel3}}
+define FolRuleCalcdv {alias FolRuleCalc kind 'RULE' units 'TAF'}
+
+define S_FolsmLevel3adj {value min(max(FolRuleCalc,S_FolsmLevel2),S_FolsmLevel4)}
+define S_FolsmLevel3dv {alias S_FolsmLevel3adj kind 'STORAGE-LEVEL' units 'TAF'}
+
+goal S_FolsmZone3 {S_Folsm_3 < max(S_FolsmLevel3adj - S_FolsmLevel2,0.)}
+goal S_FolsmZone4 {S_Folsm_4 < max(S_FolsmLevel4 - S_FolsmLevel3adj,0.)}
+goal S_FolsmZone5 {S_Folsm_5 < max(S_FolsmLevel5 - S_FolsmLevel4,0.)}
+goal S_FolsmZone6 {S_Folsm_6 < max(S_FolsmLevel6 - S_FolsmLevel5,0.)}
