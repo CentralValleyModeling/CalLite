@@ -43,7 +43,7 @@ define flowmin_specX2 {value 4000. }     ! cfs for months (feb-june) in which no
 
 define X2_last { value   a_x2_coef + b_x2_coef*X2_prv(-1) - c_x2_coef*LOG10(NDO(-1))   }   
 
-goal X2lastperiod {X2_prv=X2_last} ! output purposes only (need previous value)--could also be an alias
+goal X2lastperiod {X2_prv=X2_last}      ! output purposes only (need previous value)--could also be an alias
 
 ! ******************************************************************************************
 ! Get the days required for X2 at each location (Roe, Chipps, Confluence)

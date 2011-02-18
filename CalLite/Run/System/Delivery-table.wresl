@@ -157,6 +157,7 @@ goal zero_D_YubFeaP  {D_YubFea_P = 0.}
 goal zero_D_DaguerP  {D_Daguer_P = 0.}
 goal zero_D_FolsmP   {D_Folsm_P  = 0.}
 goal zero_D_NimbusP  {D_Nimbus_P = 0.}
+goal zero_D_Vallejo  {D_Vallejo = 0.}
 goal zero_D_Napa     {D_Napa    = 0.}
 goal zero_D_Solano   {D_Solano  = 0.}
 goal zero_D_FVB      {D_FVB     = 0.}

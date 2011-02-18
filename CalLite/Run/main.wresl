@@ -15,13 +15,12 @@ SEQUENCE CYCLE2 {
 MODEL BASE {         !CYCLE 1
 
 INCLUDE 'System\System.wresl'
-INCLUDE 'Assumptions\NewFacilitySwitches.wresl'
 INCLUDE 'hydrology\forecast\CVPforecasts.wresl'
 INCLUDE[LOCAL] 'hydrology\WEIRS\weir_steps_monthops.wresl' 
 INCLUDE 'wytypes\wytypes.wresl'
 INCLUDE 'Assumptions\assumption.wresl'
 INCLUDE 'NorthofDelta\NOD.wresl'
-INCLUDE 'Export_Ops\export_ops.wresl'
+INCLUDE 'Export_Ops\export_ops1.wresl'
 INCLUDE 'Delta\Delta.wresl'
 
 INCLUDE 'system\weight-table.wresl'
