@@ -54,6 +54,9 @@ define C_NBA {lower 0. upper 175. kind 'FLOW-CHANNEL' units 'CFS'} !North Bay Aq
 define C_SacND {lower 0. upper 25000.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River Downstream of North Delta
 define C_SacBI {std kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River Downstream of Branna Island
 define C_SacRV {std kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River D/S of Rio Vista
+define C_SacRV_MIF {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
+define C_SacRV_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}
+goal C_SacRVtotal {C_SacRV=C_SacRV_MIF+C_SacRV_EXC}
 define C_SacSJR {std kind 'FLOW-CHANNEL' units 'CFS'} !D/S of Confluence of Sacramento River and San Joaquin River
 define C_Delta {std kind 'FLOW-CHANNEL' units 'CFS'} !Delta Outflow
 define C_Moklmn {std kind 'FLOW-CHANNEL' units 'CFS'} !Central Delta - D/S of DXC (C414)
@@ -97,4 +100,3 @@ define C_WarnePP {lower 0. upper 1565. kind 'FLOW-CHANNEL' units 'CFS'} !Califor
 define D_ClearTu {lower 0. upper 3300. kind 'FLOW-TUNNEL' units 'CFS'} !Clear Creek Turnnel (D100) with a capacity of 3300 cfs and it is split into _import  <trin_imorts2
 define D_Spring {lower 0. upper 4200. kind 'FLOW-TUNNEL' units 'CFS'} !Spring Creek Tunnel (D3) with a  capacity of 4200 cfs and D3 = D3_m + D3_whlcv + D3_whljp
 
-goal zero_C_IndnSl {C_IndnSl = 0.}

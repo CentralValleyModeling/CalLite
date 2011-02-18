@@ -1,0 +1,14 @@
+/*************************************
+Intertie.wresl 
+ 
+Nazrul Islam DWR (04/27/2010)
+
+implements functionality of DMC/CAQ Intertie
+**************************************/
+
+define Intertie_Cap {value 400.*IntertieSwitch}
+
+goal limit_Intertie {C_Intrti < Intertie_Cap}
+
+! goal rout_Intertie {D804A = C700A}
+

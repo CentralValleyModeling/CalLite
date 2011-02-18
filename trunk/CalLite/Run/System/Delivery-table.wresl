@@ -79,10 +79,8 @@ define D_ConeyIs_NP {lower 0. upper demand_D_ConeyIs_NP kind 'FLOW-DELIVERY' uni
 define D_ConeyIs {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Coney Island
 goal Diversion_ConeyIs {D_ConeyIs=D_ConeyIs_NP}
 
-define demand_D_Antioch_NP {value 0.}!Non-Project Demand at Antioch
 define D_Antioch_NP {std kind 'FLOW-DELIVERY' units 'CFS'}! Non-Project Diversion at Antioch
 define D_Antioch {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Antioch
-goal zero_D_Antioch  {D_Antioch_NP < demand_D_Antioch_NP}
 goal Diversion_Antioch {D_Antioch=D_Antioch_NP}
 define demand_D_CCWD {timeseries kind 'DEMAND' units 'CFS'}!Project Diversion to CCWD
 define D_CCWD {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion to CCWD
@@ -159,7 +157,6 @@ goal zero_D_YubFeaP  {D_YubFea_P = 0.}
 goal zero_D_DaguerP  {D_Daguer_P = 0.}
 goal zero_D_FolsmP   {D_Folsm_P  = 0.}
 goal zero_D_NimbusP  {D_Nimbus_P = 0.}
-goal zero_D_Vallejo  {D_Vallejo = 0.}
 goal zero_D_Napa     {D_Napa    = 0.}
 goal zero_D_Solano   {D_Solano  = 0.}
 goal zero_D_FVB      {D_FVB     = 0.}
