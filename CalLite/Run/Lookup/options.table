@@ -10,3 +10,4 @@ Index   Option
 6       1   !Switch for CVP export estimate method: pre-BO estimate: value=0, BO estimate: value =1
 7       1   !Cross Valley Wheeling:  0 = off, 1 = on
 8       1   !Joint Point of diversion Wheeling:  0 = off, 1 = on
+9       1   !Level of Development, LOD = 1 for future and 0 for existing

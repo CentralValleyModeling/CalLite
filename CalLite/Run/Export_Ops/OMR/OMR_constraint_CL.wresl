@@ -2,6 +2,7 @@
 OMR_constraint_CL.wresl
  
 Z.Q. Richard Chen DWR 9/14/2010
+         corrected 1/5/2011
 
 FWS BO actions implementations
 *************************************/
@@ -16,7 +17,15 @@ define D408_RS_max {value 350.} !cfs
 define D408_OR_max {value 250.} !cfs
 
 !Victoria Canal (Alternative) Intake capacity [D408_VC_max, units cfs]
-define D408_VC_max {value 250.} !cfs
+define LOD {select Option from options where Index=4}
+define D408_VC_max {
+    case LOD_Future{
+        condition LOD == 1 
+        value 250.} !cfs
+    case otherwise{
+        condition always
+        value 0.}
+}        
 
 
 define OMR_RPA {value  OMR_RPA_FWS }!{value max(OMR_RPA_FWS,OMR_RPA_LF)}
