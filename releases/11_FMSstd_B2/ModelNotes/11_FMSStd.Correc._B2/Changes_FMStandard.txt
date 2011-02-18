@@ -1,0 +1,11 @@
+By: Richard and Nazrul; 11/01/2010
+
+CalLite
+1. Added Tom's corrections
+	a. Replaced FMStandard.w  and American.w files, and FMPtrigger.table 
+	b. Modified NOD.W file
+	c. Removed files from NorthofDelta|america that are not necssary
+	
+
+
+

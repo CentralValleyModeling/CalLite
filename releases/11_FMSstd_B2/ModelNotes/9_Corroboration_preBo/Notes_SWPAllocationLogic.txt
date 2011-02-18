@@ -1,0 +1,218 @@
+By Nazrul islam, RIchard Chen and Hao Xie
+   SWP logical implementation:
+1) the CalLite and SV tool are comined under the directory .\model_cs2cl
+2) the CalLite swp allocation logic wresl files are located in .\model_cs2cl\Run\swp_dellogic as
+
+       'swp_dellogic\WSI_DI\wsi_swp.wresl'
+       'swp_dellogic\WSI_DI\di_swp.wresl'
+       'swp_dellogic\WSI_DI\export_index_swp.wresl'
+       'swp_dellogic\WSI_DI\exp_based_del_swp_s.wresl'
+       'swp_dellogic\WSI_DI\delcar_swp.wresl'
+       'swp_dellogic\allocation\co_extfcn.wresl'
+       
+       table added: "feather_runoff_forecast
+		     wsi_di_swp"
+		     "delta_index
+		      dltidx_expidx_swp_s"
+             	     "Table A
+		      ExportEstimate_SWP"
+	Notes: DI_SWP_io needs to be revisted;Removed BO and other options
+
+   a) 'swp_dellogic\DEMANDS\swp_arcsplit_CSCL.wresl'
+       -- splits SWP Demand arcs 
+       table:      none
+       timeseries: none
+
+   b) 'swp_dellogic\DEMANDS\swp_demands_s_CSCL.wresl'
+       -- defines swp demands
+       table:      swp_3pattern_demands
+       timeseries: 17 renamed CalSim Loss timeseris and 
+                   16 renamed CalSim Interrupable timeseries
+
+   c) 'swp_dellogic\deliveries\sumswpdel_CSCL.wresl'
+       -- commented out NOD staff which need to be added
+       table:      none
+       timeseries: none
+
+   d) 'swp_dellogic\deliveries\swp_delivery_summary_CSCL.wresl'
+       -- commented out NOD staff which need to be added
+       table:      none
+       timeseries: none
+
+   e) 'swp_dellogic\allocation\swp_contractor_perdel_A_CSCL.wresl'
+       -- exactly CalSim codes for calculating the percent delivery for each SWP contractor
+       table:      TableA, AnnualReDel_swp,swp_table_A,swp_carryover,swp_3_tableA
+       timeseries: none
+
+   f) 'swp_dellogic\allocation\carryover_allocation_CSCL.wresl'
+       -- exactly CalSim codes 
+       table:      none
+       timeseries: none
+
+   g) 'swp_dellogic\allocation\swp_contractor_perdel_B_CSCL.wresl'
+       -- exactly CalSim codes
+       table:      swp_3pattern_demands
+       timeseries: none
+	
+   h) 'swp_dellogic\deliveries\swp_bound_del_SOD_CSCL.wresl'
+       -- commented out NOD staff which need to be added
+       table:      none
+       timeseries: none
+
+   i) 'swp_dellogic\conveyance_limits_CSCL.wresl'
+       -- commented out CVP staff which need to be added
+       table:      swp_limits
+       timeseries: none
+
+3) Add definition of "calendaryear" in file ".\Wytypes\wytypes.wresl"
+
+4) Remove definitions of "max_tableA", "tableA_loss", and "SWP_TableA" in ".\NorthOfDelta\Feather\OroRuleCurv_CL.wresl"
+
+5) Modify weights for deliveries: 
+
+[D_UpDMC,1265],
+[D_SBay,1285],
+[D_SWPJUCVP,-0.1],
+[D_DosAmigosSWP,1285],
+[D_DosAmigosCVP,1265],
+[D_Emp2Dud,1265],
+[D_CoastAqdct,1265],
+[D_KCWA,1265],
+[D_CVP_CVC,1265],
+[D_CVPRfg_854,1265],
+[D_CVC2Chris,1265],
+[D_Alamo,1265],
+[D_PearBlPP,1265],
+[D_OSO,1265],
+[D_WarnePP,1265],
+[D_SLCVP,1265],
+
+
+[D25_PMI,1265],
+[D27_PIN,20],
+[D27_PMI,1265],
+[D28_PMI,1265],
+[D29_PMI,1265],
+[D403B_PLS,1285],
+[D403B_PMI,1265],
+[D403C_PMI,1265],
+[D802A_PAG,1265],
+[D803_PLS,1285],
+[D810_PIN,20],
+[D810_PMI,1265],
+[D813_PMI,1265],
+[D814_PIN,20],
+[D814_PMI,1265],
+[D815_PIN,20],
+[D815_PMI,1265],
+[D816_PLS,1285],
+[D403B_PIN,20],
+[D824_PLS,1285],
+[D826_PLS,1285],
+[D827_PLS,1285],
+[D828_PLS,1285],
+[D829_PLS,1285],
+[D846_PAG,1265],
+[D846_PIN,20],
+[D847_PAG,1265],
+[D848_PAG,1265],
+[D848_PIN,20],
+[D849_PAG,1265],
+[D849_PIN,20],
+[D851A_PMI,1265],
+[D851B_PMI,1265],
+[D851_PAG,1265],
+[D854_PLS,1285],
+[D859_PAG,1265],
+[D859_PIN,20],
+[D859F, -100000],
+[D862_PLS,1285],
+[D863_PAG,1265],
+[D864_PLS,1285],
+[D867_PAG,1265],
+[D868_PAG,1265],
+[D868_PIN,20],
+[D869_PMI,1266],
+[D870_PMI,1265],
+[D877_PIN,20],
+[D877_PMI,1265],
+[D878_PMI,1265],
+[D879_PMI,1265],
+[D880_PLS,1285],
+[D881_PMI,1265],
+[D882_PLS,1285],
+[D883_PIN,20],
+[D883_PMI,1265],
+[D884_PIN,20],
+[D884_PMI,1265],
+[D885_PIN,20],
+[D885_PMI,1265],
+[D886_PMI,1265],
+[D887_PMI,1265],
+[D888_PMI,1265],
+[D889_PLS,1285],
+[D891_PLS,1285],
+[D893_PLS,1285],
+[D894_PLS,1285],
+[D895_PIN,20],
+[D895_PMI,1265],
+[D896_PMI,1265],
+[D899_PIN,20],
+[D899_PMI,1265],
+[D25_PCO,1264],
+[D27_PCO,1264],
+[D28_PCO,1264],
+[D29_PCO,1264],
+[D403B_PCO,1264],
+[D403C_PCO,1264],
+[D802A_PCO,1264],
+[D810_PCO,1264],
+[D813_PCO,1264],
+[D814_PCO,1264],
+[D815_PCO,1264],
+[D846_PCO,1264],
+[D847_PCO,1264],
+[D848_PCO,1264],
+[D849_PCO,1264],
+[D851_PCO,1264],
+[D859_PCO,1264],
+[D863_PCO,1264],
+[D867_PCO,1264],
+[D868_PCO,1264],
+[D869_PCO,1264],
+[D870_PCO,1264],
+[D877_PCO,1264],
+[D878_PCO,1264],
+[D879_PCO,1264],
+[D881_PCO,1264],
+[D883_PCO,1264],
+[D884_PCO,1264],
+[D885_PCO,1264],
+[D886_PCO,1264],
+[D887_PCO,1264],
+[D888_PCO,1264],
+[D895_PCO,1264],
+[D896_PCO,1264],
+[D899_PCO,1264] 
+
+
+6) The table files listed below are added to the Lookup directory
+          swp_3pattern_demands
+          swp_table_A,
+          swp_carryover,
+          swp_3_tableA, 
+          swp_limits,
+          AnnualReDel_swp,
+
+7) The timeseries listed below are added to the SV file using CS2CL SV tool's wresl file
+        'CS2CLsrc\swp_dellogic\DEMANDS\swp_demands_s_TS.wresl':
+
+       a)     17 renamed CalSim Loss timeseris and 
+              For example: define dem_D403B_PLS_cfs {alias dem_D403B_PLS 
+                                                    kind 'demand-swp-ls' units 'cfs'}
+
+       b)     16 renamed CalSim Interrupable timeseries
+              For example: define dem_D27_PIN_cfs {alias dem_D27_PIN
+                                                   kind 'demand-swp-in' units 'cfs'}
+
+

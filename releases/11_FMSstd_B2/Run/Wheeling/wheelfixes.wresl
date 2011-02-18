@@ -1,0 +1,263 @@
+! make sure CVP releases for wheeling
+
+! fix swp and coa operations to that without wheeling
+goal fixSwpPumping1 {
+  lhs     D_Banks_swp
+  rhs     D_Banks_swp[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixSwpPumping2 {
+  lhs     D_Banks_EXP1
+  rhs     D_Banks_EXP1[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixSwpPumping3 {
+  lhs     D_Banks_EXP2
+  rhs     D_Banks_EXP2[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+/*goal fixCvpPumping1 {
+  lhs     D_Jones
+  rhs     D_Jones[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixCvpPumping2 {
+  lhs     D_Jones_EXP1
+  rhs     D_Jones_EXP1[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixCvpPumping3 {
+  lhs     D_Jones_EXP2
+  rhs     D_Jones_EXP2[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}*/
+goal fixNBPumping {
+  lhs     D_Napa
+  rhs     D_Napa[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+/** Not included this node (CCWD)
+goal fixCCCPumping {
+  lhs     D420
+  rhs     D420[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+ 
+goal fixfeatherretflow {
+  lhs     c137
+  rhs     c137[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixyubaflow {
+  lhs     c211
+  rhs     c211[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixbearflow {
+  lhs     c213
+  rhs     c213[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+**/
+goal fixfeatherinflow {
+  lhs     c_YubFea
+  rhs     c_YubFea[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+/**
+goal fixfeatherexport {
+  lhs     c225
+  rhs     c225[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+**/
+/*goal fixcvprefuge {
+  lhs     D_CVPJUSWP
+  rhs     D_CVPJUSWP[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+*/
+goal fixsouthbay {
+  lhs     D_Sbay
+  rhs     D_Sbay[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixONeillFBSWP {
+  lhs     D_ONeillFBSWP
+  rhs     D_ONeillFBSWP[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixSL {
+  lhs     S_SLSWP
+  rhs     S_SLSWP[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixSLin {
+  lhs     D_OFBSWP
+  rhs     D_OFBSWP[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixterminals {
+  lhs     C_CVC
+  rhs     C_CVC[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixUNUSEDFS {
+  lhs     UNUSED_FS
+  rhs     UNUSED_FS[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+/*goal fixUNUSEDSS {
+  lhs     UNUSED_SS
+  rhs     UNUSED_SS[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}*/
+goal fixSWPDS {
+  lhs     SWPDS
+  rhs     SWPDS[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixSHADS {
+  lhs     SHADS
+  rhs     SHADS[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixFOLDS {
+  lhs     FOLDS
+  rhs     FOLDS[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+goal fixWHSSW {
+  lhs     WHSSW
+  rhs     WHSSW[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixUWFE {
+  lhs     UWFE
+  rhs     UWFE[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixIBU {
+  lhs     IBU
+  rhs     IBU[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+/*
+goal fixgp60 {
+  lhs     gp60
+  rhs     gp60[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgp61 {
+  lhs     gp61
+  rhs     gp61[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgp62 {
+  lhs     gp62
+  rhs     gp62[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgp63 {
+  lhs     gp63
+  rhs     gp63[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgp64 {
+  lhs     gp64
+  rhs     gp64[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgp65 {
+  lhs     gp65
+  rhs     gp65[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgp66 {
+  lhs     gp66
+  rhs     gp66[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+*/
+/**
+goal fixc148a {
+  lhs     c148a
+  rhs     c148a[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgc148b {
+  lhs     c148b
+  rhs     c148b[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixc152a {
+  lhs     c152a
+  rhs     c152a[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+goal fixgc152b {
+  lhs     c152b
+  rhs     c152b[BASE]
+  lhs>rhs penalty 99999
+  lhs<rhs penalty 99999
+}
+
+
+
+**/

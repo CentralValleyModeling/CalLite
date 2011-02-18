@@ -1,0 +1,112 @@
+/***********************
+
+SWP_Dellogic_TS.wresl
+
+Cody L. Milligan BOR
+
+07-19-2010
+
+This file contains the logic from run/allocation and run/swp_dellogic
+
+08-30-2010
+Z.Q. Richard Chen DWR
+remove assumption_TS.wresl staff and clean up unused terms
+***********************/
+
+/*From: assumption_TS.wresl */
+
+!define swp_alloc_     {timeseries       kind 'SWP-DELIVERY' units 'TAF'}
+!define swp_allocation {alias swp_alloc_ kind 'SWP-DELIVERY' units 'TAF'}
+
+/*From: swp_demands_s_TS.wresl  
+
+This file defines timeseres for all the losss and the full requests 
+for interruptable in the SWP demands for the South of Delta 
+and North Bay and save them in the CalLite SV file 
+
+The original CalSim swp_demands_s.wresl are split into two parts 
+and are put into the two files:
+swp_demands_s_TS.wresl  (cs2cl)
+swp_demands_s_CL.wresl  (CalLite)
+****/
+
+!losses - constant pattern, never reduced.
+define dem_D403B_PLS {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D803_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D824_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D826_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D827_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D828_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D829_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D854_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D862_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D864_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D880_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D882_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D889_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D891_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D893_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D894_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+define dem_D816_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
+
+!interruptable - full request, weights determine if water is delivered.
+define dem_D27_PIN   {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D810_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D814_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D815_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D403B_PIN {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D846_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D848_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D849_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D868_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D859_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D877_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D883_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D884_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D885_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D895_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+define dem_D899_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
+/*****
+!Write to CalLite's SV file
+!losses - constant pattern, never reduced.
+*****/
+
+define dem_D403B_PLS_cfs {alias dem_D403B_PLS kind 'demand-swp-ls' units 'cfs'}
+define dem_D803_PLS_cfs  {alias dem_D803_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D824_PLS_cfs  {alias dem_D824_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D826_PLS_cfs  {alias dem_D826_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D827_PLS_cfs  {alias dem_D827_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D828_PLS_cfs  {alias dem_D828_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D829_PLS_cfs  {alias dem_D829_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D854_PLS_cfs  {alias dem_D854_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D862_PLS_cfs  {alias dem_D862_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D864_PLS_cfs  {alias dem_D864_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D880_PLS_cfs  {alias dem_D880_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D882_PLS_cfs  {alias dem_D882_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D889_PLS_cfs  {alias dem_D889_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D891_PLS_cfs  {alias dem_D891_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D893_PLS_cfs  {alias dem_D893_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D894_PLS_cfs  {alias dem_D894_PLS  kind 'demand-swp-ls' units 'cfs'}
+define dem_D816_PLS_cfs  {alias dem_D816_PLS  kind 'demand-swp-ls' units 'cfs'}
+!Reservior Del Valle ET treat as loss  
+!define D811 {timeseries kind 'FLOW-DELIVERY' units 'cfs'}
+!define C15  {timeseries kind 'FLOW-CHANNEL'  units 'cfs'}
+
+!interruptable - full request, weights determine if water is delivered.
+
+define dem_D27_PIN_cfs   {alias dem_D27_PIN   kind 'demand-swp-in' units 'cfs'}
+define dem_D403B_PIN_cfs {alias dem_D403B_PIN kind 'demand-swp-in' units 'cfs'}
+define dem_D846_PIN_cfs  {alias dem_D846_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D848_PIN_cfs  {alias dem_D848_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D849_PIN_cfs  {alias dem_D849_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D868_PIN_cfs  {alias dem_D868_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D859_PIN_cfs  {alias dem_D859_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D877_PIN_cfs  {alias dem_D877_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D883_PIN_cfs  {alias dem_D883_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D884_PIN_cfs  {alias dem_D884_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D885_PIN_cfs  {alias dem_D885_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D899_PIN_cfs  {alias dem_D899_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D895_PIN_cfs  {alias dem_D895_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D810_PIN_cfs  {alias dem_D810_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D814_PIN_cfs  {alias dem_D814_PIN  kind 'demand-swp-in' units 'cfs'}
+define dem_D815_PIN_cfs  {alias dem_D815_PIN  kind 'demand-swp-in' units 'cfs'}
