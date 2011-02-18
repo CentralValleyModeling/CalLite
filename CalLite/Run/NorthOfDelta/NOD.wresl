@@ -1,7 +1,7 @@
 /*************************************
 NOD.wresl
  
-Nancy Parker BOR 5/12/2010
+Nancy Parker BOR 5/12/2010; Modified by Tom Fitzhugh (11/1/2010) to implement new code for FMSstandard. 
 
 This is the top level include file for general logic in the North of Delta
 sub-basins - Trinity, Upper Sacramento, Feather, and American.  General logic
@@ -28,6 +28,7 @@ Include 'Sacramento\keswickmin.wresl'
 Include 'Sacramento\KeswickPower.wresl' 
 Include 'Sacramento\RedBluff_bypassflow.wresl'
 Include 'Sacramento\ncp_relax.wresl' 
+INCLUDE 'Sacramento\setdailyadjmif.wresl'
 
 Include 'Feather\feather_special_CL.wresl'
 Include 'Feather\OroRuleCurv_CL.wresl'

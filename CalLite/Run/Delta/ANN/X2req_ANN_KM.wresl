@@ -17,9 +17,9 @@ define km_chs {value 74. }     ! km to Chipps Island
 define km_cnf {value 81. }     ! km to Confluence (Sac & SJR)
 
 ! set the flow cap for each station (cfs). this is max flow to meet X2 at each station
-define flowcap_roe {value 29200. }     ! cfs for Roe Island/Port Chicago
-define flowcap_chs {value 11400. }     ! cfs for Chipps Island
-define flowcap_cnf {value 7100.  }     ! cfs for Confluence (Sac & SJR)
+!define flowcap_roe {value 29200. }     ! cfs for Roe Island/Port Chicago
+!define flowcap_chs {value 11400. }     ! cfs for Chipps Island
+!define flowcap_cnf {value 7100.  }     ! cfs for Confluence (Sac & SJR)
 
 ! Set the begin and end day for the standard -- Roe always met first
 define begday_roe {

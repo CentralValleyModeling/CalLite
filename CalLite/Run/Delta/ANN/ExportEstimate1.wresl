@@ -62,6 +62,17 @@ define maxJonescalc {value min(maxJonescalc1 + Intertie_Cap, JonesMaxAllow)}
 
 define CVPexportcap {value maxJonescalc+ CVPDedBanksSwitch*BanksMaxAllowCVP}
 
-define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC))}
+define June_B2_Corr {
+	case NotJuneOrOMRBOON {
+		condition	month < jun .or. month > jun .or. OMRBOON > 0.1
+		value		999999.
+	}
+	case otherwise {
+		condition	always
+		value		3000.
+	}
+}
+
+define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), June_B2_Corr)}
 
 define exp_est_CVP {alias EstCVPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}

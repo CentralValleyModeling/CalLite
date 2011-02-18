@@ -24,7 +24,7 @@ goal meetCO {
     lhs<rhs penalty 0}
   case Normal {
     condition always
-    rhs CO_m_sv*C_Hood_ANN /*+ CO_m_sv*C_YoloBP*/ + CO_b_sv
+    rhs CO_m_sv*C_Hood_ANN + CO_m_sv*C_YoloBP + CO_b_sv
     lhs<rhs penalty 0}
 }
 

@@ -273,7 +273,7 @@ define C_Nimbus_jf_trig  {alias JanFebCrit kind 'CRITERIA' units 'NONE'}
 goal set_C_Nimbus_fmp_mif {C_Nimbus_fmp_mif = minflowFMPAmer}             ! create time series
 define C_Nimbus_fmp {alias minflowFMPAmer kind 'FLOW' units 'CFS'}     !save the final minflow to DSS
 
-! goal meet_min_C_Nimbus { C_Nimbus_mif < minflowFMPAmer } ! Minimum required flows in American River below Nimbus Dam
+!goal meet_min_C_Nimbus { C_Nimbus_mif < minflowFMPAmer } ! Minimum required flows in American River below Nimbus Dam
 
 
 

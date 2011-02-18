@@ -17,8 +17,19 @@ define exp_est_SWPDem {alias EstSWPSodDem kind 'EXPORT-ESTIMATE' units 'CFS'}
 define EstSWPSodRC {value SWPRULEcalc1*taf_cfs - S_SLSWP(-1)*taf_cfs}
 define exp_est_SWPRC {alias EstSWPSodRC kind 'EXPORT-ESTIMATE' units 'CFS'}
 
+! New code for working with FWS and NMFS BO Delta Actions
+define EstSWPMaxExp_RPA {select estimate from ExportEstimate_SWP where month = month }
+
 ! export for south-of-delta SWP: demand + rulecurve
-define EstSWPSodExp {value min(BanksMaxAllow, max(300.0, EstSWPSodDem + EstSWPSodRC))}
+ 
+define EstSWPSodExp { 
+    case BO { condition int(OMRBOON) == 1 
+        value min(BanksMaxAllow, max(300.0, EstSWPSodDem + EstSWPSodRC), EstSWPMaxExp_RPA)}
+    case D1641_B2 { condition always
+        value min(BanksMaxAllow, max(300.0, EstSWPSodDem + EstSWPSodRC))}
+}
+
+
 define exp_est_SWP {alias EstSWPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}
 
 !*********************************************************************************************
@@ -92,8 +103,14 @@ define EstCVPMaxExp_B2 {
             value     99999. }
        }
 
+! New code for working with FWS and NMFS BO Delta Actions
+define EstCVPMaxExp_RPA {select estimate from ExportEstimate_CVP where month = month }
 
-
-define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), EstCVPMaxExp_B2)}
+define EstCVPSodExp { 
+    case BO { condition int(OMRBOON) == 1 
+        value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), EstCVPMaxExp_RPA )}
+    case D1641_B2 { condition always
+        value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), EstCVPMaxExp_B2)}
+}
 
 define exp_est_CVP {alias EstCVPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}

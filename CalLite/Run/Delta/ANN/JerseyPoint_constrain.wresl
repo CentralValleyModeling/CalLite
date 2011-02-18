@@ -26,7 +26,7 @@ goal meetJP {
     lhs<rhs penalty 0}
   case Normal {
     condition always
-    rhs JP_m_sv*c_Hood_ANN /*+ JP_m_sv*c_YoloBP*/ + JP_b_sv
+    rhs JP_m_sv*c_Hood_ANN + JP_m_sv*c_YoloBP + JP_b_sv
     lhs<rhs penalty 0}
 }
 

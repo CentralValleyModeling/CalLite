@@ -131,20 +131,31 @@ goal OroRelJulSep {
 ! Oroville would be operated only to satify minimum instream and 
 ! delta conditions if less than 1.0 MAF 
 !=========================================================================
+define C_Orovl_IBU {std kind 'flow-channel' units 'cfs'}  !Weight with -3000 to replace commented out constraint oro_releases.
+define C_Orovl_EXP {std kind 'flow-channel' units 'cfs'}
+goal split_C_Orovl {C_Orovl = C_Orovl_IBU + C_Orovl_EXP}
 
-goal oro_releases {
+define C_Orovl_EXP_max_ {value max(0., I_Orovl + (S_Orovl(-1) - 1000. - DrainTar_buffer)*taf_cfs)}
+
+goal lim_C_Orovl_EXP {C_Orovl_EXP < C_Orovl_EXP_max_}
+
+define C_Orovl_EXP_max {alias C_Orovl_EXP_max_ kind 'upper-bound' units 'cfs'}
+
+
+/*goal oro_releases {
     lhs C_Orovl
     case low_storage {
-        condition S_Orovl(-1) < 1000.
+        condition S_Orovl(-1) < 1000. + DrainTar_buffer ! DrainTar_buffer = 0 when int(OMRBOON)==1 as defined in delcar_swp.wresl
             rhs minflow_C_Therm
             lhs>rhs penalty 3000.
             lhs<rhs penalty 0 }
+                
     case norm_storage {
         condition always
             rhs minflow_C_Therm
             lhs>rhs penalty 0
             lhs<rhs penalty 0 }
-}
+}*/
 
 !=========================================================================
 ! Oroville PP intake's physical contraints at low storage conditions:
@@ -152,8 +163,21 @@ goal oro_releases {
 ! can move water @ 1500 cfs (safe capacity).
 ! When S_Orovl <1250 TAF, PP units 2,4,6 are lost and units 1,3,5 + river valve = 8700 max 
 !=========================================================================
+define C_Orovl_valve {upper 1500 kind 'flow-channel' units 'cfs'}
+define C_Orovl_PP135 {upper 7200 kind 'flow-channel' units 'cfs'}
+define C_Orovl_Rem {std kind 'flow-channel' units 'cfs'}
+goal split_C_Orovl2 {C_Orovl = C_Orovl_valve + C_Orovl_PP135 + C_Orovl_Rem}
+
+define C_Orovl_Rem_max_ {value max(0., I_Orovl + (S_Orovl(-1) - 1250.)*taf_cfs)}
+define C_Orovl_PP135_max_ {value max(0., I_Orovl + (S_Orovl(-1) - 850.)*taf_cfs)}
+
+goal lim_C_Orovl_Rem {C_Orovl_Rem < C_Orovl_Rem_max_}
+goal lim_C_Orovl_PP135 {C_Orovl_PP135 < C_Orovl_PP135_max_}
+
+define C_Orovl_Rem_max {alias C_Orovl_Rem_max_ kind 'upper-bound' units 'cfs'}
+define C_Orovl_PP135_max {alias C_Orovl_PP135_max_ kind 'upper-bound' units 'cfs'}
  
-goal river_valve_flow {
+/*goal river_valve_flow {
     lhs C_Orovl
     case river_valve_only {
     condition S_Orovl(-1) < 850. 
@@ -171,6 +195,7 @@ goal river_valve_flow {
         lhs>rhs penalty 0
         lhs<rhs penalty 0 }
 }
+*/
 
 !=========================================================================
 ! Extra output to DV file

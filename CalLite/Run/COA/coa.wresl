@@ -4,6 +4,7 @@ coa.wresl
 
 Author: Cody L. Milligan BOR 06/17/10
 
+Dan Easton 11/12/2010 modify penality for D_Banks_EXP1, and D_Jones_EXP1
 ************************************************/
 
 /*  This file contains the logic for the Coordinated Operation Agreement (COA).
@@ -157,13 +158,13 @@ goal setUNUSED_SS { D_Jones_EXP2 < UNUSED_SS }
 goal EI_split_swp {
     lhs     D_Banks_EXP1
      rhs        0.5*EiExpCtrl
-     lhs>rhs    penalty 1285
+     lhs>rhs    penalty 1290
      lhs<rhs    penalty 0
 }
 goal EI_split_cvp {
     lhs     D_Jones_EXP1
      rhs        0.5*EiExpCtrl
-     lhs>rhs    penalty 1285
+     lhs>rhs    penalty 1290
      lhs<rhs    penalty 0
 }
 
@@ -173,7 +174,7 @@ goal AprMay_split_swp {
      case AprMay {
         condition      month==APR .or. month==MAY
      rhs        0.5*AprMayExpCtrl
-     lhs>rhs    penalty 1285
+     lhs>rhs    penalty 1290
      lhs<rhs    penalty 0
      }
 }
@@ -182,7 +183,7 @@ goal AprMay_split_cvp {
      case AprMay {
         condition        month==APR .or. month==MAY
      rhs        0.5*AprMayExpCtrl
-     lhs>rhs    penalty 1285
+     lhs>rhs    penalty 1290
      lhs<rhs        penalty 0
      }
 }
