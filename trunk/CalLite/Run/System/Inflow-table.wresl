@@ -5,13 +5,13 @@ define I_Shsta {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Shasta Lake Inflow
 define I_Orovl {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Oroville Lake Inflow
 define I_Yuba {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Engle Bright flow
 define I_Folsm {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Folsom Lake inflow
-define I_Hood {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU at Hood (I400)
-define I_BrananIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU u/s of RioVista (I404)
-define I_MarshCr {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Marsh Creek Inflow
-define I_SacSJR {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU at Sac and SJR confluence(I406B)
-define I_ConeyIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU at Coney Island (I409)
-define I_MedfordIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU at Medford Island (I410)
-define I_Terminous {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU at Terminous (I413)
-define I_Stockton {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Negative Net Delta CU at Stockton (I412)
+define I_Hood {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Hood (I400)
+define I_BrananIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion u/s of RioVista (I404)
+define I_MarshCr {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Marsh Creek local accretion
+define I_SacSJR {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Sac and SJR confluence(I406B)
+define I_ConeyIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Coney Island (I409)
+define I_MedfordIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Medford Island (I410)
+define I_Terminous {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Terminous (I413)
+define I_Stockton {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Stockton (I412)
 define I_CVCWheel {value 0} !For Wheeling Adjustment (I419)
 define I_Kern {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Kern River Interties flow
