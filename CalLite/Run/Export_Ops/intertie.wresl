@@ -10,5 +10,9 @@ define Intertie_Cap {value 400.*IntertieSwitch}
 
 goal limit_Intertie {C_Intrti < Intertie_Cap}
 
-! goal rout_Intertie {D804A = C700A}
+goal rout_Intertie {C_ONLFB = C_Intrti}
+
+goal limit_C700 {D_Jones-D700-C_Intrti<4400}
+goal limit_C701 {D_Jones-D700-D701-C_Intrti<4400}
+
 

@@ -26,8 +26,8 @@ define JonesDaysNoIncr { value daysin - JonesDaysIncr}
 ! Finds the Max Pump Capacity with the allowable increase
 define JonesMax1 {
 /*      case Increase {
-        condition   C639[-1] > 1000.0   ! Change back to cycle stuff
-        value   min(JonesCapPermit + C639[-1]/3.0, JonesCapPhys) }   ! Change back to cycle stuff
+        condition   AD_SJR[-1] > 1000.0   ! Change back to cycle stuff
+        value   min(JonesCapPermit + AD_SJR[-1]/3.0, JonesCapPhys) }   ! Change back to cycle stuff
 */
        case NoIncrease {
             condition always
@@ -43,7 +43,7 @@ goal JonesLessThanAllow { D_Jones < JonesMaxAllow}
 goal JonesLessThanPhys  { D_Jones < JonesCapPhys}
 
 ! Output Allowable Pumping Cap for Checking Only
-define JonesAllowOut {alias JonesMaxAllow kind 'FLOW-ALLOW-Jones' UNITS 'CFS' }
+define JonesAllowOut {alias JonesMaxAllow kind 'EXPORT-CTRL-JONES' UNITS 'CFS' }
 
 ! Jones PP Minimum Cap
 define Jonesminpump {
@@ -57,6 +57,8 @@ define Jonesminpump {
         condition always
         value 800. }
 }
+define JonesMinPumpDV {alias JonesMinPump kind 'EXPORT-CTRL-JONES' units 'cfs'}
+
 goal setJonesminpump {
     lhs D_Jones_cvp
     case Joneslowshasta {

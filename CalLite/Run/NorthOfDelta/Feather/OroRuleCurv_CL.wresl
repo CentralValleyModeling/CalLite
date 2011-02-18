@@ -6,13 +6,6 @@ Z.Q. Richard Chen DWR 5/06/2010
 Sets Oroville rule curve (Oroville Storage Level 3 and Level 4 values) 
 **************************************/
 
-/*** the following three lines need to be removed and should be defined 
-     in DeliveryLogic\delcar_swp.wresl when allocation logical is implemented
-***/
-define max_tableA  {select Total from TableA where Factor=1}
-define tableA_loss {select LOSS  from TableA where Factor=1}
-define SWP_TableA  {value max_tableA - tableA_loss}
-
 /***
     "OroSepTarg" is determined by allocation, Septermber Storage, Level 5 value (b_X).
     Set June to September Target Storage as "OroNextMonTarg" as min of 
@@ -58,7 +51,6 @@ define S_OrovlLevel3 {value min(2470.,S_OrovlLevel4) }
 define OroInf {value (I_Orovl)*cfs_taf }
 define OroInfEst {sum(i=0,SEP-month,1) (I_Orovl(i))*cfs_taf(i) }
 
-define dem_d6_PWR     {timeseries kind 'DEMAND-SWP-WR' units 'TAF'}
 define OroDiv {value dem_d6_PWR }
 define OroDivEst {sum(i=0,SEP-month,1) dem_d6_PWR(i) }
 define OroSupEst {value max(0.0,OroInfEst - OroDivEst + S_Orovl(-1)- S_OrovlLevel3)}

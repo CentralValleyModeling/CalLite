@@ -74,4 +74,44 @@ define wyt_TRIN {
                    from               wytypes
                    where            wateryear=wateryear}
 }
+! So first define the calendar year since deliveries are based on Jan-Dec year
+define calendaryear {
+    case JantoSep {
+        condition   month >= 4 .and. month <= 12
+        value       wateryear }
+    case OcttoDec {
+        condition   always
+        value       wateryear - 1 }
+}
 
+! the Feather Index for the Feather River Basin
+define wyt_FEATHER {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     FEATHERindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     FEATHERindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+/**
+ MODIFIED 40-30-30 index so that values are updated in Jan.
+ Done so that days meeting RSL standard begin in Jan for the upcoming water year type.
+ Remove and change variable mod_wyt_SAC ==> wyt_SAC in all table lookups if no longer
+ meeting standard on p. 16 WQCP.**/
+define mod_wyt_SAC {
+    case JAN {
+         condition  month == JAN
+         select     SACindex 
+         from       wytypes 
+         where      wateryear=wateryear}
+    case rest {
+         condition  always
+         value      wyt_SAC}
+}
+
+define wyt_ann {value mod_wyt_SAC}

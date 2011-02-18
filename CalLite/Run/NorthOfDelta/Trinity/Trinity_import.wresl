@@ -38,5 +38,8 @@ goal D_ClearTu_split {D_ClearTu = D_ClearTu_import + D_ClearTu_exc}
 goal set_import {D_ClearTu_import < trinity_import2}
 
 
+ 
+
+
 
 

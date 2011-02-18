@@ -11,7 +11,7 @@ Export is the smaller of the pump capacity and the Export Allowed by thr E/I rat
 **************************************/
 
 ! Delta inflow using the previous cycle SJR flow
-define Dinflow {alias C_Hood_ANN+AD_Mokelumne+C_YoloBP+AD_Calaveras+C639_VampDO  kind 'INFLOW-PULSE' units 'CFS'}
+define Dinflow {alias C_Hood_ANN+AD_Mokelumne+C_YoloBP+AD_Calaveras+AD_SJR_VAMP  kind 'INFLOW-PULSE' units 'CFS'}
 
 !############ PULSE PERIOD #############################
 ! Allowable export is set to certain limits based upon the flow of the San Joaquin River.
@@ -24,8 +24,7 @@ define ExportCapacity {value JonesCapPermit + BanksCapPermit}
 
 ! Limit exports during the pulse periods to the maximum of 1500 cfs or the SJR flow
 ! not including the pulse or Vamp flows (C639[SJR_WQ2]).
-define C639_SJRWQ2 {timeseries kind 'FLOW-CHANNEL' units 'CFS'}
-goal compare_sjrflow {PulseExpCtrl < max(1500.0, C639_SJRWQ2)}
+goal compare_sjrflow {PulseExpCtrl < max(1500.0, AD_SJR_Pulse)}
 
 
 ! Limit to EI ratio (WQCP) during the pulse period.
