@@ -1,0 +1,50 @@
+/************************************
+
+mainCS2CL.wresl
+
+Cody L. Milligan BOR; 07-20-2010
+
+Last modified:
+Nazrul Islam, DWR; 09/22/2010
+
+**************************************/
+
+SEQUENCE CYCLE1 {
+    model   CS2CL1
+    order   1
+    }
+    
+SEQUENCE CYCLE2 {
+    model   CS2CL2
+    condition wateryear == 1921 .and. month == 12 .or. wateryear > 1921
+    order   2
+    }
+
+SEQUENCE CYCLE3 {
+    model   CS2CL3
+    condition  wateryear > 1921
+    order   3
+    }
+
+
+MODEL CS2CL1 {          
+    INCLUDE 'CS2CL_TS\ANN.wresl'
+}
+
+MODEL CS2CL2 {          
+    INCLUDE 'CS2CL_TS\UARM.wresl'
+}
+
+MODEL CS2CL3 {          
+    INCLUDE [LOCAL] 'CS2CL_TS\System_Files_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Hydrology_Demands_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\CVP_Dellogic_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\SWP_Dellogic_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Weirs_Refuges_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\ANN_CCWD_NOD_WYTypes_CycleOutput_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Cycle_2_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\B2_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\BO_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\NewMelonesForecast.wresl'
+}
+
