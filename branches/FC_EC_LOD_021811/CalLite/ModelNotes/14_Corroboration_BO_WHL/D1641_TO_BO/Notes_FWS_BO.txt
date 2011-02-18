@@ -1,0 +1,23 @@
+By: Richard; 10/07/2010
+
+CS2CL tool
+1. Add SAC_RI timeseries into BO_TS.wresl
+
+CalLite
+1. Add the following five tables to the lookup directory:
+
+	FWS_BO_A2_X2.table
+	FWS_BO_A3_Bio.table
+	FWS_BO_A3_Offramp.table   
+	FWS_BO_A3_Temp.table
+	FWS_BO_A3_X2.table
+2. Modified options.table to add an "option" value at "index" =4 for OMAON switch (BO switch)
+
+3. Modified the original main wresl file and use a new name “main_BO.wresl”.
+
+4. Add a directory ./Run/Export_Ops/OMR and the following wresl files:
+                   DELTA_RPA_init_CL.wresl
+                   FWS_SMELT_BO_CL.wresl
+                   LONGFIN_SMELT_BO.CL.wresl
+                   EXP_constraint_CL.wresl
+                   OMR_constraint_CL.wresl

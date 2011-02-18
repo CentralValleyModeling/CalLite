@@ -1,0 +1,14 @@
+Log Open.
+Pathname: /CALSIM///31OCT1920/1MON/2005A01A/
+    -----DSS---ZOPEN:  Existing File Opened,  File: D:\CALLITEWS\CALLITE_WRIMS\BIOLOGICALOPINION\CORRO_EXISTING\CALLITE_BO_122310\UTILITIES\CS2CLSRC\CALSIMDSS\2005A01AINIT.DSS
+                       Unit: 71;  DSS Versions - Software: 6-KB, File: 6-KC
+    -----DSS---ZOPEN:  Existing File Opened,  File: D:\CALLITEWS\CALLITE_WRIMS\BIOLOGICALOPINION\CORRO_EXISTING\CALLITE_BO_122310\UTILITIES\CS2CLSRC\DSS\CL_2005A01A_BO_122310_SV.DSS
+                       Unit: 72;  DSS Versions - Software: 6-KB, File: 6-KB
+
+
+
+ ********* DSS ********* ERROR ON WRITE REQUEST
+ ROUTINE ZBDUMP, UNIT, RECORD =      73       1  STATUS =      -1       0
+  Current Records:        1       6      -1      -1      -1      -1
+ Error Code   40,  occuring in subroutine ZBDUMP
+ Last Pathname Accessed:  

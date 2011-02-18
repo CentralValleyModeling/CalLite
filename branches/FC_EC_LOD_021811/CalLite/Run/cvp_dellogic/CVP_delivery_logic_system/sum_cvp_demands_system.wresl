@@ -1,0 +1,39 @@
+/*************************************
+sum_cvp_demands_system.wresl
+ 
+Tom FitzHugh BOR 5/7/2010
+
+This file reads in timeseries for annual contract demands by type.  In Calsim, there 
+was a lot of code here to sum the monthly contract demands into annual demands, but now
+in CalLite these are input timeseries.
+
+Also reads in a timeseries for total diversion requirement for entire system
+*************************************/
+
+! Annual contract demands
+define acvpdem_pag_s {timeseries kind 'DEM-CVPS-AG-TOTAL' units 'TAF'}
+define acvpdem_pmi_s {timeseries kind 'DEM-CVPS-MI-TOTAL' units 'TAF'}
+define acvpdem_pex_s {timeseries kind 'DEM-CVPS-EX-TOTAL' units 'TAF'}
+define acvpdem_prf_s {timeseries kind 'DEM-CVPS-RF-TOTAL' units 'TAF'}
+define acvpdem_pls_s {timeseries kind 'DEM-CVPS-LS-TOTAL' units 'TAF'}
+
+define acvpdem_total_s {timeseries kind 'DEM-CVPS-TOTAL' units 'TAF'}
+
+define acvpdem_pag_sys {timeseries kind 'DEM-CVPSYS-AG-TOTAL' units 'TAF'}
+define acvpdem_pmi_sys {timeseries kind 'DEM-CVPSYS-MI-TOTAL' units 'TAF'}
+define acvpdem_pex_sys {timeseries kind 'DEM-CVPSYS-EX-TOTAL' units 'TAF'}
+define acvpdem_psc_sys {timeseries kind 'DEM-CVPSYS-SC-TOTAL' units 'TAF'}
+define acvpdem_prf_sys {timeseries kind 'DEM-CVPSYS-RF-TOTAL' units 'TAF'}
+define acvpdem_pls_sys {timeseries kind 'DEM-CVPSYS-LS-TOTAL' units 'TAF'}
+
+define acvpdem_tot_sys {timeseries kind 'DEM-CVPSYS-TOTAL' units 'TAF'}
+
+! Annual diversion requirement
+define acvpdem_dr_sys {timeseries kind 'demand-annual' units 'taf'}
+
+!******************* CUMULATIVE MONTHLY DEMANDS  ****************************
+define dem_totcvps_pag {timeseries kind 'demand-cvp-ag' units 'taf'}
+define dem_totcvps_pmi {timeseries kind 'demand-cvp-mi' units 'taf'}
+define dem_totcvps_pex {timeseries kind 'demand-cvp-ex' units 'taf'}
+define dem_totcvps_prf {timeseries kind 'demand-cvp-rf' units 'taf'}
+define dem_totcvps_pls {timeseries kind 'demand-cvp-ls' units 'taf'}
