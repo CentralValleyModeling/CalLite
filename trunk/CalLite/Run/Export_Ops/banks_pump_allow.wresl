@@ -25,11 +25,12 @@ define BanksDaysNoIncr { value daysin - BanksDaysIncr}
 
 ! Finds the Max Pump Capacity with the allowable increase
 !define BanksCapPermit2 {select PermitCap2 from BanksLimits where month=month}
+define C639_VAMPDO {timeseries kind 'FLOW-CHANNEL' units 'CFS'}
 define BanksMax1 {
     case Increase {
-         condition  AD_SJR_VAMP > 1000.0
+         condition  C639_VAMPDO > 1000.0
          value      max(BanksCapPermit,
-                        min(BanksCapPermit1 + AD_SJR_VAMP/3.0, BanksCapPermit2) - EWAReservedCap) }
+                        min(BanksCapPermit1 + C639_VAMPDO/3.0, BanksCapPermit2) - EWAReservedCap) }
     case NoIncrease {
          condition  always
          value      BanksCapPermit }
@@ -51,7 +52,7 @@ goal banksLessThanResrvd { D_Banks_SWP_TD + D_Banks_CVP_TD + D_Banks_WTS_TD + D_
 **/
 
 ! Output Allowable Pumping Cap for Checking Only
-define BanksAllowOut {alias BanksMaxAllow kind 'EXPORT-CTRL-BANKS' UNITS 'CFS' }
+define BanksAllowOut {alias BanksMaxAllow kind 'FLOW-ALLOW-BANKS' UNITS 'CFS' }
 
 ! Banks PP Minimum Cap
 define banksminpump {value 300.}

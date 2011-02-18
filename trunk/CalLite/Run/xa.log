@@ -1,3 +1,4 @@
+Solver XA13.98
 >> WRIMS Version 1.3
 This program is Copyright (C) 1998 State of California, all rights reserved
 CALLITE
@@ -5,4 +6,4 @@ CLP options: MATLIST none
 >> These extra XA options were obtained:
 CLP options:
 ##########################################################
-XADONE...XAOSL 0051DFD0 Rc 6 XAComArea 01460048 XASOLV 984 Cum 9.953 XA 3.693 Pct 37
+XADONE...XAOSL 0055DFD0 Rc 6 XAComArea 01550048 XASOLV 1968 Cum 22.454 XA 12.313 Pct 54
