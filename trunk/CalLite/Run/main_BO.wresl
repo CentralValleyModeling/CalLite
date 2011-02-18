@@ -19,7 +19,6 @@ MODEL BASE {         !CYCLE 1
 !whether implement FWS Action : no action: value=0; action: value=1
 define OMRBOON {select Option from options where Index=4}
 
-
 INCLUDE 'System\System.wresl'
 INCLUDE 'Assumptions\NewFacilitySwitches.wresl'
 INCLUDE 'hydrology\forecast\CVPforecasts.wresl'
@@ -38,13 +37,15 @@ INCLUDE 'Rulecurve\rulecurve.wresl'
 INCLUDE 'Rulecurve\cvp_delivery_rule_curve.wresl'
 INCLUDE 'Rulecurve\San_Luis_Levels.wresl'
 INCLUDE 'Export_Ops\export_ops.wresl'
-INCLUDE[LOCAL] 'Wheeling\wheelzero.wresl'
+INCLUDE 'Wheeling\WheelOpsVarDefines.wresl'
+INCLUDE [LOCAL] 'Wheeling\WheelzeroCVC.wresl'
+INCLUDE [LOCAL] 'Wheeling\WheelzeroJPOD.wresl'
 INCLUDE 'COA\coa.wresl'
 INCLUDE[LOCAL]'Delta\Ann\ExportEstimate1.wresl'
 
 !Include external DLL information
 INCLUDE  'Delta\DeltaExtFuncs_7inpANN.wresl'
-define getFinalMrdo {EXTERNAL f90}  ! OBJ code file must be located in run\external directory
+define getFinalMrdo {EXTERNAL f90}
 
 INCLUDE[LOCAL] 'Delta\Delta.wresl'
 INCLUDE[LOCAL] 'Delta\X2_BO_WQ.wresl'
@@ -53,7 +54,6 @@ INCLUDE 'B2Actions\B2Actions_CL\BaseStudyResults.wresl'
 INCLUDE 'B2Actions\B2Actions_CL\B2Action1Repeat.wresl'
 
 INCLUDE 'system\weight-table.wresl'
-
 }
 
 MODEL WEIR_DAILYOPS {         !CYCLE 2
@@ -65,9 +65,6 @@ INCLUDE[LOCAL] 'B2Actions\B2Actions_CL\B2BanksFix.wresl'
 INCLUDE[LOCAL] 'Delta\Ann\ExportEstimate1_B2.wresl'
 INCLUDE[LOCAL] 'Delta\Delta.wresl'
 INCLUDE[LOCAL] 'Delta\X2_BO_WQ.wresl'
-INCLUDE[LOCAL] 'Wheeling\wheelzero.wresl'
-!INCLUDE[LOCAL] 'Wheeling\wheelfixes.wresl'
-INCLUDE[LOCAL] 'Wheeling\cycle_output.wresl'
 
 ! BO Code
 INCLUDE[LOCAL] 'Export_Ops\OMR\DELTA_RPA_init_CL.wresl'
@@ -75,9 +72,12 @@ INCLUDE [LOCAL] 'Export_Ops\FWS_SMELT_BO_FallX2check.wresl'
 INCLUDE [LOCAL] 'Export_Ops\NMFS_SALMON_BO_DCC.wresl'
 INCLUDE [LOCAL] 'Export_Ops\NMFS_SALMON_BO_Def.wresl'
 INCLUDE [LOCAL] 'Export_Ops\NMFS_SALMON_BO_SJR.wresl'
-!INCLUDE [LOCAL] 'Export_Ops\EXP_constraint.wresl'
 
 INCLUDE[LOCAL] 'Export_Ops\OMR\FWS_SMELT_BO_CL.wresl' 
 INCLUDE[LOCAL] 'Export_Ops\OMR\EXP_constraint_CL.wresl'
 INCLUDE[LOCAL] 'Export_Ops\OMR\OMR_constraint_CL.wresl'
+
+INCLUDE[LOCAL] 'Wheeling\Wheelcap.wresl'
+INCLUDE[LOCAL] 'Wheeling\wheelfixes.wresl'
+INCLUDE[LOCAL] 'output\cycle_output.wresl'
 }

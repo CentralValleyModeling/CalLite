@@ -130,7 +130,7 @@ define C_Delta_ANN {std kind 'FLOW-CHANNEL' units 'CFS'}
 goal CVPArcSplit {D_Jones_CVP = D_Jones_EXP1 + D_Jones_EXP2 }
 goal SWPArcSplit {D_Banks_SWP = D_Banks_EXP1 + D_Banks_EXP2 }
 
-goal SrpArcSplit {C_Delta = C_Delta_CVP + C_Delta_SWP + C_Delta_ANN + C_Delta_whlcv}
+goal SrpArcSplit {C_Delta = C_Delta_CVP + C_Delta_SWP + C_Delta_ANN + C_Delta_whlcv + C_Delta_whljp}
 
 goal COA_Balance {UWFE - IBU = C_Delta_CVP + C_Delta_SWP + D_CCWD + 2./3.*D_Napa + 2./3.* D_Solano + D_Jones_EXP1 + D_Banks_EXP1
                                + Surp1Terms + Surp2Terms - SHADS - FOLDS - WHSSW - SWPDS + UNUSED_FS + UNUSED_SS}
