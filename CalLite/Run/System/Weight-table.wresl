@@ -77,7 +77,9 @@ Objective obj = {[S_Trnty_1,20000*taf_cfs],
 [C_Delta_ANN,-2010],
 [C_Delta_CVP,-2000],
 [C_Delta_SWP,-2000],
-[C_Delta_whlcv,-2008],
+[C_Delta_whlcv,-2007],
+[C_Delta_whljp,-2008],
+[D_Banks_cvpwhl,-25],
 [C_ConyIs,-2],
 [C_MPool, -3000],
 [C209_PRJ_EXC,-9000],
@@ -286,7 +288,7 @@ Objective obj = {[S_Trnty_1,20000*taf_cfs],
 [I_Pyramid, 2050],
 [D_Castaic, 2050],
 [I_Castaic, 2050],
-[inf_set_L172, -10000]
+[inf_set_L172, -10000],
 [C_Intrti,-10]}
 
 

@@ -100,35 +100,20 @@ goal set_C408NoEXP1 {
 !
 goal bound_D419 {
   lhs     D_Banks_EXP1
-  case FWSBOActions1 {
-  condition   month>=dec .and. int(OMRBOON)==1 
+  case FWSBOActions {
+  condition   month>=dec .and.  month<=jun .and. int(OMRBOON)==1 
     rhs     0.5*C408_NoEXP1 - 0.5*C408_limit
     lhs>rhs    penalty 1285
     lhs<rhs penalty    0}
-    
-   case FWSBOActions2 {
-  condition   month<=jun .and. int(OMRBOON)==1 
-    rhs     0.5*C408_NoEXP1 - 0.5*C408_limit
-    lhs>rhs    penalty 1285
-    lhs<rhs penalty    0}
-
 }
 
 goal bound_D418 {
   lhs     D_Jones_EXP1 !+ D_Banks_CVPDEDEX1TD
-  case FWSBOActionsJo1 {
-     condition   month>=dec .and. int(OMRBOON)==1 
-    
+  case FWSBOActionsJo {
+    condition   month>=dec .and.  month<=jun .and. int(OMRBOON)==1     
     rhs     0.5*C408_NoEXP1 - 0.5*C408_limit
     lhs>rhs    penalty 1285
     lhs<rhs penalty    0}
-
-  case FWSBOActionsJo2 {
-    condition   month<=jun .and. int(OMRBOON)==1 
-    rhs     0.5*C408_NoEXP1 - 0.5*C408_limit
-    lhs>rhs    penalty 1285
-    lhs<rhs penalty    0}
-
 }
 
  

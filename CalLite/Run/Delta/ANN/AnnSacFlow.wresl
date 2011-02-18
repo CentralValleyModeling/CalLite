@@ -28,21 +28,5 @@ define C_YoloBP_mif {std kind 'FLOW-MIN-INSTREAM' units 'cfs'}
 define C_YoloBP_exc {std kind 'FLOW-EXCESS-INSTREAM' units 'cfs'}
 goal C_YoloBPtotal {C_YoloBP = C_YoloBP_mif + C_YoloBP_exc}
 
-goal setAnnSacFlow {
-	lhs AnnSacReq
-	case BOSWITCHON{
-		condition int(OMRBOON) == 1
-		rhs C_Hood_mif + C_YoloBP_mif 
-		lhs<rhs constrain
-		lhs>rhs penalty 0
-	}
-	case D1641 {
-	    	condition always	
-	    	rhs C_Hood_mif
-	    	lhs<rhs constrain 
-	    	lhs>rhs penalty 0
-	}
-}
+goal setAnnSacFlow { C_Hood_mif + C_YoloBP_mif < AnnSacReq}
 
-!Hold C_YoloBP_mif to zero unless limited in above constraint.
-goal switch_C_YoloBP_mif {C_YoloBP_mif < OMRBOON*9999999.}
