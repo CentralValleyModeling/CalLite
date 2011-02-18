@@ -1,0 +1,77 @@
+/************************************
+Wytypes.wresl
+
+Tom FitzHugh BOR 4/27/2010
+
+WATER YEAR TYPE DEFINITIONS
+
+**************************************/
+
+! ================ INDICES AS DEFINED BY DWR (CHANGE IN FEB) =====================
+! the 40-30-30 index for Sacramento Basin
+define wyt_SAC {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     SACindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     SACindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+
+! the Shasta index as defined by the CVP (changes in March)
+define wyt_SHASTA_cvp {
+        case OCTtoFEB {
+        condition   month >= OCT .and. month <= FEB
+        select      SHASTAindex
+        from        wytypes
+        where       wateryear=wateryear - 1.}
+
+        case rest {
+        condition   always
+        select      SHASTAindex
+        from        wytypes
+        where       wateryear=wateryear}
+}
+
+! the American River D893 index as defined by the CVP (changes in March)
+define wyt_AMERd893_cvp {
+        case OCTtoFEB {
+        condition   month >= OCT .and. month <= FEB
+        select      AmerD893
+        from        wytypes
+        where       wateryear=wateryear - 1.}
+
+        case rest {
+        condition   always
+        select      AmerD893
+        from        wytypes
+        where       wateryear=wateryear}
+}
+
+! ============================== YEAR TYPES ====================================
+! the following year type names can be used to represent the numbers found in the tables
+define Wet          {value 1}
+define AboveNormal  {value 2}
+define BelowNormal  {value 3}
+define Dry          {value 4}
+define Critical     {value 5}
+
+! the Trinity index   1=Very Wet, 2=Wet, 3=Normal, 4=Dry, 5=Critically Dry: Note: Index changes in Apr.
+define wyt_TRIN {
+         case OCTtoMar {
+                   condition        month >= OCT .and. month <= MAR
+                   select           Trinityindex
+                   from               wytypes
+                   where            wateryear=wateryear - 1.}
+         case rest {
+                   condition        always
+                   select           Trinityindex
+                   from               wytypes
+                   where            wateryear=wateryear}
+}
+

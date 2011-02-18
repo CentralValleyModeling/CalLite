@@ -6,15 +6,13 @@ SEQUENCE CYCLE1 {
     order   1
     }
 
-
 MODEL BASE {         !CYCLE 1
 
-INCLUDE 'system\inflow-table.wresl'
-INCLUDE 'system\channel-table.wresl'
-INCLUDE 'system\reservoir-table.wresl'
-INCLUDE 'system\delivery-table.wresl'
-INCLUDE 'system\return-table.wresl'
-INCLUDE 'system\connectivity-table.wresl'
-
+INCLUDE 'System\System.wresl'
+INCLUDE 'hydrology\forecast\CVPforecasts.wresl'
+INCLUDE 'wytypes\wytypes.wresl'
+Include 'Assumptions\assumption.wresl'
+INCLUDE 'NorthofDelta\NOD.wresl'
 INCLUDE 'system\weight-table.wresl'
+
 }
