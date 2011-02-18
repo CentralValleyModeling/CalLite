@@ -1,0 +1,29 @@
+/*************************************
+delta-outflow.wresl
+ 
+Tom FitzHugh BOR 4/23/2010
+
+Determines Delta outflow minimum flow standard.  In January if Eight River Index is < 800, 
+then standard is 4500.  Otherwise it is from NDO_flow_std.table.
+*************************************/
+
+define January_PMI {
+        select  pmi
+        from    eightriver
+        where   wateryear=wateryear
+}
+
+define NDOreqflowstd {select flow from NDO_flow_std where month=month, wyt_SAC=wyt_SAC}
+
+define DO_req_flow {
+    case    jan_pmi_LessThan_800 {
+        condition    month == JAN .and. January_PMI < 800.
+        value        4500.}
+    case other {
+        condition    always
+        value        NDOreqflowstd}
+}
+
+define begday_flw {value 1}                 ! beginning and ending days of current month            
+define endday_flw {value daysin}            ! for use in final-mrdo.wresl
+
