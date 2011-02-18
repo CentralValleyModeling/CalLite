@@ -64,10 +64,12 @@ define CVPRULEcalc {
           condition month >= nov .and. month <= dec
           value     max(CVPRuleDrainTar, CVP_Rule_Max * CVP_Rule_Sha_Cut * month/6., CVPRULECV(-1))}
      
-     case JanThruApr {
-          condition month >= jan .and. month <= apr
+     case JanThruFeb {
+          condition month >= jan .and. month <= feb
           value     max(CVPRuleDrainTar, CVP_Rule_Max * CVP_Rule_Sha_Cut * month/6., CVPRULECV(-1))}
-     
+     case MarthruApr {
+          condition month >= mar .and. month <= apr
+          value     max(CVPRuleDrainTar, CVP_Rule_DelTar)}
      case May {
           condition month == may
           value max(CVPRuleDrainTar,

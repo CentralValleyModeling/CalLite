@@ -1,5 +1,5 @@
 /*************************************
-ExportEstimate1.wresl
+ExportEstimate1_b2.wresl
  
 Nazrul Islam DWR (06/27/2010)
 This file defines export levels for each project (SWP,CVP).
@@ -62,6 +62,38 @@ define maxJonescalc {value min(maxJonescalc1 + Intertie_Cap, JonesMaxAllow)}
 
 define CVPexportcap {value maxJonescalc+ CVPDedBanksSwitch*BanksMaxAllowCVP}
 
-define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC))}
+define EstCVPMaxExp_B2 {
+       case Action2On {
+            condition month >= DEC .and. month <= JAN .and. int(B2Action2On)==1
+            value     max(JonesMinPumpLevel,D_Jones_cvp_B2Base + D_Banks_cvp_B2Base) } ! - redAction2)}
+       case Action7On {
+            condition month >= FEB .and. month <= MAR .and. int(B2Action7On)==1
+            value     max(JonesMinPumpLevel,D_Jones_cvp_B2Base + D_Banks_cvp_B2Base) } ! - (ResAction7/2.)*taf_cfs)}
+       case Action6On {
+            condition month == APR .and. int(B2Action6On)==1
+            value     PulseExpRes*0.5 }
+       case Action4On {
+            condition month == MAY .and. int(B2Action4On)==1
+            value     PulseExpRes*0.5 }
+       case Action3OnAPR {
+            condition month == APR .and. int(B2Action3On)==1
+            value     min(min(CVPexportcap, max(0.0, EstCVPSodDem + EstCVPSodRC)*14.0/daysin + PulseExpRes*0.5*16.0/daysin), JonesCapPermit*14.0/daysin + PulseExpRes*0.5*16.0/daysin) }
+       case Action3OnMAY {
+            condition month == MAY .and. int(B2Action3On)==1
+            value     min(3000.*16.0/daysin + PulseExpRes*0.5*15.0/daysin, JonesCapPermit*14.0/daysin + PulseExpRes*0.5*16.0/daysin) }
+       case Action5On {
+            condition month == JUN .and. int(B2Action5On)==1
+            value     min(D_Jones_cvp(-1)*0.5 + D_Banks_cvp(-1)*0.5 + min(CVPexportcap, max(0.0, EstCVPSodDem + EstCVPSodRC)*0.5), 3000.0) }
+       case Action5Off {
+            condition month == JUN
+            value     3000.0}
+       case rest {
+            condition always
+            value     99999. }
+       }
+
+
+
+define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), EstCVPMaxExp_B2)}
 
 define exp_est_CVP {alias EstCVPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}

@@ -96,15 +96,15 @@ define RS_CL_Max14Day {std kind 'SALINITY' units 'MG/L'}
 goal setRS_EC_14Ave {RS_EC_Max14Day = RS_EC_Max14Day_sv}
 goal setRS_CL_Max14Day {RS_CL_Max14Day = RS_CL_Max14Day_sv}
 
-! Additional equations for Banks and Tracy PP water qualities
-! Compute salinity Tracy and Banks (Source: P. Hutton/C. Wang FDM analysis)
+! Additional equations for Banks and Jones PP water qualities
+! Compute salinity Jones and Banks (Source: P. Hutton/C. Wang FDM analysis)
 define BanksEC_Max14Day {std kind 'SALINITY-APPROX' units 'UMHOS/CM'}
 define BanksEC_Max14Day_sv {value RS_CL_Max14Day_sv * 1.9818 + 218.1084}  ! This equation reflects WQ at Banks
 goal setBanksEC_Max14Day {BanksEC_Max14Day = BanksEC_Max14Day_sv}
 
-define TracyEC_Max14Day {std kind 'SALINITY-APPROX' units 'UMHOS/CM'}
-define TracyEC_Max14Day_sv {value RS_CL_Max14Day_sv * 1.6225 + 303.3852} ! ! This equation reflects WQ at Tracy
-goal setTracyEC_Max14Day {TracyEC_Max14Day = TracyEC_Max14Day_sv}
+define JonesEC_Max14Day {std kind 'SALINITY-APPROX' units 'UMHOS/CM'}
+define JonesEC_Max14Day_sv {value RS_CL_Max14Day_sv * 1.6225 + 303.3852} ! ! This equation reflects WQ at Jones
+goal setJonesEC_Max14Day {JonesEC_Max14Day = JonesEC_Max14Day_sv}
 
 !get ANN_EC for 2 month earlier
 define RS_EC_Max14day_smooth_sv {

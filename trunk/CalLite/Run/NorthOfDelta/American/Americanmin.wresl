@@ -8,8 +8,10 @@ Sets minimum flows for American River below Nimbus and H St.
 Minflow below Nimbus is set according to a CVP Lookup Table that looks at Folsom
 storage (Oct-Feb) or Folsom storage and forecasted inflow (Mar-Sept).  If Folsom
 storage is not > 200, then Nimbus uses H St minflow standard.  
-**************************************/
 
+Commented out code for Nimbus standard since we are using FMS for Nimbus standard.
+**************************************/
+/*
 define nimbus_trigger {    ! Computes trigger on which to base Nimbus minflow
     case oct_feb {
         condition    month >= OCT .and. month <= FEB
@@ -18,7 +20,7 @@ define nimbus_trigger {    ! Computes trigger on which to base Nimbus minflow
         condition    always
             value        S_Folsm(-1)+frcst_amr }
     }
-       
+*/       
 define minflow_C_HSt {select HStMin
     from   HSt_base
     where  month=month, AmerD893=wyt_AMERd893_cvp
@@ -33,7 +35,7 @@ goal setHSttoMin {
         rhs 0.
         lhs>rhs penalty 10 }    ! weight=10 will cause reservoir balancing to shift
 }                               ! to Shasta if possible, but not override COA
-
+/*
 define nimbus_hist_std {
     case fol_stor_ok {      ! if sufficient storage in Folsom, use minflow based on trigger
         condition S_Folsm(-1) > 200.
@@ -51,3 +53,4 @@ goal minflow_C_Nimbus { C_Nimbus_MIF < nimbus_hist_std }
 
 define nimbus_trig_dv   {ALIAS nimbus_trigger units 'taf'}
 define nimbus_hist_stdv   {ALIAS nimbus_hist_std units 'cfs'}
+/*

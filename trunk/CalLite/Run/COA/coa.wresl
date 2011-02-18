@@ -38,7 +38,7 @@ Author: Cody L. Milligan BOR 06/17/10
 
     6) For SWPDS, SHADS and FOLDS: positive is storage withdrawal, negative is storage increase.
 
-    7) Total exports are defined as total Banks pumping including wheeling plus Tracy pumping
+    7) Total exports are defined as total Banks pumping including wheeling plus Jones pumping
        plus Contra Costa Export.  Wheeling is considered as a CVP export and is defined with
        separate wresl logic. */
 
