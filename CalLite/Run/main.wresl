@@ -1,0 +1,20 @@
+! Main WRESL Files containes the paths to run the model.
+!Date Modified: 04/23/2010; By: Hao Xie
+
+SEQUENCE CYCLE1 {
+    model   BASE
+    order   1
+    }
+
+
+MODEL BASE {         !CYCLE 1
+
+INCLUDE 'system\inflow-table.wresl'
+INCLUDE 'system\channel-table.wresl'
+INCLUDE 'system\reservoir-table.wresl'
+INCLUDE 'system\delivery-table.wresl'
+INCLUDE 'system\return-table.wresl'
+INCLUDE 'system\connectivity-table.wresl'
+
+INCLUDE 'system\weight-table.wresl'
+}
