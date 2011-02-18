@@ -1,0 +1,18 @@
+! Main WRESL Files containes the paths to run the model.
+!Date Modified: 04/23/2010; By: Hao Xie
+
+SEQUENCE CYCLE1 {
+    model   BASE
+    order   1
+    }
+
+MODEL BASE {         !CYCLE 1
+
+INCLUDE 'System\System.wresl'
+INCLUDE 'hydrology\forecast\CVPforecasts.wresl'
+INCLUDE 'wytypes\wytypes.wresl'
+Include 'Assumptions\assumption.wresl'
+INCLUDE 'NorthofDelta\NOD.wresl'
+INCLUDE 'system\weight-table.wresl'
+
+}

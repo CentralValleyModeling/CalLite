@@ -1,0 +1,29 @@
+/*************************************
+NOD.wresl
+ 
+Nancy Parker BOR 5/12/2010
+
+This is the top level include file for general logic in the North of Delta
+sub-basins - Trinity, Upper Sacramento, Feather, and American.  General logic
+includes minimum flows and setting reservoir storage levels. 
+*************************************/
+
+Include 'American\FolRuleCurv.wresl'
+Include 'American\Americanmin.wresl'  
+Include 'American\NimbusPower.wresl'  
+ 
+Include 'Clear_Creek\clear_ck_min.wresl'  
+Include 'Trinity\TrinRuleCurv.wresl'  
+Include 'Sacramento\ShaRuleCurv.wresl'
+
+Include 'Trinity\Trinitymin.wresl' 
+Include 'Trinity\TrinityDamPower.wresl' 
+Include 'Trinity\Trinity_import.wresl' 
+Include 'Sacramento\keswickmin.wresl'   
+Include 'Sacramento\KeswickPower.wresl' 
+
+Include 'Feather\feather_special_CL.wresl'
+Include 'Feather\OroRuleCurv_CL.wresl'
+Include 'Feather\ThermalitoPower_CL.wresl'
+
+Include 'Balance.wresl'
