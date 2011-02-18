@@ -1,0 +1,17 @@
+By Nazrul Islam
+
+- After Nancy and Erik's review
+
+	- Added a node at Mendota Pool
+	- changed connetivity table; goal continuityMPool {C_CVPDMC+AD_JamesBP-D_MENDOTAPL-C_MPool=0} !Mendota Pool
+	- changed channel table; define C_MPool {lower 0 upper 99999 kind 'FLOW-CHANNEL' units 'CFS'} 
+	- Added weight for the C_MPool as spill [C_MPool, -2010]
+
+- Per our meeting decision, we changed C_Trmns, C_SJRCD, C_SJRMI, C_SJRSTo channels to be bidirectional
+
+- Per our meeting decision, we changed C_banks and C_jones to D_banks and D_jones
+
+- We removed D_Calaveras and modified AD_Calaveras calculation
+
+	
+
