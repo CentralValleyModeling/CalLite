@@ -9,10 +9,10 @@ includes minimum flows and setting reservoir storage levels.
 *************************************/
 
 Include 'American\FolRuleCurv.wresl'
-!Include 'American\Americanmin.wresl'
-INCLUDE 'american\NimbusHistMinQ.wresl'
-INCLUDE 'american\HSt_base.wresl'
-INCLUDE 'american\FMPInput.wresl'
+Include 'American\Americanmin.wresl'
+!INCLUDE 'american\NimbusHistMinQ.wresl'
+!INCLUDE 'american\HSt_base.wresl'
+!INCLUDE 'american\FMPInput.wresl'
 INCLUDE 'american\FMStandard.wresl'
 Include 'American\NimbusPower.wresl'  
  

@@ -9,7 +9,7 @@ This is the main file which 'includes' all Delta Operations and Constraints code
 
 
 !Include external DLL information
-INCLUDE  'DeltaExtFuncs_7inpANN.wresl'
+!INCLUDE  'DeltaExtFuncs_7inpANN.wresl'
 
 ! Contains files for implementation of Artifical Neural Network's for salinity control.
 INCLUDE 'Ann\AnnCommon.wresl'
@@ -27,7 +27,7 @@ INCLUDE 'Ann\MiddleRiver_data.wresl'
 INCLUDE 'Ann\LosVaqueros_data.wresl'
 INCLUDE 'Ann\CVP_intake_data.wresl'
 
-INCLUDE 'Ann\ExportEstimate1.wresl'
+!INCLUDE 'Ann\ExportEstimate1.wresl'
 INCLUDE 'Ann\ExportEstimate2.wresl'
 
 !These files change delta outflow to reflect each station:

@@ -176,7 +176,7 @@ define net_delta_cuDV { ALIAS net_DICU KIND 'NET-DICU' UNITS 'CFS' }
 ! other defines (Seventh input to ANN DLL)
 define VernWQfinal {timeseries kind 'Salinity-EC' units 'umhos/cm'}
 define SJR_ann_est {timeseries kind 'ANN-PARAMETER' units 'CFS'}
-define SJR_ANN     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
+!define SJR_ANN     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
 !*************************************************************************************************************
 
 

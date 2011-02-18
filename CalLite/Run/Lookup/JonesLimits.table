@@ -1,4 +1,4 @@
-! Tracy PP Limitations (CFS)
+! Jones PP Limitations (CFS)
 ! PermitCap = Pumping Limit by Permit
 ! PhysCap = Physical Pumping Limit
 ! DaysIncr = Days allowed to increase Permit Cap by 1/3 of SJR flow

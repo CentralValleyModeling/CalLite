@@ -19,8 +19,8 @@ goal FolsomWhl { C_Nimbus = C_Nimbus_m + C_Nimbus_whlcv }
 goal wheeling1a {D_Spring_whlcv < C_Kswck_whlcv}
 
 /**
-! This variable is the maximum flow that Tracy can pump due to channel capacity restrictions.
-define maxTracycalc3 {value min(JonesMaxAllow,
+! This variable is the maximum flow that Jones can pump due to channel capacity restrictions.
+define maxJonescalc3 {value min(JonesMaxAllow,
                      4400+perdel_cvpag_s*dem_D700_pag*taf_cfs,
                      4200+perdel_cvpag_s*dem_D700_pag*taf_cfs+perdel_cvpag_s*dem_D701_pag*taf_cfs+dem_D702_pls*taf_cfs) }
 
@@ -96,5 +96,5 @@ goal setSurplusCont {lhs     D_Banks_cvcsurp + C_Delta_cvp + C_Delta_swp
 
 ! For output only
 define CVC_AllocDv {alias CVC_Alloc Units 'taf'}
-define maxTracycalcDV {alias maxTracycalc Units 'cfs'}
+define maxJonescalcDV {alias maxJonescalc Units 'cfs'}
 

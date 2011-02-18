@@ -3,6 +3,7 @@ delcar_swp.wresl
 
 Nazrul Islam DWR 05/20/2010
 
+
 No longer using Delivery - Carryover Curve.
 
 The new procedure determines an appropriate allocation level based on the
@@ -20,10 +21,10 @@ define SWP_TableA  {value max_tableA - tableA_loss}
 !
 !define init_SWPRuleDrainTar {value 110.}
 define DI_buffer {value 250.}
-!define DrainTar_buffer {value 250.} ! Buffer is used so that model does not exceeds the limits
+define DrainTar_buffer {value 250.} ! Buffer is used so that model does not exceeds the limits
 
 ! *************************************************************
-/*
+
 ! Initial Percent Allocation estimate
 define swp_perdel_raw1 {value max(di_swp - init_SWPRuleDrainTar - 1000. - DI_buffer, 0.) / (SWP_TableA + 0.5 * max(S_Orovl(prevSep) - 1000., 0.))}
 ! S_SLSWP target for use in Rule Curve operations
@@ -34,9 +35,9 @@ define swp_perdel_raw2 {value max(di_swp - SWPRuleDrainTar - 1000. - DI_buffer, 
 ! S_Orovl target
 define S_Orovl_targ {value 1000. + 0.5 * min(swp_perdel_raw2, 1.) * max(S_Orovl(prevSep) - 1000., 0.) + DrainTar_buffer}
 define S_Orovl_targ_dv {alias S_Orovl_targ kind 'swp-delivery' units 'TAF'}
-*/
-! *************************************************************
 
+! *************************************************************
+/*
 ! Initial Percent Allocation estimate
 define swp_perdel_raw1 {value max(di_swp - init_SWPRuleDrainTar - 1000. - DI_buffer, 0.) / SWP_TableA }
 ! S_SLSWP target for use in Rule Curve operations
@@ -47,7 +48,7 @@ define swp_perdel_raw2 {value max(di_swp - SWPRuleDrainTar - 1000. - DI_buffer, 
 ! S_Orovl target
 define S_Orovl_targ {value 1000. + 0.5 * min(swp_perdel_raw2, 1.) * max(S_Orovl(prevSep) - 1000., 0.)}
 define S_Orovl_targ_dv {alias S_Orovl_targ kind 'swp-delivery' units 'TAF'}
-
+*/
 ! *************************************************************
 
 ! Delivery Decision unadjusted

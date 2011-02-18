@@ -12,7 +12,7 @@ Commented code can be activated to implement salinity constraints.
 *************************************/
 
 ! Define external function
-define getFinalMrdo {EXTERNAL f90}  ! OBJ code file must be located in run\external directory
+!define getFinalMrdo {EXTERNAL f90}  ! OBJ code file must be located in run\external directory
 
 ! Determine max required flow of Flow standard, Salinity requirements, and X2
 ! External function 'getFinalMRDO' takes as input the Delta Outflow required (cfs), beginning

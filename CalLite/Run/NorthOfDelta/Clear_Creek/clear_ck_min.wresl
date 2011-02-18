@@ -1,7 +1,7 @@
 /*************************************
 clear_ck_min.wresl
  
-Tom FitzHugh BOR 4/7/2010
+Tom FitzHugh BOR 4/7/2010; modified by Nazrul Islam, DWR, 10/13/2010 for B2 action implementation (commented out line 15)
 
 Sets minimum flow on Clear Creek below Whiskeytown.
 *************************************/
@@ -12,4 +12,4 @@ define ClearCrk_min {select flow
 
 define minflow_C_Wkytn {alias ClearCrk_min kind 'flow-min-required' units 'cfs'}  
 
-goal meet_clearmin {C_Wkytn_MIF < ClearCrk_min}  
+!goal meet_clearmin {C_Wkytn_MIF < ClearCrk_min}  

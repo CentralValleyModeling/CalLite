@@ -19,7 +19,7 @@ goal fixSwpPumping3 {
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999
 }
-goal fixCvpPumping1 {
+/*goal fixCvpPumping1 {
   lhs     D_Jones
   rhs     D_Jones[BASE]
   lhs>rhs penalty 99999
@@ -36,7 +36,7 @@ goal fixCvpPumping3 {
   rhs     D_Jones_EXP2[BASE]
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999
-}
+}*/
 goal fixNBPumping {
   lhs     D_Napa
   rhs     D_Napa[BASE]
@@ -86,13 +86,13 @@ goal fixfeatherexport {
   lhs<rhs penalty 99999
 }
 **/
-goal fixcvprefuge {
+/*goal fixcvprefuge {
   lhs     D_CVPJUSWP
   rhs     D_CVPJUSWP[BASE]
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999
 }
-
+*/
 goal fixsouthbay {
   lhs     D_Sbay
   rhs     D_Sbay[BASE]
@@ -134,12 +134,12 @@ goal fixUNUSEDFS {
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999
 }
-goal fixUNUSEDSS {
+/*goal fixUNUSEDSS {
   lhs     UNUSED_SS
   rhs     UNUSED_SS[BASE]
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999
-}
+}*/
 goal fixSWPDS {
   lhs     SWPDS
   rhs     SWPDS[BASE]
