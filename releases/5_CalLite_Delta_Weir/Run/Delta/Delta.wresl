@@ -1,0 +1,16 @@
+/*************************************
+Delta.wresl
+ 
+Nazrul Islam 5/17/2010
+
+This is the top level include file for general logic for Delta
+*************************************/
+
+Include 'SpecProjects\SpecProjects.wresl'
+Include 'vallejo\vallejo.wresl'  
+Include 'xc-gates.wresl'                 
+Include 'delta-outflow.wresl'  
+Include 'X2req_KM.wresl'                  
+Include 'final-mrdo.wresl'        
+Include 'riovista.wresl'                 
+Include 'SoDeltaChannels.wresl' 

@@ -1,0 +1,16 @@
+/*************************************
+riovista.wresl
+ 
+Tom FitzHugh BOR 4/23/2010
+
+Sets minimum flow for Rio Vista.  Minimum flow required in riovista.table is from WQCP 5/95 
+*************************************/
+
+define Rio_Vista_req { 
+        select      river_q
+        from        riovista
+        where       month=month, wyt_SAC=wyt_SAC}
+
+define mif_RioVista {alias Rio_Vista_req KIND 'FLOW-REQ-RVISTA' UNITS 'CFS'}
+
+goal minflow_RioVista {C_SacRV_MIF < Rio_Vista_req }
