@@ -42,7 +42,7 @@ define casedef_HORB {
      case SpringHORB{
          condition  month == APR .OR. month == MAY
          value  5.}
-! HORB Fall operations and appropriate coefficients for spring months - barriers are in and operated
+! HORB Fall operations and appropriate coefficients for fall months - barriers are in and operated
      case FallHORB{
          condition  month == SEP .OR. month == OCT .OR. month == NOV
          value  6.}
@@ -105,7 +105,7 @@ define coefC{
 ! Total South of Delta Pumping and Depletions
 define Qsod {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-DELIVERY' units 'CFS'}
 
-goal setQsod { Qsod = C_ExpTD + D_CCWD + netDICU_SOD}
+goal setQsod { Qsod = D_ExpTD + D_CCWDVCOR + netDICU_SOD}
 
 ! Flow split through Indian Slough
 goal setC_IndnSl { C_IndnSl = coefB * Qsod + Qsod } ! Indian Slough component of OMR flow equation
@@ -113,5 +113,5 @@ goal setC_IndnSl { C_IndnSl = coefB * Qsod + Qsod } ! Indian Slough component of
 ! Flow split from San Joaquin to the Export pool
 goal setC_Vrnlis { C_Vrnlis = coefA * AD_SJR + coefC } ! Vernalis and regression constant components of OMR flow equation
 
-define OMFlow    {alias C_OMR  kind 'FLOW-CHANNEL' units 'CFS'} ! for output
+define OMRFlow   {alias C_OMR  kind 'FLOW-CHANNEL' units 'CFS'} ! for output
 define QWestFlow {alias C_SJRVI kind 'FLOW-CHANNEL' units 'CFS'} ! for output

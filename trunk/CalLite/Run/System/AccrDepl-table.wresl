@@ -18,7 +18,10 @@ define AD_HSt {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
 define AD_Mokelumne {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
 define AD_Calaveras {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
 define AD_SJR {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SJR_VAMP {timeseries kind 'FLOW-CHANNEL' units 'CFS'}
+define AD_SJR_Pulse {timeseries kind 'FLOW-CHANNEL' units 'CFS'}
 
 !South of Delta
 define AD_JamesBP {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+!define AD_Castaic {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
 

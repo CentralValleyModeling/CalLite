@@ -48,6 +48,8 @@ define C_HSt_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}
 goal C_HSttotal {C_HSt=C_HSt_MIF+C_HSt_EXC}
 define C_YoloBP {std kind 'FLOW-CHANNEL' units 'CFS'} !YOLO BYPASS
 define C_Hood {lower 0. upper 11000.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River at Hood
+define C_Hood_ANN{lower 0 upper 11000*taf_cfs kind 'FLOW-ANN' units 'CFS'} !For ANN calculations
+goal C_HoodTotal {C_Hood = C_Hood_Ann}
 define C_DXC {std kind 'FLOW-CHANNEL' units 'CFS'} !Delta Cross Channel
 define C_SacDXC {std kind 'FLOW-CHANNEL' units 'CFS'} !Sacramento River Downstream of Delta Cross Channel
 define C_NBA {lower 0. upper 175. kind 'FLOW-CHANNEL' units 'CFS'} !North Bay Aqueduct
@@ -71,7 +73,7 @@ define C_Vrnlis {std kind 'FLOW-CHANNEL' units 'CFS'} !Between Vernalis and Cone
 define C_IndnSl {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Indian Slough component of OMR (CCWD)
 define C_OMR {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Old and Middle Rivers from Rock Slough to Venice Island (CCWD)
 define C_ConyIS {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Coney Island to Rock Slough (neg. flow is towards the pumps)
-define C_ExpTD {std kind 'FLOW-CHANNEL' units 'CFS'} !Between Coney Island and Pumping Plants
+define D_ExpTD {std kind 'FLOW-DELIVERY' units 'CFS'} !Between Coney Island and Pumping Plants
 define C_BnkExp {lower 0. upper 25000. kind 'FLOW-CHANNEL' units 'CFS'} !Banks Exports from Delta
 define C_SBay {lower 0. upper 10000.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !SWP Aqueduct Downstream of South Bay Aqueduct (C803)
 define C_UpDMC {lower 0. upper 4200. kind 'FLOW-CHANNEL' units 'CFS'} !Upper DMC
@@ -82,7 +84,7 @@ define C_OFBCVP {lower 0. upper 10000. kind 'FLOW-CHANNEL' units 'CFS'} !CVP byp
 define C_SLSWP {lower 0. upper 8900. kind 'FLOW-CHANNEL' units 'CFS'} !SWP SAN LUIS RESERVOIR Release (C12)
 define C_SLCVP {lower 0. upper 8000. kind 'FLOW-CHANNEL' units 'CFS'} !CVP SAN LUIS RESERVOIR Release (C11)
 define C_SWPJU {lower 0. upper 8465. kind 'FLOW-CHANNEL' units 'CFS'} !SWP Joint Use (C807)
-define C_CVPJU {lower 0. upper 4635. kind 'FLOW-CHANNEL' units 'CFS'} !CVP Joint Use (D704)
+define C_CVPJU {std kind 'FLOW-CHANNEL' units 'CFS'} !CVP Joint Use (D704)
 define C_CVPDMC {lower 0 upper 3500 kind 'FLOW-CHANNEL' units 'CFS'} !DMC to Mendota Pool (C708)
 define C_MPool {lower 0 upper 99999 kind 'FLOW-CHANNEL' units 'CFS'} !Flow to Exchange Contractors and Refuges from Sack Dam
 define C_DsAmgS {lower 0. upper 8465. kind 'FLOW-CHANNEL' units 'CFS'} !Dos Amigos SWP
@@ -91,9 +93,9 @@ define C_JtUTerm {lower 0. upper 8100. kind 'FLOW-CHANNEL' units 'CFS'} !End of 
 define C_LasPer {lower 0. upper 7300. kind 'FLOW-CHANNEL' units 'CFS'} !Las Perillas Point
 define C_CoastAqdct {lower 0. upper 450. kind 'FLOW-CHANNEL' units 'CFS'} !Coastal Aquaduct (866)
 define C_KCWA {lower 0. upper 5950. kind 'FLOW-CHANNEL' units 'CFS'} !Kern County Water Agency Diversion
-define C_CVC {lower 0. upper 4400. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct downstream CVP Refuge and Cross Valley Canal (857)
-define C_ChrisPP {lower 0. upper 4400. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct downstream Crisman PP (864)
-define C_Alamo {lower 0. upper 3160. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct East Branch downstream Bifuraction Point (876) Alamo
+define C_CVC {lower 0. upper 5350. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct downstream CVP Refuge and Cross Valley Canal (857)
+define C_ChrisPP {lower 0. upper 4480. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct downstream Crisman PP (864)
+define C_Alamo {lower 0. upper 3150. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct East Branch downstream Bifuraction Point (876) Alamo
 define C_OSO {lower 0. upper 3130. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct West Branch downstream Bifuraction Point (890) OSO
 define C_PearBlPP {lower 0. upper 2105. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct East Branch downstream Pearblossom PP (880)
 define C_WarnePP {lower 0. upper 1565. kind 'FLOW-CHANNEL' units 'CFS'} !California Aqueduct West Branch downstream Warne PP (892)

@@ -135,15 +135,15 @@ goal OroRelJulSep {
 goal oro_releases {
     lhs C_Orovl
     case low_storage {
-    	condition S_Orovl(-1) < 1000.
-    		rhs minflow_C_Therm
-    		lhs>rhs penalty 3000.
-    		lhs<rhs penalty 0 }
+        condition S_Orovl(-1) < 1000.
+            rhs minflow_C_Therm
+            lhs>rhs penalty 3000.
+            lhs<rhs penalty 0 }
     case norm_storage {
-    	condition always
-    		rhs minflow_C_Therm
-    		lhs>rhs penalty 0
-    		lhs<rhs penalty 0 }
+        condition always
+            rhs minflow_C_Therm
+            lhs>rhs penalty 0
+            lhs<rhs penalty 0 }
 }
 
 !=========================================================================
@@ -156,20 +156,20 @@ goal oro_releases {
 goal river_valve_flow {
     lhs C_Orovl
     case river_valve_only {
-	condition S_Orovl(-1) < 850. 
-	    rhs 1500.
-	    lhs>rhs penalty 1000000
-	    lhs<rhs penalty 0 }
+    condition S_Orovl(-1) < 850. 
+        rhs 1500.
+        lhs>rhs penalty 1000000
+        lhs<rhs penalty 0 }
     case units_1_3_5_rv {            
-    	condition S_Orovl(-1) < 1250.
-    	    rhs 8700.
-	    lhs>rhs constrain
-	    lhs<rhs penalty 0 }
+        condition S_Orovl(-1) < 1250.
+            rhs 8700.
+        lhs>rhs penalty 1000000
+        lhs<rhs penalty 0 }
     case full_hyatt_available {
-	condition always
-	    rhs 17000.
-	    lhs>rhs penalty 0
-	    lhs<rhs penalty 0 }
+    condition always
+        rhs 17000.
+        lhs>rhs penalty 0
+        lhs<rhs penalty 0 }
 }
 
 !=========================================================================
@@ -224,12 +224,12 @@ If releases for flood control are made then no minimum flow is applied.
 
 
 /* WRESL CODE calculation for minflowFeaMouth
- define I_YubaUP {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Yuba River Upstream Inflow I230
- define dem_d7a_PAG    {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
- define dem_d7b_PAG    {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
- define dem_d206a_PAG  {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
- define dem_d206b_PAG {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
- define dem_D230_mi    {timeseries kind 'DEMAND-NP-MI' units 'CFS'}   !Define Non-prject Demands by Contract Type
+ !define I_YubaUP {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Yuba River Upstream Inflow I230
+ !define dem_d7a_PAG    {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
+ !define dem_d7b_PAG    {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
+ !define dem_d206a_PAG  {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
+ !define dem_d206b_PAG {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
+ !define dem_D230_mi    {timeseries kind 'DEMAND-NP-MI' units 'CFS'}   !Define Non-prject Demands by Contract Type
  define frsa_all { value (dem_D7A_PAG + dem_D7B_PAG + dem_D206A_PAG + dem_D206B_PAG)*taf_cfs }
 
 !DWR maintains flow at the "Mouth of Feather River" based on requirements of diversion pumping facilities.

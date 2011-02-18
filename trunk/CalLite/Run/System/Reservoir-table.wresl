@@ -138,15 +138,11 @@ goal S_SLCVPZone1 {S_SLCVP_1 < S_SLCVPlevel1}
 define S_SLCVPlevel2 {value 45.}
 define S_SLCVP_2 {std kind 'STORAGE-ZONE' units 'TAF'}
 goal S_SLCVPZone2 {S_SLCVP_2 < S_SLCVPlevel2-S_SLCVPlevel1}
-define S_SLCVPlevel3 {value 45.}
 define S_SLCVP_3 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_SLCVPZone3 {S_SLCVP_3 < S_SLCVPlevel3-S_SLCVPlevel2}
 define S_SLCVPlevel4 {value 972.}
 define S_SLCVP_4 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_SLCVPZone4 {S_SLCVP_4 < S_SLCVPlevel4-S_SLCVPlevel3}
 define S_SLCVPlevel5 {value 972.}
 define S_SLCVP_5 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_SLCVPZone5 {S_SLCVP_5 < S_SLCVPlevel5-S_SLCVPlevel4}
 define S_SLCVP {std kind 'STORAGE' units 'TAF'} !CVP SAN LUIS RESERVOIR AKA RES_NUM = 11
 goal storage_SLCVP {S_SLCVP=S_SLCVP_1+S_SLCVP_2+S_SLCVP_3+S_SLCVP_4+S_SLCVP_5}
 define F_SLCVP {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
@@ -167,15 +163,11 @@ goal S_SLSWPZone1 {S_SLSWP_1 < S_SLSWPlevel1}
 define S_SLSWPlevel2 {value 55}
 define S_SLSWP_2 {std kind 'STORAGE-ZONE' units 'TAF'}
 goal S_SLSWPZone2 {S_SLSWP_2 < S_SLSWPlevel2-S_SLSWPlevel1}
-define S_SLSWPlevel3 {value 55}
 define S_SLSWP_3 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_SLSWPZone3 {S_SLSWP_3 < S_SLSWPlevel3-S_SLSWPlevel2}
 define S_SLSWPlevel4 {value 1067.}
 define S_SLSWP_4 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_SLSWPZone4 {S_SLSWP_4 < S_SLSWPlevel4-S_SLSWPlevel3}
 define S_SLSWPlevel5 {value 1067.}
 define S_SLSWP_5 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_SLSWPZone5 {S_SLSWP_5 < S_SLSWPlevel5-S_SLSWPlevel4}
 define S_SLSWP {std kind 'STORAGE' units 'TAF'} !SWP SAN LUIS RESERVOIR AKA RES_NUM = 12
 goal storage_SLSWP {S_SLSWP=S_SLSWP_1+S_SLSWP_2+S_SLSWP_3+S_SLSWP_4+S_SLSWP_5}
 define F_SLSWP {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
