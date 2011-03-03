@@ -109,6 +109,10 @@ goal Export_limit_Banks_pulse_mon {
 
 goal Export_limit_D_Jones {  ! Prevents Non-Pulse portion of month from being greater than Physical Capacity
     lhs    D_Jones /** Need to change to D_Jones_TD for IF implementation **/
+        case no_vamp {   !Richard Chen added for VAMP switch
+                condition     VAMP_DLTSW == 0
+                rhs           JonesCapPermit     
+                lhs<rhs       penalty 0 }    
         case April {
             condition     month == APR .or. month == MAY
             rhs           AprMayJonesCtrl
@@ -117,6 +121,10 @@ goal Export_limit_D_Jones {  ! Prevents Non-Pulse portion of month from being gr
 
 goal Export_limit_D_Banks {  ! Prevents Non-Pulse portion of month from being greater than Physical Capacity
     lhs    D_Banks
+        case no_vamp {   !Richard Chen added for VAMP switch
+                condition     VAMP_DLTSW == 0
+                rhs           BanksCapPermit     
+                lhs<rhs       penalty 0 }      
         case April {
             condition     month == APR .or. month == MAY
             rhs           AprMayBanksCtrl

@@ -16,10 +16,15 @@ month       ECstandard
 7           11.0
 8           11.0
 
+Add a switch to turn off D1641 constrain at Collins
+Z.Q. Richard Chen; DWR; (02/07/2011)
 ************************************/
 
 ! calculate previous month's value of salinity
 define CO_EC_Month_sv {
+          case D1641Off{
+            condition CO_DLTSW == 0
+            value 99000.}
   case lastWaterYear {
     condition  month == Oct
       value  AnnEC(C_Hood(-5),C_Hood(-4),C_Hood(-3),C_Hood(-2),C_Hood(-1),
@@ -52,6 +57,9 @@ goal setCO_EC_MON {CO_EC_Month = CO_EC_Month_sv}
 
 ! define the EC standard for Jersey Point (millimhos/cm)
 define CO_EC_STD_lookup {
+          case D1641Off{
+            condition CO_DLTSW == 0
+            value 99.}
   case AprToAug {
     condition  month >=OCT .and. month <=MAY
     select     ECstandard1
@@ -69,6 +77,9 @@ goal COECstandout {CO_EC_STD = CO_EC_STD_sv}
 !get slope and intercept for constraint exp<=m*sac+b
 
 define CO_b_sv {
+          case D1641Off{
+            condition CO_DLTSW == 0
+            value 999999.}
   case control{
     condition month >= Oct .and. month <= May
     value  AnnLineGen(C_Hood_ANN(-4),C_Hood_ANN(-3),C_Hood_ANN(-2),C_Hood_ANN(-1),
@@ -87,6 +98,9 @@ define CO_b_sv {
     value 999999.}
 }
 define CO_m_sv {
+          case D1641Off{
+            condition CO_DLTSW == 0
+            value 0.}
   case reducecalls {
     condition  CO_b_sv >= 999990.
     value 0.}
@@ -115,6 +129,9 @@ goal setCO_b {CO_b = CO_b_sv}
 !********************************************************************
 !Get the required Sac flow for ZERO exports
 define CO_Sac_ZeroExp_sv1 {
+          case D1641Off{
+            condition CO_DLTSW == 0
+            value 0.}
   case NoSalinityControlPossible{
     condition abs(CO_m_sv) <= 0.001 .and. int(CO_b_sv) == 0
     value 0.}

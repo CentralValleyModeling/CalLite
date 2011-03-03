@@ -18,10 +18,15 @@ These standards are modified to account to the monthly time-step.
 Modified values are derived from an exponential weighting function.
 Modified values are in salinity_std_jpt_new.table.
 
+Add a switch to turn off D1641 constrain at JerseyPoint
+Z.Q. Richard Chen; DWR; (02/07/2011)
 ************************************/
 
 ! calculate previous month's value of salinity
 define JP_EC_Month_sv {
+         case D1641Off{
+          condition JP_DLTSW == 0
+          value 99000.} 
   case lastWaterYear {
     condition  month == Oct
       value  AnnEC(C_Hood(-5),C_Hood(-4),C_Hood(-3),C_Hood(-2),C_Hood(-1),
@@ -57,6 +62,9 @@ goal setJP_EC_MON {JP_EC_Month = JP_EC_Month_sv}
 
 ! define the EC standard for Jersey Point (millimhos/cm)
 define JP_EC_STD_lookup {
+         case D1641Off{
+          condition JP_DLTSW == 0
+          value 99.0} 
   case AprToAug {
     condition  month >=APR .and. month <=AUG
     select  ECstandard
@@ -74,6 +82,9 @@ goal JPECstandout {JP_EC_STD = JP_EC_STD_sv}
 !get slope and intercept for constraint exp<=m*sac+b
 
 define JP_b_sv {
+         case D1641Off{
+          condition JP_DLTSW == 0
+          value 999999.} 
   case control{
     condition month >= Apr .and. month <= Aug
     value  AnnLineGen(C_Hood_ANN(-4),C_Hood_ANN(-3),C_Hood_ANN(-2),C_Hood_ANN(-1),
@@ -92,6 +103,9 @@ define JP_b_sv {
     value 999999.}
 }
 define JP_m_sv {
+         case D1641Off{
+          condition JP_DLTSW == 0
+          value 0.} 
   case reducecalls {
     condition  JP_b_sv >= 999990.
     value 0.}
@@ -120,6 +134,9 @@ goal setJP_b {JP_b = JP_b_sv}
 !****************************************************************************************
 !Get the required Sac flow for ZERO exports
 define JP_Sac_ZeroExp_sv1 {
+         case D1641Off{
+          condition JP_DLTSW == 0
+          value 0.} 
   case NoSalinityControlPossible{
     condition abs(JP_m_sv) <= 0.001 .and. int(JP_b_sv) == 0
     value 0.}

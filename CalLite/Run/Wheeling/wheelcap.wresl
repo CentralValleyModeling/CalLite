@@ -4,8 +4,8 @@ wheelcap_CL.wresl
 
 Z.Q. Richard Chen DWR (12/8/2010)
 **************************************/
-define CVC_ON {select Option from options where Index=7}
-define JPOD_ON {select Option from options where Index=8}
+!define CVC_ON {select Option from options where Index=7}
+!define JPOD_ON {select Option from options where Index=8}
 
 ! define three values to use as condition flags for wheeling 
 ! If any of the values are false (0.0), then the BO actions control

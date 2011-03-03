@@ -7,6 +7,10 @@ Set constraints for exports not to exceed the limit
 !*****Linearization #1***************************************************************
 goal meetRS_1 {
   lhs D_ExpTD
+                 case D1641Off{
+                   condition RS_DLTSW == 0
+                   rhs ExportCapacity
+                   lhs<rhs penalty 0}  
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 999999.
@@ -37,6 +41,10 @@ goal meetRS_1 {
 !*****Linearization #2***************************************************************
 goal meetRS_2 {
   lhs D_ExpTD
+                   case D1641Off{
+                     condition RS_DLTSW == 0
+                     rhs ExportCapacity
+                     lhs<rhs penalty 0}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 999999.
@@ -66,6 +74,10 @@ goal meetRS_2 {
 !*****Linearization #3***************************************************************
 goal meetRS_3 {
   lhs D_ExpTD
+                     case D1641Off{
+                       condition RS_DLTSW == 0
+                       rhs ExportCapacity
+                     lhs<rhs penalty 0}  
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 999999.

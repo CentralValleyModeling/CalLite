@@ -5,9 +5,12 @@ Nazrul Islam DWR (06/27/2010)
 
 This file imposes a minimum export level for each project (SWP,CVP).
 Estimates are based on current month delivery and San Luis rule-curve.
+
+Add a switch to turn off vamp
+Z.Q. Richard Chen DWR (02/07/2011)
 ***********************************/
 
-!*********************************************************************************************
+
 ! Total Export
 
 !Take VAMP restrictions in Apr-May into account for total exports
@@ -27,6 +30,9 @@ define EstTotExp {
               CO_Sac_ZeroExp_sv2 >= ANNcap .or.
               RS_Sac_ZeroExp_sv2 >= ANNcap
     value ExportCap}
+  case no_vamp{                  !Richard Chen add for VAMP switch
+    condition  VAMP_DLTSW == 0
+    value EstSWPSodExp+EstCVPSodExp}    
   case vamp_apr{
     condition month == APR
     value (EstSWPSodExp+EstCVPSodExp)*14.0/daysin + pulse_cap*16.0/daysin}

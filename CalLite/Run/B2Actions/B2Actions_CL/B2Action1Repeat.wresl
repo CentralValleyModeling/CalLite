@@ -10,7 +10,7 @@ If this code is active, Keswick, Clear Cr and Nimbus minflow goal have to be ina
 **/
 
 ! whether to implement NMFS Clear Creek BO: no action: value=0; action: value=1
-define ClearCrkBOswitch {select Option from options where Index=5}
+!define ClearCrkBOswitch {select Option from options where Index=5}
 
 ! NMFS BO Action I.1.1 Clear Creek - Spring Attraction Flows
 ! adds 600 cfs for 3 days twice in the month of May
@@ -74,10 +74,10 @@ goal b2action1Whi_1 {
 
 ! (Per D. Hilts and P. Fujitani 10/16/09) Conserve Shasta storage for NMFS RPAs in Fall (Oct - Dec)
 ! Turn this on only when Fall X2 RPA is active
-define FallX2on {select Option from options where Index=1}
+!define FallX2 {select Option from options where Index=1}
 define minflow_C_Kswck_adj {
     case OctDec {
-        condition month < 4 .and. C_Kswck_MIF_b2 >= 4500.0 .and. FallX2on == 1
+        condition month < 4 .and. C_Kswck_MIF_b2 >= 4500.0 .and. FallX2 == 1
             value 4000.0
     }
     case otherwise {

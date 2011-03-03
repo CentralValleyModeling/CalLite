@@ -8,6 +8,9 @@ Maximum export given the sacramento river flow
 define RS_MaxExport_1 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 goal setRSMax1 {
   lhs RS_MaxExport_1
+            case D1641Off{
+              condition RS_DLTSW == 0
+            rhs 999999.}  
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 999999.}
@@ -34,6 +37,9 @@ goal setRSMax1 {
 define RS_MaxExport_2 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 goal setRSMax2 {
   lhs RS_MaxExport_2
+            case D1641Off{
+              condition RS_DLTSW == 0
+            rhs 999999.}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 999999.}
@@ -57,6 +63,9 @@ goal setRSMax2 {
 define RS_MaxExport_3 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 goal setRSMax3 {
   lhs RS_MaxExport_3
+            case D1641Off{
+              condition RS_DLTSW == 0
+            rhs 999999.}  
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 999999.}
@@ -85,6 +94,9 @@ goal setRSMax3 {
 define RS_MRDO_1 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 goal setRSmrdo1 {
   lhs RS_MRDO_1
+              case D1641Off{
+                condition RS_DLTSW == 0
+                rhs 0.}  
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 0.}
@@ -111,6 +123,9 @@ goal setRSmrdo1 {
 define RS_MRDO_2 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 goal setRSmrdo2 {
   lhs RS_MRDO_2
+              case D1641Off{
+                condition RS_DLTSW == 0
+                rhs 0.}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 0.}
@@ -134,6 +149,9 @@ goal setRSmrdo2 {
 define RS_MRDO_3 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 goal setRSmrdo3 {
   lhs RS_MRDO_3
+              case D1641Off{
+                condition RS_DLTSW == 0
+                rhs 0.}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 0.}
@@ -161,6 +179,9 @@ goal setRSmrdo3 {
 define RS_ReqSac1{lower unbounded upper unbounded kind 'FLOW' units 'cfs'}
 goal set_RS_ReqSac1 {
   lhs RS_ReqSac1
+              case D1641Off{
+                condition RS_DLTSW == 0
+                rhs 0.}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 0.}
@@ -187,6 +208,9 @@ goal set_RS_ReqSac1 {
 define RS_ReqSac2 {lower unbounded upper unbounded kind 'FLOW' units 'cfs'}
 goal set_RS_ReqSac2 {
   lhs RS_ReqSac2
+              case D1641Off{
+                condition RS_DLTSW == 0
+                rhs 0.}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 0.}
@@ -210,6 +234,9 @@ goal set_RS_ReqSac2 {
 define RS_ReqSac3 {lower unbounded upper unbounded kind 'FLOW' units 'cfs'}
 goal set_RS_ReqSac3 {
   lhs RS_ReqSac3
+              case D1641Off{
+                condition RS_DLTSW == 0
+                rhs 0.}    
   case LowCL{
     condition C_Hood_ANN(-1) >=40000.
     rhs 0.}

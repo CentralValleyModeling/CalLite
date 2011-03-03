@@ -9,6 +9,9 @@ ARTIFICIAL NEURAL NETWORK IMPLEMENTATION - CONTRA COSTA-ROCK SLOUGH CORRELATION
 
 ! calculate previous month's value of salinity (using ann directly)
 define RS_EC_Month_sv {
+                  case D1641Off{
+                    condition RS_DLTSW == 0
+                    value 99000.0}
   case lastWaterYear {
     condition  month == Oct
       value  AnnEC(C_Hood(-5),C_Hood(-4),C_Hood(-3),C_Hood(-2),C_Hood(-1),
@@ -96,6 +99,11 @@ define RS_EC_STD_225 {value (225. + 50)/0.285}
 
 !*****Linearization #1***************************************************************
 define RS_b_1_sv {
+                  case D1641Off{
+                    condition RS_DLTSW == 0
+                    value 999990.0}
+  case D1641 {
+  condition always
   value  AnnLineGen(C_Hood_ANN(-4),C_Hood_ANN(-3),C_Hood_ANN(-2),C_Hood_ANN(-1),
                     D_ExpTD(-4),D_ExpTD(-3),D_ExpTD(-2),D_ExpTD(-1),
                     SJR_ANN(-4),SJR_ANN(-3),SJR_ANN(-2),SJR_ANN(-1),SJR_ann_est,
@@ -107,8 +115,12 @@ define RS_b_1_sv {
                     int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),daysin,
                     RS_EC_STD_sv,line_RS_1_lo,line_RS_1_hi,
                     int(RS),int(intercept),int(ann_type),month,wateryear,1)
+                     }
 }
 define RS_m_1_sv {
+  case D1641Off{
+     condition RS_DLTSW == 0
+     value 0.0}
   case reducecalls {
     condition  RS_b_1_sv >= 999990.
     value 0.}
@@ -133,6 +145,9 @@ goal setRS_b_1 {RS_b_1 = RS_b_1_sv}
 
 !*****Linearization #2***************************************************************
 define RS_b_2_sv {
+  case D1641Off{
+    condition RS_DLTSW == 0
+    value 0.0}
   case line1infeas {
     condition abs(RS_m_1_sv) <= 0.001 .and. int(RS_b_1_sv) == 0
     value  AnnLineGen(C_Hood_ANN(-4),C_Hood_ANN(-3),C_Hood_ANN(-2),C_Hood_ANN(-1),
@@ -161,6 +176,10 @@ define RS_b_2_sv {
                     int(RS),int(intercept),int(ann_type),month,wateryear,2)}
 }
 define RS_m_2_sv {
+  case D1641Off{
+    condition RS_DLTSW == 0
+    value 0.0}
+
   case reducecalls {
     condition  RS_b_2_sv >= 999990.
     value 0.}
@@ -198,6 +217,9 @@ goal setRS_b_2 {RS_b_2 = RS_b_2_sv}
 
 !*****Linearization #3***************************************************************
 define RS_b_3_sv {
+   case D1641Off{
+    condition RS_DLTSW == 0
+    value 999999.0}
   case Linear1And2Fail {
     condition RS_b_2_sv == 999998.0 .and. RS_b_1_sv == 999998.0
     value  AnnLineGen(C_Hood_ANN(-4),C_Hood_ANN(-3),C_Hood_ANN(-2),C_Hood_ANN(-1),
@@ -239,6 +261,9 @@ define RS_b_3_sv {
                     int(RS),int(intercept),int(ann_type),month,wateryear,3)}
 }
 define RS_m_3_sv {
+                  case D1641Off{
+                    condition RS_DLTSW == 0
+                    value 0.0}
   case reducecalls {
     condition  RS_b_3_sv >= 999990.
     value 0.}
@@ -290,6 +315,9 @@ goal setRS_b_3 {RS_b_3 = RS_b_3_sv}
 !********************************************************************
 !Get the required Sac flow for ZERO exports
 define RS_Sac_ZeroExp_sv1 {
+  case D1641Off{
+    condition RS_DLTSW == 0
+    value 0.0}
   case LowCL {
     condition C_Hood_ANN(-1) >= 40000.
     value  0.}

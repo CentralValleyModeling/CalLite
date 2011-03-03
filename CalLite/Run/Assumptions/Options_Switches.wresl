@@ -1,0 +1,23 @@
+/*************************************
+Options_Switches.wresl
+ 
+Z.Q. Richard Chen DWR (02/07/2011)
+
+Read option switches for lookup table
+**************************************/
+!define FallX2on           {select Option from options where Index=1} !B2Actions\B2Actions_CL\B2Action1Repeat.wresl(77):
+define X2_ANN_KM          {select Option from options where Index=0} !Delta\ANN\lastX2_ANN_KM.wresl(14):  
+define FallX2             {select Option from options where Index=1} !Delta\ANN\X2days_FWS_WQ.wresl(8): 
+define Action_4_1_2       {select Option from options where Index=2} !Export_Ops\NMFS_SALMON_BO_DCC.wresl(10): 
+define Action_4_2_1       {select Option from options where Index=3} !Export_Ops\NMFS_SALMON_BO_SJR.wresl(10): 
+define OMRBOON            {select Option from options where Index=4} !whether implement FWS Action : no action: value=0; action: value=1
+define ClearCrkBOswitch   {select Option from options where Index=5} !B2Actions\B2Actions_CL\B2Action1Repeat.wresl(13): 
+define BOExportEst_switch {select Option from options where Index=6} !cvp_dellogic\CVP_delivery_logic_south\Export_index_delivery_CVP.wresl(18): 
+define CVC_ON             {select Option from options where Index=7} !Wheeling\wheelcap.wresl(7): 
+define JPOD_ON            {select Option from options where Index=8} !Wheeling\wheelcap.wresl(8): 
+define LOD_Future         {select Option from options where Index=9} !Export_Ops\OMR\OMR_constraint_CL.wresl(20):
+ 
+
+
+
+ 

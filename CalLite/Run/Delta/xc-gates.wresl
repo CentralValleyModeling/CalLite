@@ -18,6 +18,9 @@ Determines flow through the Delta cross channel and Georgianna Slough using the 
 Describe logic for when gates are open or closed here: Following is my draft: WQCP has an initial schedule of how 
 many days each month the gates will be open.  But gates are always closed when flow is above 25,000 cfs, so because
 of this the actual number of days open can vary from the initial schedule.
+
+Z.Q. Richard Chen, DWR 10/04/2010 
+Set DCC_DLTSW switch to control how many days the DCC will open in a month.
 *************************************/
 
 ! Split arc C_DXC into Georgianna Slough and DXC components
@@ -27,7 +30,20 @@ goal splitC_DXC {C_DXC = C_DXC_GEO + C_DXC_DXC}
 
 goal GeorgSlough {C_DXC_GEO = 0.133*C_Hood + 829.0}  ! Implements equation described above
 
-define WQCP_days_open   {select days_open from xchanneldays where month=month}  ! Number of days in each month that the DXC gate is open
+!define WQCP_days_open   {select days_open from xchanneldays where month=month}  ! Number of days in each month that the DXC gate is open
+define WQCP_days_open   {       !DCC_DLTSW switch added 10/04/2010 by Z.Q. Richard Chen, DWR
+       case D1641 {
+          condition DCC_DLTSW == 1  
+            select days_open from xchanneldays where month=month}  ! Number of days in each month that the DXC gate is open
+       case USERDEF {
+	  condition DCC_DLTSW == 2
+            select days_open 
+            from gui_xchanneldays 
+            where month=month}
+       case NOREGULATION {
+          condition always
+            value 0} 
+       }
 
 define numberofdaysopen {value WQCP_days_open} 
 
