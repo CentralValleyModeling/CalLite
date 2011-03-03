@@ -18,10 +18,15 @@ These standards are modified to account to the monthly time-step.
 Modified values are derived from an exponential weighting function.
 Modified values are in salinity_std_emt_new.table.
 
+Add a switch to turn off D1641 constrain at Emmaton
+Z.Q. Richard Chen; DWR; (02/07/2011)
 ************************************/
 
 ! calculate previous month's value of salinity
 define EM_EC_Month_sv {
+  case D1641Off{
+    condition EM_DLTSW == 0
+    value 99000.}
   case lastWaterYear {
     condition  month == Oct
       value  AnnEC(C_Hood(-5),C_Hood(-4),C_Hood(-3),C_Hood(-2),C_Hood(-1),
@@ -57,6 +62,9 @@ goal setEMMonprv {EM_EC_Month = EM_EC_Month_sv}
 
 ! define the EC standard
 define EM_EC_STD_lookup {
+  case D1641Off{
+    condition EM_DLTSW == 0
+    value 99.0}
   case AprToAug {
     condition         month >=APR .and. month <=AUG
     select            ECstandard
@@ -74,6 +82,9 @@ goal EMECstandout {EM_EC_std = EM_EC_std_sv}
 !get slope and intercept for constraint exp<=m*sac+b
 
 define EM_b_sv {
+  case D1641Off{
+    condition EM_DLTSW == 0
+    value 999999.}
   case control{
     condition month >= Apr .and. month <= Aug
     value  AnnLineGen(C_Hood_ANN(-4),C_Hood_ANN(-3),C_Hood_ANN(-2),C_Hood_ANN(-1),
@@ -92,6 +103,9 @@ define EM_b_sv {
     value 999999.}
 }
 define EM_m_sv {
+  case D1641Off{
+    condition EM_DLTSW == 0
+    value 0.}
   case reducecalls {
     condition  EM_b_sv >= 999990.
     value 0.}
@@ -119,6 +133,9 @@ goal setEM_b {EM_b = EM_b_sv}
 
 !********************************************************************
 define EM_Sac_ZeroExp_sv1 {
+  case D1641Off{
+    condition EM_DLTSW == 0
+    value 0.}
   case NoSalinityControlPossible{
     condition abs(EM_m_sv) <= 0.001 .and. int(EM_b_sv) == 0
     value 0.}

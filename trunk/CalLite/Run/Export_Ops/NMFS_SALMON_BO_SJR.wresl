@@ -7,7 +7,7 @@ NMFS BO Action 4.2.1
 **************************************/
 
 !whether implement Action 4.2.1: no action: value=0; action: value=1
-define Action_4_2_1 {select Option from options where Index=3}
+!define Action_4_2_1 {select Option from options where Index=3}
 
 !*********************************************************************************************
 ! Phase I: Interim export restriction under Action 4.2.1

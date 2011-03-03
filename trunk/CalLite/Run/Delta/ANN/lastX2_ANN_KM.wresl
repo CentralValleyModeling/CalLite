@@ -11,7 +11,7 @@ The position as a function of last month's position and current month's Net Delt
 *************************************/
 
 !decide using ANN or KM X2
-define X2_ANN_KM {select Option from options where Index=0}
+!define X2_ANN_KM {select Option from options where Index=0}
 
 ! prepare inputs for X2 calculation
 

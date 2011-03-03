@@ -7,7 +7,7 @@ NMFS BO Action 4.1.2
 **************************************/
 
 !whether implement Action 4.1.2: no action: value=0; action: value=1
-define Action_4_1_2 {select Option from options where Index=2}
+!define Action_4_1_2 {select Option from options where Index=2}
 
 ! get D1641 days open
 define D1641_days_open   {select days_open from xchanneldays where month=month}

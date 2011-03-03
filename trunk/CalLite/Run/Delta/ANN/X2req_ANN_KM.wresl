@@ -9,12 +9,60 @@ X2 DAYS WITH FLOW-WEIGHTING PROCEDURE IS USED AS IN DWRSIM
 X2 is the 2ppt bottom isohaline line used to describe the entrapment zone.  ANN is used to compute the
 position as a function of last month's position and current month's Net Delta outflow
 
+Z.Q. Richard Chen, DWR 02/09/2010 
+Use X2_DLTSW switch, GUI_X2Active, and GUI_X2KM tables to add user defined X2KM requirments.
 *************************************/
 
+define X2_Select { 
+    case X2_Udef {
+	condition X2_DLTSW == 2
+	select X2Active from GUI_X2Active where month=month} !X2 active momth table
+    case otherwise {
+	condition always 
+	value 0.0 }
+	}
+	
+define X2KM_Udef {
+    case X2_Udef {
+	condition X2_Select == 1
+	select X2KM from GUI_X2KM where wyT_Sac=wyT_Sac,month=month } ! Monthly X2 KM value table
+    case X2_Other {
+	condition always 
+	value 1000
+	}
+	}
+
 ! set the distances from Golden Gate for each location (km)
-define km_roe {value 64. }     ! km to Roe Island/Port Chicago
-define km_chs {value 74. }     ! km to Chipps Island
-define km_cnf {value 81. }     ! km to Confluence (Sac & SJR)
+define km_roe { 
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value X2KM_Udef }                                     
+     case D1641 {
+          condition always
+          value 64. }                 ! km to Roe Island/Port Chicago under D1641
+}        
+
+
+define km_chs {
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value 0 } 
+     case D1641 {
+          condition always
+          value 74. }     ! km to Chipps Island
+}
+
+define km_cnf {
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value 0 } 
+     case D1641 {
+          condition always
+          value 81. }     ! km to Confluence (Sac & SJR)
+}
+!define km_roe {value 64. }     ! km to Roe Island/Port Chicago
+!define km_chs {value 74. }     ! km to Chipps Island
+!define km_cnf {value 81. }     ! km to Confluence (Sac & SJR)
 
 ! set the flow cap for each station (cfs). this is max flow to meet X2 at each station
 !define flowcap_roe {value 29200. }     ! cfs for Roe Island/Port Chicago
@@ -23,6 +71,9 @@ define km_cnf {value 81. }     ! km to Confluence (Sac & SJR)
 
 ! Set the begin and end day for the standard -- Roe always met first
 define begday_roe {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardOn {
           condition      daysX2_roe_mod > 0.5
           value    1. }
@@ -31,6 +82,9 @@ define begday_roe {
           value    0. }
 }
 define endday_roe {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardOn {
           condition      daysX2_roe_mod > 0.5
           value    begday_roe + daysX2_roe_mod - 1. }
@@ -43,6 +97,12 @@ define endday_roedv {alias endday_roe kind 'debug' units 'none'}
 
 ! Now compute the Delta outflow required to meet the Roe standard
 define DO_req_X2roe_nocap {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 } 
+     case X2_Udef_KM {
+          condition     X2_Select == 1  .and. X2_ANN_KM == 1
+          value POW(10.0, (a_x2_coef + b_x2_coef*X2_last - km_roe)/c_x2_coef) }               
      case StandardOn_KM {
           condition      month >= FEB .and. month <= JUN .and. X2_ANN_KM == 1
           value POW(10.0, (a_x2_coef + b_x2_coef*X2_last - km_roe)/c_x2_coef) }
@@ -61,6 +121,9 @@ define DO_req_X2roe {value min(flowcap_roe, DO_req_X2roe_nocap) }
 
 ! Compute the resulting X2 if this flow was the Delta outflow for the entire period for KM X2
 define X2_roe  {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardOn {
           condition      month >= FEB .and. month <= JUN .and. daysX2_roe_mod > 0.5 .and. X2_ANN_KM == 1
           value          a_x2_coef + b_x2_coef*X2_last - c_x2_coef*LOG10(DO_req_X2roe)   }
@@ -71,6 +134,9 @@ define X2_roe  {
 ! ******************************************************************************************
 ! Set the begin and end day for the standard -- Chipps always met second
 define begday_chs {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardOn {
           condition      daysX2_chs_mod > 0.5
           value    endday_roe + 1. }
@@ -79,6 +145,9 @@ define begday_chs {
           value    0. }
 }
 define endday_chs {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardOn {
           condition      daysX2_chs_mod > 0.5
           value    begday_chs + daysX2_chs_mod - 1. }
@@ -91,6 +160,9 @@ define endday_chsdv {alias endday_chs kind 'debug' units 'none'}
 
 ! Now compute the Delta outflow required to meet the Chipps standard
 define DO_req_X2chs_nocap {
+     case X2_Udef_Off {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value 0 }  
      case StandardOn_KM {
           condition      month >= FEB .and. month <= JUN .and. daysX2_chs_mod > 0.5 .and. X2_ANN_KM == 1
           value          POW(10.0, (a_x2_coef + b_x2_coef*X2_roe - km_chs)/c_x2_coef)  }
@@ -105,10 +177,14 @@ define DO_req_X2chs_nocap {
           condition      always
           value          0.0  }
 }
+
 define DO_req_X2chs {value min(flowcap_chs, DO_req_X2chs_nocap)}
 
 ! Compute the resulting X2 if this flow was the Delta outflow for the entire period for KM X2
 define X2_chs  {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardOn {
           condition      month >= FEB .and. month <= JUN .and. daysX2_chs_mod > 0.5 .and. X2_ANN_KM == 1
           value          a_x2_coef + b_x2_coef*X2_last - c_x2_coef*LOG10(DO_req_X2chs)   }
@@ -119,6 +195,9 @@ define X2_chs  {
 ! ******************************************************************************************
 ! Set the begin and end day for the standard -- Confluence always met last
 define begday_cnf {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardNone {
           condition      daysX2_cnf < 0.5
           value    0. }
@@ -130,6 +209,9 @@ define begday_cnf {
           value    0. }
 }
 define endday_cnf {
+     case X2_Off {
+          condition X2_DLTSW == 0  
+          value 0 }  
      case StandardNone {
           condition      daysX2_cnf < 0.5
           value    0. }
@@ -146,6 +228,9 @@ define endday_cnfdv {alias endday_cnf kind 'debug' units 'none'}
 ! Now compute the Delta outflow required to meet the Confluence standard
 
 define DO_req_X2cnf_nocap {
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value 0 }    
      case StandardOn_KM {
           condition      month >= FEB .and. month <= JUN .and. daysX2_cnf_mod > 0.5 .and. X2_ANN_KM == 1
           value          POW(10.0, (a_x2_coef + b_x2_coef*X2_chs - km_cnf)/c_x2_coef) }
@@ -165,6 +250,10 @@ define DO_req_X2cnf_nocap {
      case StandardOff {
          condition       always
          value           0.0  }   }
+
 define DO_req_X2cnf {value min(flowcap_cnf, DO_req_X2cnf_nocap) }
+ 
+
+
 
 

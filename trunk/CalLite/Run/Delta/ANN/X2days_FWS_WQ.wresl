@@ -2,10 +2,13 @@
 X2days_FWS.wresl
  
 Nazrul Islam, DWR, 08/19/2010
+
+Z.Q. Richard Chen, DWR 02/09/2010 
+Set X2Roe_DLTSW switch to control X2_Reo_Trigger
 *************************************/
 
 ! X2 setup for WQCP and FWS Action 4 requirements
-define FallX2 {select Option from options where Index=1}
+! define FallX2 {select Option from options where Index=1} 
 
 ! FWS BO Action 4 - Storage Release for X2 outflow capped to inflow
 define InfForX2Nov {
@@ -163,7 +166,7 @@ define daysX2_roe_mod {
           condition      month <= JAN .or. month >= JUL .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
           value          0.    }
      case RoeOff {
-         condition      x2_last > trigger_x2roe
+         condition      x2_last > trigger_x2roe .or. X2Roe_DLTSW ==0
           value          0.    }
      case RoeOn {
           condition      always
@@ -174,7 +177,7 @@ define daysX2_chs_mod {
           condition      month <= JAN .or. month >= JUL .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
           value          daysX2_chs    }
      case RoeOff {
-          condition      x2_last > trigger_x2roe
+          condition      x2_last > trigger_x2roe .or. X2Roe_DLTSW ==0
           value          daysX2_chs  }
      case RoeOn {
           condition      always
@@ -182,7 +185,7 @@ define daysX2_chs_mod {
 }
 define daysX2_cnf_mod {
     case SpecialStd {
-        condition       daysX2_cnf > 0.5
+        condition       daysX2_cnf > 0.5 .or. X2Roe_DLTSW ==0
         value           daysin - daysX2_chs_mod - daysX2_roe_mod  }     ! days here make up the balance
     case StandardOff {                                                      ! for the period unless the original
         condition       always                                              ! days at cnf are zero.  in this case

@@ -29,4 +29,3 @@ define C_YoloBP_exc {std kind 'FLOW-EXCESS-INSTREAM' units 'cfs'}
 goal C_YoloBPtotal {C_YoloBP = C_YoloBP_mif + C_YoloBP_exc}
 
 goal setAnnSacFlow { C_Hood_mif + C_YoloBP_mif < AnnSacReq}
-
