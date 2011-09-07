@@ -1,5 +1,5 @@
 /*************************************
-wheelcap_CL.wresl
+wheelcap.wresl
 ! This file sets the cap on Wheeling. Originated from Dan Easton (11/12/2010)
 
 Z.Q. Richard Chen DWR (12/8/2010)
@@ -42,12 +42,24 @@ define OMR_Ctrl {
         condition always
         value 1.}
 }
+define B2Action3_Ctrl {
+	case controlling {
+		condition	range(month,apr,may) .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1
+		value		0.
+	}
+	case otherwise {
+		condition	always
+		value		1.
+	}
+}
+
 !define wheeling_ctrl {value min(BO_Banks_Ctrl, BO_Jones_Ctrl, OMR_Ctrl)}
-define wheeling_ctrl {value min(BO_Banks_Ctrl, OMR_Ctrl)}
+define wheeling_ctrl {value min(BO_Banks_Ctrl, OMR_Ctrl, B2Action3_Ctrl)}
 define whlctrl_dv {alias wheeling_ctrl kind 'output' units 'cfs'}
 define BOBanksCtrl_dv {alias BO_Banks_Ctrl kind 'output' units 'cfs'}
 define BOJonesCtrl_dv {alias BO_Jones_Ctrl kind 'output' units 'cfs'}
 define BOOMRCtrl_dv {alias OMR_Ctrl kind 'output' units 'cfs'}
+define B2Action3_ctrl_ {alias B2Action3_Ctrl kind 'output' units 'none'}
 
 ! Banks will wheel for Cross Valley Canal up to their allocation.  Wheeling for CVC will be done in July, Aug, Sep, Oct, Nov and Dec.
 define CVC_Alloc {value perdel_cvpag_s*128.0}  ! This is CVC's allocation

@@ -4,17 +4,18 @@ cvp_delivery_rule_curve.wresl
 
 Author: Cody L. Milligan BOR 05/19/10
 
+1/5/2011: Added ratios to adjust for user-defined demands -TF
 ************************************************/
 
 define dem_totcvps_prj  {timeseries kind 'demand-cvp-total' units 'TAF'}
 
 !CVP demands after cuts; used to determine the CVP rule curve
 
-define CVPdemfinal_may { value perdel_s * dem_totcvps_prj(OCT-month+7) }
-define CVPdemfinal_jun { value perdel_s * dem_totcvps_prj(OCT-month+8) }
-define CVPdemfinal_jul { value perdel_s * dem_totcvps_prj(OCT-month+9) }
-define CVPdemfinal_aug { value perdel_s * dem_totcvps_prj(OCT-month+10) }
-define CVPdemfinal_sep { value perdel_s * dem_totcvps_prj(OCT-month+11) }
+define CVPdemfinal_may { value perdel_s * CVP_tot_ratio_s * dem_totcvps_prj(OCT-month+7) }
+define CVPdemfinal_jun { value perdel_s * CVP_tot_ratio_s * dem_totcvps_prj(OCT-month+8) }
+define CVPdemfinal_jul { value perdel_s * CVP_tot_ratio_s * dem_totcvps_prj(OCT-month+9) }
+define CVPdemfinal_aug { value perdel_s * CVP_tot_ratio_s * dem_totcvps_prj(OCT-month+10) }
+define CVPdemfinal_sep { value perdel_s * CVP_tot_ratio_s * dem_totcvps_prj(OCT-month+11) }
 
 !The following code uses lookup table to calculate the target storage level for San Luis
 

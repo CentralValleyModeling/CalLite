@@ -24,7 +24,17 @@ define ExportCapacity {value JonesCapPermit + BanksCapPermit}
 
 ! Limit exports during the pulse periods to the maximum of 1500 cfs or the SJR flow
 ! not including the pulse or Vamp flows (C639[SJR_WQ2]).
-goal compare_sjrflow {PulseExpCtrl < max(1500.0, AD_SJR_Pulse)}
+goal compare_sjrflow {!PulseExpCtrl < max(1500.0, AD_SJR_Pulse)}
+	lhs PulseExpCtrl
+        case VAMPexpCtrlOff {
+            condition    VAMP_DLTSW == 0 .and. range(month,apr,may)
+            rhs          99999.
+            lhs<rhs      penalty 0 }
+        case otherwise {
+            condition     always
+            rhs           max(1500.0, AD_SJR_Pulse)
+            lhs<rhs       penalty 0 }
+}
 
 
 ! Limit to EI ratio (WQCP) during the pulse period.
@@ -71,7 +81,7 @@ goal Export_limit_during_pulse_mon {
 goal Limit_Exports {
     lhs  ExportActual
         case APR_MAY {
-            condition     month == APR .or. month ==MAY
+            condition     range(month,apr,may)
             rhs           AprMayExpCtrl
             lhs<rhs       penalty 0 }
 }
@@ -109,10 +119,10 @@ goal Export_limit_Banks_pulse_mon {
 
 goal Export_limit_D_Jones {  ! Prevents Non-Pulse portion of month from being greater than Physical Capacity
     lhs    D_Jones /** Need to change to D_Jones_TD for IF implementation **/
-        case no_vamp {   !Richard Chen added for VAMP switch
-                condition     VAMP_DLTSW == 0
-                rhs           JonesCapPermit     
-                lhs<rhs       penalty 0 }    
+!        case no_vamp {   !Richard Chen added for VAMP switch
+!                condition     VAMP_DLTSW == 0 .and. range(month,apr,may)
+!                rhs           JonesCapPermit     
+!                lhs<rhs       penalty 0 }    
         case April {
             condition     month == APR .or. month == MAY
             rhs           AprMayJonesCtrl
@@ -121,10 +131,10 @@ goal Export_limit_D_Jones {  ! Prevents Non-Pulse portion of month from being gr
 
 goal Export_limit_D_Banks {  ! Prevents Non-Pulse portion of month from being greater than Physical Capacity
     lhs    D_Banks
-        case no_vamp {   !Richard Chen added for VAMP switch
-                condition     VAMP_DLTSW == 0
-                rhs           BanksCapPermit     
-                lhs<rhs       penalty 0 }      
+!        case no_vamp {   !Richard Chen added for VAMP switch
+!                condition     VAMP_DLTSW == 0 .and. range(month,apr,may)
+!                rhs           BanksCapPermit     
+!                lhs<rhs       penalty 0 }      
         case April {
             condition     month == APR .or. month == MAY
             rhs           AprMayBanksCtrl

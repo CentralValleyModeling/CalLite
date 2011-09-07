@@ -18,22 +18,22 @@ INCLUDE '\wsi_di\delcar_swp.wresl'
 !INCLUDE '\allocation\swp_allocation.wresl'
 
 !Step 2: Define delivery parameters for each contractor:
-INCLUDE '\demands\swp_arcsplit_CSCL.wresl'
-INCLUDE '\demands\swp_demands_s_CSCL.wresl'
+INCLUDE '\demands\swp_arcsplit.wresl'
+INCLUDE '\demands\swp_demands_s.wresl'
 
 !Step 3: Keep a running account of actual deliveries made to each contractor
-INCLUDE '\deliveries\sumswpdel_CSCL.wresl'
-INCLUDE '\deliveries\swp_delivery_summary_CSCL.wresl'
+INCLUDE '\deliveries\sumswpdel.wresl'
+INCLUDE '\deliveries\swp_delivery_summary.wresl'
 
 !Step 4: Distribute SWP allocation to each contractor
-INCLUDE '\allocation\swp_contractor_perdel_A_CSCL.wresl'
-INCLUDE '\allocation\co_extfcn.wresl'
-INCLUDE '\allocation\carryover_allocation_CSCL.wresl'
-INCLUDE '\allocation\swp_contractor_perdel_B_CSCL.wresl'
+INCLUDE '\allocation\swp_contractor_perdel_A.wresl'
+!INCLUDE '\allocation\co_extfcn.wresl'
+INCLUDE '\allocation\carryover_allocation.wresl'
+INCLUDE '\allocation\swp_contractor_perdel_B.wresl'
 INCLUDE '\allocation\swp_feather_perdel.wresl'
-INCLUDE '\deliveries\swp_bound_del_CSCL.wresl'  
+INCLUDE '\deliveries\swp_bound_del.wresl'  
 
 !Pumping capacity is not 100% reliable; must take unit outages into account:
-!INCLUDE '\conveyance_limits_CSCL.wresl'  moved include to main file because after activating line CVP this needs to be after CVP dellogic -TF
+!INCLUDE '\conveyance_limits.wresl'  moved include to main file because after activating line CVP this needs to be after CVP dellogic -TF
 
 

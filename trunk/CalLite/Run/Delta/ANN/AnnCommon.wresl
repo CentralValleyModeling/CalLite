@@ -62,14 +62,14 @@ define CI {value 12}
 5 = minimum daily vlaue;6 = maximum 14-day value;7 = average for first 15 days;8 = average for last 15 days
 **/
 
-define monthly_ave {value 1}
+define monthly_avg {value 1}
 define first_day {value 2}
 define last_day {value 3}
 define max_day {value 4}
 define min_day {value 5}
-define max_14day_running_ave {value 6}
-define ave_first_15days {value 7}
-define ave_last_15days {value 8}
+define max_14day_running_avg {value 6}
+!define avg_first_15days {value 7}
+!define avg_last_15days {value 8}
 
 define daysindv {alias daysin kind 'DAYS' units 'DAYS'}
 
@@ -77,7 +77,7 @@ define daysindv {alias daysin kind 'DAYS' units 'DAYS'}
 define slope {value 1}
 define intercept {value 2}
 
-define ann_type {value monthly_ave}
+define ann_type {value monthly_avg}
 
 define line_JP_lo   {value  5000}
 define line_JP_hi   {value 12000}
@@ -115,7 +115,7 @@ define ANNcap_out {alias ANNcap kind 'FLOW' units 'CFS'}
 ! define the other flows that go into making the sac component
 ! Yolo Bypass is simulated dynamically
 ! Mokelumne/Consumnes R. is simulated with SJR in previous cycles
-define sac_oth { std kind 'FLOW-INFLOW' units 'CFS' }
+define sac_oth { lower unbounded kind 'FLOW-INFLOW' units 'CFS' }
 goal def_sac_oth { sac_oth = C_YoloBP + AD_Mokelumne  + AD_Calaveras - C_NBA } 
 
 !*************************************************************************************************************
@@ -174,8 +174,32 @@ define net_delta_cuDV { ALIAS net_DICU KIND 'NET-DICU' UNITS 'CFS' }
 
 !*************************************************************************************************************
 ! other defines (Seventh input to ANN DLL)
-define VernWQfinal {timeseries kind 'Salinity-EC' units 'umhos/cm'}
-define SJR_ann_est {timeseries kind 'ANN-PARAMETER' units 'CFS'}
+!define VernWQfinal {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+define VernWQfinal_v {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+define VernWQfinal_vo {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+define VernWQfinalsv {
+    case VAMPon {
+        condition VAMP_DLTSW == 1
+        value VernWQfinal_v}
+    case otherwise {
+        condition always
+        value VernWQfinal_vo}
+}
+define VernWQfinal     {std kind 'Salinity-EC' units 'umhos/cm'}
+goal setVernWQfinal {VernWQfinal = VernWQfinalsv}
+
+define SJR_ann_est_v {timeseries kind 'ANN-PARAMETER' units 'CFS'}
+define SJR_ann_est_vo {timeseries kind 'ANN-PARAMETER' units 'CFS'}
+define SJR_ann_est {
+    case VAMPon {
+        condition VAMP_DLTSW == 1
+        value SJR_ann_est_v}
+    case otherwise {
+        condition always
+        value SJR_ann_est_vo}
+}
+
+
 !define SJR_ANN     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
 !*************************************************************************************************************
 

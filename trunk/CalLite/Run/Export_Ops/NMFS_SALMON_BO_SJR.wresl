@@ -39,6 +39,10 @@ define SJR_indicator2 {value 6. - wyt_SJR_prv2}
 define NMforecast1SV {timeseries kind 'forecast' units 'taf'}
 
 define SJRatio_MaxExp{
+    case EISJR_UDEF {                             !
+         condition EISJR_DLTSW == 2
+         value 999999. 
+         }
     case Flood_flow{
         condition Vernalis > 21750.    !daily flow condition - should use an equivalent monthly for this level of peak flow
         value 999999.

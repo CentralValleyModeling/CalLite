@@ -1,0 +1,17 @@
+/***********************
+VAMPoff.WRESL
+Z.Q. Richard Chen, DWR
+07-01-2011
+CalSim II Timeseris generated wtih  VAMP off
+***********************/
+define C639_VAMPDO_voff  {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+define C639_SJRWQ2_voff  {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+define C644_voff  {timeseries kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin Inflow to Delta
+define VernWQfinal_voff  {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ann_estDV_voff {timeseries kind 'ANN-PARAMETER' units 'CFS'}
+
+define AD_SJR_VAMP_vo  {alias C639_VAMPDO_voff kind 'FLOW-CHANNEL'  units 'CFS'}
+define AD_SJR_Pulse_vo {alias C639_SJRWQ2_voff kind 'FLOW-CHANNEL'  units 'CFS'}
+define AD_SJR_vo       {alias C644_voff kind 'FLOW-ACCRDEPL' units 'CFS'}
+define VernWQfinal_vo  {alias VernWQfinal_voff  kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ann_est_vo {alias SJR_ann_estDV_voff kind 'ANN-PARAMETER' units 'CFS'}

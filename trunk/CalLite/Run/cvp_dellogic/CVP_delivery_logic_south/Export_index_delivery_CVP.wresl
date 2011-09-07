@@ -15,7 +15,8 @@ target, and also any inflow through James Bypass and dedicated capacity for CVP 
 *************************************/
 
 !whether implement export estimates for BO actions: no: value=0; yes: value=1
-!define BOExportEst_switch {select Option from options where Index=6}
+!currently on only when OMR RPA is on
+define BOExportEst_switch {value OMRBOON}
 
 ! Determination of Delta Index
 define Delta_Index_CVP_south {

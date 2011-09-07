@@ -7,6 +7,8 @@ define SwpTotalDel {alias D_Napa+ D_Solano+ D_Sbay+D_ONeillFBSWP+ D_DosAmigosSWP
                           kind 'FLOW-DELIVERY' units 'CFS' }
 
 
+define del_swp_tot_n {alias D_Therm_p + D_YubFea_p + D_Orovl_p kind 'DELIVERY-SWP' units 'CFS' }
+
 /* CVP output **/
 !!!add summaries of south of delta CVP delivery in terms of demand type:
 define del_cvp_pag_s {alias D_UpDMC_pag + D_CVPJU_LDMC_pag + D_MendotaPl_pag + D_SLCVP_pag + D_DsAmgosCVP_pag
@@ -28,3 +30,5 @@ define CvpTotalDel {alias D_UpDMC_pag + D_CVPJU_LDMC_pag + D_MendotaPl_pag + D_S
                           D_CVPJU_LDMC_prf + D_MendotaPl_prf + D_CVPRfg_854_prf+ ! RF
                           D_UpDMC_pls + D_MendotaPl_pls + D_DsAmgosCVP_pls  ! LS
                           kind 'FLOW-DELIVERY' units 'CFS' }
+
+define del_cvp_total_n {alias D_RedBlf_p + D_Wilkns_p + D_SacAme_p + D_Nimbus_p + D_Folsm_p kind 'DELIVERY-CVP' units 'CFS' }

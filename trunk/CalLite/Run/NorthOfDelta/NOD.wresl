@@ -30,9 +30,9 @@ Include 'Sacramento\RedBluff_bypassflow.wresl'
 Include 'Sacramento\ncp_relax.wresl' 
 INCLUDE 'Sacramento\setdailyadjmif.wresl'
 
-Include 'Feather\feather_special_CL.wresl'
-Include 'Feather\OroRuleCurv_CL.wresl'
-Include 'Feather\ThermalitoPower_CL.wresl'
+Include 'Feather\feather_special.wresl'
+Include 'Feather\OroRuleCurv.wresl'
+Include 'Feather\ThermalitoPower.wresl'
 
 Include 'Balance.wresl'
 

@@ -34,7 +34,7 @@ define lim_CVP_ann {alias lim_CVP_ann_ kind 'allocation-limit' units 'cfs'}
 define D514A_1_VAMP {alias D514A kind 'FLOW-DELIVERY' units 'CFS'}
 define D514B_VAMP {alias D514B kind 'FLOW-DELIVERY' units 'CFS'}
 !define VernWQfinal {alias VernWQfinal  kind 'Salinity-EC' units 'umhos/cm'}
-define SJR_ann_est {alias SJR_ann_estDV kind 'ANN-PARAMETER' units 'CFS'}
+define SJR_ann_est_v {alias SJR_ann_estDV kind 'ANN-PARAMETER' units 'CFS'}
 
 /** From: run/common/cycle_output **/
 
@@ -44,8 +44,8 @@ define C639_VAMPDO  {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
 !define C639         {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
 
 /** CalLite Timeseries **/
-define AD_SJR_Pulse {alias C639_SJRWQ2 kind 'FLOW-CHANNEL'  units 'CFS'}
-define AD_SJR_VAMP  {alias C639_VAMPDO kind 'FLOW-CHANNEL'  units 'CFS'}
+define AD_SJR_Pulse_v {alias C639_SJRWQ2 kind 'FLOW-CHANNEL'  units 'CFS'}
+define AD_SJR_VAMP_v  {alias C639_VAMPDO kind 'FLOW-CHANNEL'  units 'CFS'}
 !define SJR_ANN      {alias C639        kind 'FLOW-CHANNEL'  units 'CFS'}
 
 
