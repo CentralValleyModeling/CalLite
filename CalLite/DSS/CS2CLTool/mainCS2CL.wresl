@@ -6,7 +6,7 @@ Cody L. Milligan BOR; 07-20-2010
 
 Last modified:
 Nazrul Islam, DWR; 09/22/2010
-
+Richard Chen, DWR; 07/01/2011
 **************************************/
 
 SEQUENCE CYCLE1 {
@@ -46,5 +46,7 @@ MODEL CS2CL3 {
     INCLUDE [LOCAL] 'CS2CL_TS\B2_TS.wresl'
     INCLUDE [LOCAL] 'CS2CL_TS\BO_TS.wresl'
     INCLUDE [LOCAL] 'CS2CL_TS\NewMelonesForecast.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\DeltaFlowCriteria'
+    INCLUDE [LOCAL] 'CS2CL_TS\VAMPoff.wresl'
 }
 

@@ -3,6 +3,8 @@ delcar_swp_BO.wresl
 
 Nazrul Islam DWR 05/20/2010
 Z.Q. Richard Chen DWR 11/30/2010 adding BO option
+Tom FitzHugh BOR 1/25/2011 Added code for user-defined demands 
+Z.Q. Richard Chen DWR 03/11/2011 adding PreBO option
 
 No longer using Delivery - Carryover Curve.
 
@@ -11,27 +13,78 @@ forecasted DI and the desired Oroville carryover target. The procedure also
 calculates and increased SWP San Luis carryover target (drain target, increased 
 from the default drain target of 110 TAF) if sufficient forecasted
 DI exists over the amount needed for delivery and Oroville carryover.
+
 ************************************/
 
 define swp_alloc_ {std kind 'swp-delivery' UNITS 'TAF'}
 
-define max_tableA  {select Total from TableA where Factor=1}
+
+
+! define values based on Table A entitlements
+define tableA_ag   {select Ag_entitlement  from TableA where Factor=1}
+define tableA_mwd  {select MWD_entitlement from TableA where Factor=1}
+define tableA_oth  {select OTH_entitlement from TableA where Factor=1}
+define tableA_tot {select Total from TableA where Factor=1}
+
 define tableA_loss {select LOSS  from TableA where Factor=1}
-define SWP_TableA  {value max_tableA - tableA_loss}
-!
+
+! For user-defined case, need to make adjustments below using these NOD Table A amounts
+define tableA_5_NOD {select TableA from swp_table_A where contractor=5 }  !CITY OF YUBA CITY  OTH MI demand
+define tableA_7_NOD {select TableA from swp_table_A where contractor=7 }  !COUNTY OF BUTTE    OTH MI demand
+
+! define max Table A deliveries
+! need to add NOD TA amounts onto user-defined calculation
+define max_tableA  {
+    case userdefined {
+        condition SWPdemandswitch == 2
+        value SWP_mwd_udef + SWP_oth_udef + SWP_ag_udef + tableA_5_NOD + tableA_7_NOD + tableA_loss}
+    case normal {
+        condition always
+        select Total from TableA where Factor=1}}
+        
+define SWP_TableA {value max_tableA - tableA_loss}
+
+! ratios to adjust for user-defined demands. = 1 if demands not user-defined.
+! Since NOD Table demands are not subject to user definition, these three ratios need to be use SOD values only
+! So NOD TableA amounts need to be subtracted from denominator for OTH MI
+define SWP_mwd_ratio {case user_defined  {condition SWPdemandswitch == 2 value SWP_mwd_udef / tableA_mwd} 
+                      case full_contract {condition always value 1.}}
+define SWP_oth_ratio {case user_defined  {condition SWPdemandswitch == 2 value SWP_oth_udef / (tableA_oth - tableA_5_NOD - tableA_7_NOD)} 
+                      case full_contract {condition always value 1.}}
+define SWP_ag_ratio  {case user_defined  {condition SWPdemandswitch == 2 value SWP_ag_udef / tableA_ag} 
+                      case full_contract {condition always value 1.}}
+                     
+! This ratio must use all Table A values (SOD and NOD), since it used for SWP SL rule curve                    
+define SWP_tot_ratio {case user_defined  {condition SWPdemandswitch == 2 value max_TableA / tableA_tot} 
+                      case full_contract {condition always value 1.}}
+
+
+!whether implement export estimates for BO actions: no: value=0; yes: value=1
+!currently on only when OMR RPA is on
+define BOON_SWP {value OMRBOON}
+
 !define init_SWPRuleDrainTar {value 110.}
-define DI_buffer {value 0.}
-define DrainTar_buffer {
-	case BOSWITCHON {
-	    condition int(OMRBOON)==1
-	    value 250.} ! Buffer is used so that model does not exceeds the limits
-	case D1641 {
-	    condition always
-	    value 0.  }
+define DI_buffer {
+    case BOSWITCHON {
+        condition int(BOON_SWP)==1
+        value 0.}       
+    case D1641_PREBO {
+        condition always
+        value 250.  }
 }
 
+define DrainTar_buffer {
+    case BOSWITCHON {
+        condition int(BOON_SWP)==1
+        value 250.} ! Buffer is used so that model does not exceeds the limits        
+    case D1641_PREBO {
+        condition always
+        value 0.  }
+}
+
+
+! Any Table A amounts from here on are all Table A (NOD and SOD), but adjusted downward for user-defined demands in SOD
 ! *************************************************************
-!
 ! Initial Percent Allocation estimate
 define swp_perdel_raw1 {value max(di_swp - init_SWPRuleDrainTar - 1000. - DI_buffer, 0.) / (SWP_TableA + 0.5 * max(S_Orovl(prevSep) - 1000., 0.))}
 ! S_SLSWP target for use in Rule Curve operations
@@ -179,8 +232,6 @@ define deltar_expmax {
 
 !************************************************************
 
-
-
 define deltar_drymin {
   case MarApr {
     condition month >= MAR .and. month <= APR
@@ -194,17 +245,13 @@ define deltar_drymin {
 }
 
 ! This implements the two SL adjustments defined in the previous lines
-
 define swp_allocation_1 {
       case BOSWITCHON {                 !BO option,  Richard Chen 11/08/2010
-		condition int(OMRBOON) == 1  
-        	value max(min(wsidi_swpdel,deltar_expmax),deltar_drymin) }
-!	case D1641TRSF {
-!        	condition int(OMRBOON) == 3  !BO option with Transfer,  Richard Chen 11/08/2010
-!        	value max(wsidi_swpdel + SWP_Targ*(1.-SaltCostFact_stg1),deltar_drymin) }
+        condition int(BOON_SWP) == 1  
+            value max(min(wsidi_swpdel,deltar_expmax),deltar_drymin) }
       case otherwise {
-        	condition always    !D1641     	
-        	value max(wsidi_swpdel,deltar_drymin) }
+            condition always    !D1641      
+            value max(wsidi_swpdel,deltar_drymin) }
 }
 
 ! This implements the export capacity constraint previously determined
@@ -243,14 +290,17 @@ define swp_allocation_final { value swp_alloc}
 define swp_allocation {value swp_alloc}
 goal setswp_alloc {swp_alloc_ = swp_alloc}
 
-
 !Percent delivery
-define swp_perdel {value (swp_allocation_final-tableA_loss)/SWP_TableA}
+define swp_perdel {value max(0.0,(swp_allocation_final-tableA_loss)/SWP_TableA)}
 define swp_perdeldv {alias swp_perdel kind 'swp-delivery' units 'none'}
-define perdel_swp_int  {value 1.0}
 
+! Read in user-defined percent of maximum interruptible demands to use
+define perdel_swp_int 
+    {case user_defined {condition SWPdemandswitch == 2 value max_user_interrupt} 
+     case full_contract {condition always value 1.}}
+     
 !Select demand profile based on percent allocation:
-define tableA_total {select Total from TableA where Factor=1}
+define tableA_total {value max_tableA}
 define percent_act  {value swp_allocation_final/tableA_total*100.}
 define swp_percent_act {alias percent_act kind 'alias' units 'none'}
 define swp_demprofile {
@@ -279,4 +329,3 @@ define perdel_swp_oth1 {value swp_perdel}
 define perdv_swp_ag1 {std kind 'PERCENT-DELIVERY' units 'none'}
 goal setperdv_swp_ag1 {perdv_swp_ag1 = perdel_swp_ag1}
 define perdv_swp_mwd1 {alias perdel_swp_mwd1 kind 'PERCENT-DELIVERY' units 'none'}
-

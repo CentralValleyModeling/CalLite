@@ -4,6 +4,8 @@ ExportEstimate1.wresl
 Nazrul Islam DWR (06/27/2010)
 This file defines export levels for each project (SWP,CVP).
 Estimates are based on current month delivery and San Luis rule-curve.
+
+1/5/2011: Added ratios to adjust for user-defined demands -Tom FitzHugh BOR
 */
 
 !*********************************************************************************************
@@ -27,13 +29,13 @@ define exp_est_SWP {alias EstSWPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}
 ! export for south-of-delta CVP: demand
 
 define EstCVPSodDem {value
-  dem_totcvps_pag*taf_cfs*perdel_cvpag_s - dem_d607a_pag*taf_cfs*perdel_cvpag_s +
+  CVP_pag_ratio_s*(dem_totcvps_pag*taf_cfs*perdel_cvpag_s - dem_d607a_pag*taf_cfs*perdel_cvpag_s) +
   dem_totcvps_pls*taf_cfs - dem_d607d_pls*taf_cfs +
-  dem_totcvps_pmi*taf_cfs*perdel_cvpmi_s  +
+  CVP_pmi_ratio_s*dem_totcvps_pmi*taf_cfs*perdel_cvpmi_s  +
   dem_totcvps_pex*taf_cfs*perdel_cvpex_s - dem_d607b_pex*taf_cfs*perdel_cvpex_s - dem_d608b_pex*taf_cfs*perdel_cvpex_s  +
-  dem_totcvps_prf*taf_cfs*perdel_cvprf_s - dem_d607c_prf*taf_cfs*perdel_cvprf_s - dem_d608c_prf*taf_cfs*perdel_cvprf_s  +
-  max(0.0, dem_d607a_pag*taf_cfs*perdel_cvpag_s + dem_d607d_pls*taf_cfs + dem_d607b_pex*taf_cfs*perdel_cvpex_s +
-  dem_d607c_prf*taf_cfs*perdel_cvprf_s + dem_d608b_pex*taf_cfs*perdel_cvpex_s + dem_d608c_prf*taf_cfs*perdel_cvprf_s - I_JamesBP)}
+  CVP_prf_ratio_s*(dem_totcvps_prf*taf_cfs*perdel_cvprf_s - dem_d607c_prf*taf_cfs*perdel_cvprf_s - dem_d608c_prf*taf_cfs*perdel_cvprf_s)  +
+  max(0.0, CVP_pag_ratio_s*dem_d607a_pag*taf_cfs*perdel_cvpag_s + dem_d607d_pls*taf_cfs + dem_d607b_pex*taf_cfs*perdel_cvpex_s +
+  CVP_prf_ratio_s*dem_d607c_prf*taf_cfs*perdel_cvprf_s + dem_d608b_pex*taf_cfs*perdel_cvpex_s + CVP_prf_ratio_s*dem_d608c_prf*taf_cfs*perdel_cvprf_s - I_JamesBP)}
 
 define exp_est_CVPDem {alias EstCVPSodDem kind 'EXPORT-ESTIMATE' units 'CFS'}
 
@@ -55,16 +57,16 @@ define JonesMinPumpLevel {
 }
 ! export for south-of-delta CVP: demand + rulecurve
 define maxJonescalc1 {value min(JonesMaxAllow,
-                     4400+perdel_cvpag_s*dem_D700_pag*taf_cfs,
-                     4200+perdel_cvpag_s*dem_D700_pag*taf_cfs+perdel_cvpag_s*dem_D701_pag*taf_cfs+dem_D702_pls*taf_cfs) }
+                     4400+perdel_cvpag_s*CVP_pag_ratio_s*dem_D700_pag*taf_cfs,
+                     4200+perdel_cvpag_s*CVP_pag_ratio_s*dem_D700_pag*taf_cfs+perdel_cvpag_s*CVP_pag_ratio_s*dem_D701_pag*taf_cfs+dem_D702_pls*taf_cfs) }
 
 define maxJonescalc {value min(maxJonescalc1 + Intertie_Cap, JonesMaxAllow)}
 
-define CVPexportcap {value maxJonescalc+ CVPDedBanksSwitch*BanksMaxAllowCVP}
+define CVPexportcap {value maxJonescalc + CVPDedBanksSwitch*BanksMaxAllowCVP}
 
 define June_B2_Corr {
     case NotJuneOrOMRBOON {
-        condition   month < jun .or. month > jun .or. OMRBOON > 0.1
+        condition   month <= MAY .or. month >= JUL .or. int(OMRBOON) == 1
         value       999999.
     }
     case otherwise {
@@ -73,6 +75,6 @@ define June_B2_Corr {
     }
 }
 
-define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), June_B2_Corr)}
+define EstCVPSodExp {value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC),June_B2_Corr)}
 
 define exp_est_CVP {alias EstCVPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}

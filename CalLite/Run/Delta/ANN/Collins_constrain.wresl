@@ -8,7 +8,7 @@ Z.Q. Richard Chen; DWR; (02/07/2011)
 **************************/
 
 goal meetCO {
-  lhs D_ExpTD
+  lhs D_ExpTD - exp_ann_relax
   case D1641Off{
            condition CO_DLTSW == 0
            rhs ExportCapacity

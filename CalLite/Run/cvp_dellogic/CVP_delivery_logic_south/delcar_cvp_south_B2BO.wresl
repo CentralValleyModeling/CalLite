@@ -15,12 +15,31 @@ selection of preBO vs BO procedures.
 ! This code generates values used for preBO allocation procedures
 define PulseHidv {std kind 'counter' UNITS 'NONE'}
 define VAMP_reqdv_VAMP {timeseries kind 'flow-requirement' units 'cfs'}
-define SJR_ANN     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
+!define SJR_ANN     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
+define SJR_ANNsv {
+	case VAMPon {
+		condition VAMP_DLTSW == 1
+		value AD_SJR_v}
+	case otherwise {
+		condition always
+		value AD_SJR_vo}
+}
+define SJR_ANN     {std kind 'FLOW-CHANNEL'  units 'CFS'}
+goal setSJR_ANN {SJR_ANN = SJR_ANNsv}
+
+define JonesCapPermit_ {select PermitCap from JonesLimits where month=month}
+define BanksCapPermit1_ {select PermitCap1 from BanksLimits where month=month}
+define BanksCapPermit2_ {select PermitCap2 from BanksLimits where month=month}
+define EWAReservedCap_ {select EWACap from BanksLimits where month=month}
+define BanksCapPermit_ {value min(BanksCapPermit1_, BanksCapPermit2_ - EWAReservedCap_) }
 
 define PulseExpRes1 {
     case OCT_APR {
          condition month >= OCT .and. month <= APR
          value 0.0 }
+    case VAMPOff {
+        condition month==MAY .and. VAMP_DLTSW == 0
+        value JonesCapPermit_ + BanksCapPermit_ }
     case lo1 {
         condition month == MAY .and. abs(VAMP_reqdv_VAMP(-1) - 5700.0)<.1
         value 2250. }

@@ -9,4 +9,6 @@ define VernWQfinal  {timeseries kind 'Salinity-EC' units 'umhos/cm'}
 !CalLite definition
 define VernWQfinal  {alias VernWQfinal  kind 'Salinity-EC' units 'umhos/cm'}
 define SJR_ANN      {alias C639        kind 'FLOW-CHANNEL'  units 'CFS'}
+define VernWQfinal_v  {alias VernWQfinal  kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ANN_v      {alias C639        kind 'FLOW-CHANNEL'  units 'CFS'}
 

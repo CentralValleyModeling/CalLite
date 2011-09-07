@@ -32,20 +32,19 @@ goal GeorgSlough {C_DXC_GEO = 0.133*C_Hood + 829.0}  ! Implements equation descr
 
 !define WQCP_days_open   {select days_open from xchanneldays where month=month}  ! Number of days in each month that the DXC gate is open
 define WQCP_days_open   {       !DCC_DLTSW switch added 10/04/2010 by Z.Q. Richard Chen, DWR
-       case D1641 {
-          condition DCC_DLTSW == 1  
-            select days_open from xchanneldays where month=month}  ! Number of days in each month that the DXC gate is open
-       case USERDEF {
-	  condition DCC_DLTSW == 2
-            select days_open 
-            from gui_xchanneldays 
-            where month=month}
-       case NOREGULATION {
-          condition always
-            value 0} 
+    case USERDEF {
+	    condition DCC_DLTSW == 2
+        select days_open from gui_xchanneldays where month=month}
+    case D1641 {
+        condition DCC_DLTSW == 1  
+        select days_open from xchanneldays where month=month}  ! Number of days in each month that the DXC gate is open
+    case NOREGULATION {
+        condition always
+        value 0} 
        }
 
-define numberofdaysopen {value WQCP_days_open} 
+!define numberofdaysopen {value WQCP_days_open} 
+define numberofdaysopen {value min(WQCP_days_open, NMFS_days_open) }
 
 define fract_open   {value numberofdaysopen/daysin }   ! Fraction of month gates are open
 define fract_open_  {alias fract_open kind 'DXC-FRACT-OPEN' UNITS 'NONE'}  !for output only

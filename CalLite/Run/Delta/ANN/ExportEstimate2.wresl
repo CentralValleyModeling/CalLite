@@ -14,8 +14,14 @@ Z.Q. Richard Chen DWR (02/07/2011)
 ! Total Export
 
 !Take VAMP restrictions in Apr-May into account for total exports
-define pulse_cap {value min(EstSWPSodExp+EstCVPSodExp, max(1500.0, AD_SJR_Pulse))}
-
+define pulse_cap {
+        case VAMPexpCtrlOff {
+            condition    VAMP_DLTSW == 0 .and. range(month,apr,may)
+            value         EstSWPSodExp+EstCVPSodExp }
+        case otherwise {
+            condition     always
+			value min(EstSWPSodExp+EstCVPSodExp, max(1500.0, AD_SJR_Pulse))}
+}
 
 define EstTotExp {
   case NoSalinityControlPossible{
@@ -30,9 +36,6 @@ define EstTotExp {
               CO_Sac_ZeroExp_sv2 >= ANNcap .or.
               RS_Sac_ZeroExp_sv2 >= ANNcap
     value ExportCap}
-  case no_vamp{                  !Richard Chen add for VAMP switch
-    condition  VAMP_DLTSW == 0
-    value EstSWPSodExp+EstCVPSodExp}    
   case vamp_apr{
     condition month == APR
     value (EstSWPSodExp+EstCVPSodExp)*14.0/daysin + pulse_cap*16.0/daysin}

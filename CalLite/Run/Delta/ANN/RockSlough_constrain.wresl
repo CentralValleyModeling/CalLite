@@ -6,7 +6,7 @@ Set constraints for exports not to exceed the limit
 **************************/
 !*****Linearization #1***************************************************************
 goal meetRS_1 {
-  lhs D_ExpTD
+  lhs D_ExpTD - exp_ann_relax
                  case D1641Off{
                    condition RS_DLTSW == 0
                    rhs ExportCapacity
@@ -40,7 +40,7 @@ goal meetRS_1 {
 
 !*****Linearization #2***************************************************************
 goal meetRS_2 {
-  lhs D_ExpTD
+  lhs D_ExpTD - exp_ann_relax
                    case D1641Off{
                      condition RS_DLTSW == 0
                      rhs ExportCapacity
@@ -73,7 +73,7 @@ goal meetRS_2 {
 
 !*****Linearization #3***************************************************************
 goal meetRS_3 {
-  lhs D_ExpTD
+  lhs D_ExpTD - exp_ann_relax
                      case D1641Off{
                        condition RS_DLTSW == 0
                        rhs ExportCapacity

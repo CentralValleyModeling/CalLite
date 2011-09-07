@@ -10,10 +10,6 @@ The position as a function of last month's position and current month's Net Delt
 
 *************************************/
 
-!decide using ANN or KM X2
-!define X2_ANN_KM {select Option from options where Index=0}
-
-! prepare inputs for X2 calculation
 
 ! total of mrdo and surplus
 define NDO {std kind 'FLOW-NDO' units 'CFS'}
@@ -42,7 +38,7 @@ define X2_last {
                X2_PRV(-5),X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),
                NDO(-5),NDO(-4),NDO(-3),NDO(-2),NDO(-1),
                int(daysindv(-5)),int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),
-               int(monthly_ave),12,(wateryear-1))}
+               int(monthly_avg),12,(wateryear-1))}
 
   case others {
     condition always
@@ -50,7 +46,7 @@ define X2_last {
                X2_PRV(-5),X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),
                NDO(-5),NDO(-4),NDO(-3),NDO(-2),NDO(-1),
                int(daysindv(-5)),int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),
-               int(monthly_ave),(month-1),wateryear)}
+               int(monthly_avg),(month-1),wateryear)}
 }
 
 goal X2lastperiod {X2_prv=X2_last}      ! output purposes only

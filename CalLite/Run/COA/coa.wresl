@@ -172,7 +172,7 @@ goal EI_split_cvp {
 goal AprMay_split_swp {
     lhs     D_Banks_EXP1
      case AprMay {
-        condition      month==APR .or. month==MAY
+        condition      range(month,apr,may) .and. VAMP_DLTSW == 1
      rhs        0.5*AprMayExpCtrl
      lhs>rhs    penalty 1290
      lhs<rhs    penalty 0
@@ -181,7 +181,7 @@ goal AprMay_split_swp {
 goal AprMay_split_cvp {
     lhs     D_Jones_EXP1 
      case AprMay {
-        condition        month==APR .or. month==MAY
+        condition      range(month,apr,may) .and. VAMP_DLTSW == 1
      rhs        0.5*AprMayExpCtrl
      lhs>rhs    penalty 1290
      lhs<rhs        penalty 0

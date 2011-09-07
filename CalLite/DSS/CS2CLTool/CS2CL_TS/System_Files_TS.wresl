@@ -289,7 +289,7 @@ define AD_HSt    {alias C303-C9+D302 kind 'FLOW-ACCRDEPL' units 'CFS'}
 !Delta
 define AD_Mokelumne {alias C504 kind 'FLOW-ACCRDEPL' units 'CFS'}
 define AD_Calaveras {alias C508+R514A+R514B-D514A-D514B kind 'FLOW-ACCRDEPL' units 'CFS'}
-define AD_SJR       {alias C644 kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SJR_v       {alias C644 kind 'FLOW-ACCRDEPL' units 'CFS'}
 
 !South of Delta
 define AD_JamesBP {alias C605A+R607West+I607 kind 'FLOW-ACCRDEPL' units 'CFS'}

@@ -3,9 +3,20 @@ X2days_FWS.wresl
  
 Nazrul Islam, DWR, 08/19/2010
 
-Z.Q. Richard Chen, DWR 02/09/2010 
+Z.Q. Richard Chen, DWR 05/25/2011 
 Set X2Roe_DLTSW switch to control X2_Reo_Trigger
 *************************************/
+
+define X2Udef_Select { 
+    case X2_Udef {
+	condition X2_DLTSW == 2
+	select X2Active from GUI_X2Active where month=month} !X2 active momth table 	
+   case otherwise {
+	condition always 
+	value 0}
+	}
+
+
 
 ! X2 setup for WQCP and FWS Action 4 requirements
 ! define FallX2 {select Option from options where Index=1} 
@@ -64,8 +75,11 @@ define flowcap_chs {       ! cfs for Chipps Island
      case AUG_FWS {
           condition      month == AUG .and. FallX2 == 1
           value 11400. }
-     case SEPOCT {
-          condition      month == SEP .or. month == OCT .and. FallX2 == 1
+     case SEP {
+          condition      month == SEP .and. FallX2 == 1
+          value 99999. }
+     case OCT {
+          condition      month == OCT .and. FallX2 == 1
           value 99999. }
      case NOV_FWS {
           condition      month == NOV .and. FallX2 == 1
@@ -81,8 +95,11 @@ define flowcap_cnf {       ! cfs for Confluence (Sac & SJR)
      case AUG_FWS {
           condition      month == AUG .and. FallX2 == 1
           value 7100. }
-     case SEPOCT {
-          condition      month == SEP .or. month == OCT .and. FallX2 == 1
+     case SEP {
+          condition      month == SEP .and. FallX2 == 1
+          value 99999. }
+     case OCT {
+          condition      month == OCT .and. FallX2 == 1
           value 99999. }
      case NOV_FWS {
           condition      month == NOV .and. FallX2 == 1
@@ -103,6 +120,9 @@ define flowmin_specX2 {value 4000. }         ! cfs for months (feb-june) in whic
 ! Get the days required for X2 at each location (Roe, Chipps, Confluence)
 
 define daysX2_roe {
+     case Udef {
+          condition      X2Udef_Select == 1
+          value daysin }
      case FebtoJun {
           condition      month >= FEB .and. month <= JUN
           select         roe_days
@@ -113,6 +133,9 @@ define daysX2_roe {
           value          0.    }
 }
 define daysX2_chs {
+     case Udef {
+          condition      X2Udef_Select == 1
+          value 0 }
      case FebtoJun {
           condition      month >= FEB .and. month <= JUN
           select         chs_days
@@ -132,6 +155,9 @@ define daysX2_chs {
           value          0.    }
 }
 define daysX2_cnf {
+     case Udef {
+          condition      X2Udef_Select == 1
+          value 0 }
      case FebtoJun {
           condition      month >= FEB .and. month <= JUN
           select         cnf_days
@@ -162,34 +188,44 @@ define daysX2_cnf {
 ! AUTOMATICALLY MEET CHIPPS. BE SURE TABLE 'X2DAYS' IS SET PROPERLY.
 
 define daysX2_roe_mod {
-     case RoeTrigOutofSeason {
-          condition      month <= JAN .or. month >= JUL .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
+     case RoeTrigOutofSeasonJan {
+          condition      month <= JAN .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
           value          0.    }
-     case RoeOff {
-         condition      x2_last > trigger_x2roe .or. X2Roe_DLTSW ==0
+     case RoeTrigOutofSeasonJul {
+          condition      month >= JUL .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
+          value          0.    }
+
+     case RoeOff_TriggerOn {
+         condition      x2_last > trigger_x2roe .and. int(X2Roe_DLTSW) ==1
           value          0.    }
      case RoeOn {
           condition      always
-          value          daysX2_roe  }
+          value          daysX2_roe }
 }
-define daysX2_chs_mod {
-     case RoeTrigOutofSeason {
-          condition      month <= JAN .or. month >= JUL .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
-          value          daysX2_chs    }
-     case RoeOff {
-          condition      x2_last > trigger_x2roe .or. X2Roe_DLTSW ==0
-          value          daysX2_chs  }
+define daysX2_chs_mod {  
+     case RoeTrigOutofSeasonJan {
+          condition      month <= JAN .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
+          value          daysX2_chs }
+     case RoeTrigOutofSeasonJul {
+          condition      month >= JUL .and. FallX2 == 1       ! If outside D1641 standard X2 season don't do this adjustment
+          value          daysX2_chs }
+     case RoeOff_TriggerOn {
+         condition      x2_last > trigger_x2roe .and. int(X2Roe_DLTSW) ==1
+          value          daysX2_chs }
      case RoeOn {
           condition      always
-          value          daysX2_chs - daysX2_roe  }
+          value          daysX2_chs - daysX2_roe}
 }
-define daysX2_cnf_mod {
-    case SpecialStd {
-        condition       daysX2_cnf > 0.5 .or. X2Roe_DLTSW ==0
-        value           daysin - daysX2_chs_mod - daysX2_roe_mod  }     ! days here make up the balance
-    case StandardOff {                                                      ! for the period unless the original
-        condition       always                                              ! days at cnf are zero.  in this case
-        value           0.   }                                              ! there is no standard!!
+
+
+define daysX2_cnf_mod {  
+
+     case SpecialStd {
+          condition       daysX2_cnf > 0.5
+          value           daysin - daysX2_chs_mod - daysX2_roe_mod}       ! days here make up the balance
+     case StandardOff {                                                   ! for the period unless the original
+          condition       always                                          ! days at cnf are zero.  in this case
+          value           0.   }                                          ! there is no standard!!
 }
 define modroeday {alias daysX2_roe_mod kind 'debug' units 'none'}
 define modchsday {alias daysX2_chs_mod kind 'debug' units 'none'}

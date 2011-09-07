@@ -8,9 +8,10 @@ Add a switch to turn off D1641 constrain at JerseyPoint
 Z.Q. Richard Chen; DWR; (02/07/2011)
 **************************/
 
+define exp_ann_relax {std kind 'soft-constraint' units 'cfs'}
 
 goal meetJP {
-  lhs D_ExpTD
+  lhs D_ExpTD - exp_ann_relax
        case D1641Off{
          condition JP_DLTSW == 0
          rhs ExportCapacity
