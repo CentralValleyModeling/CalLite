@@ -1,0 +1,19 @@
+By: Hao and Nazrul; 10/07/2010
+CalLite
+1. Add table wytypeSJR.table; modify table option.table
+
+2. Modify wytypes.w: add variable wyt_SJR, wyt_SJR_prv1, wyt_SJR_prv2
+   Modify final-mrdo.w: add variable MRDO_X2nocap   
+   
+3. add  NMFS_Salmon_BO_Def.w
+	Exp_Constraint.w
+	NMFS_Salmon_BO_DCC.w
+	NMFS_Salmon_BO_SJR.w
+	FWS_SMELT_BO_FallX2check.w
+	
+4. replace X2_WQ.w with X2_BO_WQ.w 
+   replace X2days_WQ.w with X2days_BO_WQ.w
+   
+   
+Calsim to CalLite tool
+1. add NMforecast1SV by including NewMelonesForecast.w to calculate NMforecast1SV to be used by CalLite
