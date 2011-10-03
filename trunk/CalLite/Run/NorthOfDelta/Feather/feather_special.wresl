@@ -5,6 +5,8 @@ Z.Q. Richard Chen DWR 5/06/2010
 
 Special Feather River Flow Requirments
 
+Hao Xie 9/22/2011 limits Oroville releases for exports when storage drops below certain levels.
+
 **************************************/
 
 !=========================================================================
@@ -172,7 +174,12 @@ define C_Orovl_Rem_max_ {value max(0., I_Orovl + (S_Orovl(-1) - 1250.)*taf_cfs)}
 define C_Orovl_PP135_max_ {value max(0., I_Orovl + (S_Orovl(-1) - 850.)*taf_cfs)}
 
 goal lim_C_Orovl_Rem {C_Orovl_Rem < C_Orovl_Rem_max_}
-goal lim_C_Orovl_PP135 {C_Orovl_PP135 < C_Orovl_PP135_max_}
+!goal lim_C_Orovl_PP135 {C_Orovl_PP135 < C_Orovl_PP135_max_}
+goal lim_C_Orovl_PP135 {
+    lhs C_Orovl_PP135
+    rhs C_Orovl_PP135_max_
+    lhs<rhs penalty 0
+    lhs>rhs penalty 99999}
 
 define C_Orovl_Rem_max {alias C_Orovl_Rem_max_ kind 'upper-bound' units 'cfs'}
 define C_Orovl_PP135_max {alias C_Orovl_PP135_max_ kind 'upper-bound' units 'cfs'}

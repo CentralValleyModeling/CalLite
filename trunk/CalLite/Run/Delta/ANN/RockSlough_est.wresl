@@ -25,7 +25,7 @@ define RSReqSac1 {
     value 0.}
   case other{
     condition always
-    value max(0.,(EstTotExp-RS_b_1_sv)/RS_m_1_sv)}
+    value max(0.,(EstTotExpTD-RS_b_1_sv)/RS_m_1_sv)}
 }
 define RSReqSac2 {
                     case D1641Off{
@@ -48,7 +48,7 @@ define RSReqSac2 {
     value 0.}
   case other{
     condition always
-    value max(0.,(EstTotExp-RS_b_2_sv)/RS_m_2_sv)}
+    value max(0.,(EstTotExpTD-RS_b_2_sv)/RS_m_2_sv)}
 }
 define RSReqSac3 {
                     case D1641Off{
@@ -71,7 +71,7 @@ define RSReqSac3 {
     value 0.}
   case other{
     condition always
-    value max(0.,(EstTotExp-RS_b_3_sv)/RS_m_3_sv)}
+    value max(0.,(EstTotExpTD-RS_b_3_sv)/RS_m_3_sv)}
 }
 define RSReqSac {value max(0.,RSReqSac1,RSReqSac2,RSReqSac3)}
 define RSReqSacDV {alias RSReqSac kind 'FLOW' units 'CFS'}

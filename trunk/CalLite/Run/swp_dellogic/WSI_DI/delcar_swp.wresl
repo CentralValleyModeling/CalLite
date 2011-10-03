@@ -139,14 +139,19 @@ define buffSWP_AprAug {select buffer from ExportEstimate_SWP where month = Apr}
 define buffSWP_MayAug {select buffer from ExportEstimate_SWP where month = May}
 
 ! SJR in flood - if C639 over 16,000 cfs
+define floodSJRdv {std kind 'trigger' UNITS 'NONE'}
 define floodSJR {
     case Wet {
-        condition AD_SJR_VAMP > 16000.          !C639[VAMP_AND_DO] > 16000.
+        condition month>=MAR .and. month <= MAY .and. AD_SJR_VAMP > 16000.     !C639[VAMP_AND_DO] > 16000.
         value 1.}
+    case MarthruMay {
+        condition month>=APR .and. month <= MAY
+        value floodSJRdv(-1)}
     case other {
         condition always
         value 0.}
 }
+goal savefloodSJR {floodSJRdv=floodSJR}
 
 define wetSJR {
     case Wet {
