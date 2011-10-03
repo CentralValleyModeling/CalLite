@@ -5,6 +5,7 @@ FWS BO actions implementations
 Z.Q. Richard Chen DWR  9/14/2010
              corrected  1/5/2011
 Add User defined OMR flow requirement, Richard Chen 4/20/2011
+Hao Xie 9/22/2011 change D408_limit caculation
 *************************************/
 !include 'OMR\OMR_constraint.wresl'
 /*
@@ -32,6 +33,7 @@ define OMR_RPA {value  OMR_RPA_FWS }!{value max(OMR_RPA_FWS,OMR_RPA_LF)}
 
 ! How much of CCWD estimated demand will impact OMR flows?
 define CCWDFraction {value (D408_OR_max + D408_VC_max)/(D408_RS_max + D408_OR_max + D408_VC_max)}
+define Qsod_noExp { value 0. + D408D416_est*CCWDFraction + netDICU_SOD}
 
 
 ! Action triggers
@@ -64,7 +66,10 @@ define C408_limit_init {
 define Qsod_HandS { value max(jonesminpump + banksminpump,HandS_minpump) + D408D416_est*CCWDFraction + netDICU_SOD}
 define Qomr_HandS { value coefA*AD_SJR_VAMP+coefb*Qsod_HandS+coefc}
 define Qomr_HandSdv {alias Qomr_HandS kind 'FLOW-CHANNEL' units 'CFS'}
-define C408_limit {value min(C408_limit_init,Qomr_HandS)} 
+define Qomr_noExp { value coefA*AD_SJR_VAMP+coefb*Qsod_noExp+coefc}
+define Qomr_noExpdv {alias Qomr_noExp kind 'FLOW-CHANNEL' units 'CFS'}
+!define C408_limit {value min(C408_limit_init,Qomr_HandS)} 
+define C408_limit {value min(C408_limit_init,Qomr_noExp)}
 define C408_LBound  {alias C408_limit kind 'FLOW-LBOUND' units 'CFS'}
 
 ! User Defined OMR flow added 4/20/2011, Richard Chen

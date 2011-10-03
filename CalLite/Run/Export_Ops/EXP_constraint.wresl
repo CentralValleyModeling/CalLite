@@ -21,7 +21,8 @@ define HandS_minpump {
 }
 ! Take the most restrictive of the NMFS export restrictions but consider the Health
 !   and safety level export that must be allowed
-define MAXEXP_RPA {value max( min(NMFS_MaxExp, NMFS_MaxExp_DCC, FWS_MaxExp_X2), HandS_minpump)}
+!define MAXEXP_RPA {value max( min(NMFS_MaxExp, NMFS_MaxExp_DCC, FWS_MaxExp_X2), HandS_minpump)}
+define MAXEXP_RPA {value min(NMFS_MaxExp, NMFS_MaxExp_DCC, FWS_MaxExp_X2)}
 !
 ! **********************************************************************************************
 !
