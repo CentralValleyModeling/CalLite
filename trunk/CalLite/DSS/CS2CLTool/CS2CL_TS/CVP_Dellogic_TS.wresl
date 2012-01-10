@@ -625,6 +625,14 @@ define acvpdem_70_ts {
 ! for saving past values
 goal setannual_demdr70 {xx_acvpdem_70 = acvpdem_70_ts}
 
+define D168B_ebmud {timeseries kind 'flow-delivery' units 'cfs'}
+define D168c_FRWP_pmi   {timeseries KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define D300_pmi {timeseries KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+
+define D168B_ebmud {alias D168B_ebmud Kind 'flow-delivery' units 'cfs'}
+define D168c_FRWP_pmi   {alias D168c_FRWP_pmi KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define D300_pmi {alias D300_pmi KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+
 !***   TOTAL  NORTH *************************************************************************************
 define acvpdem_dr_n_ts {value acvpdem_dr58_ts + acvpdem_drCB1_ts + acvpdem_drCB2_ts + acvpdem_dr65_ts + acvpdem_70_ts}
 
