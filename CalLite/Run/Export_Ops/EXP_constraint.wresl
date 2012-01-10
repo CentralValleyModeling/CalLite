@@ -42,3 +42,10 @@ goal set_MAXEXP_RPA_CVP {
     rhs     MAXEXP_RPA_CVP
     lhs<rhs penalty    0}
 define MAXEXP_RPA_CVPdv {alias MAXEXP_RPA_CVP kind 'EXPORT-LIMIT' units 'CFS'}
+
+goal set_HandSminpump {
+    lhs     D_Banks_SWP + D_Jones
+    rhs     HandS_minpump
+    lhs>rhs penalty 0
+    lhs<rhs penalty 90000}
+
