@@ -13,12 +13,12 @@ define GET_REQ_DO {EXTERNAL f90}
 
 !*************************************************************************************************************
 ! Define External ANN Code AND DLLS
-define AnnLineGen {EXTERNAL ann.dll}
+define AnnLineGen {EXTERNAL interfacetoann.dll}
 
-define AnnEC {EXTERNAL ann.dll}
+define AnnEC {EXTERNAL interfacetoann.dll}
 
-define AnnEC_matchDSM2 {EXTERNAL ann.dll}
+define AnnEC_matchDSM2 {EXTERNAL interfacetoann.dll}
 
-define Ann_X2 {EXTERNAL ann.dll}
-define getNDO_X2 {EXTERNAL ann.dll}
-define getNDO_x2_curMonNDOSplit {EXTERNAL ann.dll}
+define Ann_X2 {EXTERNAL interfacetoann.dll}
+define getNDO_X2 {EXTERNAL interfacetoann.dll}
+define getNDO_x2_curMonNDOSplit {EXTERNAL interfacetoann.dll}
