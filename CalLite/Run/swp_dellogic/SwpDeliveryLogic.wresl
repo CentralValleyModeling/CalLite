@@ -6,7 +6,7 @@ Nazrul Islam DWR 05/20/2010
 Include all SWP delivery logic files.
 ************************************/
 
-!Mover steps 2 and 3 to front because of wsi-di dependence on Article 56 carryover.
+!Move steps 2 and 3 to front because of wsi-di dependence on Article 56 carryover.
 !Step 2: Define delivery parameters for each contractor:
 INCLUDE '\demands\swp_arcsplit.wresl'
 

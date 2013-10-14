@@ -1,0 +1,308 @@
+/***********************
+
+ANN_CCWD_NOD_WYTypes_CycleOutput_TS.wresl
+
+Cody L. Milligan BOR
+
+07-19-2010
+
+This file contains the logic from run/common/ANN, 
+run/common/CCWD, run/common/CycleOutput, 
+run/common/WYTypes, and run/NorthOfDelta
+
+***********************/
+
+/** From: run/common/ANN **/
+
+! CalSim definition 
+define C501_VAMPDO  {timeseries  kind 'FLOW-CHANNEL'  units 'CFS'}
+define I504         {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'} !Mokelumne inflow from EBMUDSIM
+define C508_VAMPDO  {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
+define demand_D420_CL {timeseries 'demand_D420_' kind 'DEMAND' units 'cfs' }
+define lim_CVP_ann_CL {timeseries 'lim_CVP_ann_' kind 'allocation-limit' units 'cfs'}
+!define VernWQfinal  {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ann_estDV {timeseries kind 'ANN-PARAMETER' units 'CFS'}
+
+!CalLite definition
+define C_cosumnes_VAMP {alias C501_VAMPDO kind 'FLOW-CHANNEL'  units 'CFS'}
+define I_Mokelumne {alias I504 kind 'FLOW-INFLOW' units 'CFS'} 
+define C_Calaveras_vamp  {alias C508_VAMPDO  kind 'FLOW-CHANNEL'  units 'CFS'}
+define D514A        {alias D514A_CL kind 'FLOW-DELIVERY' units 'CFS'}
+define D514B        {alias D514B_CL kind 'FLOW-DELIVERY' units 'CFS'}
+define demand_D420 {alias demand_D420_CL kind 'DEMAND' units 'cfs' }
+define lim_CVP_ann {alias lim_CVP_ann_CL kind 'allocation-limit' units 'cfs'}
+define D514A_1_VAMP {alias D514A kind 'FLOW-DELIVERY' units 'CFS'}
+define D514B_VAMP {alias D514B kind 'FLOW-DELIVERY' units 'CFS'}
+!define VernWQfinal {alias VernWQfinal  kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ann_est_v {alias SJR_ann_estDV kind 'ANN-PARAMETER' units 'CFS'}
+
+/** From: run/common/cycle_output **/
+
+/** CalSim Timeseries**/
+define C639_SJRWQ2  {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+define C639_VAMPDO  {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+!define C639         {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+
+/** CalLite Timeseries **/
+define AD_SJR_Pulse_v {alias C639_SJRWQ2 kind 'FLOW-CHANNEL'  units 'CFS'}
+define AD_SJR_VAMP_v  {alias C639_VAMPDO kind 'FLOW-CHANNEL'  units 'CFS'}
+!define SJR_ANN      {alias C639        kind 'FLOW-CHANNEL'  units 'CFS'}
+
+
+
+/** From: run/common/CCWD **/
+
+define WQ408_RS_CL {timeseries 'WQ408_RS' kind 'salinity' units 'mg/L'}  !Rock Slough CL-
+
+define WQ408_RS {alias WQ408_RS_CL kind 'salinity' units 'mg/L'}
+
+/** From: run/common/WYTypes **/
+
+! WATER YEAR TYPE DEFININITIONS
+! Code and tables by A. Munevar 7/8/98
+! American River D893 added by Dustin Jones 12/27/99
+
+! ================ INDICES AS DEFINED BY DWR (CHANGE IN FEB) =====================
+! the 40-30-30 index for Sacramento Basin
+define wyt_SAC {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     SACindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     SACindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+! the 60-20-20 index for San Joaquin basin
+define wyt_SJR {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     SJRindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     SJRindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+! the Feather Index for the Feather River Basin
+define wyt_FEATHER {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     FEATHERindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     FEATHERindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+
+! ================ INDICES AS DEFINED BY CVP (CHANGE IN MAR) =====================
+! the 40-30-30 index for Sacramento Basin as defined by the CVP (changes in March)
+define wyt_SAC_cvp {
+     case OCTtoFEB {
+            condition       month >= OCT .and. month <= FEB
+        select      SACindex
+        from            wytypes
+        where       wateryear=wateryear - 1.}
+     case rest {
+        condition   always
+        select      SACindex
+        from        wytypes
+        where       wateryear=wateryear}
+}
+
+! the 60-20-20 index for San Joaquin basin as defined by the CVP (changes in March)
+define wyt_SJR_cvp {
+    case OCTtoFEB {
+         condition  month >= OCT .and. month <= FEB
+         select     SJRindex
+         from       wytypes
+         where      wateryear=wateryear - 1.}
+    case rest {
+         condition  always
+         select     SJRindex
+         from       wytypes
+         where      wateryear=wateryear}
+}
+
+! the Shasta index as defined by the CVP (changes in March)
+define wyt_SHASTA_cvp {
+        case OCTtoFEB {
+        condition   month >= OCT .and. month <= FEB
+        select      SHASTAindex
+        from        wytypes
+        where       wateryear=wateryear - 1.}
+
+        case rest {
+        condition   always
+        select      SHASTAindex
+        from        wytypes
+        where       wateryear=wateryear}
+}
+
+! the American River D893 index as defined by the CVP (changes in March)
+define wyt_AMERd893_cvp {
+        case OCTtoFEB {
+        condition   month >= OCT .and. month <= FEB
+        select      AmerD893
+        from        wytypes
+        where       wateryear=wateryear - 1.}
+
+        case rest {
+        condition   always
+        select      AmerD893
+        from        wytypes
+        where       wateryear=wateryear}
+}
+! the "User Defined Quasi Sac Basin 40-30-30 Index (of PROSIM/ECOSIM origin)
+! used to set minimum storage reserve levels in Folsom
+define wyt_Amer403030 {
+        case OCTtoFEB {
+        condition   month >= OCT .and. month <= FEB
+        select      Amer403030
+        from        wytypes
+        where       wateryear=wateryear - 1.}
+
+        case rest {
+        condition   always
+        select      Amer403030
+        from        wytypes
+        where       wateryear=wateryear}
+}
+
+! ============================== YEAR TYPES ====================================
+! the following year type names can be used to represent the numbers found in the tables
+define Wet          {value 1}
+define AboveNormal  {value 2}
+define BelowNormal  {value 3}
+define Dry          {value 4}
+define Critical     {value 5}
+
+! the Trinity index   1=Very Wet, 2=Wet, 3=Normal, 4=Dry, 5=Critically Dry: Note: Index changes in Apr.
+define wyt_TRIN {
+         case OCTtoMar {
+                   condition        month >= OCT .and. month <= MAR
+                   select           Trinityindex
+                   from               wytypes
+                   where            wateryear=wateryear - 1.}
+         case rest {
+                   condition        always
+                   select           Trinityindex
+                   from               wytypes
+                   where            wateryear=wateryear}
+}
+
+! So first define the calendar year since deliveries are based on Jan-Dec year
+define calendaryear {
+    case JantoSep {
+        condition   month >= 4 .and. month <= 12
+        value       wateryear }
+    case OcttoDec {
+        condition   always
+        value       wateryear - 1 }
+}
+
+! Definition of Mar-Feb contract month
+define contract_month {
+    case marthrusep {
+        condition month >= 6
+        value month - 5 }
+    case octthrufeb {
+        condition month <= 5
+        value month + 7  }
+    case otherwise {
+        condition always
+        value 0 }
+}
+
+define wyt_SJRRest {
+    case OCTtoJAN {
+         condition  month >= OCT .and. month <= JAN
+         select     YT
+         from       wytypeSJR_Rest
+         where      wy=wateryear - 1.}
+    case rest {
+         condition  always
+         select     YT
+         from       wytypeSJR_Rest
+         where      wy=wateryear}
+}
+
+
+/*From: feather_special_TS.wresl*/
+
+!=========================================================================
+! DFG and DWR 1983 agreement to maintain ~1700 cfs minflow from the thermalito
+! complex to the Feather River mouth (Just above Verona).
+! minflow_C_YubFea is equal to the timeseries "minflow_C223" in CalSim
+! The actual minflow for C_Therm, just below the Thermalito complex, is 
+! the max of the minflow_C_Therm and minflow_C_YubFea.
+!=========================================================================
+ 
+define minflow_C223 {timeseries kind 'FLOW-MIN-REQUIRED' units 'CFS'}
+define minflow_C_YubFea {alias minflow_C223 kind 'FLOW-MIN-REQUIRED' units 'CFS'}
+
+!=========================================================================
+! DWR maintains flow at the "Mouth of Feather River" based on requirements of diversion 
+! pumping facilities. Their flow target depends on upstream Yuba and Oroville inflow, 
+! the DWR/DFG agreed flow target above Verona, and a 2800 cfs flow rate related to 
+! pumping facility requirements. The timeseris minflowFeaMouth are preprocessed 
+! for CalLite Simulations as follows
+!=========================================================================
+
+define frsa_all { value (dem_D7A_PAG_sv + dem_D7B_PAG_sv + dem_D206A_PAG_sv + dem_D206B_PAG_sv)*taf_cfs }
+
+define frsa_alloc {
+  case Drought {
+    condition     wyt_FEATHER == 1
+    value         0.50* frsa_all}
+  case Normal {
+    condition    always
+    value        1.00* frsa_all}
+}
+
+define minflowFeaMouth_ts {
+    case DiversionSeason {
+        condition month>=APR .and. month<=SEP
+        value     max(min(2800.,I230-dem_D230_MI+I6-frsa_alloc),minflow_C223) }
+    case other {
+        condition always
+        value     minflow_C223 }
+}
+
+define minflowFeaMouth {alias minflowFeaMouth_ts kind 'FLOW-MIN-REQUIRED' units 'CFS'} !Mouth of Feather River  (232)
+
+
+/*From: Keswickmin_TS.wresl*/
+
+define minflow_C5 {timeseries kind 'flow-min-required' units 'CFS'}
+define minflow_C_Kswck {alias minflow_C5 kind 'flow-min-required' units 'CFS'}
+
+/*Timeseries added for implementation of Fish releases on the American*/
+!define UARM_ {timeseries 'UARM' kind 'STORAGE' units 'TAF'}
+!define UARM {alias UARM_ kind 'STORAGE' units 'TAF'}
+define SRI_CL {timeseries 'SRI' kind 'INDEX' units 'TAF'}
+define SRI {alias SRI_CL kind 'INDEX' units 'TAF'}
+
+/*Colusa Weir spill integer for Trinity Import operations.*/
+
+define int_cweir_CL {timeseries 'int_cweir' kind 'integer' units 'none'}
+define int_cweir {alias int_cweir_CL kind 'integer' units 'none'}
+
+/*  Timeseries for Sac River mifs based on USRDOM results */
+define ts_adj_rb_CL {timeseries 'ts_adj_rb' kind 'FLOW' units 'CFS'} 
+define ts_adj_wlk_CL {timeseries 'ts_adj_wlk' kind 'FLOW' units 'CFS'} 
+
+define ts_adj_rb {alias ts_adj_rb_CL kind 'FLOW' units 'CFS'} 
+define ts_adj_wlk {alias ts_adj_wlk_CL kind 'FLOW' units 'CFS'} 
+

@@ -1,0 +1,102 @@
+/***********************
+
+Weirs_Refuges_TS.wresl
+
+Cody L. Milligan BOR
+
+07-19-2010
+
+This file contains the logic pertaining to
+the weirs and refuges.
+
+***********************/
+
+/*The following logic is from: read_dailypattern_SacRFreeport.wresl
+
+- Daily flows are estimated based on daily patterns previously defined as volume fraction
+timeseries based on 1955 to 2003 historical Sacramento River flows at Freeport
+
+- For year 1921 to 1954, a daily pattern of a year (from 1955 to 2003) with similar
+total unimpaired Delta Inflow volume was selected
+*/
+
+/** CalSim timeseries **/
+
+!Definition of daily fraction to map daily pattern.
+
+define day1_CL        {timeseries 'day1' kind 'VOL-FRACTION' units 'NONE'}
+define day2_CL        {timeseries 'day2' kind 'VOL-FRACTION' units 'NONE'}
+define day3_CL        {timeseries 'day3' kind 'VOL-FRACTION' units 'NONE'}
+define day4_CL        {timeseries 'day4' kind 'VOL-FRACTION' units 'NONE'}
+define day5_CL        {timeseries 'day5' kind 'VOL-FRACTION' units 'NONE'}
+define day6_CL        {timeseries 'day6' kind 'VOL-FRACTION' units 'NONE'}
+define day7_CL        {timeseries 'day7' kind 'VOL-FRACTION' units 'NONE'}
+define day8_CL        {timeseries 'day8' kind 'VOL-FRACTION' units 'NONE'}
+define day9_CL        {timeseries 'day9' kind 'VOL-FRACTION' units 'NONE'}
+define day10_CL       {timeseries 'day10' kind 'VOL-FRACTION' units 'NONE'}
+define day11_CL       {timeseries 'day11' kind 'VOL-FRACTION' units 'NONE'}
+define day12_CL       {timeseries 'day12' kind 'VOL-FRACTION' units 'NONE'}
+define day13_CL       {timeseries 'day13' kind 'VOL-FRACTION' units 'NONE'}
+define day14_CL       {timeseries 'day14' kind 'VOL-FRACTION' units 'NONE'}
+define day15_CL       {timeseries 'day15' kind 'VOL-FRACTION' units 'NONE'}
+define day16_CL       {timeseries 'day16' kind 'VOL-FRACTION' units 'NONE'}
+define day17_CL       {timeseries 'day17' kind 'VOL-FRACTION' units 'NONE'}
+define day18_CL       {timeseries 'day18' kind 'VOL-FRACTION' units 'NONE'}
+define day19_CL       {timeseries 'day19' kind 'VOL-FRACTION' units 'NONE'}
+define day20_CL       {timeseries 'day20' kind 'VOL-FRACTION' units 'NONE'}
+define day21_CL       {timeseries 'day21' kind 'VOL-FRACTION' units 'NONE'}
+define day22_CL       {timeseries 'day22' kind 'VOL-FRACTION' units 'NONE'}
+define day23_CL       {timeseries 'day23' kind 'VOL-FRACTION' units 'NONE'}
+define day24_CL       {timeseries 'day24' kind 'VOL-FRACTION' units 'NONE'}
+define day25_CL       {timeseries 'day25' kind 'VOL-FRACTION' units 'NONE'}
+define day26_CL       {timeseries 'day26' kind 'VOL-FRACTION' units 'NONE'}
+define day27_CL       {timeseries 'day27' kind 'VOL-FRACTION' units 'NONE'}
+define day28_CL       {timeseries 'day28' kind 'VOL-FRACTION' units 'NONE'}
+define day29_CL       {timeseries 'day29' kind 'VOL-FRACTION' units 'NONE'}
+define day30_CL       {timeseries 'day30' kind 'VOL-FRACTION' units 'NONE'}
+define day31_CL       {timeseries 'day31' kind 'VOL-FRACTION' units 'NONE'}
+
+/** CalLite timeseries **/
+
+define day1       {alias day1_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day2       {alias day2_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day3       {alias day3_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day4       {alias day4_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day5       {alias day5_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day6       {alias day6_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day7       {alias day7_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day8       {alias day8_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day9       {alias day9_CL  kind 'VOL-FRACTION' units 'NONE'}
+define day10      {alias day10_CL kind 'VOL-FRACTION' units 'NONE'}
+define day11      {alias day11_CL kind 'VOL-FRACTION' units 'NONE'}
+define day12      {alias day12_CL kind 'VOL-FRACTION' units 'NONE'}
+define day13      {alias day13_CL kind 'VOL-FRACTION' units 'NONE'}
+define day14      {alias day14_CL kind 'VOL-FRACTION' units 'NONE'}
+define day15      {alias day15_CL kind 'VOL-FRACTION' units 'NONE'}
+define day16      {alias day16_CL kind 'VOL-FRACTION' units 'NONE'}
+define day17      {alias day17_CL kind 'VOL-FRACTION' units 'NONE'}
+define day18      {alias day18_CL kind 'VOL-FRACTION' units 'NONE'}
+define day19      {alias day19_CL kind 'VOL-FRACTION' units 'NONE'}
+define day20      {alias day20_CL kind 'VOL-FRACTION' units 'NONE'}
+define day21      {alias day21_CL kind 'VOL-FRACTION' units 'NONE'}
+define day22      {alias day22_CL kind 'VOL-FRACTION' units 'NONE'}
+define day23      {alias day23_CL kind 'VOL-FRACTION' units 'NONE'}
+define day24      {alias day24_CL kind 'VOL-FRACTION' units 'NONE'}
+define day25      {alias day25_CL kind 'VOL-FRACTION' units 'NONE'}
+define day26      {alias day26_CL kind 'VOL-FRACTION' units 'NONE'}
+define day27      {alias day27_CL kind 'VOL-FRACTION' units 'NONE'}
+define day28      {alias day28_CL kind 'VOL-FRACTION' units 'NONE'}
+define day29      {alias day29_CL kind 'VOL-FRACTION' units 'NONE'}
+define day30      {alias day30_CL kind 'VOL-FRACTION' units 'NONE'}
+define day31      {alias day31_CL kind 'VOL-FRACTION' units 'NONE'}
+
+/*From: refuges.wresl*/
+
+define dem_c216b_prf_CL  {timeseries 'dem_c216b_prf' kind 'demand-rf' units 'taf'} !Gray
+define dem_c221_prf_CL  {timeseries 'dem_c221_prf' kind 'demand-rf' units 'taf'} !Butte
+define C217B_CL {timeseries 'C217B' kind 'flow-channel' units 'cfs'}  !Butte Creek supply to Butte Refuge
+
+define dem_c216b_prf  {alias dem_c216b_prf_CL kind 'demand-rf' units 'taf'} !Gray
+define dem_c221_prf  {alias dem_c221_prf_CL kind 'demand-rf' units 'taf'} !Butte
+define C217B {alias C217B_CL kind 'flow-channel' units 'cfs'} !Butte Creek supply to Butte Refuge
+

@@ -1,0 +1,46 @@
+/*************************************
+
+Cycle_2_TS.wresl
+ 
+Cody L. Milligan BOR
+
+07-20-2010
+
+This file contains of Calsim timeseries that could not be copied in cycle 1 because 
+they were used in sum_cvp_demands_system_TS.wresl or sum_cvp_div_rqmts_system_TS.wresl to 
+create additional aggregated timeseries.
+
+*************************************/
+
+! DSA58 demands by contractor type for Red Bluff node
+define dem_d104_PMI {alias dem_d104_PMI_CL kind 'DEMAND-CVP-MI' units 'TAF'}
+define dem_d104_PAG {alias dem_d104_PAG_CL kind 'DEMAND-CVP-AG' units 'TAF'}
+define dem_d104_PSC {alias dem_d104_PSC_CL kind 'DEMAND-CVP-SC' units 'TAF'}
+
+! Colusa Basin demands for Red Bluff node
+define con_D171_pag {alias con_D171_pag_CL kind 'DEMAND' units 'CFS'} 
+define con_D172_pag {alias con_D172_pag_CL kind 'DEMAND' units 'CFS'} 
+define con_D174_pag {alias con_D174_pag_CL kind 'DEMAND' units 'CFS'} 
+define con_D178_pag {alias con_D178_pag_CL kind 'DEMAND' units 'CFS'} 
+
+! For Wilkins node refuges
+define dem_D14302_prf  {alias dem_D14302_prf_CL  kind 'demand-cvp-rf' units 'taf'} 
+define dem_D18201A_prf {alias dem_D18201A_prf_CL kind 'demand-cvp-rf' units 'taf'} 
+define dem_D18201B_prf {alias dem_D18201B_prf_CL kind 'demand-cvp-rf' units 'taf'} 
+
+define con_D14302_prf  {alias con_D14302_prf_CL  kind 'demand-cvp-rf' units 'cfs'} 
+define con_D18201A_prf {alias con_D18201A_prf_CL kind 'demand-cvp-rf' units 'cfs'} 
+define con_D18201B_prf {alias con_D18201B_prf_CL kind 'demand-cvp-rf' units 'cfs'} 
+
+! WBA8NN for Wilkins node
+define con_14301SC {alias con_14301SC_CL kind 'DEMAND' units 'cfs'} 
+define con_114GCID {alias con_114GCID_CL kind 'DEMAND' units 'cfs'} 
+
+!WBA8NS for Wilkins node
+define con_14501SC {alias con_14501SC_CL kind 'DEMAND' units 'cfs'} 
+
+!WBA8S for Wilkins node
+define con_18301SC {alias con_18301SC_CL kind 'DEMAND' units 'cfs'} 
+
+! WBA 9, 18, 19  East side of DSA 15 for Wilkins node
+define con_131SC {alias con_131SC_CL kind 'DEMAND' units 'cfs'} 

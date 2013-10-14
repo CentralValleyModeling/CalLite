@@ -8,8 +8,6 @@ define C_Wkytn_MIF {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
 define C_Wkytn_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}
 goal C_Wkytntotal {C_Wkytn=C_Wkytn_MIF+C_Wkytn_EXC}
 define C_Shsta {lower 0. upper 4858.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !SACRAMENTO RIVER DOWNSTREAM OF SHASTA LAKE
-define C_ShstaE_01 {lower 0. upper 900000 kind 'FLOW-CHANNEL' units 'CFS'} !Enlarged Shasta Fills
-define C_ShstaE_02 {lower 0. upper 900000 kind 'FLOW-CHANNEL' units 'CFS'} !Enlarged Shasta Releases
 define C_Kswck {lower 0. upper 100000. kind 'FLOW-CHANNEL' units 'CFS'} !SACRAMENTO RIVER DOWNSTREAM OF KESWICK RESERVOIR (C5)
 define C_Kswck_MIF {std kind 'FLOW-MIN-INSTREAM' units 'CFS'}
 define C_Kswck_EXC {std kind 'FLOW-EXCESS-INSTREAM' units 'CFS'}

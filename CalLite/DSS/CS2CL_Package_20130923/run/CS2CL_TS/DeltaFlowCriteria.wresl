@@ -1,0 +1,15 @@
+/***********************
+DeltaFlowCriteria.WRESL
+Hao Xie, DWR
+04-26-2011
+This time series for unimpaired flow.
+***********************/
+
+Define unimpaired_NDO_CL {timeseries 'unimpaired_NDO' kind 'unimpaired-flow' units 'cfs'}
+Define unimpaired_Sac_CL {timeseries 'unimpaired_Sac' kind 'unimpaired-flow' units 'cfs'}
+Define unimpaired_SJR_CL {timeseries 'unimpaired_SJR' kind 'unimpaired-flow' units 'cfs'}
+
+Define unimpaired_NDO {alias unimpaired_NDO_CL kind 'unimpaired-flow' units 'cfs'}
+Define unimpaired_Sac {alias unimpaired_Sac_CL kind 'unimpaired-flow' units 'cfs'}
+Define unimpaired_SJR {alias unimpaired_SJR_CL kind 'unimpaired-flow' units 'cfs'}
+

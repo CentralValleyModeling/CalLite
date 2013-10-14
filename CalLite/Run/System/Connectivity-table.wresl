@@ -1,8 +1,7 @@
 goal continuityTrnty {I_Trnty-C_Trnty-F_Trnty-E_Trnty=S_Trnty*taf_cfs-S_Trnty(-1)*taf_cfs} !CLAIR ENGLE LAKE
 goal continuityLwstn {C_Trnty+I_Lewiston-D_ClearTu-C_Lwstn=0.} !Lewiston Lake
 goal continuityWkytn {I_Wkytn+D_ClearTu-D_Spring-C_Wkytn-F_Wkytn-E_Wkytn=S_Wkytn*taf_cfs-S_Wkytn(-1)*taf_cfs} !Whiskeytown Lake
-goal continuityShsta {I_Shsta+C_ShstaE_02-C_Shsta-C_ShstaE_01-F_Shsta-E_Shsta=S_Shsta*taf_cfs-S_Shsta(-1)*taf_cfs} !Shasta Lake
-goal continuityShstaE {C_ShstaE_01-C_ShstaE_02-F_ShstaE-E_ShstaE=S_ShstaE*taf_cfs-S_ShstaE(-1)*taf_cfs} !CVP SHASTA ENLARGEMENT
+goal continuityShsta {I_Shsta-C_Shsta-F_Shsta-E_Shsta=S_Shsta*taf_cfs-S_Shsta(-1)*taf_cfs} !Shasta Lake
 goal continuityKswck {C_Shsta+D_Spring+AD_Kswck_Actual-C_Kswck=0.} !Keswick Reservoir
 goal continuityRedBlf {C_Kswck+C_Wkytn+AD_Redblf_Actual-C_RedBlf-D_RedBlf=0.} !Red Bluf node
 goal continuityWilkns {C_RedBlf+AD_Wilkns_Actual-C_Wilkns-D_Wilkns=0.} !Wilkins Slough

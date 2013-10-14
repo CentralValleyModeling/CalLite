@@ -61,21 +61,23 @@ define exp_est_CVPRC {alias EstCVPSodRC kind 'EXPORT-ESTIMATE' units 'CFS'}
 ! minimum Jones pumping
 define JonesMinPumpLevel {
         case JonesShastaLow {
-                condition S_Shsta(-1) + S_ShstaE(-1) < 1500.0
+                condition S_Shsta(-1) < 1500.0
                 value 600.0 }
         case Joneslowshastafolsom {
-                condition S_Folsm(-1) < 400. .and. S_Shsta(-1) + S_ShstaE(-1) < 2000. !Better reflection of actual operations by trying to keep
+                condition S_Folsm(-1) < 400. .and. S_Shsta(-1) < 2000. !Better reflection of actual operations by trying to keep
                 value 800.  }                                                           !water from being released for SL storage during low storage
         case JonesShastaHigh {
                 condition always
                 value 800.0 }
 }
 ! export for south-of-delta CVP: demand + rulecurve
-define maxJonescalc1 {value min(JonesMaxAllow,
-                     4400+perdel_cvpag_s*CVP_pag_ratio_s*dem_D700_pag*taf_cfs,
-                     4200+perdel_cvpag_s*CVP_pag_ratio_s*dem_D700_pag*taf_cfs+perdel_cvpag_s*CVP_pag_ratio_s*dem_D701_pag*taf_cfs+dem_D702_pls*taf_cfs) }
+if int(PBwheel_ON)==0{
+	define maxJonescalc1 {value min(JonesMaxAllow,
+						 4400+perdel_cvpag_s*CVP_pag_ratio_s*dem_D700_pag*taf_cfs,
+						 4200+perdel_cvpag_s*CVP_pag_ratio_s*dem_D700_pag*taf_cfs+perdel_cvpag_s*CVP_pag_ratio_s*dem_D701_pag*taf_cfs+dem_D702_pls*taf_cfs) }
 
-define maxJonescalc {value min(maxJonescalc1 + Intertie_Cap, JonesMaxAllow)}
+	define maxJonescalc {value min(maxJonescalc1 + Intertie_Cap, JonesMaxAllow)}
+}
 
 define CVPexportcap {value maxJonescalc + CVPDedBanksSwitch*BanksMaxAllowCVP}
 

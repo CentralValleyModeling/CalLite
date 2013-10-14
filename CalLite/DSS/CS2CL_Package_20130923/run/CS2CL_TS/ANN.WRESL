@@ -1,0 +1,14 @@
+/***********************
+ANN.WRESL
+Nazrul Islam, DWR
+09-22-2010
+This time series needs to start 5 steps before the simalations starts (Oct, 1921), as we need those values for ANN DLL.
+***********************/
+define C639         {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+define VernWQfinal_CL  {timeseries 'VernWQfinal' kind 'Salinity-EC' units 'umhos/cm'}
+!CalLite definition
+define VernWQfinal  {alias VernWQfinal_CL  kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ANN      {alias C639        kind 'FLOW-CHANNEL'  units 'CFS'}
+define VernWQfinal_v  {alias VernWQfinal  kind 'Salinity-EC' units 'umhos/cm'}
+define SJR_ANN_v      {alias C639        kind 'FLOW-CHANNEL'  units 'CFS'}
+
