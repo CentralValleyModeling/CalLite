@@ -1,0 +1,17 @@
+/***********************
+BO_TS.wresl
+
+Z.Q. Richard Chen, DWR
+
+09-02-2010
+Preprocessed Sacramento River Index and Folsom evap for FMS
+***********************/
+!define C639  {timeseries kind 'FLOW-CHANNEL' units 'CFS'}  
+!define AD_SJR_C639 {alias C639 kind 'FLOW-CHANNEL' units 'CFS'}  
+
+define SAC_RI_CL   {timeseries 'SAC_RI' kind 'SRI_FLOW' units 'CFS'} 
+define SAC_RI   {alias SAC_RI_CL kind 'SRI_FLOW' units 'CFS'}
+
+!define E8 {timeseries kind 'EVAPORATION' units 'CFS'}
+!define Evap_Folsm {alias E8 kind 'EVAPORATION' units 'CFS'}
+

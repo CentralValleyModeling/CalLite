@@ -1,0 +1,8 @@
+/*************************
+UARM.WRESL
+Nazrul Islam, DWR
+09-22-2010
+This time series needs to start from September 1921, as we need that value for our calculation.
+*******************************/
+define UARM_CL {timeseries 'UARM' kind 'STORAGE' units 'TAF'}
+define UARM {alias UARM_CL kind 'STORAGE' units 'TAF'}

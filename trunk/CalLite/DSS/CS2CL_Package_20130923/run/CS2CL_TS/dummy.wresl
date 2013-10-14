@@ -1,0 +1,5 @@
+	! dummy
+	define[local] a { std kind 'ignore' units 'NA'}
+	goal[local] t { a < 0 } 
+	Objective[local] obj = {[a,1]}
+

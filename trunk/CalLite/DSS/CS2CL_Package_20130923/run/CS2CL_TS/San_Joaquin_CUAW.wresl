@@ -1,0 +1,86 @@
+/***********************
+San Joaquin_CUAW.WRESL
+Jun Wang, BOR
+11-12-2012
+Code for writing San Joaquin time series
+***********************/
+define I512_CL      {timeseries 'I512' kind 'FLOW-INFLOW' units 'TAF'} !
+define I512 	{alias I512_CL kind 'FLOW-INFLOW' units 'TAF'}
+
+define CUAW_511_ND_CL      {timeseries 'CUAW_511_ND' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_511_ND	 {alias CUAW_511_ND_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_511_PAG_CL      {timeseries 'CUAW_511_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_511_PAG 	{alias CUAW_511_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_512_PAG_CL      {timeseries 'CUAW_512_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_512_PAG 	{alias CUAW_512_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_523OID_PAG_CL      {timeseries 'CUAW_523OID_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_523OID_PAG 	      {alias CUAW_523OID_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_523SSJ_PAG_CL      {timeseries 'CUAW_523SSJ_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_523SSJ_PAG 		{alias CUAW_523SSJ_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+
+!define CUAW_528A_PAG_CL      {timeseries 'CUAW_528A_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+!define CUAW_528A_PAG 	{alias CUAW_528A_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_STANRIPNA_PAG      {timeseries 'CUAW_528A_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_528A_PAG 	{alias CUAW_STANRIPNA_PAG kind 'SJR-DEMAND' units 'TAF'}
+
+
+define CUAW_531_ND_CL      {timeseries 'CUAW_531_ND' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_531_ND	 {alias CUAW_531_ND_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_531_PAG_CL      {timeseries 'CUAW_531_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_531_PAG 	{alias CUAW_531_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_533_PAG_CL      {timeseries 'CUAW_533_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_533_PAG 	{alias CUAW_533_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_535_PAG_CL      {timeseries 'CUAW_535_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_535_PAG 	{alias CUAW_535_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_545A_PAG_CL      {timeseries 'CUAW_545A_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_545A_PAG 	{alias CUAW_545A_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_549_ND_CL      {timeseries 'CUAW_549_ND' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_549_ND	 {alias CUAW_549_ND_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_549_PAG_CL      {timeseries 'CUAW_549_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_549_PAG 	{alias CUAW_549_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_551_PAG_CL      {timeseries 'CUAW_551_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_551_PAG 	{alias CUAW_551_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+
+
+define CUAW_562A_PAG_CL      {timeseries 'CUAW_562A_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_562A_PAG 	{alias CUAW_562A_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_571_ND_CL      {timeseries 'CUAW_571_ND' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_571_ND	 {alias CUAW_571_ND_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_571_PAG_CL      {timeseries 'CUAW_571_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_571_PAG 	{alias CUAW_571_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_574_PAG_CL      {timeseries 'CUAW_574_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_574_PAG 	{alias CUAW_574_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_584_PAG_CL      {timeseries 'CUAW_584_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_584_PAG 	{alias CUAW_584_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_586_ND_CL      {timeseries 'CUAW_586_ND' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_586_ND	 {alias CUAW_586_ND_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_592_ND_CL      {timeseries 'CUAW_592_ND' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_592_ND	 {alias CUAW_592_ND_CL kind 'SJR-DEMAND' units 'TAF'}
+
+define CUAW_592_PAG_CL      {timeseries 'CUAW_592_PAG' kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_592_PAG 	{alias CUAW_592_PAG_CL kind 'SJR-DEMAND' units 'TAF'}
+
+
+
+
+

@@ -1,0 +1,477 @@
+/***********************
+San Joaquin.WRESL
+Jun Wang, BOR
+11-12-2012
+Code for writing San Joaquin time series
+***********************/
+define C708       {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}  ! Calsim D_Var
+define C_DMC      {alias C708  kind 'FLOW-CHANNEL' units 'CFS'}    ! Callite D_Var
+
+
+define C607BC     {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}  
+define C_MDOTABC  {alias C607BC  kind 'FLOW-CHANNEL' units 'CFS'}  
+
+define C608BC       {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}  
+define C_SJRSACKBC  {alias C608BC   kind 'FLOW-CHANNEL' units 'CFS'}
+
+define C619 {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}  
+define C619fix  {alias C619  kind 'FLOW-CHANNEL' units 'CFS'}  
+
+define C854_CL       	{timeseries 'C854'  kind 'FLOW-CHANNEL'  units 'CFS'}  
+define C854		 {alias C854_CL   kind 'FLOW-CHANNEL' units 'CFS'}
+
+define CAP_C855_CVC_F_CL      {timeseries 'CAP_C855_CVC_F' kind 'CAPACITY' units 'TAF'} !
+define CAP_C855_CVC_F		{alias CAP_C855_CVC_F_CL kind 'CAPACITY' units 'TAF'} 
+
+define CAP_C855_CVC_R_CL      {timeseries 'CAP_C855_CVC_R' kind 'CAPACITY' units 'TAF'} !
+define CAP_C855_CVC_R		{alias CAP_C855_CVC_R_CL kind 'CAPACITY' units 'TAF'} 
+
+
+define CUAW_528A_PAG       {timeseries kind 'SJR-DEMAND' units 'TAF'} !
+define CUAW_STANRIPNA_PAG	{alias CUAW_528A_PAG  kind 'SJR-DEMAND' units 'TAF'}
+
+
+define D523_PAG_FACTOR_CL      {timeseries 'D523_PAG_FACTOR' kind 'FACTOR' units 'PERCENT'} !
+define D523_PAG_FACTOR		{alias D523_PAG_FACTOR_CL kind 'FACTOR' units 'PERCENT'}
+
+define D531_PAG_FACTOR_CL      {timeseries 'D531_PAG_FACTOR' kind 'FACTOR' units 'PERCENT'} !
+define D531_PAG_FACTOR		{alias D531_PAG_FACTOR_CL kind 'FACTOR' units 'PERCENT'}
+
+
+
+define DEMAND_D523_MI_A_CL      {timeseries 'DEMAND_D523_MI_A' kind 'SJR-DEMAND' units 'TAF'} !
+define DEMAND_D523_MI_A 	{alias DEMAND_D523_MI_A_CL kind 'SJR-DEMAND' units 'TAF'}
+
+
+define DEMAND_D572_CL      {timeseries 'DEMAND_D572' kind 'DEMAND' units 'TAF'} !
+define DEMAND_D572 		{alias DEMAND_D572_CL kind 'DEMAND' units 'TAF'}
+
+
+
+define DEMAND_D620B       {timeseries  kind 'DEMAND' units 'TAF'} !
+define DEMAND_D_SJRMerB   {alias DEMAND_D620B kind 'DEMAND' units 'TAF'}
+
+define DEMAND_D630B       {timeseries kind 'DEMAND' units 'TAF'} !
+define DEMAND_D_SJRTuolB  {alias DEMAND_D630B kind 'DEMAND' units 'TAF'}
+
+define DEMAND_D637       {timeseries  kind 'DEMAND' units 'TAF'} !
+define DEMAND_D_SJRStan  {alias DEMAND_D637 kind 'DEMAND' units 'TAF'}
+
+define DEMAND_D639       {timeseries kind 'DEMAND' units 'TAF'} !
+define DEMAND_D_SJRVer	{alias DEMAND_D639 kind 'DEMAND' units 'TAF'}
+
+define DEM_D607A_PAG       {timeseries  kind 'DEMAND-CVP-AG' units 'TAF'} !
+define DEM_D_MDOTAA_PAG	   {alias DEM_D607A_PAG kind 'DEMAND-CVP-AG' units 'TAF'}
+
+define DEM_D607B_PEX       {timeseries  kind 'DEMAND-CVP-EX' units 'TAF'} !
+define DEM_D_MDOTAB_PEX   {alias DEM_D607B_PEX  kind 'DEMAND-CVP-EX' units 'TAF'}
+
+define DEM_D607C_PRF      {timeseries kind 'DEMAND-CVP-RF' units 'TAF'} !
+define DEM_D_MDOTAC_PRF   {alias DEM_D607C_PRF kind 'DEMAND-CVP-RF' units 'TAF'}
+
+define DEM_D607D_PLS       {timeseries  kind 'DEMAND-CVP-LS' units 'TAF'} !
+define DEM_D_MDOTAD_PLS   {alias DEM_D607D_PLS kind 'DEMAND-CVP-LS' units 'TAF'}
+
+
+define D607A       {timeseries   kind 'FLOW-DELIVERY'  units 'CFS'}  
+define D_MDOTAA  {alias D607A   kind 'FLOW-DELIVERY' units 'CFS'}  
+
+define D607D       {timeseries   kind 'FLOW-DELIVERY'  units 'CFS'}  
+define D_MDOTAD  {alias D607D   kind 'FLOW-DELIVERY' units 'CFS'}  
+
+define D514A       {timeseries   kind 'FLOW-DELIVERY'  units 'CFS'}  
+define D_SJRCALA  {alias D514A   kind 'FLOW-DELIVERY' units 'CFS'}  
+
+define D514B       {timeseries   kind 'FLOW-DELIVERY'  units 'CFS'}  
+define D_SJRCALB  {alias D514B   kind 'FLOW-DELIVERY' units 'CFS'}  
+
+
+
+define Evap_S53       {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_ESTMN  {alias Evap_S53   kind 'EVAPORATION-RATE' units 'in'}  
+
+define Evap_S52       {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_HNSLY  {alias Evap_S52    kind 'EVAPORATION-RATE' units 'in'}  
+
+define Evap_S20      {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_MCLRE  {alias Evap_S20    kind 'EVAPORATION-RATE' units 'in'}  
+
+
+define Evap_S10       {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_MELON  {alias Evap_S10    kind 'EVAPORATION-RATE' units 'in'}  
+
+
+define Evap_S18       {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_MLRTN  {alias Evap_S18    kind 'EVAPORATION-RATE' units 'in'}  
+
+define Evap_S92       {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_NHGAN  {alias  Evap_S92     kind 'EVAPORATION-RATE' units 'in'}  
+
+define Evap_S81       {timeseries   kind 'EVAPORATION-RATE'  units 'in'}  
+define EVAP_S_PEDRO  {alias  Evap_S81     kind 'EVAPORATION-RATE' units 'in'} 
+
+
+
+define FERCBASE_CL      {timeseries 'FERCBASE' kind 'FLOW-MIN-REQUIRED' units 'CFS'} 
+define FERCBASE 	{alias FERCBASE_CL kind 'FLOW-MIN-REQUIRED' units 'CFS'}
+
+define FERCPULSE_CL      {timeseries 'FERCPULSE' kind 'FLOW-MIN-REQUIRED' units 'CFS'} 
+define FERCPULSE 	{alias FERCPULSE_CL kind 'FLOW-MIN-REQUIRED' units 'CFS'}
+
+
+define I501_CL      {timeseries 'I501' kind 'FLOW-INFLOW' units 'TAF'} !
+define I501 	{alias I501_CL kind 'FLOW-INFLOW' units 'TAF'}
+
+define I18_SJR_CL      {timeseries 'I18_SJR' kind 'FLOW-INFLOW' units 'TAF'} !
+define I18_SJR 	{alias I18_SJR_CL kind 'FLOW-INFLOW' units 'TAF'}
+
+
+define I18_FG_CL      {timeseries 'I18_FG' kind 'FLOW-INFLOW' units 'TAF'} !
+define I18_FG 	{alias I18_FG_CL kind 'FLOW-INFLOW' units 'TAF'}
+
+define I506      {timeseries   kind 'FLOW-INFLOW'  units 'taf' }  
+define I_CALAV  {alias I506   kind 'FLOW-INFLOW' units 'taf' } 
+
+define I589      {timeseries   kind 'FLOW-INFLOW'  units 'taf' }  
+define I_EASTBYP  {alias I589   kind 'FLOW-INFLOW' units 'taf' } 
+
+
+define I53      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_ESTMN  {alias I53   kind 'FLOW-INFLOW' units 'taf' }  
+
+
+define I52      {timeseries   kind 'FLOW-INFLOW'  units 'taf' }  
+define I_HNSLY  {alias I52   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I20      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_MCLRE  {alias I20   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I607taf  {timeseries 'I607' kind 'FLOW-INFLOW' units 'taf' }  !taf used in name since I607 defined in System_Files_TS.wresl already (but converted to cfs)
+define I_MDOTA  {alias I607taf   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I10      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_MELON  {alias I10   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I561      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_MERCED1C {alias I561   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I562      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_MERCED1B {alias I562   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I566      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_MERCED2 {alias I566   kind 'FLOW-INFLOW' units 'taf' }  
+
+
+define I76      {timeseries   kind 'FLOW-INFLOW'  units 'TAF'}
+define E76      {timeseries   kind 'EVAPORATION'  units 'cfs' }
+define AD_STANGDWN {upper unbounded lower unbounded  kind 'FLOW-ACCRDEPL' units 'cfs' } 
+goal setAD_STANGDWN {AD_STANGDWN = I76*taf_cfs -E76}
+
+
+define C16_TFB      {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+define C17      {timeseries   kind 'FLOW-CHANNEL'  units 'CFS'}
+define I_MLRTN { std kind 'FLOW-INFLOW' units 'cfs'} 
+goal setI_MLRTN {I_MLRTN = C16_TFB+C17+I18_FG*taf_cfs }
+
+
+define I92      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_NHGAN {alias I92   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I81      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_PEDRO {alias I81   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I636      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_SJRMAZE {alias I636   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I614      {timeseries   kind 'FLOW-INFLOW'  units 'CFS'}  !I614 is in DV
+define I_SJRMS {alias I614   kind 'FLOW-INFLOW' units 'CFS'}  
+
+define I614A     {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'}  !I614a is in DV
+define I_SJRMSA {alias I614A   kind 'FLOW-INFLOW' units 'CFS'}  
+
+
+define I637      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_SJRSTAN {alias I637   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I520      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_STANGDWN {alias I520   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I528      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_STANRIPN {alias I528   kind 'FLOW-INFLOW' units 'taf' }  
+
+define I545      {timeseries   kind 'FLOW-INFLOW' units 'taf' }  
+define I_TUOL {alias I545   kind 'FLOW-INFLOW' units 'taf' }  
+
+define MAMMOTH_STORAGE_CL      {timeseries 'MAMMOTH_STORAGE' kind 'STORAGE' units 'TAF'} !
+define MAMMOTH_STORAGE 	{alias MAMMOTH_STORAGE_CL kind 'STORAGE' units 'TAF'}
+
+
+define MINFLOW_C561      {timeseries   kind 'FLOW-MIN-REQUIRED' units 'TAF'}  
+define MINFLOW_C_MERCED1C {alias MINFLOW_C561   kind 'FLOW-MIN-REQUIRED' units 'TAF'}  
+
+define MINFLOW_C562      {timeseries   kind 'FLOW-MIN-REQUIRED' units 'TAF'}  
+define MINFLOW_C_MERCED1B {alias MINFLOW_C562   kind 'FLOW-MIN-REQUIRED' units 'TAF'}  
+
+define REST_REQ_NP_I_CL     {timeseries 'REST_REQ_NP_I' kind 'INTERIM-RELEASE-HYDROGRAPH' units 'TAF'} 
+define REST_REQ_NP_I 	{alias REST_REQ_NP_I_CL kind 'INTERIM-RELEASE-HYDROGRAPH' units 'TAF'}
+
+define REST_REQ_P_I_CL     {timeseries 'REST_REQ_P_I' kind 'INTERIM-RELEASE-HYDROGRAPH' units 'TAF'} 
+define REST_REQ_P_I 	{alias REST_REQ_P_I_CL kind 'INTERIM-RELEASE-HYDROGRAPH' units 'TAF'}
+
+define REST_REQ_NP_F_CL     {timeseries 'REST_REQ_NP_F' kind 'RELEASE-HYDROGRAPH' units 'TAF'} 
+define REST_REQ_NP_F 	{alias REST_REQ_NP_F_CL kind 'RELEASE-HYDROGRAPH' units 'TAF'}
+
+define REST_REQ_P_F_CL     {timeseries 'REST_REQ_P_F' kind 'RELEASE-HYDROGRAPH' units 'TAF'} 
+define REST_REQ_P_F 	{alias REST_REQ_P_F_CL kind 'RELEASE-HYDROGRAPH' units 'TAF'}
+
+define R607WEST      {timeseries   kind 'FLOW-RETURN'  units 'CFS'}  
+define R_MDOTA_W {alias R607WEST   kind 'FLOW-RETURN' units 'CFS'}  
+
+define R644      {timeseries   kind 'FLOW-RETURN'  units 'CFS'}  
+define R_SJR644 {alias R644  kind 'FLOW-RETURN' units 'CFS'} 
+
+define R_SJRCALB {alias D514B    kind 'FLOW-RETURN' units 'CFS'} 
+
+define R614WEST      {timeseries   kind 'FLOW-RETURN'  units 'CFS'}  
+define R_SJRMS_W {alias R614WEST   kind 'FLOW-RETURN' units 'CFS'} 
+
+define R630WEST      {timeseries   kind 'FLOW-RETURN'  units 'CFS'}  
+define R_SJRTUOLWEST_W{alias R630WEST   kind 'FLOW-RETURN' units 'CFS'} 
+
+define R639WEST      {timeseries   kind 'FLOW-RETURN'  units 'CFS'}  
+define R_SJRVERWEST_W{alias R639WEST   kind 'FLOW-RETURN' units 'CFS'} 
+
+
+define S53LEVEL2      {timeseries   kind 'STORAGE-LEVEL'  units 'TAF'}  
+define S_ESTMNLEVEL2 {alias S53LEVEL2    kind 'STORAGE-LEVEL' units 'TAF'}  
+
+define S53LEVEL4      {timeseries   kind 'STORAGE-LEVEL'  units 'TAF'}  
+define S_ESTMNLEVEL4 {alias S53LEVEL4    kind 'STORAGE-LEVEL' units 'TAF'}  
+
+define S52LEVEL2      {timeseries   kind 'STORAGE-LEVEL'  units 'TAF'}  
+define S_HNSLYLEVEL2 {alias S52LEVEL2    kind 'STORAGE-LEVEL' units 'TAF'}  
+
+define S52LEVEL4      {timeseries   kind 'STORAGE-LEVEL'  units 'TAF'}  
+define S_HNSLYLEVEL4 {alias S52LEVEL4    kind 'STORAGE-LEVEL' units 'TAF'}  
+
+define S92LEVEL4      {timeseries   kind 'STORAGE-LEVEL'  units 'TAF'}  
+define S_NHGANLEVEL4 {alias S92LEVEL4    kind 'STORAGE-LEVEL' units 'TAF'}  
+
+define S81LEVEL4      {timeseries   kind 'STORAGE-LEVEL'  units 'TAF'}  
+define S_PEDROLEVEL4 {alias S81LEVEL4    kind 'STORAGE-LEVEL' units 'TAF'} 
+
+
+define SPILL_528A_PAG       {timeseries  kind 'FLOW-RETURN' units 'TAF'} !
+define SPILL_STANRIPNA_PAG  {alias SPILL_528A_PAG kind 'FLOW-RETURN' units 'TAF'}
+
+define SPILL_528B_PAG        {timeseries kind 'FLOW-RETURN' units 'TAF'} !
+define SPILL_STANRIPNB_PAG  {alias SPILL_528B_PAG  kind 'FLOW-RETURN' units 'TAF'}
+
+
+define TULE_WET_INDX_CL      {timeseries 'TULE_WET_INDX' kind 'FRIANT-INDX' units 'TAF'} 
+define TULE_WET_INDX 	{alias TULE_WET_INDX_CL kind 'FRIANT-INDX' units 'TAF'}
+
+
+
+
+/*-------------- just for CalLite to be able to run ------------------- */
+
+define AbvNwmnResLoad_CL {timeseries 'AbvNwmnResLoad'kind 'FlowTimesEC' units 'NONE' } 
+define AbvNwmnResLoad {alias AbvNwmnResLoad_CL  kind 'FlowTimesEC' units 'NONE' } 
+
+define btwmazenwmnresload_CL {timeseries 'btwmazenwmnresload' kind 'FlowTimesEC' units 'NONE' } 
+define btwmazenwmnresload {alias btwmazenwmnresload_CL  kind 'FlowTimesEC' units 'NONE' } 
+
+
+define cosma_midmd_CL {timeseries 'cosma_midmd' kind 'COSMA-DEMAND' units 'TAF' } 
+define cosma_midmd {alias cosma_midmd_CL  kind 'COSMA-DEMAND' units 'TAF' } 
+
+define cosma_agdmd_CL {timeseries 'cosma_agdmd' kind 'COSMA-DEMAND' units 'TAF' } 
+define cosma_agdmd {alias cosma_agdmd_CL  kind 'COSMA-DEMAND' units 'TAF' }
+
+define cosma_ag_gw_CL {timeseries 'cosma_ag_gw' kind 'COSMA-DEMAND' units 'TAF' } 
+define cosma_ag_gw {alias cosma_ag_gw_CL  kind 'COSMA-DEMAND' units 'TAF' }
+
+
+define EVAP_S75_CL      {timeseries 'EVAP_S75' kind 'EVAPORATION-RATE' units 'in'} !
+define EVAP_S75 	{alias EVAP_S75_CL kind 'EVAPORATION-RATE' units 'in'}
+
+define EVAP_S78_CL      {timeseries 'EVAP_S78' kind 'EVAPORATION-RATE' units 'in'} !
+define EVAP_S78 	{alias EVAP_S78_CL kind 'EVAPORATION-RATE' units 'in'}
+
+define EVAP_S79_CL      {timeseries 'EVAP_S79' kind 'EVAPORATION-RATE' units 'in'} !
+define EVAP_S79 	{alias EVAP_S79_CL kind 'EVAPORATION-RATE' units 'in'}
+
+define EVAP_S76_CL      {timeseries 'EVAP_S76' kind 'EVAPORATION-RATE' units 'in'} !
+define EVAP_S76 	{alias EVAP_S76_CL kind 'EVAPORATION-RATE' units 'in'}
+
+define EVAP_S17_CL      {timeseries 'EVAP_S17' kind 'EVAPORATION-RATE' units 'in'} !
+define EVAP_S17 	{alias EVAP_S17_CL kind 'EVAPORATION-RATE' units 'in'}
+
+
+define GP522_MIN_PAG_LIMIT_CL      {timeseries 'GP522_MIN_PAG_LIMIT' kind 'GW-PUMPING' units 'CFS'} !
+define GP522_MIN_PAG_LIMIT 	{alias GP522_MIN_PAG_LIMIT_CL kind 'GW-PUMPING' units 'CFS'}
+
+define GP522_MIN_PRV_LIMIT_CL      {timeseries 'GP522_MIN_PRV_LIMIT' kind 'GW-PUMPING' units 'CFS'} !
+define GP522_MIN_PRV_LIMIT 	{alias GP522_MIN_PRV_LIMIT_CL kind 'GW-PUMPING' units 'CFS'}
+
+define GP530_MIN_PAG_LIMIT_CL      {timeseries 'GP530_MIN_PAG_LIMIT' kind 'GW-PUMPING' units 'CFS'} !
+define GP530_MIN_PAG_LIMIT 	{alias GP530_MIN_PAG_LIMIT_CL kind 'GW-PUMPING' units 'CFS'}
+
+define GP530_MIN_PRV_LIMIT_CL      {timeseries 'GP530_MIN_PRV_LIMIT' kind 'GW-PUMPING' units 'CFS'} !
+define GP530_MIN_PRV_LIMIT 	{alias GP530_MIN_PRV_LIMIT_CL kind 'GW-PUMPING' units 'CFS'}
+
+
+define GWR603_CL      {timeseries 'GWR603' kind 'GWR-FLOW' units 'CFS'} !
+define GWR603 	{alias GWR603_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR604_CL      {timeseries 'GWR604' kind 'GWR-FLOW' units 'CFS'} !
+define GWR604 	{alias GWR604_CL kind 'GWR-FLOW' units 'CFS'}
+
+
+define GWR605_CL      {timeseries 'GWR605' kind 'GWR-FLOW' units 'CFS'} !
+define GWR605 	{alias GWR605_CL kind 'GWR-FLOW' units 'CFS'}
+
+
+define GWR612_CL      {timeseries 'GWR612' kind 'GWR-FLOW' units 'CFS'} !
+define GWR612 	{alias GWR612_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR616_CL      {timeseries 'GWR616' kind 'GWR-FLOW' units 'CFS'} !
+define GWR616 	{alias GWR616_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR617_CL      {timeseries 'GWR617' kind 'GWR-FLOW' units 'CFS'} !
+define GWR617 	{alias GWR617_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR619_CL      {timeseries 'GWR619' kind 'GWR-FLOW' units 'CFS'} !
+define GWR619 	{alias GWR619_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR622_CL      {timeseries 'GWR622' kind 'GWR-FLOW' units 'CFS'} !
+define GWR622 	{alias GWR622_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR623_CL      {timeseries 'GWR623' kind 'GWR-FLOW' units 'CFS'} !
+define GWR623 	{alias GWR623_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR624_CL      {timeseries 'GWR624' kind 'GWR-FLOW' units 'CFS'} !
+define GWR624 	{alias GWR624_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR628_CL      {timeseries 'GWR628' kind 'GWR-FLOW' units 'CFS'} !
+define GWR628 	{alias GWR628_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR631_CL      {timeseries 'GWR631' kind 'GWR-FLOW' units 'CFS'} !
+define GWR631 	{alias GWR631_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR635_CL      {timeseries 'GWR635' kind 'GWR-FLOW' units 'CFS'} !
+define GWR635 	{alias GWR635_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR638_CL      {timeseries 'GWR638' kind 'GWR-FLOW' units 'CFS'} !
+define GWR638 	{alias GWR638_CL kind 'GWR-FLOW' units 'CFS'}
+
+define GWR640_CL      {timeseries 'GWR640' kind 'GWR-FLOW' units 'CFS'} !
+define GWR640 	{alias GWR640_CL kind 'GWR-FLOW' units 'CFS'}
+
+
+
+define EC_GWR603_CL      {timeseries 'EC_GWR603' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR603 	{alias EC_GWR603_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR604_CL      {timeseries 'EC_GWR604' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR604 	{alias EC_GWR604_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR605_CL      {timeseries 'EC_GWR605' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR605 	{alias EC_GWR605_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR612_CL      {timeseries 'EC_GWR612' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR612 	{alias EC_GWR612_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR616_CL      {timeseries 'EC_GWR616' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR616 	{alias EC_GWR616_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR617_CL      {timeseries 'EC_GWR617' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR617 	{alias EC_GWR617_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR619_CL      {timeseries 'EC_GWR619' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR619 	{alias EC_GWR619_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR622_CL      {timeseries 'EC_GWR622' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR622 	{alias EC_GWR622_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR623_CL      {timeseries 'EC_GWR623' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR623 	{alias EC_GWR623_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR624_CL      {timeseries 'EC_GWR624' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR624 	{alias EC_GWR624_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR628_CL      {timeseries 'EC_GWR628' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR628 	{alias EC_GWR628_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR631_CL      {timeseries 'EC_GWR631' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR631 	{alias EC_GWR631_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR635_CL      {timeseries 'EC_GWR635' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR635 	{alias EC_GWR635_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR638_CL      {timeseries 'EC_GWR638' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR638 	{alias EC_GWR638_CL kind 'EC-GWR' units 'NONE'}
+
+define EC_GWR640_CL      {timeseries 'EC_GWR640' kind 'EC-GWR' units 'NONE'} !
+define EC_GWR640 	{alias EC_GWR640_CL kind 'EC-GWR' units 'NONE'}
+
+
+
+define EC_SWR17_CL      {timeseries 'EC_SWR17' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR17 	{alias EC_SWR17_CL kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR607      	{timeseries kind 'EC-SWR' units 'NONE'} !
+define EC_SWR_MDOTA 	{alias EC_SWR607 kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR613_CL      {timeseries 'EC_SWR613' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR613 	{alias EC_SWR613_CL kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR622_CL      {timeseries 'EC_SWR622' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR622 	{alias EC_SWR622_CL kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR624_CL      {timeseries 'EC_SWR624' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR624 	{alias EC_SWR624_CL kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR628_CL      {timeseries 'EC_SWR628' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR628 	{alias EC_SWR628_CL kind 'EC-SWR' units 'NONE'}
+
+
+define EC_SWR631_CL      {timeseries 'EC_SWR631' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR631 	{alias EC_SWR631_CL kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR642_CL      {timeseries 'EC_SWR642' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR642 	{alias EC_SWR642_CL kind 'EC-SWR' units 'NONE'}
+
+define EC_SWR648_CL      {timeseries 'EC_SWR648' kind 'EC-SWR' units 'NONE'} !
+define EC_SWR648 	{alias EC_SWR648_CL kind 'EC-SWR' units 'NONE'}
+
+
+define SPILL_526_PAG_CL      {timeseries 'SPILL_526_PAG' kind 'FLOW-RETURN' units 'TAF'} 
+define SPILL_526_PAG 	{alias SPILL_526_PAG_CL kind 'FLOW-RETURN' units 'TAF'}
+
+
+define SPILL_532_PAG_CL      {timeseries 'SPILL_532_PAG' kind 'FLOW-RETURN' units 'TAF'} 
+define SPILL_532_PAG 	{alias SPILL_532_PAG_CL kind 'FLOW-RETURN' units 'TAF'}
+
+define SPILL_534B_PAG_CL      {timeseries 'SPILL_534B_PAG' kind 'FLOW-RETURN' units 'TAF'} 
+define SPILL_534B_PAG 	{alias SPILL_534B_PAG_CL kind 'FLOW-RETURN' units 'TAF'}
+
+define SPILL_545B_PAG_CL      {timeseries 'SPILL_545B_PAG' kind 'FLOW-RETURN' units 'TAF'} 
+define SPILL_545B_PAG 	{alias SPILL_545B_PAG_CL kind 'FLOW-RETURN' units 'TAF'}
+
+! just for convenience
+define s75_seep_CL      {timeseries 's75_seep' kind 'DEMAND' units 'TAF'} 
+define s75_seep  	{alias s75_seep_CL kind 'DEMAND' units 'TAF'}
+
+define PERDV_CVPAG_S      {timeseries kind 'PERCENT-DELIVERY' units 'NONE'} 
+define PERDEL_CVPAG_S 	{alias PERDV_CVPAG_S kind 'PERCENT-DELIVERY' units 'NONE'} 
+
+define PERDV_CVPEX_S      {timeseries kind 'PERCENT-DELIVERY' units 'NONE'} 
+define PERDEL_CVPEX_S 	{alias PERDV_CVPEX_S kind 'PERCENT-DELIVERY' units 'NONE'} 
+
+define PERDV_CVPMI_S      {timeseries kind 'PERCENT-DELIVERY' units 'NONE'} 
+define PERDEL_CVPMI_S 	{alias PERDV_CVPMI_S kind 'PERCENT-DELIVERY' units 'NONE'} 
+
+define PERDV_CVPRF_S     {timeseries kind 'PERCENT-DELIVERY' units 'NONE'} 
+define PERDEL_CVPRF_S	{alias PERDV_CVPRF_S kind 'PERCENT-DELIVERY' units 'NONE'} 

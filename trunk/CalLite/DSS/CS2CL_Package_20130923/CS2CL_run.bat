@@ -1,0 +1,1 @@
+start D:\WRIMS2\wrimsv2_SG-20130731\bin\runConfig %~dp0\CS2CL_study.config

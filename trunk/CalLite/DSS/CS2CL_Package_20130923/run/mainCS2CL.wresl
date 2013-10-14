@@ -1,0 +1,93 @@
+/************************************
+
+mainCS2CL.wresl
+
+Cody L. Milligan BOR; 07-20-2010
+
+Last modified:
+Nazrul Islam, DWR; 09/22/2010
+Richard Chen, DWR; 07/01/2011
+Tom FitzHugh, Jun Wang BOR; 09/18/2012
+
+Model needs to be run from Oct 1920 to Sept 2004
+**************************************/
+
+SEQUENCE CYCLE1 {  !runs for WY1921-2003
+    model   CS2CL1
+    condition wateryear < 2004  
+    order   1
+    }
+   
+SEQUENCE CYCLE2 {  !runs for Sep 1921 - WY2003
+    model   CS2CL2
+    condition wateryear == 1921 .and. month == 12 .or. wateryear > 1921 .and. wateryear < 2004
+    order   2
+    }
+
+SEQUENCE CYCLE3 {  !runs for WY1922-2003
+    model   CS2CL3
+    condition  wateryear > 1921 .and. wateryear < 2004  
+    order   3
+    }
+    
+SEQUENCE CYCLE4 {  !runs for WY2004
+    model   CS2CL4
+    condition  wateryear > 2003  
+    order   4
+    }
+
+
+MODEL CS2CL1 {          
+    INCLUDE [LOCAL]'CS2CL_TS\ANN.wresl' 
+    INCLUDE [LOCAL]'CS2CL_TS\dummy.wresl'
+}
+
+MODEL CS2CL2 {          
+    INCLUDE [LOCAL]'CS2CL_TS\UARM.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\dummy.wresl'
+}
+
+MODEL CS2CL3 {          
+
+    INCLUDE [LOCAL] 'CS2CL_TS\System_Files_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Hydrology_Demands_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\CVP_Dellogic_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\SWP_Dellogic_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Weirs_Refuges_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\ANN_CCWD_NOD_WYTypes_CycleOutput_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Cycle_2_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\B2_TS.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\BO_TS.wresl'
+
+    INCLUDE [LOCAL] 'CS2CL_TS\NewMelonesForecast.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\DeltaFlowCriteria.wresl'
+! Commented out since now VAMP will be turned off dynamically TF
+!    INCLUDE [LOCAL] 'CS2CL_TS\VAMPoff.wresl'
+    
+    INCLUDE [LOCAL] 'CS2CL_TS\San_Joaquin.wresl' 
+    INCLUDE [LOCAL] 'CS2CL_TS\San_Joaquin_CUAW.wresl' 
+    INCLUDE [LOCAL] 'CS2CL_TS\dummy.wresl'
+    
+    ! the following files are for westside return flows
+    INCLUDE [LOCAL] 'CS2CL_TS\WestSide_RF_Defs.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\WestSideReturns.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\Accretion_Def.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\WS_Returns_Def.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\NPD_flow.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\NPR_flow.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\NPR_EC.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\WSReturnC1.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\WSReturnC3.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\WSReturnC2.wresl'
+    INCLUDE [LOCAL] 'CS2CL_TS\WSReturnC5.wresl'
+
+
+}
+
+MODEL CS2CL4 {          
+    
+    INCLUDE [LOCAL] 'CS2CL_TS\San_Joaquin_CUAW.wresl' 
+    INCLUDE [LOCAL] 'CS2CL_TS\dummy.wresl'
+
+}
+
