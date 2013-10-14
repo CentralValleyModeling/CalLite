@@ -1,0 +1,49 @@
+By Richard Chen
+-Base Model: branches\model\ at version:30
+
+
+1) Create a directory ".\run\NorthOfDelta\Feather" and fileslisted below
+	a)  "feather_special_CL.wresl contains feather river operation rules
+		table:		feather_fish_203.table
+		timeseries: 	minflow_C_YubFea
+				minflowFeaMouth
+
+	b)  "OroRuleCurve_CL.wresl" contains Oroville Reservor Operation code.
+		table:		TableA.table
+ 		timeseries:	dem_d6_PWR
+	
+	c)  "ThermalitoPower_CL.wresl" contains pwer generation code.
+
+
+2) create a directory ".\run\Allocation" and the file
+	a)  "assumption.wresl" contains the assumed allocation values, 
+	    which will be replaced when allocation modules are implemented.
+		timeseries:	swp_allocation
+
+
+
+3) Modify weights for the minflow requirments: 
+
+[C_Orovl_MIF,5500],
+[C_Therm_MIF,5500],
+[C_Therm_EXC2,-6],
+[C_YubFea_MIF,5500],
+
+4) The timeseries listed below are added to the SV file.
+		minflow_C_YubFea
+		minflowFeaMouth (CalSim: C223_MIF)
+ 		dem_d6_PWR
+		swp_allocation (CalSim: SWP_ALLOC_)
+		
+
+5) The table files listed below are added to the Lookup directory
+		feather_fish_203.table
+		TableA.table
+
+6) remove the following lines in Reservoir-table since they are defined in OroRuleCurv_CL.wresl:
+	!define S_Orovllevel3 {value 825.}
+        !define S_Orovllevel4 {value 825.}
+	!goal S_OrovlZone3 {S_Orovl_3 < S_Orovllevel3-S_Orovllevel2}
+	!goal S_OrovlZone4 {S_Orovl_4 < S_Orovllevel4-S_Orovllevel3}
+	!goal S_OrovlZone5 {S_Orovl_5 < S_Orovllevel5-S_Orovllevel4}
+        !goal S_OrovlZone6 {S_Orovl_6 < S_Orovllevel6-S_Orovllevel5}
