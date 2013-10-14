@@ -9,8 +9,9 @@ and CVP dedicated export.
 **************************************/
 
 define D_Banks_swp {std KIND 'FLOW-DELIVERY' UNITS 'CFS'} ! SWP Banks
-
 define D_Banks_cvp {std kind 'FLOW-DELIVERY' UNITS 'CFS'} ! Total CVP wheeling at Banks
+define D_Banks_EXP1 {std kind 'flow-delivery' units 'cfs'}
+define D_Banks_EXP2 {std kind 'flow-delivery' units 'cfs'}
 
 define D_Banks_cvc {std kind 'FLOW-DELIVERY' UNITS 'CFS'} ! CVC wheeling at Banks
 define D_Banks_cvcrels {std kind 'FLOW-DELIVERY' UNITS 'CFS'} ! CVC - Released Water
@@ -35,6 +36,8 @@ define Surp2Terms {std kind 'FLOW-CHANNEL' units 'CFS'}
 define SurpTerms {std kind 'FLOW-CHANNEL' units 'CFS'}
 
 goal totalBanks {D_Banks = D_Banks_swp + D_Banks_cvp} 
+goal SWPArcSplit {D_Banks_SWP = D_Banks_EXP1 + D_Banks_EXP2 }
+
 
 goal totalcvpWheel {D_Banks_cvp = D_Banks_cvc + D_Banks_cvpwhl /*+ D_Banks_cvpded*/} ! Total Wheeling at Banks for CVP.
 
