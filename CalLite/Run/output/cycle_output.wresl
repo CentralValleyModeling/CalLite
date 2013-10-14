@@ -20,8 +20,8 @@ define[local] eiexpctrlUP       {alias eiexpctrl[UPSTREAM]      KIND 'debug' uni
 define[local] aprmayexpctrlUP       {alias aprmayexpctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
 define[local] aprmaybanksctrlUP       {alias aprmaybanksctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
 define[local] aprmayjonesctrlUP       {alias aprmayjonesctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
-define[local] C209_np_exc_up	{alias C209_np_exc KIND 'FLOW-CHANNEL' UNITS 'CFS'}
-define[local] C209_prj_exc_up	{alias c209_prj KIND 'FLOW-CHANNEL' UNITS 'CFS'}
+define[local] C209_np_exc_up    {alias C209_np_exc KIND 'FLOW-CHANNEL' UNITS 'CFS'}
+define[local] C209_prj_exc_up   {alias c209_prj KIND 'FLOW-CHANNEL' UNITS 'CFS'}
 
 define[local] D_BanksBASE  {alias D_Banks[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
 define[local] D_Banks_swpBASE  {alias D_Banks_swp[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
@@ -98,8 +98,8 @@ define[local] C_HOOD_EXCUP {alias C_HOOD_EXC[UPSTREAM] kind 'debug' units 'CFS'}
 define[local] C_HOOD_EXCBASE {alias C_HOOD_EXC[BASE] kind 'debug' units 'CFS'}
 define[local] C_HOOD_ANNUP {alias C_HOOD_ANN[UPSTREAM] kind 'debug' units 'CFS'}
 define[local] C_HOOD_ANNBASE {alias C_HOOD_ANN[BASE] kind 'debug' units 'CFS'}
-define[local] C_HOODbase 	{alias C_HOOD[BASE] kind 'debug' units 'cfs'}
-define[local] C_HOODup 		{alias C_HOOD[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_HOODbase    {alias C_HOOD[BASE] kind 'debug' units 'cfs'}
+define[local] C_HOODup      {alias C_HOOD[UPSTREAM] kind 'debug' units 'cfs'}
 
 define[local] C_HST_MIFUP {alias C_HST_MIF[UPSTREAM] kind 'debug' units 'CFS'}
 define[local] C_HST_MIFBASE {alias C_HST_MIF[BASE] kind 'debug' units 'CFS'}
@@ -150,8 +150,8 @@ define[local] C_YOLOBP_MIFUP {alias C_YOLOBP_MIF[UPSTREAM] kind 'debug' units 'C
 define[local] C_YOLOBP_MIFBASE {alias C_YOLOBP_MIF[BASE] kind 'debug' units 'CFS'}
 define[local] C_YOLOBP_EXCUP {alias C_YOLOBP_EXC[UPSTREAM] kind 'debug' units 'CFS'}
 define[local] C_YOLOBP_EXCBASE {alias C_YOLOBP_EXC[BASE] kind 'debug' units 'CFS'}
-define[local] C_YOLOBPup 	{alias C_YOLOBP[UPSTREAM] kind 'debug' units 'cfs'}
-define[local] C_YOLOBPbase 	{alias C_YOLOBP[BASE] kind 'debug' units 'cfs'}
+define[local] C_YOLOBPup    {alias C_YOLOBP[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_YOLOBPbase  {alias C_YOLOBP[BASE] kind 'debug' units 'cfs'}
 
 define[local] C_YUBFEA_MIFUP {alias C_YUBFEA_MIF[UPSTREAM] kind 'debug' units 'CFS'}
 define[local] C_YUBFEA_MIFBASE {alias C_YUBFEA_MIF[BASE] kind 'debug' units 'CFS'}
@@ -210,16 +210,16 @@ define[local] S_OROVLLEVEL3DVBASE {alias S_OROVLLEVEL3DV[BASE] kind 'debug' unit
 define[local] S_OROVLLEVEL4DVBASE {alias S_OROVLLEVEL4DV[BASE] kind 'debug' units 'TAF'}
 
 
-define[local] C_OrovlUp 	{alias C_Orovl[UPSTREAM] kind 'debug' units 'cfs'}
-define[local] C_OrovlBase	{alias C_Orovl[BASE] kind 'debug' units 'cfs'}
+define[local] C_OrovlUp     {alias C_Orovl[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_OrovlBase   {alias C_Orovl[BASE] kind 'debug' units 'cfs'}
 
 define[local] exest_SWPDemB     {alias exp_est_SWPDem[BASE] kind 'debug' units 'cfs'}
-define[local] exest_SWPRCB	{alias exp_est_SWPRC[BASE] kind 'debug' units 'cfs'}
-define[local] exest_CVPDemB 	{alias exp_est_CVPDem[Base] kind 'debug' units 'cfs'}
-define[local] exest_CVPRCB 	{alias exp_est_CVPRC[BASE] kind 'debug' units 'cfs'}
-define[local] C_Orovl_IBU_B 	{alias C_Orovl_IBU[Base] kind 'debug' units 'cfs'}
-define[local] C_Orovl_EXP_B	{alias C_Orovl_EXP[BASE] kind 'debug' units 'cfs'}
-define[local] C_Orovl_IBU_U 	{alias C_Orovl_IBU[UPSTREAM] kind 'debug' units 'cfs'}
-define[local] C_Orovl_EXP_U	{alias C_Orovl_EXP[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] exest_SWPRCB  {alias exp_est_SWPRC[BASE] kind 'debug' units 'cfs'}
+define[local] exest_CVPDemB     {alias exp_est_CVPDem[Base] kind 'debug' units 'cfs'}
+define[local] exest_CVPRCB  {alias exp_est_CVPRC[BASE] kind 'debug' units 'cfs'}
+define[local] C_Orovl_IBU_B     {alias C_Orovl_IBU[Base] kind 'debug' units 'cfs'}
+define[local] C_Orovl_EXP_B {alias C_Orovl_EXP[BASE] kind 'debug' units 'cfs'}
+define[local] C_Orovl_IBU_U     {alias C_Orovl_IBU[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_Orovl_EXP_U {alias C_Orovl_EXP[UPSTREAM] kind 'debug' units 'cfs'}
 
 

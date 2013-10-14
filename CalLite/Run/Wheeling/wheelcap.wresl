@@ -15,14 +15,14 @@ Z.Q. Richard Chen DWR (12/8/2010)
 ! BO actions control Banks pumping (reduce it relative to non-BO control)
 ! if MaxExp_RPA_SWP is less than the previous cycle solution for pumping
 define BO_Ctrl {
-	case controlling {
-		condition	D_EXPTD[BASE] > MaxExp_RPA
-		value		0.
-	}
-	case otherwise {
-		condition	always
-		value		1.
-	}
+    case controlling {
+        condition   D_EXPTD[BASE] > MaxExp_RPA
+        value       0.
+    }
+    case otherwise {
+        condition   always
+        value       1.
+    }
 }
 define BO_Banks_Ctrl {
     case controlling {
@@ -53,14 +53,14 @@ define OMR_Ctrl {
         value 1.}
 }
 define B2Action3_Ctrl {
-	case controlling {
-		condition	range(month,apr,may) .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1
-		value		0.
-	}
-	case otherwise {
-		condition	always
-		value		1.
-	}
+    case controlling {
+        condition   range(month,apr,may) .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1
+        value       0.
+    }
+    case otherwise {
+        condition   always
+        value       1.
+    }
 }
 
 !define wheeling_ctrl {value min(BO_Banks_Ctrl, BO_Jones_Ctrl, OMR_Ctrl)}
@@ -123,7 +123,7 @@ goal CVCReleaseCont {C_Wkytn_whlcv + C_Kswck_whlcv + C_Nimbus_whlcv = C_Delta_wh
 ! For output only
 define CVC_AllocDv {alias CVC_Alloc Units 'taf'}
 define remaincvc_dv {alias RemainWheelCVC kind 'output' units 'taf'}
-define maxJonescalcDV {alias maxJonescalc Units 'cfs'}
+define maxJonescalcDV {alias maxJonescalc kind 'output' Units 'cfs'}
 
 !---------------------- JPOD ----------------------
 ! Determine JPOD Wheeling limits in TAF (values in table are typically 99999)

@@ -70,8 +70,8 @@ define C_SJRCD {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' uni
 define C_SJRMI {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin River D/S of Modford Island
 define C_SJRSTo {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin River D/S of Stockton
 define C_SJRCal {std kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin River D/S of Calaveras
-define C_SJRVer {std kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin River D/S of Vernalis
-define C_Vrnlis {std kind 'FLOW-CHANNEL' units 'CFS'} !Between Vernalis and Coney Island
+define C_OldRiver {std kind 'FLOW-CHANNEL' units 'CFS'} !Between San Joaquin River to Coney Island
+define C_SJROldR {std kind 'FLOW-CHANNEL' units 'CFS'} !San Joaquin River to Calaveras
 define C_IndnSl {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Indian Slough component of OMR (CCWD)
 define C_OMR {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Old and Middle Rivers from Rock Slough to Venice Island (CCWD)
 define C_ConyIS {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !Coney Island to Rock Slough (neg. flow is towards the pumps)
@@ -95,7 +95,7 @@ define C_SLCVP {lower 0. upper 8000. kind 'FLOW-CHANNEL' units 'CFS'} !CVP SAN L
 define C_SWPJU {lower 0. upper 8465. kind 'FLOW-CHANNEL' units 'CFS'} !SWP Joint Use (C807)
 define C_CVPJU {std kind 'FLOW-CHANNEL' units 'CFS'} !CVP Joint Use (D704)
 define C_CVPDMC {lower 0 upper 3500 kind 'FLOW-CHANNEL' units 'CFS'} !DMC to Mendota Pool (C708)
-define C_MPool {lower 0 upper 99999 kind 'FLOW-CHANNEL' units 'CFS'} !Flow to Exchange Contractors and Refuges from Sack Dam
+if int(Dynamic_SJR)==0 {define C_Mdota {lower 0 upper 99999 kind 'FLOW-CHANNEL' units 'CFS'}} !Flow to Exchange Contractors and Refuges from Sack Dam
 define C_DsAmgS {lower 0. upper 8465. kind 'FLOW-CHANNEL' units 'CFS'} !Dos Amigos SWP
 define C_DsAmgC {lower 0. upper 4635. kind 'FLOW-CHANNEL' units 'CFS'} !Dos Amigos CVP
 define C_JtUTerm {lower 0. upper 8100. kind 'FLOW-CHANNEL' units 'CFS'} !End of Joint Use
