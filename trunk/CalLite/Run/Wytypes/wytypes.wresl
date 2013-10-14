@@ -2,13 +2,10 @@
 Wytypes.wresl
 
 Tom FitzHugh BOR 4/27/2010
-Hao Xie DWR modified 1/5/2012
 
 WATER YEAR TYPE DEFINITIONS
 
 **************************************/
-define bgnWY {value 1922} !changing beginning year requires modification of groundwater data file CVprecip(20100923).dat (same initial year of data)
-define EndWY {value 2003}
 
 ! ================ INDICES AS DEFINED BY DWR (CHANGE IN FEB) =====================
 ! the 40-30-30 index for Sacramento Basin
