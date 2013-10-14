@@ -99,3 +99,7 @@ define REST_REQ           {select Option from GUI_SJR where Index=6} !REST_REQ -
 !Dynamic_SJR now handled in main file
 !define Dynamic_SJR	  {select Option from GUI_SJR where Index=7} !Dynamic_SJR - Turns on dynamic SJR
 
+/* Facility options*/
+define EnlargShastaOn    {select Option from GUI_EnlargedShasta where Index=1} 
+define EnlargShastaSize  {select Option from GUI_EnlargedShasta where Index=2} 
+ 
