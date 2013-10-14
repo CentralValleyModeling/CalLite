@@ -321,17 +321,14 @@ define RS_Sac_ZeroExp_sv1 {
   case LowCL {
     condition C_Hood_ANN(-1) >= 40000.
     value  0.}
-  case CritRelax {
-    condition wyt_SAC==Critical .and. RS_m_1_sv >= 1.0
-    value 0.}
   case NoSalinityControlPossible{
     condition abs(RS_m_1_sv) <= 0.001 .and. int(RS_b_1_sv) == 0
     value 0.}
   case NegSlope{
     condition RS_m_1_sv <= 0.0
     value 0.}
-  case NegCarriage{
-    condition RS_m_1_sv >= 1.0
+  case LargeNegInt{
+    condition RS_b_1_sv < -10000.0
     value 0.}
   case control{
     condition always

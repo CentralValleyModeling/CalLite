@@ -78,6 +78,13 @@ define C_ConyIS {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-CHANNEL' un
 define D_ExpTD {std kind 'FLOW-DELIVERY' units 'CFS'} !Between Coney Island and Pumping Plants
 define C_BnkExp {lower 0. upper 25000. kind 'FLOW-CHANNEL' units 'CFS'} !Banks Exports from Delta
 define C_SBay {lower 0. upper 10000.*taf_cfs kind 'FLOW-CHANNEL' units 'CFS'} !SWP Aqueduct Downstream of South Bay Aqueduct (C803)
+define C809 {lower 0. upper 430. kind 'FLOW-CHANNEL' units 'CFS'} !SWP South Bay Pumping Plants        - 430cfs for upper reachs w/ SBA improvement project
+define C810 {lower 0. upper 430. kind 'FLOW-CHANNEL' units 'CFS'} !SWP South Bay Reach 1-4  Alameda Z7 - 430cfs for upper reachs w/ SBA improvement project
+define C811 {lower 0. upper 430. kind 'FLOW-CHANNEL' units 'CFS'} !Diversion To SWP Lake Del Valle     - 430cfs for upper reachs w/ SBA improvement project
+define C812 {lower 0. upper 363. kind 'FLOW-CHANNEL' units 'CFS'} !SWP Lake Del Valle Return           - 363cfs for Del Valle pipeline/SBA improvement project
+define C813 {lower 0. upper 305. kind 'FLOW-CHANNEL' units 'CFS'} !SWP South Bay Reach 5-6  Alameda Z7 - 305cfs for Sunol pipeline/SBA improvement project
+define C814 {lower 0. upper 184. kind 'FLOW-CHANNEL' units 'CFS'} !SWP South Bay Reach 7-8  Alameda CO - 184cfs for Santa Clara pipeline/SBA improvement project
+define C815 {lower 0. upper 184. kind 'FLOW-CHANNEL' units 'CFS'} !South Bay Reach 9  Santa Clara VWD  - 184cfs for Santa Clara pipeline/SBA improvement project
 define C_UpDMC {lower 0. upper 4200. kind 'FLOW-CHANNEL' units 'CFS'} !Upper DMC
 define C_Intrti {lower 0. upper 10000. kind 'FLOW-CHANNEL' units 'CFS'} !DMC/CA Intertie
 define C_OFBSWP {lower 0. upper 10000. kind 'FLOW-CHANNEL' units 'CFS'} !SWP bypass flow to California Aquect  (C805)

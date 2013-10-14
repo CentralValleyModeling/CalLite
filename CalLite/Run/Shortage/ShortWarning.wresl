@@ -1,6 +1,7 @@
-define ShortWarning {EXTERNAL f90} 
+define SWarning_INIT {EXTERNAL ShortWarning.dll} 
+define ShortWarning {EXTERNAL ShortWarning.dll} 
 define Waring_ON { case FirstMonth {condition WaterYear==1922 .and. Month==1
-                  value 1.0}  !Warning for shortages over 0.01 cfs
+                  value SWarning_INIT(wateryear, month, 0, 0.01)}  !Warning for shortages over 0.01 cfs
                   case others {condition always
                   value shortwarning(wateryear,month,short_AD_kswck(-1),short_AD_RedBlf(-1), 
                         short_AD_Wilkns(-1),short_AD_SacFea(-1),short_AD_SacAme(-1),
