@@ -17,7 +17,7 @@ San Joaquin Irrigation District.
 ! Define New Melones inflows ( sum of March through September inflows)
 define sumI_MELON_part {
     case start{
-        condition   month<=FEB .and. wateryear==1922
+        condition   month<=FEB .and. wateryear==beginWY
     value 1000.}
     case marthrusep {
         condition   month >= mar .and. month <= sep
@@ -28,8 +28,8 @@ define sumI_MELON_part {
         }
 ! New Melones forecast 1, is the February end of month storage plus March through September inflows
 define NMforecast1 {
-     case February1922 {
-          condition wateryear == 1922 .and. month <= feb
+     case FebruaryBeginWY {
+          condition wateryear==beginWY .and. month <= feb
           value        1700. + /*  S_MELON(-12) + */ sumI_MELON_part }
      case February {
           condition month == feb

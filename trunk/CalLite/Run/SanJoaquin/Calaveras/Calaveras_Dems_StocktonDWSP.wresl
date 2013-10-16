@@ -100,7 +100,7 @@ Water Supply Forecast (TAF) =   End-of-March storage
 */
 define S_NhganAvail {
     case first5months {
-        condition month <= mar .and. wateryear == 1922
+        condition month <= mar .and. wateryear==beginWY
         value         S_Nhgan(-1)}
     case April {
         condition month == apr
@@ -276,7 +276,7 @@ Limit monthly delivery to remaining amount of surface water to SEWD M&I
 */
 define remain_mi_avail {
     case first5months {
-        condition month <= mar .and. wateryear == 1922
+        condition month <= mar .and. wateryear==beginWY
         value         13.}
     case April {
         condition month == apr

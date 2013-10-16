@@ -28,7 +28,7 @@ define OIDInstreamToBeMet { ! value=0 for existing run  5/20/13: Now turned off 
         condition LOD_Future == 0   ! existing condition
         value       0. }
 /*    case first_months {
-        condition month<=DEC .and. wateryear==1922
+        condition month<=DEC .and. wateryear==beginWY
         value       0. }
     case October {
         condition month == OCT
