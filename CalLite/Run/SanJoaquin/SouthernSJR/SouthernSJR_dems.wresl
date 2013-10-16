@@ -131,7 +131,7 @@ Note: S_HNSLYAvail_part1 does not account for Fresno River seepage
 */
 define S_HNSLYAvail_part1 {
     case first5months {
-        condition month <= mar .and. wateryear == 1922
+        condition month <= mar .and. wateryear==beginWY
         value         S_HNSLY(-1) }
     case April {
         condition month == apr
@@ -378,7 +378,7 @@ define prev53avail_p1 {std kind 'water-supply' units 'taf'}
 
 define S_ESTMNAvail_part1 {
     case first5months {
-        condition month <= mar .and. wateryear == 1922
+        condition month <= mar .and. wateryear==beginWY
         value         S_ESTMN(-1) }
     case April {
         condition month == apr

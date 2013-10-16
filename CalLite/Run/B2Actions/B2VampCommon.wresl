@@ -27,7 +27,7 @@ define VAMP_reqdv_VAMP_set {
 !define PulseHidv {std kind 'counter' UNITS 'NONE'} !already defined in in "delcar_cvp_south_B2BO.wresl"
 define PulseHi {
     case Firstyear {
-        condition wateryear==1922
+        condition wateryear==beginWY
         value 3000.0}
     case OCT_MAR {
         condition month>=OCT .and. month<=MAR

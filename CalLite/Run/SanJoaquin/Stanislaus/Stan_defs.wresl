@@ -31,7 +31,7 @@ define stan_dem_estdv {alias stan_dem_est kind 'demand' units 'taf'}
 ! New Melones forecast 3, the Projected end of September storage 
 define NMforecast3 {
     case firstyr {
-    condition wateryear == 1922 .and. month <= mar
+    condition wateryear==beginWY .and. month <= mar
         value NMforecast1 - (OSSJID_yr*0.959) - stan_dem_est - 53.3 - 68.-60.
     }
     case Mar {

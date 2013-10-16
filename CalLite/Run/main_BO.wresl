@@ -10,6 +10,7 @@
 ! All variables are local in wresl+ parser 
 
 initial {
+	svar beginWY { value 1922 }
 	svar JPOD_ON {select Option from GUI_Operations where Index=2}
 	svar PBwheel_ON {select Option from GUI_Operations where Index=4}  !D-1485 
 	svar DCC_DLTSW {select OPTION from GUI_Regs where Index = 1}

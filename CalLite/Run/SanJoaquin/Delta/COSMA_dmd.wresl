@@ -23,7 +23,7 @@ define COSMA_MIper_Oct { value COSMA_MIdmd / COSMAOct } !monthly demand distribu
 define COSMA_Aprdv { std kind 'COSMA-demand' units 'taf' }
 define COSMAApr { !from Apr to Mar
      case FirstYr {
-          condition month == Oct .and. wateryear == 1922
+          condition month == Oct .and. wateryear==beginWY
           sum(i=0,5,1) COSMA_MIDmd(i) }
      case LastYr {
           condition month == Apr .and. wateryear == 2003

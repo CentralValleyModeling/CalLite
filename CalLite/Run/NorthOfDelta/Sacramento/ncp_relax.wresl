@@ -21,8 +21,8 @@ define minflow_C_Wilkns {std kind 'flow-min-required' units 'cfs'}
 
 define ncp_relax_final {
 
-     case yr1922 {
-          condition month <= MAR .and. wateryear == 1922
+     case yrBeginWY {
+          condition month <= MAR .and. wateryear==beginWY
           value     ncp_with_relax
           }
      case JanthruMay {
