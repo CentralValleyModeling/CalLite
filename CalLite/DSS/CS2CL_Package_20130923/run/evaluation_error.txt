@@ -1,2 +1,0 @@
-On 10/31/1921, i_gw601 in svar definition of Cycle 2: td17 is not in svar, dvar, alias list.
-On 10/31/1921, ec_igw601 in svar definition of Cycle 2: td17 is not in svar, dvar, alias list.
