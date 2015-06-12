@@ -1,0 +1,1 @@
+Callite is an effort to develop a faster, lighter model for simulating and comparing a range of water planning options.
