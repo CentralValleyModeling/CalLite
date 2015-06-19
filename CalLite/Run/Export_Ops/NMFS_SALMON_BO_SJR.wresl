@@ -39,8 +39,8 @@ define SJR_indicator2 {value 6. - wyt_SJR_prv2}
 define NMforecast1SV {timeseries kind 'forecast' units 'taf'}
 
 define SJRatio_MaxExp{
-    case EISJR_UDEF {                             !
-         condition EISJR_DLTSW == 2
+    case EISJR_UDEF {                             
+         condition EISJR_DLTSW == 2 .or. int(IF_SWPorCVP_OnOff) == 1
          value 999999. 
          }
     case Flood_flow{
@@ -67,7 +67,7 @@ define SJRatio_MaxExp{
         condition always !wyt_SJR 2 and 1
         value Vernalis / 4.
         }
-       }
+}
 
 !*********************************************************************************************
 define SJRatio_MaxExpdv {alias SJRatio_MaxExp kind 'NMFS' units 'NONE'}

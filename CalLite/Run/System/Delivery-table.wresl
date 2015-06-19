@@ -54,7 +54,11 @@ goal Diversion_HSt {D_HSt=D_HSt_NP}
 define demand_D_Hood_NP {timeseries kind 'NETDICU_POS' units 'CFS'}
 define D_Hood_NP {lower 0. upper demand_D_Hood_NP kind 'FLOW-DELIVERY' units 'CFS'} !NET DELTA ISLAND CONSUMPTIVE USE (NET DICU) - POSITIVE VALUES
 define D_Hood {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Hood
-goal Diversion_Hood {D_Hood=D_Hood_NP}
+
+define D_HoodIF {std kind 'FLOW-DELIVERY' units 'CFS'} !Total delivery by Isolated Facility
+define D_CCWDIF {std kind 'FLOW-DELIVERY' units 'CFS'} !CCWD delivery  by Isolated Facility
+define D_SODIF {std kind 'FLOW-DELIVERY' units 'CFS'} !SOD delivery by Isolated Facility
+goal Diversion_Hood {D_Hood=D_Hood_NP + D_HoodIF}
 
 /** Net_DICU component**/
 define demand_D_BrananIs_NP {timeseries kind 'NETDICU_POS' units  'CFS'}
@@ -83,16 +87,15 @@ define D_ConeyIs_NP {lower 0. upper demand_D_ConeyIs_NP kind 'FLOW-DELIVERY' uni
 define D_ConeyIs {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Coney Island
 goal Diversion_ConeyIs {D_ConeyIs=D_ConeyIs_NP}
 
+!Don't allow OMR criteria to affect DICU
+goal set_D_ConeyIs_NP {D_ConeyIs_NP > demand_D_ConeyIs_NP}
+
 
 define D_Antioch_NP {std kind 'FLOW-DELIVERY' units 'CFS'}! Non-Project Diversion at Antioch
 define D_Antioch {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Antioch
-goal Diversion_Antioch {D_Antioch=D_Antioch_NP}
-define demand_D_CCWDVCOR {timeseries kind 'DEMAND' units 'CFS'}!Non-Project Diversion (Victoria Canal and Old River) to CCWD
-define demand_D_CCWDINTK {timeseries kind 'DEMAND' units 'CFS'}!Non-Project Diversion (Intake) to CCWD  
+goal Diversion_Antioch {D_Antioch=D_Antioch_NP} 
 define D_CCWDVCOR {std kind 'FLOW-DELIVERY' units 'CFS'} 
 define D_CCWDINTK {std kind 'FLOW-DELIVERY' units 'CFS'} 
-goal Diversion_OMR {D_CCWDVCOR = demand_D_CCWDVCOR}
-goal Diversion_CCWDIntak {D_CCWDINTK < demand_D_CCWDINTK}
 define D_CCWD {alias D_CCWDVCOR+D_CCWDINTK kind 'FLOW-DELIVERY' units 'CFS'} !Diversion to CCWD
 define D_Vallejo {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Vallejo
 define D_Napa {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at Napa
@@ -121,7 +124,9 @@ goal Diversion_D_CVPJU_LDMC {D_CVPJU_LDMC=D_CVPJU_LDMC_P}
 define D_SWPJUCVP {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at SWPJUCVP 
 define D_CVPJUSWP {std kind 'FLOW-DELIVERY' units 'CFS'}! Diversion at CVPJUSWP
 
-define D_MENDOTAPL {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversions from Mendota Pool (D607[ABCD] D608[BC])
+define D_MENDOTAPL {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversions from Mendota Pool (D_MDOTA[ABCD] D608[BC])
+define D_MDOTA {std kind 'FLOW-DELIVERY' units 'CFS'} 
+goal SUM_DMDOTA {D_MDOTA = D_MDOTAA + D_MDOTAD}
 
 define D_DosAmigosSWP_P {std kind 'FLOW-DELIVERY' units 'CFS'} !Proejct Diversion at Dos Amigos SWP
 define D_DosAmigosSWP {std kind 'FLOW-DELIVERY' units 'CFS'} !Diversion at Dos Amigos SWP

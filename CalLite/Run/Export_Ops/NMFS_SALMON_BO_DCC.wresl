@@ -10,7 +10,7 @@ NMFS BO Action 4.1.2
 !define Action_4_1_2 {select Option from options where Index=2}
 
 ! get D1641 days open
-define D1641_days_open   {select days_open from xchanneldays where month=month}
+define D1641_days_open   {select days_open_D1641 from xchanneldays where month=month}
 
 ! check Wilkins Slough flow for likelihood of flushing flows > 7500 cfs on a daily basis
 define WlknSlFlush_prob {value min( max( 0.0064 * C_Wilkns[Base] / daysin - 36.175 / daysin, 0.), 1.) }
@@ -29,7 +29,7 @@ define NMFSdaysopentarg {
         value 0. }
     case otherwise {
         condition always
-        value D1641_days_open }   ! no added restrictions
+        value daysin }   ! no added restrictions
 }
 define NMFSdaysopentgdv  {alias NMFSdaysopentarg kind 'DCC-DAYS-OPEN' UNITS 'NONE'}  !for output only
 
@@ -42,7 +42,7 @@ define NMFSMaxExDCCest_ {alias NMFSMaxExpDCCest kind 'Export-Limit' units 'cfs'}
 define RS_estEC_noDXC {
     value AnnEC(C_Hood(-4),C_Hood(-3),C_Hood(-2),C_Hood(-1),C_Hood[Base],
            D_ExpTD(-4),D_ExpTD(-3),D_ExpTD(-2),D_ExpTD(-1),D_ExpTD[Base],
-           SJR_ANN(-4),SJR_ANN(-3),SJR_ANN(-2),SJR_ANN(-1),AD_SJR,
+           SJR_ANN(-4),SJR_ANN(-3),SJR_ANN(-2),SJR_ANN(-1),SJR_ann_est,
            DXC_daysopen(-4),DXC_daysopen(-3),DXC_daysopen(-2),DXC_daysopen(-1),NMFSdaysopentarg,
            net_DICU(-4),net_DICU(-3),net_DICU(-2),net_DICU(-1),net_DICU[Base],
            sac_oth(-4),sac_oth(-3),sac_oth(-2),sac_oth(-1),sac_oth[Base],
@@ -54,7 +54,7 @@ define RS_estEC_noDXC {
 define RSestECnoDXCmE {
     value AnnEC(C_Hood(-4),C_Hood(-3),C_Hood(-2),C_Hood(-1),C_Hood[Base],
            D_ExpTD(-4),D_ExpTD(-3),D_ExpTD(-2),D_ExpTD(-1),NMFSMaxExpDCCest,
-           SJR_ANN(-4),SJR_ANN(-3),SJR_ANN(-2),SJR_ANN(-1),AD_SJR,
+           SJR_ANN(-4),SJR_ANN(-3),SJR_ANN(-2),SJR_ANN(-1),SJR_ann_est,
            DXC_daysopen(-4),DXC_daysopen(-3),DXC_daysopen(-2),DXC_daysopen(-1),NMFSdaysopentarg,
            net_DICU(-4),net_DICU(-3),net_DICU(-2),net_DICU(-1),net_DICU[Base],
            sac_oth(-4),sac_oth(-3),sac_oth(-2),sac_oth(-1),sac_oth[Base],
@@ -100,7 +100,7 @@ define NMFS_days_open {
         value NMFSdaysopentarg }
     case otherwiseALL {
         condition always
-        value D1641_days_open }
+        value daysin }
 }
 define NMFSdaysopendv  {alias NMFS_days_open kind 'DCC-DAYS-OPEN' UNITS 'NONE'}  !for output only
 

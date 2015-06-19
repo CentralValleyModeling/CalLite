@@ -1,6 +1,6 @@
 ! New Baselines version (Jun 2009), based on (version 9B1) Common Assumptions CMP
-! 2030 Level of Development Assumptions
-! source spreadsheet: BST_SWP_SOD_2030_080909.xls
+! 2005 Level of Development Assumptions
+! source spreadsheet: BST_SWP_SOD_2011DRR_090911_Future.xls
 swp_carryover
 contractor       percent          carryover
                 1              100             2.22
@@ -18,7 +18,7 @@ contractor       percent          carryover
                13              100             0.00
                14              100             0.00
                15              100           200.00
-               16              100            37.90
+               16              100             0.00
                17              100             0.00
                18              100             0.00
                19              100             0.00
@@ -48,7 +48,7 @@ contractor       percent          carryover
                13               50             0.00
                14               50             0.00
                15               50             0.00
-               16               50             2.58
+               16               50             0.00
                17               50             0.00
                18               50             0.00
                19               50             0.00

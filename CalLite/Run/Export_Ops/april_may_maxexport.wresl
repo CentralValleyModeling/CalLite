@@ -11,7 +11,7 @@ Export is the smaller of the pump capacity and the Export Allowed by thr E/I rat
 **************************************/
 
 ! Delta inflow using the previous cycle SJR flow
-define Dinflow {alias C_Hood_ANN+AD_Mokelumne+C_YoloBP+AD_Calaveras+AD_SJR_VAMP  kind 'INFLOW-PULSE' units 'CFS'}
+define Dinflow {alias C_Hood_ANN+AD_Mokelumne+C_YoloBP+AD_SJRCalALL+AD_SJR_VAMP kind 'INFLOW-PULSE' units 'CFS'}
 
 !############ PULSE PERIOD #############################
 ! Allowable export is set to certain limits based upon the flow of the San Joaquin River.
@@ -32,7 +32,7 @@ goal compare_sjrflow {!PulseExpCtrl < max(1500.0, AD_SJR_Pulse)}
             lhs<rhs      penalty 0 }
         case otherwise {
             condition     always
-            rhs           max(1500.0, AD_SJR_Pulse)
+            rhs           max(1500.0, AD_SJR_PULSE)
             lhs<rhs       penalty 0 }
 }
 
@@ -75,11 +75,15 @@ goal Export_limit_during_pulse_mon {
             condition     month == MAY
             rhs           NonPulseExpCtrl*16.0/daysin + PulseExpCtrl*15.0/daysin
             lhs<rhs       penalty 0 }
+        case otherwise {
+	    condition   always
+	    rhs     99999.
+	    lhs<rhs     penalty 0}
 }
 
 ! Limit the actual export to the day weighted average allowable export for each month.
 goal Limit_Exports {
-    lhs  ExportActual
+    lhs  ExportActualTD
         case APR_MAY {
             condition     range(month,apr,may)
             rhs           AprMayExpCtrl
@@ -101,6 +105,10 @@ goal Export_limit_Jones_pulse_mon {
             condition     month == MAY
             rhs           JonesCapPermit*16.0/daysin + PulseExpCtrl*0.5*15.0/daysin
             lhs<rhs       penalty 0 }
+        case otherwise {
+	    condition   always
+	    rhs     99999.
+	    lhs<rhs     penalty 0}
 }
 
 define AprMayBanksCtrl {std kind 'EXPORT-CTRL-APRMAY' units 'CFS'}
@@ -115,10 +123,14 @@ goal Export_limit_Banks_pulse_mon {
             condition     month == MAY
             rhs           BanksMaxAllow*16.0/daysin + PulseExpCtrl*0.5*15.0/daysin
             lhs<rhs       penalty 0 }
+        case otherwise {
+	    condition   always
+	    rhs     99999.
+	    lhs<rhs     penalty 0}
 }
 
 goal Export_limit_D_Jones {  ! Prevents Non-Pulse portion of month from being greater than Physical Capacity
-    lhs    D_Jones /** Need to change to D_Jones_TD for IF implementation **/
+    lhs    D_Jones_TD /** Need to change to D_Jones_TD for IF implementation **/
 !        case no_vamp {   !Richard Chen added for VAMP switch
 !                condition     VAMP_DLTSW == 0 .and. range(month,apr,may)
 !                rhs           JonesCapPermit     
@@ -130,7 +142,7 @@ goal Export_limit_D_Jones {  ! Prevents Non-Pulse portion of month from being gr
 }
 
 goal Export_limit_D_Banks {  ! Prevents Non-Pulse portion of month from being greater than Physical Capacity
-    lhs    D_Banks
+    lhs    D_Banks_TD
 !        case no_vamp {   !Richard Chen added for VAMP switch
 !                condition     VAMP_DLTSW == 0 .and. range(month,apr,may)
 !                rhs           BanksCapPermit     

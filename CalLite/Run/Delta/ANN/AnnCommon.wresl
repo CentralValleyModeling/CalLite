@@ -116,7 +116,7 @@ define ANNcap_out {alias ANNcap kind 'FLOW' units 'CFS'}
 ! Yolo Bypass is simulated dynamically
 ! Mokelumne/Consumnes R. is simulated with SJR in previous cycles
 define sac_oth { lower unbounded kind 'FLOW-INFLOW' units 'CFS' }
-goal def_sac_oth { sac_oth = C_YoloBP + AD_Mokelumne  + AD_Calaveras - C_NBA } 
+goal def_sac_oth { sac_oth = C_YoloBP + AD_Mokelumne  + AD_SJRCalALL - C_NBA } 
 
 !*************************************************************************************************************
 ! Currently known inflows: Mokelumne R., Consumnes R. and Calaveras R. | Yolo Bypass not known.
@@ -132,16 +132,17 @@ define sac_oth_est_ { alias sac_oth_est kind 'FLOW-INFLOW' units 'CFS'}
 ! define the other flows that go into making the export component
 define D514A {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Riparian Diversion from Delta for COSMA Ag DWSP
 define D514B {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !DWSP Diversion M&I
-define demand_D420 {timeseries kind 'DEMAND' units 'cfs' }
+!define demand_D420 {timeseries kind 'DEMAND' units 'cfs' }
 define D514A_1_VAMP {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
 define D514B_VAMP {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
-define lim_CVP_ann {timeseries kind 'allocation-limit' units 'cfs'}
+!define lim_CVP_ann {timeseries kind 'allocation-limit' units 'cfs'}
 
 define exp_oth { lower unbounded kind 'FLOW-EXPORTS' units 'CFS' }
 goal def_exp_oth { exp_oth = D_CCWD + D514A + D514B }
 
 define D514A_2_est {value 0.0}  !DWSP, diversion for area of origin, in cfs
-define D408D416_est {value min(demand_D420,lim_CVP_ann)}
+!define D408D416_est {value min(demand_D420,lim_CVP_ann)}
+define D408D416_est {value demand_D420}
 
 define exp_oth_est { value D408D416_est + D514A_1_VAMP + D514A_2_est + D514B_VAMP}
 
@@ -174,33 +175,9 @@ define net_delta_cuDV { ALIAS net_DICU KIND 'NET-DICU' UNITS 'CFS' }
 
 !*************************************************************************************************************
 ! other defines (Seventh input to ANN DLL)
-!define VernWQfinal {timeseries kind 'Salinity-EC' units 'umhos/cm'}
-define VernWQfinal_v {timeseries kind 'Salinity-EC' units 'umhos/cm'}
-define VernWQfinal_vo {timeseries kind 'Salinity-EC' units 'umhos/cm'}
-define VernWQfinalsv {
-    case VAMPon {
-        condition VAMP_DLTSW == 1
-        value VernWQfinal_v}
-    case otherwise {
-        condition always
-        value VernWQfinal_vo}
-}
+if int(Dynamic_SJR)==0 {define VernWQfinalSV { value VernWQfinal_set }}
+          
 define VernWQfinal     {std kind 'Salinity-EC' units 'umhos/cm'}
 goal setVernWQfinal {VernWQfinal = VernWQfinalsv}
 
-define SJR_ann_est_v {timeseries kind 'ANN-PARAMETER' units 'CFS'}
-define SJR_ann_est_vo {timeseries kind 'ANN-PARAMETER' units 'CFS'}
-define SJR_ann_est {
-    case VAMPon {
-        condition VAMP_DLTSW == 1
-        value SJR_ann_est_v}
-    case otherwise {
-        condition always
-        value SJR_ann_est_vo}
-}
-
-
-!define SJR_ANN     {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
 !*************************************************************************************************************
-
-

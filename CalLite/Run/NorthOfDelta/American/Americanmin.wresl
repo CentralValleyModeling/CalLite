@@ -53,4 +53,4 @@ goal minflow_C_Nimbus { C_Nimbus_MIF < nimbus_hist_std }
 
 define nimbus_trig_dv   {ALIAS nimbus_trigger units 'taf'}
 define nimbus_hist_stdv   {ALIAS nimbus_hist_std units 'cfs'}
-/*
+*/
