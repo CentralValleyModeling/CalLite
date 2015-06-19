@@ -1,4 +1,7 @@
 ==================
-1922_01_c07
+1921_10_c06
 ==================
-(d:\fam_implementation\checkout_default_08012014_fam\run\swp_dellogic\wsi_di\delcar_swp.wresl:260)1922/1/31 cycle 7 (upstream), fam_swpdel in svar definition: The variable swp_delivery is not defined in the past cycle of fam.
+(d:\fam_implementation\model_sequence\3_default_nobdcp\run\delta\isolatedfacility\isolatedfacility.wresl:11)1921/10/31 cycle 6 (upstream), max_if_cap in svar definition: Table isolatedfacility could not be found.
+(d:\fam_implementation\model_sequence\3_default_nobdcp\run\delta\isolatedfacility\isolatedfacility.wresl:12)1921/10/31 cycle 6 (upstream), ifbypassperc in svar definition: Table isolatedfacility could not be found.
+(d:\fam_implementation\model_sequence\3_default_nobdcp\run\delta\isolatedfacility\isolatedfacility.wresl:13)1921/10/31 cycle 6 (upstream), ifpercentflow in svar definition: Table isolatedfacility could not be found.
+(d:\fam_implementation\model_sequence\3_default_nobdcp\run\delta\isolatedfacility\isolatedfacility.wresl:14)1921/10/31 cycle 6 (upstream), ccwdmaxif in svar definition: Table isolatedfacility could not be found.
