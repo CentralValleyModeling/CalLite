@@ -1,1 +1,0 @@
-Get the DSS file from FTP site

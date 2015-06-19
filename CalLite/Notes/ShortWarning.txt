@@ -1,0 +1,7 @@
+1) New: 
+        ShortWarning.dll
+       ShortWarning.wresl (use DLL and more controls in a namelist.input file) 
+             Note: "namelist.input" in the external directory should be copied
+                   to the WRIMS's bin directory or the actual run directory.
+2) main_BO.wresl has been modified accordingly.
+

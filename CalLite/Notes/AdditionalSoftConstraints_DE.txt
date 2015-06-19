@@ -1,0 +1,16 @@
+
+Modified files: 
+JerseyPoint_constrain wresl 	.\Run\Delta\ANN (added new exp_ann_relax var to relax ann reqr)
+RockSlough_constrain wresl 	.\Run\Delta\ANN (added new exp_ann_relax var to relax ann reqr)
+Emmaton_constrain wresl 	.\Run\Delta\ANN (added new exp_ann_relax var to relax ann reqr)
+Collins_constrain wresl 	.\Run\Delta\ANN (added new exp_ann_relax var to relax ann reqr)
+ANN_COA_MRDO wresl 		.\Run\Delta\ANN (added new mrdo_ann_relax var to relax ann reqr)
+Weight-table wresl 		.\Run\System (avoid to hit dead pool level, and negative weight to discourge relaxation)  
+S_Trnty_1,40000*taf_cfs
+S_Wkytn_1,40000*taf_cfs
+S_Shsta_1,40000*taf_cfs
+S_Orovl_1,40000*taf_cfs
+S_Folsm_1,40000*taf_cfs
+C_Lwstn_MIF,30000
+exp_ann_relax, -5000
+mrdo_ann_relax, -5000
