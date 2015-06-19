@@ -1,0 +1,14 @@
+1. Add folder DeltaFlowCriteria and three files under the folder: FlowCriteria.w, RequiredFlow.w, and ExtraWaterNeeded.w
+2. RequiredFlow.w:
+	add state variables: RioVista_SWRCB, SJR_SWRCB, NDO_SWRCB
+	add alias:     RioVista_SWRCB_dv, SJR_SWRCB_dv, NDO_SWRCB_dv
+	
+3. ExtraWaterNeeded.w:
+	add decision variables: ExtraWater_RioVista_pre, ExtraWater_SJR_pre, ExtraWater_NDO_pre and output them to dss. These variables will be used in GUI display.
+	
+4. Add table: perc_UnimparedFlow.table
+
+5. Add timeseries: unimpaired_NDO, unimpaired_SJR, unimpaired_RioVista
+	CalSim to CalLite tools were changed to generate those variables
+	
+6. Initial file: add one month data (set to zero) for variables of RioVista_SWRCB_dv, SJR_SWRCB_dv, NDO_SWRCB_dv, C_SACRV, C_Delta, AD_SJR.

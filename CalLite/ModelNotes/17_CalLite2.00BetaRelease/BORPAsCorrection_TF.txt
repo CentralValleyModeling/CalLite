@@ -1,3 +1,0 @@
-'Export_Ops\OMR\EXP_constraint.wresl'
- lines 40 and 50 as follows:
- condition int(FallX2) == 1  .or. Action_4_1_2 == 1   .or. Action_4_2_1 == 1

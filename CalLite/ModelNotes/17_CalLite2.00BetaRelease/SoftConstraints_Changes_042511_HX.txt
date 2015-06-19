@@ -1,6 +1,0 @@
-1. AcrrDepl-table: add 10 adflow terms as format of AD_XX_Actual. Limit adFlow to be between 0 and AD_XX. (AD_XX is from timeseries).
-2. Connectivity-table: change AD_XX to AD_XX_Actual
-3. Weight-table: change to the following weights
-	[D403B_PLS,4000.3]
-	[D403B_PMI,4000.2]
-	[D403C_PMI,4000.1]
