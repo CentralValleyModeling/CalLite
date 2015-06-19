@@ -1,8 +1,8 @@
 
-     HECDSS Condensed Catalog of Record Pathnames in File C:\MP2013\CalLite\DynamicSJRMerge\CalLite_SacSJR\DSS\CalLite2020
+     HECDSS Condensed Catalog of Record Pathnames in File C:\TFwork\Models\CalLite\Corrob_July2013\CalLite_SacSJR_072213\D
 
-     Catalog Created on Jul 11, 2013 at 12:58    File Created on Apr 8, 2010
-     Number of Records:     67                   DSS Version 6-QF,  File 6-KC
+     Catalog Created on Jul 22, 2013 at 10:04    File Created on Apr 8, 2010
+     Number of Records:     68                   DSS Version 6-QF,  File 6-KC
      Sort Order: ABCFED
 
  Tag   A Part  B Part             C Part                F Part    E Part  D Part
@@ -54,6 +54,7 @@
  T11   - - -   S_OROVL            STORAGE               2020D09E  1MON    01JAN1920
  T198  - - -   S_PEDRO            STORAGE               2020D09E  1MON    01JAN1920
  T10   - - -   S_SHSTA            STORAGE               2020D09E  1MON    01JAN1920
+ T17   - - -   S_SHSTAE           STORAGE               2020D09E  1MON    01JAN1920
  T13   - - -   S_SLCVP            STORAGE               2020D09E  1MON    01JAN1920
  T14   - - -   S_SLSWP            STORAGE               2020D09E  1MON    01JAN1920
  T8    - - -   S_TRNTY            STORAGE               2020D09E  1MON    01JAN1920

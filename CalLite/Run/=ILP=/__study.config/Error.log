@@ -1,9 +1,4 @@
 ==================
 1921_10_c06
 ==================
-1921/10/31 cycle 6 (upstream), ad_sjr_pulse_vo in timeseries definition: The data requested for timeseries ad_sjr_pulse_vo is outside of the time frame provided in dss file.
-1921/10/31 cycle 6 (upstream), ad_sjr_vamp_vo in timeseries definition: The data requested for timeseries ad_sjr_vamp_vo is outside of the time frame provided in dss file.
-1921/10/31 cycle 6 (upstream), ad_sjr_vo in timeseries definition: The data requested for timeseries ad_sjr_vo is outside of the time frame provided in dss file.
-1921/10/31 cycle 6 (upstream), sjr_ann_est_vo in timeseries definition: The data requested for timeseries sjr_ann_est_vo is outside of the time frame provided in dss file.
-1921/10/31 cycle 6 (upstream), vernwqfinal_vo in timeseries definition: The data requested for timeseries vernwqfinal_vo is outside of the time frame provided in dss file.
-1921/10/31 cycle 6 (upstream): Infeasible solution.
+(c:\tfwork\models\callite\corrob_july2013\callite_sacsjr_072213\run\system\reservoir-table.wresl:124)1921/10/31 cycle 6 (upstream), relcap_shstae in svar definition: Given value 0.0 in the given statement is duplicated in Table res_info

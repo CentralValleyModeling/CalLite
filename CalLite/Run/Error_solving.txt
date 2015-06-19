@@ -1,1 +1,1 @@
-1921/10/31 cycle 6 (upstream): Infeasible solution.
+1921/10/31 cycle 1 (sjrbase): Infeasible solution.

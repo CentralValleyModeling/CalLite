@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="wpp.launchType">
 <booleanAttribute key="org.eclipse.debug.ui.ATTR_LAUNCH_IN_BACKGROUND" value="false"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_APART" value="CalSim"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_APART" value="CALSIM"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_AUTHOR" value="CalLite Team"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_DATE" value="7/11/2013"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_DESCRIPTION" value="Full CalLite Model with dynamic San Jaoquin"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_DATE" value="7/2/2013"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_DESCRIPTION" value="CalLite Merge of Sac and SJR"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_DVAR" value="C:\MP2013\CalLite\DynamicSJRMerge\CalLite_SacSJR\DSS\CL_FUTURE_BO_dynSJR_DV.DSS"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_ENDDAY" value="30"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_ENDMONTH" value="sep"/>
@@ -17,7 +17,7 @@
 <stringAttribute key="wpp.debugModel.ATTR_WPP_STARTMONTH" value="oct"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_STARTYEAR" value="1921"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_STUDY" value="CalLite_SacSJR"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_SVAR" value="C:\MP2013\CalLite\DynamicSJRMerge\CalLite_SacSJR\DSS\2020D09E_071113SV.dss"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_SVAR" value="C:\MP2013\CalLite\DynamicSJRMerge\CalLite_SacSJR\DSS\2020D09E_061013_SV.dss"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_SVFPART" value="2020D09E"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_TIMESTEP" value="1MON"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_WRESLPLUS" value="yes"/>
