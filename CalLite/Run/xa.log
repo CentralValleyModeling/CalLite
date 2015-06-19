@@ -1,8 +1,9 @@
-Solver XA16.59
->> WRIMS Version WRIMS v1.5.1 (CalLiteV16) SVN:1154
+Solver XA13.97
+>> WRIMS Version WRIMS v1.5.1 (XAV13) SVN:1069
 This program is Copyright (C) 1998, 2010 State of California, all rights re
-2020D09E
+CALLITE_BDCPCODECHANGE_SHARING FIX BY DW
 CLP options: MATLIST none
 >> These extra XA options were obtained:
 CLP options:
 ##########################################################
+XADONE...XAOSL 007E1070 Rc 6 XAComArea 02BBDC38 XASOLV 2952 Cum 851.969 XA 236.908 Pct 27
