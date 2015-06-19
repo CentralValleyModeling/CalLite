@@ -1,2 +1,1 @@
-(c:\callite\if\olson\callite_bdcp_alt4_oct_25_2013_ref1\run\delta\ann\exportestimate1_b2.wresl:38)1921/10/31 cycle 9 (wheeling), estswpsodexp in svar definition: Case condition evaluation has error.
-(c:\callite\if\olson\callite_bdcp_alt4_oct_25_2013_ref1\run\delta\ann\exportestimate1_b2.wresl:125)1921/10/31 cycle 9 (wheeling), estcvpsodexp in svar definition: Case condition evaluation has error.
+(d:\fam_implementation\checkout_default_08012014_fam\run\swp_dellogic\wsi_di\delcar_swp.wresl:260)1922/1/31 cycle 7 (upstream), fam_swpdel in svar definition: The variable swp_delivery is not defined in the past cycle of fam.

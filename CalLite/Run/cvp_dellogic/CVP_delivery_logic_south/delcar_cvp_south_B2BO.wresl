@@ -14,13 +14,40 @@ selection of preBO vs BO procedures.
 ! (code is adapted from B2VampCommon.wresl)
 ! This code generates values used for preBO allocation procedures
 define PulseHidv {std kind 'counter' UNITS 'NONE'}
-define VAMP_reqdv {std kind 'flow-requirement' units 'cfs'}
+if int(Dynamic_SJR)==1 {define VAMP_reqdv {std kind 'flow-requirement' units 'cfs'}}
 define SJR_ANN     {std kind 'FLOW-CHANNEL'  units 'CFS'}
-goal setSJR_ANN {SJR_ANN = C_SJRVER }
+goal setSJR_ANN {SJR_ANN = C_SJRVER}
 
-define JonesCapPermit_ {select PermitCap from JonesLimits where month=month}
-define BanksCapPermit1_ {select PermitCap1 from BanksLimits where month=month}
-define BanksCapPermit2_ {select PermitCap2 from BanksLimits where month=month}
+define JonesCapPermit_ {
+	case D1485 {
+		condition PUMP_DLTSW == 3
+		select PermitCap_D1485 from JonesLimits where month=month}	
+	case D1641 {
+		condition always
+		select PermitCap_D1641 from JonesLimits where month=month}
+}
+
+define BanksCapPermit1_ {
+	case IFon {
+		condition banksifswitch > 0.5 .or. jonesifswitch > 0.5
+		select PermitCap1_BDCP from BanksLimits where month=month}
+	case D1485 {
+		condition PUMP_DLTSW == 3
+		select PermitCap1_D1485 from BanksLimits where month=month}
+	case D1641 {
+		condition always
+		select PermitCap1_D1641 from BanksLimits where month=month}	
+}
+
+define BanksCapPermit2_ {
+	case IFon {
+		condition banksifswitch > 0.5 .or. jonesifswitch > 0.5
+		select PermitCap2_BDCP from BanksLimits where month=month}
+	case IFoff {
+		condition always
+		select PermitCap2 from BanksLimits where month=month}
+}		
+		
 define EWAReservedCap_ {select EWACap from BanksLimits where month=month}
 define BanksCapPermit_ {value min(BanksCapPermit1_, BanksCapPermit2_ - EWAReservedCap_) }
 
@@ -84,11 +111,14 @@ define buffCVP_MayAug {select buffer from ExportEstimate_CVP where month = May}
 
 ! Define estimated exports for preBO (based on B2) and BO conditions.
 define estCVPExp_Mar {
+	case D1485 {
+		condition int(RunBasis_DLTSW) == 0 
+			value 4600.}
     case preBO {
-        condition int(BOON_CVP) == 0
+        condition int(RunBasis_DLTSW) == 1 .or. int(jonesifswitch)  == 1
             value 4600. - 50. * taf_cfs }   
     case BO {                              
-        condition int(BOON_CVP) == 1
+        condition int(RunBasis_DLTSW) == 2 
             value estCVPExp_MarBO }
     case other {
         condition always
@@ -96,11 +126,14 @@ define estCVPExp_Mar {
 }
 
 define estCVPExp_Apr {
+	case D1485 {
+		condition int(RunBasis_DLTSW) == 0 
+			value 4600.	}
     case preBO {
-        condition int(BOON_CVP) == 0
+        condition int(RunBasis_DLTSW) == 1  .or. int(jonesifswitch)  == 1
             value 1125. }
     case BO {
-        condition int(BOON_CVP) == 1
+        condition int(RunBasis_DLTSW) == 2 
             value max(estCVPExp_AprBO, wetSJR*estCVPExp_WetApr) }
     case other {
         condition always
@@ -108,17 +141,26 @@ define estCVPExp_Apr {
 }
 
 define estCVPExp_May {
+	case D1485 {
+		condition int(RunBasis_DLTSW) == 0 
+			value 4600.}
     case preBO_B2Action4On {
-        condition int(BOON_CVP) == 0 .and. month == MAY .and. int(B2Action4On) == 1
+        condition int(RunBasis_DLTSW) == 1  .and. month == MAY .and. int(B2Action4) == 1 .and. int(B2Action4On)==1
+            value PulseExpRes1*0.5 }
+	case BO_IF_B2Action4On {
+        condition int(jonesifswitch) == 1 .and. month == MAY .and. int(B2Action4) == 1 .and. int(B2Action4On)==1
             value PulseExpRes1*0.5 }
     case preBO_B2Action4Off {
-        condition int(BOON_CVP) == 0 .and. month == MAY .and. int(B2Action4On) == 0
+        condition int(RunBasis_DLTSW) == 1  .and. month == MAY .and. int(B2Action4) == 0 .and. int(B2Action4On)==0
             value PulseExpRes1*0.5*15./31. + 3000.*16./31. }
-    case preBO_otherwise {
-        condition int(BOON_CVP) == 0
+	case BO_IF_B2Action4Off {
+        condition int(jonesifswitch) == 1 .and. month == MAY .and. int(B2Action4) == 0 .and. int(B2Action4On)==0
+            value PulseExpRes1*0.5*15./31. + 3000.*16./31. }
+    case preBO_or_IF_otherwise {
+        condition int(RunBasis_DLTSW) == 1 .or. int(jonesifswitch) == 1
             value 1125. }
-    case BO {
-        condition int(BOON_CVP) == 1
+    case BO_NoIF {
+        condition int(RunBasis_DLTSW) == 2 
             value max(estCVPExp_MayBO, wetSJR*estCVPExp_WetMay) }
     case other {
         condition always
@@ -126,11 +168,14 @@ define estCVPExp_May {
 }
 
 define estCVPExp_Jun {
+	case D1485 {
+		condition int(RunBasis_DLTSW) == 0 
+			value 4600.}
     case preBO {
-        condition int(BOON_CVP) == 0
+        condition int(RunBasis_DLTSW) == 1 .or. int(jonesifswitch) == 1
             value 3000. }
     case BO {
-        condition int(BOON_CVP) == 1
+        condition int(RunBasis_DLTSW) == 2
             value max(estCVPExp_JunBO, wetSJR*estCVPExp_WetJun) }
     case other {
         condition always
@@ -138,11 +183,14 @@ define estCVPExp_Jun {
 }
 
 define estCVPExp_JulAug {
+	case D1485 {
+		condition int(RunBasis_DLTSW) == 0
+			value 4600.}
     case preBO {
-        condition int(BOON_CVP) == 0
+        condition int(RunBasis_DLTSW) == 1 .or. int(jonesifswitch) == 1
             value 4600. }
     case BO {
-        condition int(BOON_CVP) == 1
+        condition int(RunBasis_DLTSW) == 2
             value estCVPExp_JulAugBO }
     case other {
         condition always
@@ -199,6 +247,12 @@ define AnnDelCapEst {
 define AnnDelCapEstdv {alias AnnDelCapEst kind 'DELIV-CAPACITY' units 'TAF'}
 
 define del_first_cvp_s {
+  case MarToMay_FAM_IF {                                ! from the delivery-carryover table
+    condition AllocationSwitch == 2 .and. JonesIFSwitch ==1 .and. (month >= MAR .and. month <= MAY)
+    value min(AnnDelCapEst, CVP_Delivery_South[FAM])}
+  case MarToMay_FAM {                                ! from the delivery-carryover table
+    condition AllocationSwitch == 2 .and. (month >= MAR .and. month <= MAY)
+    value min(AnnDelCapEst, CVP_Delivery_South[FAM])}
   case MarMay {
     condition month >= MAR .and. month <= MAY
     value min(AnnDelCapEst, Export_Index_CVP_adj/factCVP_AprAug) }
