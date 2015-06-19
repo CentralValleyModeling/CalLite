@@ -85,10 +85,10 @@ define buffCVP_MayAug {select buffer from ExportEstimate_CVP where month = May}
 ! Define estimated exports for preBO (based on B2) and BO conditions.
 define estCVPExp_Mar {
     case preBO {
-        condition int(BOExportEst_switch) == 0
+        condition int(BOON_CVP) == 0
             value 4600. - 50. * taf_cfs }   
     case BO {                              
-        condition int(BOExportEst_switch) == 1
+        condition int(BOON_CVP) == 1
             value estCVPExp_MarBO }
     case other {
         condition always
@@ -97,10 +97,10 @@ define estCVPExp_Mar {
 
 define estCVPExp_Apr {
     case preBO {
-        condition int(BOExportEst_switch) == 0
+        condition int(BOON_CVP) == 0
             value 1125. }
     case BO {
-        condition int(BOExportEst_switch) == 1
+        condition int(BOON_CVP) == 1
             value max(estCVPExp_AprBO, wetSJR*estCVPExp_WetApr) }
     case other {
         condition always
@@ -109,16 +109,16 @@ define estCVPExp_Apr {
 
 define estCVPExp_May {
     case preBO_B2Action4On {
-        condition int(BOExportEst_switch) == 0 .and. month == MAY .and. int(B2Action4On) == 1
+        condition int(BOON_CVP) == 0 .and. month == MAY .and. int(B2Action4On) == 1
             value PulseExpRes1*0.5 }
     case preBO_B2Action4Off {
-        condition int(BOExportEst_switch) == 0 .and. month == MAY .and. int(B2Action4On) == 0
+        condition int(BOON_CVP) == 0 .and. month == MAY .and. int(B2Action4On) == 0
             value PulseExpRes1*0.5*15./31. + 3000.*16./31. }
     case preBO_otherwise {
-        condition int(BOExportEst_switch) == 0
+        condition int(BOON_CVP) == 0
             value 1125. }
     case BO {
-        condition int(BOExportEst_switch) == 1
+        condition int(BOON_CVP) == 1
             value max(estCVPExp_MayBO, wetSJR*estCVPExp_WetMay) }
     case other {
         condition always
@@ -127,10 +127,10 @@ define estCVPExp_May {
 
 define estCVPExp_Jun {
     case preBO {
-        condition int(BOExportEst_switch) == 0
+        condition int(BOON_CVP) == 0
             value 3000. }
     case BO {
-        condition int(BOExportEst_switch) == 1
+        condition int(BOON_CVP) == 1
             value max(estCVPExp_JunBO, wetSJR*estCVPExp_WetJun) }
     case other {
         condition always
@@ -139,10 +139,10 @@ define estCVPExp_Jun {
 
 define estCVPExp_JulAug {
     case preBO {
-        condition int(BOExportEst_switch) == 0
+        condition int(BOON_CVP) == 0
             value 4600. }
     case BO {
-        condition int(BOExportEst_switch) == 1
+        condition int(BOON_CVP) == 1
             value estCVPExp_JulAugBO }
     case other {
         condition always

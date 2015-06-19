@@ -49,7 +49,7 @@ define cvp_unused_VAMP_exp {
 
 ! Monthly VAMP export restriction for CVP
 goal b2action3_1 {
-  lhs D_Jones_cvp + D_Banks_cvp
+  lhs D_Jones_cvp_td + D_Banks_cvp_td
   case Apr {
     condition  month==APR .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1 
     rhs        NonPulseExpCtrl*0.5*14.0/daysin + PulseExpRes*0.5*16.0/daysin + swp_unused_VAMP_exp
@@ -63,7 +63,7 @@ goal b2action3_1 {
 
 
 goal b2action3_MaxCap {    ! Prevents Non-Pulse portion of month to be greater than Physical Capacity
-  lhs    D_Jones_cvp + D_Banks_cvp
+  lhs    D_Jones_cvp_td + D_Banks_cvp_td
   case April {
     condition     month == APR .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1 
     rhs           JonesCapPermit*14.0/daysin + min(JonesCapPermit, PulseExpRes)*0.5*16.0/daysin
@@ -76,7 +76,7 @@ goal b2action3_MaxCap {    ! Prevents Non-Pulse portion of month to be greater t
 
 ! Monthly VAMP export restriction for SWP
 goal b2action3_1_swp {
-  lhs D_Banks_swp
+  lhs D_Banks_swp_td
   case Apr {
     condition  month==APR .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1 
     rhs        NonPulseExpCtrl*0.5*14.0/daysin + PulseExpRes*0.5*16.0/daysin + cvp_unused_VAMP_exp
@@ -90,7 +90,7 @@ goal b2action3_1_swp {
 
 
 goal b2action3_MaxCap_swp {    ! Prevents Non-Pulse portion of month to be greater than Physical Capacity
-  lhs    D_Banks_swp
+  lhs    D_Banks_swp_td
   case April {
     condition     month == APR .and. int(B2Action3On)==1 .and. VAMP_DLTSW == 1 
     rhs           BanksMaxAllow*14.0/daysin + PulseExpRes*0.5*16.0/daysin

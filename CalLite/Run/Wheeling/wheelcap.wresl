@@ -64,7 +64,7 @@ define B2Action3_Ctrl {
 }
 
 !define wheeling_ctrl {value min(BO_Banks_Ctrl, BO_Jones_Ctrl, OMR_Ctrl)}
-define wheeling_ctrl {value min(BO_Ctrl, OMR_Ctrl, B2Action3_Ctrl)}
+define wheeling_ctrl {value 1.} !min(BO_Ctrl, OMR_Ctrl, B2Action3_Ctrl)}
 define whlctrl_dv {alias wheeling_ctrl kind 'output' units 'cfs'}
 define BOCtrl_dv {alias BO_Ctrl kind 'output' units 'cfs'}
 define BOBanksCtrl_dv {alias BO_Banks_Ctrl kind 'output' units 'cfs'}
@@ -132,7 +132,7 @@ define wheelCap {select cap from WheelCap where year=wateryear }
 ! Allow JPOD Wheeling only when Tracy is running at its capacity
 define Jones_int {
     case JonesMax {
-      condition D_Jones[BASE] + 0.5 > maxJonesCalc
+      condition D_Jones[B2_BO] + 0.5 > maxJonesCalc
       value 1.0}
     case Rest {
       condition always

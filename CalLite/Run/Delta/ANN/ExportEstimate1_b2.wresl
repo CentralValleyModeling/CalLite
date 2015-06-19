@@ -36,7 +36,9 @@ define est_oro_release{
 
  
 define EstSWPSodExp { 
-    case BO { condition int(OMRBOON) == 1 
+    case IF_ { condition int(JonesIFSwitch) == 1 .or. int(BanksIFSwitch) == 1
+        value min(BanksMaxAllow, max(300.0, EstSWPSodDem + EstSWPSodRC), max(300.,est_oro_release))}
+    case BO { condition int(BOON_SWP) == 1 
         value min(BanksMaxAllow, max(300.0, EstSWPSodDem + EstSWPSodRC), EstSWPMaxExp_RPA, max(300.,est_oro_release))}
     case D1641_B2 { condition always
         value min(BanksMaxAllow, max(300.0, EstSWPSodDem + EstSWPSodRC), max(300.,est_oro_release))}
@@ -108,7 +110,7 @@ define EstCVPMaxExp_B2 {
             value     min(3000.*16.0/daysin + PulseExpRes*0.5*15.0/daysin, JonesCapPermit*14.0/daysin + PulseExpRes*0.5*16.0/daysin) }
        case Action5On {
             condition month == JUN .and. int(B2Action5On)==1
-            value     min(D_Jones_cvp(-1)*0.5 + D_Banks_cvp(-1)*0.5 + min(CVPexportcap, max(0.0, EstCVPSodDem + EstCVPSodRC)*0.5), 3000.0) }
+            value     min(D_Jones_cvp_TD(-1)*0.5 + D_Banks_cvp_TD(-1)*0.5 + min(CVPexportcap, max(0.0, EstCVPSodDem + EstCVPSodRC)*0.5), 3000.0) }
        case Action5Off {
             condition month == JUN
             value     3000.0}
@@ -121,7 +123,9 @@ define EstCVPMaxExp_B2 {
 define EstCVPMaxExp_RPA {select estimate from ExportEstimate_CVP where month = month }
 
 define EstCVPSodExp { 
-    case BO { condition int(OMRBOON) == 1 
+    case IF_ { condition int(JonesIFSwitch) == 1 .or. int(BanksIFSwitch) == 1
+        value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC))}
+    case BO { condition int(BOON_CVP) == 1 
         value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), EstCVPMaxExp_RPA )}
     case D1641_B2 { condition always
         value min(CVPexportcap, max(JonesMinPumpLevel, EstCVPSodDem + EstCVPSodRC), EstCVPMaxExp_B2)}

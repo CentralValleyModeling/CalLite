@@ -39,7 +39,7 @@ define JonesMaxAllow {value JonesMax1*JonesDaysIncr/daysin + JonesCapPermit*Jone
 
 ! Limit Pumping to Allowable and Physical Capacity, whichever is less
 ! goal JonesLessThanAllow { C_Jones_TD < JonesMaxAllow} /** need to review for IF implementation **/
-goal JonesLessThanAllow { D_Jones < JonesMaxAllow}
+goal JonesLessThanAllow { D_Jones_TD < JonesMaxAllow}
 goal JonesLessThanPhys  { D_Jones < JonesCapPhys}
 
 ! Output Allowable Pumping Cap for Checking Only
