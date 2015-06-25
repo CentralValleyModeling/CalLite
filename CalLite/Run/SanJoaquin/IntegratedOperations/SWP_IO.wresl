@@ -1,5 +1,5 @@
 !Group forward and reverse cross valley flows.
 
-define CV_IO_F_SWP std kind 'flow-channel' units 'cfs'}
+define CV_IO_F_SWP {std kind 'flow-channel' units 'cfs'}
 
-goal setCV_IO_F_SWP {CV_IO_F_SWP = DIO_F_S
+goal setCV_IO_F_SWP {CV_IO_F_SWP = DIO_F_S}

@@ -72,7 +72,7 @@ define Class1_delivered {
         case march {
             condition month == mar
             value 0.0 }
-        case initialCase{
+        case initialyear{
             condition month < mar .and. wateryear == 1922
             value 0.0 }
         case otherwise {
@@ -143,9 +143,6 @@ define C_MLRTN_min_jun {
         condition   always
         value 0.0  } }
 
-! Sums min flow requirement current month through June added for SETTLEMENT
-! values in the table are zero except for Feb-Jun
-!define SJRR_mon_jun {select thruJun from SJRR_Reqs where month=month, YT=wyt_SJRRest}
 
 ! Sum of the combined Madera and Friant-Kern canal losses from current month through June
 define FR_losses_jun {
@@ -261,7 +258,7 @@ define Class2_delivered {
         case march {
             condition month == mar
             value 0.0 }
-        case initialCase{
+        case initialyear{
             condition month < mar .and. wateryear == 1922
             value 0.0 }
         case otherwise {
