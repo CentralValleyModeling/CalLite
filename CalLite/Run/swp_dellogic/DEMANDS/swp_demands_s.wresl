@@ -10,10 +10,6 @@ swp_demands_s.wresl  (CalLite)
 Thisfile defines the PAG and PMI SWP demands
 for the South of Delta and North Bay during a CalLite run. 
 The loss and interruptable are handled in swp_demand_s_TS.wresl in CS2CL
-****
-! This file defines all the SWP demands for the South of Delta and North Bay.
-! Annual demands, along with their monthly distributions, are provided to SWPAO
-! by the contractors for three allocation levels (100, 50 and 30%).
 ****/
 
 !#7 CITY of YUBA CITY is not used
@@ -164,7 +160,7 @@ define dem_D885_PMI  {select demand from swp_3pattern_demands given percent=swp_
 define dem_D895_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=24,month=month}
 define dem_D899_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=25,month=month}
 define dem_D881_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=26,month=month}
-define dem_D403B_PMI {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=27,month=month}
+define dem_D403B_PMI {select demand from swp_3pattern_demands given percent=napa_demprofile use linear where contractor=27,month=month}
 define dem_D802A_PAG {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=28,month=month}
 define dem_D878_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=29,month=month}
 define dem_D886_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=30,month=month}
@@ -173,7 +169,7 @@ define dem_D888_PMI  {select demand from swp_3pattern_demands given percent=swp_
 define dem_D869_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=33,month=month}
 define dem_D870_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=34,month=month}
 define dem_D815_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=35,month=month}
-define dem_D403C_PMI {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=36,month=month}
+define dem_D403C_PMI {select demand from swp_3pattern_demands given percent=solano_demprofile use linear where contractor=36,month=month}
 define dem_D848_PAG  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=37,month=month}
 define dem_D28_PMI   {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=38,month=month}
 define dem_D29_PMI   {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=39,month=month}
@@ -258,43 +254,3 @@ define dem_D895_PIN_cfs   {timeseries kind 'demand-swp-in' units 'cfs'}
 define dem_D810_PIN_cfs   {timeseries kind 'demand-swp-in' units 'cfs'}
 define dem_D814_PIN_cfs   {timeseries kind 'demand-swp-in' units 'cfs'}
 define dem_D815_PIN_cfs   {timeseries kind 'demand-swp-in' units 'cfs'}
-
-!***********************************************************************************
-
-!losses - constant pattern, never reduced.
-define dem_D403B_PLS {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D803_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D824_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D826_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D827_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D828_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D829_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D854_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D862_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D864_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D880_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D882_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D889_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D891_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D893_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D894_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-define dem_D816_PLS  {timeseries kind 'demand-swp-ls' units 'taf' convert 'cfs'}
-
-!interruptable - full request, weights determine if water is delivered.
-define dem_D27_PIN   {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D403B_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D846_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D848_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D849_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D868_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D859_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D877_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D883_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D884_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D885_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D899_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D895_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D810_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D814_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-define dem_D815_PIN  {timeseries kind 'demand-swp-in' units 'taf' convert 'cfs'}
-

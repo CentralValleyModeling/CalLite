@@ -663,9 +663,9 @@ define remainTA_3_orig  {select remainDemand from swp_3pattern_demands given per
 define remainTA_4_orig  {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=4 ,month=month} !ANTELOPE VALLEY-EAST KERN WA
 define remainTA_5_orig  {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=5 ,month=month} !CASTAIC LAKE WA
 define remainTA_6_orig  {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=6 ,month=month} !CASTAIC LAKE WA
-define remainTA_7_orig  {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=7 ,month=month} !CITY OF YUBA CITY
+define remainTA_7_orig  {select remainDemand from swp_3pattern_demands given percent=yuba_demprofile use linear where contractor=7 ,month=month} !CITY OF YUBA CITY
 define remainTA_8_orig  {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=8 ,month=month} !COACHELLA VALLEY WD
-define remainTA_9_orig  {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=9 ,month=month} !COUNTY OF BUTTE
+define remainTA_9_orig  {select remainDemand from swp_3pattern_demands given percent=butt_demprofile use linear where contractor=9 ,month=month} !COUNTY OF BUTTE
 define remainTA_10_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=10,month=month} !COUNTY OF KINGS
 define remainTA_11_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=11,month=month} !CRESTLINE-LAKE ARROWHEAD WA
 define remainTA_12_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=12,month=month} !DESERT WA
@@ -683,7 +683,7 @@ define remainTA_23_orig {select remainDemand from swp_3pattern_demands given per
 define remainTA_24_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=24,month=month} !METROPOLITAN WDSC
 define remainTA_25_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=25,month=month} !METROPOLITAN WDSC
 define remainTA_26_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=26,month=month} !MOJAVE WA
-define remainTA_27_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=27,month=month} !NAPA COUNTY FC&WCD
+define remainTA_27_orig {select remainDemand from swp_3pattern_demands given percent=napa_demprofile use linear where contractor=27,month=month} !NAPA COUNTY FC&WCD
 define remainTA_28_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=28,month=month} !OAK FLAT WD
 define remainTA_29_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=29,month=month} !PALMDALE WD
 define remainTA_30_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=30,month=month} !SAN BERNARDINO VALLEY MWD
@@ -692,7 +692,7 @@ define remainTA_32_orig {select remainDemand from swp_3pattern_demands given per
 define remainTA_33_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=33,month=month} !SAN LUIS OBISPO COUNTY FC&WCD
 define remainTA_34_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=34,month=month} !SANTA BARBARA COUNTY FC&WCD
 define remainTA_35_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=35,month=month} !SANTA CLARA VALLEY WD
-define remainTA_36_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=36,month=month} !SOLANO COUNTY WA
+define remainTA_36_orig {select remainDemand from swp_3pattern_demands given percent=solano_demprofile use linear where contractor=36,month=month} !SOLANO COUNTY WA
 define remainTA_37_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=37,month=month} !TULARE LAKE BASIN WSD
 define remainTA_38_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=38,month=month} !VENTURA COUNTY WPD
 define remainTA_39_orig {select remainDemand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=39,month=month} !VENTURA COUNTY WPD

@@ -18,7 +18,46 @@ DI exists over the amount needed for delivery and Oroville carryover.
 
 define swp_alloc_ {std kind 'swp-delivery' UNITS 'TAF'}
 
+define swp_perdel_yuba {select yuba from swp_nod_alloc where wytype=wyt_SAC}
+define swp_perdel_napa {select napa from swp_nod_alloc where wytype=wyt_SAC}
+define swp_perdel_solano {select solano from swp_nod_alloc where wytype=wyt_SAC}
+define swp_perdel_butt {select butt from swp_butt_alloc given swp_sod_alloc=swp_perdel use linear}
 
+define swp_perdeldv_yuba {alias swp_perdel_yuba kind 'swp-delivery' units 'none'}
+define swp_perdeldv_napa {alias swp_perdel_napa kind 'swp-delivery' units 'none'}
+define swp_perdeldv_solano {alias swp_perdel_solano kind 'swp-delivery' units 'none'}
+define swp_perdeldv_butt {alias swp_perdel_butt kind 'swp-delivery' units 'none'}
+
+!Determine NOD Table A for the following contractors
+!NOD TA = YUBA (5) + BUTTE (7) + NAPA (17) + SOLANO (26)
+define yuba_TA {select tableA from swp_table_a where contractor = 5}
+define butte_TA {select tableA from swp_table_a where contractor = 7}
+define napa_TA {select tableA from swp_table_a where contractor = 17}
+define solano_TA {select tableA from swp_table_a where contractor = 26}
+
+!Sum up the total NOD TA 
+define tableA_NOD {value yuba_TA + butte_TA + napa_TA + solano_TA}
+
+!Determine Allocation for NOD (perdel times Table A)
+define yuba_alloc{value swp_perdel_yuba*yuba_TA}
+define butte_alloc{value swp_perdel_butt*butte_TA}
+define napa_alloc{value swp_perdel_napa*napa_TA}
+define solano_alloc{value swp_perdel_solano*solano_TA}
+
+!Sum up the total NOD allocation
+define total_NOD_alloc {value yuba_alloc + butte_alloc + napa_alloc + solano_alloc}
+
+!*************************************************************************
+
+!Percent delivery NOD
+define swp_perdel_NOD  {value (total_NOD_alloc/tableA_NOD)} !Percent of TA for NOD
+define swp_perdel_NOD_dv {alias swp_perdel_NOD kind 'swp-delivery' units 'none'}
+
+!Percent delivery SOD
+define swp_perdel_SOD {value (swp_allocation_final - tableA_loss - total_NOD_alloc)/(max_tableA - tableA_loss- TableA_NOD)} !Percent of TA for SOD
+define swp_perdel_SOD_dv {alias swp_perdel_SOD kind 'swp-delivery' units 'none'}
+!************************************************************************
+define tableA_total {select Total from TableA where Factor=1} !This includes loss
 
 ! define values based on Table A entitlements
 define tableA_ag   {select Ag_entitlement  from TableA where Factor=1}
@@ -341,7 +380,7 @@ define perdel_swp_int
      case full_contract {condition always value 1.}}
      
 !Select demand profile based on percent allocation:
-define tableA_total {value max_tableA}
+!define tableA_total {value max_tableA}                                              !Commented on 6/26/2015
 define percent_act  {value swp_allocation_final/tableA_total*100.}
 define swp_percent_act {alias percent_act kind 'alias' units 'none'}
 define swp_demprofile {

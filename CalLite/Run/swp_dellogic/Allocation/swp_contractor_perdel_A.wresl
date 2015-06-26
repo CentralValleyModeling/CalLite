@@ -196,36 +196,36 @@ define tableAdv_30 {alias tableA_30 kind 'swp-output' units 'taf'}  !CASTAIC LAK
 !____________________________________________________________________________________________
 
 !allocation amount (per contractor):
-define allocate_1  {value swp_perdel * tableA_1 }!perdel_swp_oth1 * tableA_1 }  !ALAMEDA COUNTY FC&WCD-ZONE 7
-define allocate_2  {value swp_perdel * tableA_2 }!perdel_swp_oth1 * tableA_2 }  !ALAMEDA COUNTY WD
-define allocate_3  {value swp_perdel * tableA_3 }!perdel_swp_oth1 * tableA_3 }  !ANTELOPE VALLEY-EAST KERN WA
-define allocate_4  {value swp_perdel * tableA_4 }!perdel_swp_ag1  * tableA_4 }  !CASTAIC LAKE WA
-define allocate_5  {value swp_perdel * tableA_5 }!perdel_swp_oth1 * tableA_5 }  !CITY OF YUBA CITY
-define allocate_6  {value swp_perdel * tableA_6 }!perdel_swp_oth1 * tableA_6 }  !COACHELLA VALLEY WD
-define allocate_7  {value swp_perdel * tableA_7 }!perdel_swp_oth1 * tableA_7 }  !COUNTY OF BUTTE
-define allocate_8  {value swp_perdel * tableA_8 }!perdel_swp_ag1  * tableA_8 }  !COUNTY OF KINGS
-define allocate_9  {value swp_perdel * tableA_9 }!perdel_swp_oth1 * tableA_9 }  !CRESTLINE-LAKE ARROWHEAD WA
-define allocate_10 {value swp_perdel * tableA_10}!perdel_swp_oth1 * tableA_10}  !DESERT WA
-define allocate_11 {value swp_perdel * tableA_11}!perdel_swp_ag1  * tableA_11}  !DUDLEY RIDGE WD
-define allocate_12 {value swp_perdel * tableA_12}!perdel_swp_ag1  * tableA_12}  !EMPIRE WEST SIDE ID
-define allocate_13 {value swp_perdel * tableA_13}!perdel_swp_ag1  * tableA_13}  !KERN COUNTY WA
-define allocate_14 {value swp_perdel * tableA_14}!perdel_swp_oth1 * tableA_14}  !LITTLEROCK CREEK ID
-define allocate_15 {value swp_perdel * tableA_15}!perdel_swp_mwd1 * tableA_15}  !METROPOLITAN WDSC
-define allocate_16 {value swp_perdel * tableA_16}!perdel_swp_oth1 * tableA_16}  !MOJAVE WA
-define allocate_17 {value swp_perdel * tableA_17}!perdel_swp_ag1  * tableA_17}  !NAPA COUNTY FC&WCD
-define allocate_18 {value swp_perdel * tableA_18}!perdel_swp_oth1 * tableA_18}  !OAK FLAT WD
-define allocate_19 {value swp_perdel * tableA_19}!perdel_swp_oth1 * tableA_19}  !PALMDALE WD
-define allocate_20 {value swp_perdel * tableA_20}!perdel_swp_oth1 * tableA_20}  !SAN BERNARDINO VALLEY MWD
-define allocate_21 {value swp_perdel * tableA_21}!perdel_swp_oth1 * tableA_21}  !SAN GABRIEL VALLEY MWD
-define allocate_22 {value swp_perdel * tableA_22}!perdel_swp_oth1 * tableA_22}  !SAN GORGONIO PASS WA
-define allocate_23 {value swp_perdel * tableA_23}!perdel_swp_oth1 * tableA_23}  !SAN LUIS OBISPO COUNTY FC&WCD
-define allocate_24 {value swp_perdel * tableA_24}!perdel_swp_oth1 * tableA_24}  !SANTA BARBARA COUNTY FC&WCD
-define allocate_25 {value swp_perdel * tableA_25}!perdel_swp_oth1 * tableA_25}  !SANTA CLARA VALLEY WD
-define allocate_26 {value swp_perdel * tableA_26}!perdel_swp_oth1 * tableA_26}  !SOLANO COUNTY WA
-define allocate_27 {value swp_perdel * tableA_27}!perdel_swp_ag1  * tableA_27}  !TULARE LAKE BASIN WSD
-define allocate_28 {value swp_perdel * tableA_28}!perdel_swp_oth1 * tableA_28}  !VENTURA COUNTY WPD
-define allocate_29 {value swp_perdel * tableA_29}!perdel_swp_oth1 * tableA_29}  !KERN COUNTY WA - MI
-define allocate_30 {value swp_perdel * tableA_30}!perdel_swp_oth1 * tableA_30}  !CASTAIC LAKE WA - MI
+define allocate_1  {value swp_perdel_SOD * tableA_1 }!perdel_swp_oth1 * tableA_1 }  !ALAMEDA COUNTY FC&WCD-ZONE 7
+define allocate_2  {value swp_perdel_SOD * tableA_2 }!perdel_swp_oth1 * tableA_2 }  !ALAMEDA COUNTY WD
+define allocate_3  {value swp_perdel_SOD * tableA_3 }!perdel_swp_oth1 * tableA_3 }  !ANTELOPE VALLEY-EAST KERN WA
+define allocate_4  {value swp_perdel_SOD * tableA_4 }!perdel_swp_ag1  * tableA_4 }  !CASTAIC LAKE WA
+define allocate_5  {value swp_perdel_yuba * tableA_5 }!perdel_swp_oth1 * tableA_5 }  !CITY OF YUBA CITY
+define allocate_6  {value swp_perdel_SOD * tableA_6 }!perdel_swp_oth1 * tableA_6 }  !COACHELLA VALLEY WD
+define allocate_7  {value swp_perdel_butt * tableA_7 }!perdel_swp_oth1 * tableA_7 }  !COUNTY OF BUTTE
+define allocate_8  {value swp_perdel_SOD * tableA_8 }!perdel_swp_ag1  * tableA_8 }  !COUNTY OF KINGS
+define allocate_9  {value swp_perdel_SOD * tableA_9 }!perdel_swp_oth1 * tableA_9 }  !CRESTLINE-LAKE ARROWHEAD WA
+define allocate_10 {value swp_perdel_SOD * tableA_10}!perdel_swp_oth1 * tableA_10}  !DESERT WA
+define allocate_11 {value swp_perdel_SOD * tableA_11}!perdel_swp_ag1  * tableA_11}  !DUDLEY RIDGE WD
+define allocate_12 {value swp_perdel_SOD * tableA_12}!perdel_swp_ag1  * tableA_12}  !EMPIRE WEST SIDE ID
+define allocate_13 {value swp_perdel_SOD * tableA_13}!perdel_swp_ag1  * tableA_13}  !KERN COUNTY WA
+define allocate_14 {value swp_perdel_SOD * tableA_14}!perdel_swp_oth1 * tableA_14}  !LITTLEROCK CREEK ID
+define allocate_15 {value swp_perdel_SOD * tableA_15}!perdel_swp_mwd1 * tableA_15}  !METROPOLITAN WDSC
+define allocate_16 {value swp_perdel_SOD * tableA_16}!perdel_swp_oth1 * tableA_16}  !MOJAVE WA
+define allocate_17 {value swp_perdel_napa * tableA_17}!perdel_swp_ag1  * tableA_17}  !NAPA COUNTY FC&WCD
+define allocate_18 {value swp_perdel_SOD * tableA_18}!perdel_swp_oth1 * tableA_18}  !OAK FLAT WD
+define allocate_19 {value swp_perdel_SOD * tableA_19}!perdel_swp_oth1 * tableA_19}  !PALMDALE WD
+define allocate_20 {value swp_perdel_SOD * tableA_20}!perdel_swp_oth1 * tableA_20}  !SAN BERNARDINO VALLEY MWD
+define allocate_21 {value swp_perdel_SOD * tableA_21}!perdel_swp_oth1 * tableA_21}  !SAN GABRIEL VALLEY MWD
+define allocate_22 {value swp_perdel_SOD * tableA_22}!perdel_swp_oth1 * tableA_22}  !SAN GORGONIO PASS WA
+define allocate_23 {value swp_perdel_SOD * tableA_23}!perdel_swp_oth1 * tableA_23}  !SAN LUIS OBISPO COUNTY FC&WCD
+define allocate_24 {value swp_perdel_SOD * tableA_24}!perdel_swp_oth1 * tableA_24}  !SANTA BARBARA COUNTY FC&WCD
+define allocate_25 {value swp_perdel_SOD * tableA_25}!perdel_swp_oth1 * tableA_25}  !SANTA CLARA VALLEY WD
+define allocate_26 {value swp_perdel_solano * tableA_26}!perdel_swp_oth1 * tableA_26}  !SOLANO COUNTY WA
+define allocate_27 {value swp_perdel_SOD * tableA_27}!perdel_swp_ag1  * tableA_27}  !TULARE LAKE BASIN WSD
+define allocate_28 {value swp_perdel_SOD * tableA_28}!perdel_swp_oth1 * tableA_28}  !VENTURA COUNTY WPD
+define allocate_29 {value swp_perdel_SOD * tableA_29}!perdel_swp_oth1 * tableA_29}  !KERN COUNTY WA - MI
+define allocate_30 {value swp_perdel_SOD * tableA_30}!perdel_swp_oth1 * tableA_30}  !CASTAIC LAKE WA - MI
 
 define allocatedv_1  {alias allocate_1  kind 'swp-output' units 'taf'}  !ALAMEDA COUNTY FC&WCD-ZONE 7
 define allocatedv_2  {alias allocate_2  kind 'swp-output' units 'taf'}  !ALAMEDA COUNTY WD
