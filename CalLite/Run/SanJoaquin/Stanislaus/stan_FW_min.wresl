@@ -22,7 +22,7 @@ Fish & Wildlife flows
 */
 !In April uses pre-RPA std (in order to set VAMP baseline), rest of year uses RPA std
 
-define stanfish_yr {
+/*define stanfish_yr {
 
     case STAN_RPAOFF{
          condition STAN_RPA == 0
@@ -33,14 +33,14 @@ define stanfish_yr {
     case notApr {
         condition always 
         select stanf from stan_yr given NMF = NMforecast1 use linear}
-}
-
+}*/
+define stanfish_yr {select stanf from stan_yr given NMF = NMforecast1 use linear }
 
 ! Alias stanfish_yr for output
 define stanfish_yrDV {alias stanfish_yr units 'taf'}
 
 ! Define minimum flows for Cycle 1 to be imposed on releases from New Melones
-define stanmin {
+/*define stanmin {
     case STAN_RPAOFF{
         condition STAN_RPA == 0
         select stanfish from Stan_monfish given stanyr=stanfish_yr use linear where month=month}! every mon if RPA of
@@ -50,7 +50,10 @@ define stanmin {
     case notApr {
         condition always 
         select flow from stan_rpa given stanyr=stanfish_yr use linear where month=month}
-}
+}*/
+
+define stanmin {select flow from stan_rpa given stanyr=stanfish_yr use linear where month=month}
+
 define stanmin_dv {alias stanmin kind 'fish-flow-req' units 'cfs'}
 
 ! Define revised total annual fish releases

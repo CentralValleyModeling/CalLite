@@ -288,7 +288,7 @@ goal set_temp007 { temp007 = tot_C2_del }
 
 ! Temporary variable to compute total delivery through previous month
 define temp008 {
-    case initialmonth{
+    case initialyear{
         condition month <= mar .and. wateryear == 1922
         value 0. }
     case otherwise {
@@ -297,7 +297,7 @@ define temp008 {
 
 ! Temporary variable to compute Class 1 delivery through previous month
 define temp009 {
-    case initialmonth{
+    case initialyear{
         condition month <= mar .and. wateryear == 1922
         value 0. }
     case otherwise {
@@ -306,7 +306,7 @@ define temp009 {
 
 ! Temporary variable to compute Class 2 delivery through previous month
 define temp010 {
-    case initialmonth{
+    case initialyear{
         condition month <= mar .and. wateryear == 1922
         value 0. }
     case otherwise {

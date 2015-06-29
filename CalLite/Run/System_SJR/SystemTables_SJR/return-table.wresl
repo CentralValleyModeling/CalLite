@@ -70,3 +70,4 @@ define R_SJRCAL {std kind 'FLOW-RETURN' units 'CFS'}
 define R_SJRCALA {std kind 'FLOW-RETURN' units 'CFS'} !
 define R_SJRCALB {std kind 'FLOW-RETURN' units 'CFS'}
 goal setR_SJRCAL { R_SJRCAL = R_SJRCALA + R_SJRCALB }
+define R135C_dcmp {std kind 'RETURN-FLOW' units 'CFS'} !Return flow from Feather River Service Area rice decomp

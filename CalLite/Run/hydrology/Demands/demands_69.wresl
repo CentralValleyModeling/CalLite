@@ -174,3 +174,33 @@ define decomp_alloc {
 goal setdecomp_alloc {decomp_allocdv = decomp_alloc}
 
 goal set_D7C {D7C < dem_D7C_DCMP*taf_cfs*decomp_alloc}
+
+!Deliver rice decomp water.  The percent of decomp water to be delivered is based on end-of-Sept
+!storage in Oroville.  The intent is to avoid drawing Oroville below 850 TAF when release becomes limited to 1500 cfs
+
+define decomp_allocdv {std kind 'Decomp-Alloc' units 'None'}
+
+define decomp_alloc {
+	case Oro_high {
+		condition month==OCT .and. S6(-1) > 1200.
+			value 1.0	}
+	case Oro_1100 {
+		condition month==Oct .and. S6(-1) > 1100.
+			value 0.75	}
+	case Oro_1000 {
+		condition month==Oct .and. S6(-1) > 1000.
+			value 0.5	}
+	case Oro_900 {
+		condition month==Oct .and. S6(-1) > 900.
+			value 0.25	}
+	case Oro_low {
+		condition month==Oct .and. S6(-1) <= 900.
+			value 0.0	}
+	case other {
+		condition always
+		value decomp_allocdv(-1)	}
+}
+
+goal setdecomp_alloc {decomp_allocdv = decomp_alloc}
+
+goal set_D7C {D7C < dem_D7C_DCMP*taf_cfs*decomp_alloc}

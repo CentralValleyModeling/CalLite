@@ -18,7 +18,7 @@ Fish & Wildlife flows
 */
 ! Define Cycle 3 minimum Stanislaus F & W pulse flows Apr 15 - May 15
 !In April uses pre-RPA std (in order to set VAMP baseline), in May uses RPA std
-define stanfish_yr {
+/*define stanfish_yr {
     case STAN_RPAOFF{
         condition STAN_RPA == 0 .and. range(month, apr, may)
         select stanf from stan_yr_90 given NMF = NMforecast1 use linear }! every mon if RPA of
@@ -28,7 +28,10 @@ define stanfish_yr {
     case notApr {
         condition always 
         select stanf from stan_yr given NMF = NMforecast1 use linear}
-}
+}*/
+
+define stanfish_yr {select stanf from stan_yr given NMF = NMforecast1 use linear}
+
 ! Alias stanfish_yr for output
 define stanfish_yrDV {alias stanfish_yr units 'taf'}
 
@@ -36,10 +39,10 @@ define stanfish_yrDV {alias stanfish_yr units 'taf'}
 define stanpulse {
     case STAN_RPAOFF{
         condition STAN_RPA == 0 .and. range(month, apr, may)
-        select          pulse from stan_pulse given stanyr = stanfish_yr use linear }
+        select          aprpulse from stan_pulse_rpa given stanyr = stanfish_yr use linear }
     case April {
         condition       month == apr .and. STAN_RPA == 1
-        select          pulse from stan_pulse given stanyr = stanfish_yr use linear }
+        select          maypulse from stan_pulse given stanyr = stanfish_yr use linear }
     case May {
         condition       month == may .and. STAN_RPA == 1
         select          pulse from stan_pulse_rpa given stanyr = stanfish_yr use linear }
