@@ -6,11 +6,6 @@ define REST_REQ_NP_I {timeseries kind 'interim-release-hydrograph'units 'taf'} !
 define REST_REQ_P_I {timeseries kind 'interim-release-hydrograph' units 'taf'} !April release corresponds to Apr15-Apr30 --Interim restoration
 
 
-!define SJRR_mon {select release from SJRR_Reqs where month=month, yt=wyt_SJRRest}
-!define SJRR_mon_jun {select thruJun from SJRR_Reqs where month=month, YT=wyt_SJRRest}
-!define SJRR_mon_sep {select thruSep from SJRR_Reqs where month=month, YT=wyt_SJRRest}
-
-
    
 define SJRR_mon {
 

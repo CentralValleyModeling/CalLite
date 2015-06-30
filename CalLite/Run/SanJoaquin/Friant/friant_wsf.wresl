@@ -48,9 +48,6 @@ define C_MLRTN_min_sep {
         condition   always
         value 0.0  } }
 
-! Sums min flow requirement current month through September added for SETTLEMENT
-!define SJRR_mon_sep {select thruSep from SJRR_Reqs where month=month, YT=wyt_SJRRest}
-
 ! Sum of the combined Madera and Friant-Kern canal losses from current month through September
 define FRloss_sep {
     case MarthruJun {
