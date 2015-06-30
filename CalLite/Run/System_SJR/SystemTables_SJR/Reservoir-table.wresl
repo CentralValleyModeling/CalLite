@@ -232,7 +232,7 @@ define S_PEDRO_3 {std kind 'STORAGE-ZONE' units 'TAF'}
 goal S_PEDROZone3 {S_PEDRO_3 < S_PEDROlevel3-S_PEDROlevel2}
 define S_PEDROlevel4 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
 define S_PEDRO_4 {std kind 'STORAGE-ZONE' units 'TAF'}
-goal S_PEDROZone4 {S_PEDRO_4 < S_PEDROlevel4-S_PEDROlevel3}
+goal S_PEDROZone4 {S_PEDRO_4 < max(0.,S_PEDROlevel4-S_PEDROlevel3)}
 define S_PEDROlevel5 {value 2030}
 define S_PEDRO_5 {std kind 'STORAGE-ZONE' units 'TAF'}
 goal S_PEDROZone5 {S_PEDRO_5 < S_PEDROlevel5-S_PEDROlevel4}

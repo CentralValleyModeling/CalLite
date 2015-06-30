@@ -40,6 +40,8 @@ goal split_d7b     {d7b = d7b_prj}  ! Joint Board Canal
 goal split_d7b_prj {d7b_prj = d7b_pwr + d7b_pag + d7b_prf }
 !goal subcontinuity216   {d7b_prf - c216b = 0}
 
+define D7C {std kind 'FLOW-DELIVERY' units 'CFS'} !Western Canal and Joint WD rice straw decomp diversions
+
 !Split Demand arc d201
 define D201 {std kind 'FLOW-DELIVERY' units 'CFS'} !Butte County Diversion
 define d201_pmi    {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
