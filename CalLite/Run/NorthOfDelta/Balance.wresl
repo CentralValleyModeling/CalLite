@@ -1,9 +1,6 @@
 /*************************************
 Balance.wresl
-*************************************
-6/23/2015
-Updated based on 2015 DCR Existing
-*************************************
+ 
 Tom FitzHugh BOR 4/7/2010
 
 Balances storage in Trinity, Shasta, and Folsom Reservoirs.  Balances Shasta vs. 
@@ -17,13 +14,8 @@ define volS_FolsmZone2 {value S_Folsmlevel2-S_Folsmlevel1 }
 
 define S_ShstaTrnty_Z2coeff {
     case Greater {  
-    condition volS_TrntyZone2 >= 0.001 .and. volS_TrntyZone2 >= volS_ShstaZone2
-    value   volS_ShstaZone2/volS_TrntyZone2
-  }
-  case Less {
-    condition volS_TrntyZone2 < volS_ShstaZone2
-    value   1.
-  }
+        condition volS_TrntyZone2 >= 0.001 
+        value   min(1.,volS_ShstaZone2/volS_TrntyZone2) }
     case otherwise {
         condition always
         value   0.}
@@ -31,13 +23,8 @@ define S_ShstaTrnty_Z2coeff {
 
 define S_TrntyShsta_Z2coeff {
     case Greater {
-     condition volS_ShstaZone2 >= 0.001 .and. volS_ShstaZone2 >= volS_TrntyZone2
-     value   volS_TrntyZone2/volS_ShstaZone2
-  }
-  case Less {
-    condition volS_ShstaZone2 < volS_TrntyZone2
-    value   1.
-  }
+        condition volS_ShstaZone2 >= 0.001 
+        value   min(1.,volS_TrntyZone2/volS_ShstaZone2)  }
     case otherwise {
         condition always
         value   0.}
@@ -51,14 +38,9 @@ goal balS_ShstaTrnty_Zone2 {
 }
 
 define S_ShstaFolsm_Z2coeff {
-    case Greater {
-        condition volS_FolsmZone2 >= 0.001 .and. volS_FolsmZone2 >= volS_ShstaZone2
-        value   volS_ShstaZone2/volS_FolsmZone2
-  }
-    case Less {
-        condition volS_FolsmZone2 < volS_ShstaZone2
-        value   1.
-  }
+     case Greater {
+         condition volS_FolsmZone2 >= 0.001 
+         value   min(1.,volS_ShstaZone2/volS_FolsmZone2) }
      case otherwise {
         condition always
         value   0. }
@@ -66,13 +48,8 @@ define S_ShstaFolsm_Z2coeff {
 
 define S_FolsmShsta_Z2coeff {
     case Greater {
-        condition volS_ShstaZone2 >= 0.001 .and. volS_ShstaZone2 >= volS_FolsmZone2 
-        value   volS_FolsmZone2 /volS_ShstaZone2
-  }
-    case Less {
-        condition volS_ShstaZone2 < volS_FolsmZone2 
-        value   1.
-  }
+        condition volS_ShstaZone2 >= 0.001 
+        value   min(1.,volS_FolsmZone2/volS_ShstaZone2) }
     case otherwise {
         condition always
         value   0. }
@@ -91,13 +68,8 @@ define volS_FolsmZone3 {value S_Folsmlevel3adj-S_Folsmlevel2 }
 
 define S_ShstaTrnty_Z3coeff {
     case Greater {
-        condition volS_TrntyZone3  >= 0.001 .and. volS_TrntyZone3  >= volS_ShstaZone3
-    value   volS_ShstaZone3/volS_TrntyZone3 
-  }
-    case Less {
-        condition volS_TrntyZone3  < volS_ShstaZone3
-    value   1.
-  }
+        condition volS_TrntyZone3 >= 0.001 
+        value   min(1.,volS_ShstaZone3/volS_TrntyZone3) }
     case otherwise {
         condition always
         value   0. }
@@ -105,13 +77,8 @@ define S_ShstaTrnty_Z3coeff {
 
 define S_TrntyShsta_Z3coeff {
     case Greater {
-        condition volS_ShstaZone3 >= 0.001 .and. volS_ShstaZone3 >= volS_TrntyZone3
-        value   volS_TrntyZone3/volS_ShstaZone3
-  }
-    case Less {
-        condition volS_ShstaZone3 < volS_TrntyZone3
-        value   1.
-  }
+        condition volS_ShstaZone3 >= 0.001 
+        value   min(1.,volS_TrntyZone3/volS_ShstaZone3) }
     case otherwise {
         condition always
         value   0. }
@@ -126,13 +93,8 @@ goal balS_ShstaTrnty_Zone3 {
 
 define S_ShstaFolsm_Z3coeff {
     case Greater {
-         condition volS_FolsmZone3 >= 0.001 .and. volS_FolsmZone3 >= volS_ShstaZone3
-         value   volS_ShstaZone3/volS_FolsmZone3
-  }
-  case Less {
-         condition volS_FolsmZone3 < volS_ShstaZone3
-         value   1.
-  }
+        condition volS_FolsmZone3 >= 0.001 
+        value   min(1.,volS_ShstaZone3/volS_FolsmZone3) }
     case otherwise {
         condition always
         value   0. }
@@ -140,13 +102,8 @@ define S_ShstaFolsm_Z3coeff {
 
 define S_FolsmShsta_Z3coeff {
     case Greater {
-         condition volS_ShstaZone3 >= 0.001 .and. volS_ShstaZone3 >= volS_FolsmZone3
-         value   volS_FolsmZone3/volS_ShstaZone3
-  }
-    case Less {
-         condition volS_ShstaZone3 < volS_FolsmZone3
-         value   1.
-  }
+        condition volS_ShstaZone3 >= 0.001 
+        value   min(1.,volS_FolsmZone3/volS_ShstaZone3) }
     case otherwise {
         condition always
         value   0. }
@@ -165,13 +122,8 @@ define volS_FolsmZone4 {value S_Folsmlevel4-S_Folsmlevel3adj }
 
 define S_ShstaTrnty_Z4coeff {
     case Greater {
-        condition volS_TrntyZone4 >= 0.001 .and. volS_TrntyZone4 >= volS_ShstaZone4
-        value   volS_ShstaZone4/volS_TrntyZone4
-  }
-    case Less {
-        condition volS_TrntyZone4 < volS_ShstaZone4
-        value   1.
-  }
+        condition volS_TrntyZone4 >= 0.001 
+        value   min(1.,volS_ShstaZone4/volS_TrntyZone4) }
     case otherwise {
         condition always
         value   0. }
@@ -179,13 +131,8 @@ define S_ShstaTrnty_Z4coeff {
 
 define S_TrntyShsta_Z4coeff {
     case Greater {
-         condition volS_ShstaZone4 >= 0.001 .and. volS_ShstaZone4 >= volS_TrntyZone4
-         value   volS_TrntyZone4/volS_ShstaZone4
-  }
-    case Less {
-        condition volS_ShstaZone4 < volS_TrntyZone4
-        value   1.
-  }
+        condition volS_ShstaZone4 >= 0.001 
+        value   min(1.,volS_TrntyZone4/volS_ShstaZone4) }
     case otherwise {
         condition always
         value   0. }
@@ -200,13 +147,8 @@ goal balS_ShstaTrnty_Zone4 {
 
 define S_ShstaFolsm_Z4coeff {
     case Greater {
-        condition volS_FolsmZone4 >= 0.001 .and. volS_FolsmZone4 >= volS_ShstaZone4
-        value   volS_ShstaZone4/volS_FolsmZone4
-  }
-    case Less {
-        condition volS_FolsmZone4 < volS_ShstaZone4
-        value   1.
-  }
+        condition volS_FolsmZone4 >= 0.001
+        value   min(1.,volS_ShstaZone4/volS_FolsmZone4) }
     case otherwise {
         condition always
         value   0. }
@@ -214,13 +156,8 @@ define S_ShstaFolsm_Z4coeff {
 
 define S_FolsmShsta_Z4coeff {
     case Greater {
-         condition volS_ShstaZone4 >= 0.001 .and. volS_ShstaZone4 >= volS_FolsmZone4
-         value   volS_FolsmZone4/volS_ShstaZone4
-  }
-    case Less {
-        condition volS_ShstaZone4 < volS_FolsmZone4
-        value   1.
-  }
+        condition volS_ShstaZone4 >= 0.001 
+        value   min(1.,volS_FolsmZone4/volS_ShstaZone4) }
     case otherwise {
         condition always
         value   0. }
@@ -233,18 +170,26 @@ goal balS_ShstaFolsm_Zone4 {
   lhs<rhs penalty 2*taf_cfs
 }
 
+! In September, Folsom FC rule is 760, but level used for computing
+! reservoir balancing should be 650.  This will create a smaller layer5
+! in Folsom, which will result in higher flows at Nimbus while allowing
+! additional storage to be retained in the conditions when flood rules do control.
+define S_Folsmlevel5bal {
+    case september {
+        condition month==SEP
+        value 650.}
+    case otherwise {
+        condition always
+        value S_Folsmlevel5 }
+}
+
 define volS_ShstaZone5 {value S_Shstalevel5 - S_Shstalevel4}
-define volS_FolsmZone5 {value S_Folsmlevel5 - S_Folsmlevel4}
+define volS_FolsmZone5 {value S_Folsmlevel5bal - S_Folsmlevel4}
 
 define S_ShstaFolsm_Z5coeff {
     case Greater {
-        condition volS_FolsmZone5 >= 0.001 .and. volS_FolsmZone5 >= volS_ShstaZone5
-        value   volS_ShstaZone5/volS_FolsmZone5
-  }
-    case Less {
-        condition volS_FolsmZone5 < volS_ShstaZone5
-        value   1.
-  }
+        condition volS_FolsmZone5 >= 0.001 
+        value   min(1.,volS_ShstaZone5/volS_FolsmZone5) }
     case otherwise {
         condition always
         value   0. }
@@ -252,13 +197,8 @@ define S_ShstaFolsm_Z5coeff {
 
 define S_FolsmShsta_Z5coeff {
     case Greater {
-         condition volS_ShstaZone5 >= 0.001 .and. volS_ShstaZone5 >= volS_FolsmZone5
-         value   volS_FolsmZone5/volS_ShstaZone5
-  }
-    case Less {
-        condition volS_ShstaZone5 < volS_FolsmZone5
-        value   1.
-  }
+        condition volS_ShstaZone5 >= 0.001
+        value   min(1.,volS_FolsmZone5/volS_ShstaZone5) }
     case otherwise {
         condition always
         value   0. }
