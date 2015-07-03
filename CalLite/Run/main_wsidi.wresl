@@ -149,8 +149,8 @@ model block1 {
                value    1300.
                 }
     }
-    goal cap2B {C_SJRCB_main + C_SJRREST <REST_Q}   
-    goal cap3B {C_SJRREST-C_SJRSackBC + C607X < REST_Q}   
+!    goal cap2B {C_SJRCB_main + C_SJRREST <REST_Q}   
+!    goal cap3B {C_SJRREST-C_SJRSackBC + C607X < REST_Q}   
 }
 
 MODEL block2 {
