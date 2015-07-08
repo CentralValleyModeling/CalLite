@@ -149,8 +149,8 @@ model block1 {
                value    1300.
                 }
     }
-!    goal cap2B {C_SJRCB_main + C_SJRREST <REST_Q}   
-!    goal cap3B {C_SJRREST-C_SJRSackBC + C607X < REST_Q}   
+!    goal cap2B {C_SJRCB_main + C_SJRREST <REST_Q}          !07/04/2015
+!    goal cap3B {C_SJRREST-C_SJRSackBC + C607X < REST_Q}    !07/04/2015 
 }
 
 MODEL block2 {
@@ -530,6 +530,7 @@ INCLUDE [LOCAL] 'Delta\Ann\ExportEstimate1_B2.wresl'
 INCLUDE [LOCAL] 'Delta\Split_IFTD.wresl'
 INCLUDE [LOCAL] 'Delta\Delta_reduced_calls.wresl'
 INCLUDE [LOCAL] 'Delta\X2_BO_WQ.wresl'
+INCLUDE [LOCAL] 'B2Actions\B2ActionsUpstreamRepeat_wsidi.wresl'   !Add B2Upstream Actions   !07/07/2015
 
 if LVEM_switch > 0.5 {
 	INCLUDE 'CCWD\LVM_Ops1.wresl'
@@ -610,6 +611,8 @@ INCLUDE [LOCAL] 'COA\coa_BO.wresl'
 
 INCLUDE [LOCAL] 'Delta\xc-gates.wresl'                 
 INCLUDE [LOCAL] 'Wheeling\Wheelcap.wresl'
+
+INCLUDE [LOCAL] 'B2Actions\B2ActionsUpstreamRepeat_wsidi.wresl'   !Add B2Upstream Actions   !07/07/2015
 
 if int(PBwheel_ON)==1 {INCLUDE 'Wheeling\wheelfixes_D1485.wresl'}
 else{INCLUDE 'Wheeling\wheelfixes.wresl'}
