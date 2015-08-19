@@ -28,7 +28,7 @@ GOAL   split_d7a_prj {d7a_prj = d7a_pag + d7a_pwr + d7a_prf}
 !(DJE)Need to figure out why continuity does not work here. May be found in Searching for: c220a
 !goal   set_d7a_prf   {d7a_prf < c220a + 0.0001}
 !goal   set_d7a_prf2  {d7a_prf > c220a - 0.0001}
-!goal   subcontinuity220   {d7a_prf - c220a = 0}
+!goal   subcontinuity220   {d7a_prf - c220a = 0}   
 
 !Split Demand arc d7b
 define D7B {std kind 'FLOW-DELIVERY' units 'CFS'} !Joint Canal

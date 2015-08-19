@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <launchConfiguration type="wpp.launchType">
 <stringAttribute key="wpp.debugModel.ATTR_WPP_ALLOWSVTSINIT" value="no"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_APART" value="CALLITE"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_APART" value="CALSIM"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_APART_MS2" value=""/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_AUTHOR" value="AA"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_DATATRANSFER_MS2" value=""/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_DATE" value="07/03/2015"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_DATE" value="07/14/2015"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_DESCRIPTION" value="CalLite 3.1.0"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_DVAR" value="D:\GitHub\CalLite\CalLite\DSS\CL_DCR2015_2020D09E_DV_20150706.dss"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_DVAR" value="D:\GitHub\CalLite\CalLite\DSS\CL_DCR2015_2020D09E_w-WSIDI_Tables&amp;NonCorrobSteps_DV_Debug_20150714.dss"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_DVAR_MS2" value=""/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_ENDDAY" value="30"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_ENDMONTH" value="sep"/>
@@ -35,7 +35,7 @@
 <stringAttribute key="wpp.debugModel.ATTR_WPP_STARTMONTH" value="oct"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_STARTYEAR" value="1921"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_STUDY" value="CalLite 3.1.0"/>
-<stringAttribute key="wpp.debugModel.ATTR_WPP_SVAR" value="D:\GitHub\CalLite\CalLite\DSS\CL_DCR2015_2020D09E_SV_20150706.dss"/>
+<stringAttribute key="wpp.debugModel.ATTR_WPP_SVAR" value="D:\GitHub\CalLite\CalLite\DSS\CL_DCR2015_2020D09E_NonCorrob_SV_fromCS2CL_20150713_Orig.dss"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_SVAR_MS2" value=""/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_SVFPART" value="2020D09E"/>
 <stringAttribute key="wpp.debugModel.ATTR_WPP_SVFPART_MS2" value=""/>

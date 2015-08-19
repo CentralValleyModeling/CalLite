@@ -2,6 +2,7 @@
 ! ===========================================
 ! 10/19/2010 created by Z.Q. Richard Chen DWR
 ! 05/04/2012 Added D1485 switches: Holly Canada, DWR
+! 07/14/2015 VAMP is turned off.
 ! ===========================================
 ! ID SwithName        D1641  NOREGULATION   USER_DEFINED  D1485
 !  1 DCC_DLTSW         1         0            2		    3		    
@@ -28,7 +29,7 @@ Index	Option
 4	1	!RV_DLTSW -  Sacramento River at Rio Vista Minimum Flow
 5	1	!X2_DLTSW -  X2 Requirements
 6	1	!X2ROE_DLTSW -  Roe Trigger
-7	1	!VAMP_DLTSW -  Vernalis
+7	0	!VAMP_DLTSW -  Vernalis   ! VAMP is turned off. 07/14/2015
 8	1	!EM_DLTSW -  Emmaton
 9	1	!JP_DLTSW -  Jersey Point
 10	1	!RS_DLTSW -  Rock Slough
