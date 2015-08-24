@@ -79,4 +79,4 @@ goal continuity590 {D_MDRCNL-D590-D590_16B-C_Mdrcnl-L590-D590F-C_MdrcnlF-C_Mdrcn
 goal continuity591 {D590+D_FRSNO+GP591-C591=0} !Madera ID Supply
 goal continuity592 {C591-D592-R_Chowbyp=0} !Madera ID Delivery
 
-goal Reach3BRest {C_MDOTA-C607X-C607Y=0}
+!goal Reach3BRest {C_MDOTA-C607X-C607Y=0}

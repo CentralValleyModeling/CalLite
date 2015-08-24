@@ -130,10 +130,12 @@ define adj_D9b_pmi {value adj_D9b_pmi_ann * perdem_70SMUD * taf_cfs}
 !Set up DSA 70 diversion arc (and sub arc) splits
 define d162_prj     {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'}
 define d162_psc     {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define d162_pmi     {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'}   !8/11/15, AA: Updated based on CalSim II 2015DCR.
 define d162a_psc    {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'} 
 define d162b_psc    {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'} 
 define d162c_psc    {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'} 
-goal set_d162_prj   {d162_prj = d162_psc}
+goal set_d162_prj   {d162_prj = d162_psc}            !8/11/15, AA: Updated based on CalSim II 2015DCR.
+!goal set_d162_prj   {d162_prj = d162_psc + d162_pmi}  !8/11/15, AA: Updated based on CalSim II 2015DCR.
 goal set_d162_psc   {d162_psc = d162a_psc + d162b_psc + d162c_psc} 
 
 define d167_prj     {STD KIND 'FLOW-DELIVERY' UNITS 'CFS'}

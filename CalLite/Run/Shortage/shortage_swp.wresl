@@ -16,14 +16,15 @@ define del_swp_pwr {alias d6_pwr + d7a_pwr + d7b_pwr + d206b_pwr + d206c_pwr + d
 define short_d7a_pag   {alias target_d7a_pag   - d7a_pag   kind 'delivery-shortage' units 'cfs'}
 define short_d7b_pag   {alias target_d7b_pag   - d7b_pag /*- WTS_DSA69
                               - EWA_GW69dv - EWA_CI69dv */ kind 'delivery-shortage' units 'cfs'}
+define short_d7c_dcmp  {alias dem_D7C_DCMP*taf_cfs*decomp_alloc - D7c   kind 'delivery-shortage' units 'cfs'}
 define short_d206a_pag {alias target_d206a_pag - d206a_pag kind 'delivery-shortage' units 'cfs'}
 define short_d206b_pag {alias target_d206b_pag - d206b_pag kind 'delivery-shortage' units 'cfs'}
 define short_d206c_pag {alias target_d206c_pag - d206c_pag kind 'delivery-shortage' units 'cfs'}
 
-define short_swp_pag_n {alias short_d7a_pag + short_d7b_pag + short_d206a_pag + short_d206b_pag + short_d206c_pag
+define short_swp_pag_n {alias short_d7a_pag + short_d7b_pag + short_d7c_dcmp + short_d206a_pag + short_d206b_pag + short_d206c_pag
                          kind 'delivery-shortage-swp' units 'cfs'}
 
-define del_swp_pag_n {alias d7a_pag + d7b_pag + d206a_pag + d206b_pag + d206c_pag
+define del_swp_pag_n {alias d7a_pag + d7b_pag + D7c + d206a_pag + d206b_pag + d206c_pag
                          kind 'delivery-swp' units 'cfs'}
 
 ! MI Shortage

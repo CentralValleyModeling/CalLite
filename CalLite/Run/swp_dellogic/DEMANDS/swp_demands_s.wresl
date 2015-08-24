@@ -10,7 +10,6 @@ swp_demands_s.wresl  (CalLite)
 Thisfile defines the PAG and PMI SWP demands
 for the South of Delta and North Bay during a CalLite run. 
 The loss and interruptable are handled in swp_demand_s_TS.wresl in CS2CL
-
 ****/
 
 !#7 CITY of YUBA CITY is not used
@@ -60,6 +59,82 @@ Demand & contractor ID's:
   39    D29     28   MI   VENTURA COUNTY WPD
 */
 
+define percent_Yuba{value swp_perdel_yuba*100.0}
+define percent_butt{value swp_perdel_butt*100.0}
+define percent_napa{value swp_perdel_napa*100.0}
+define percent_solano{value swp_perdel_solano*100.0}
+
+define yuba_demprofile {
+    case low  {
+        condition percent_Yuba < 35.
+        value   30.}
+    case lowmed  {
+        condition percent_Yuba < 45.
+        value   30. + (50. - 30.)*(percent_Yuba - 35.)/(45. - 35.)}
+        case med  {
+        condition percent_Yuba < 60.
+        value   50.}
+        case medhigh  {
+        condition percent_Yuba < 70.
+        value   50. + (100. - 50.)*(percent_Yuba - 60.)/(70. - 60.)}
+        case high {
+        condition always
+        value  100}
+}
+
+define butt_demprofile {
+    case low  {
+        condition percent_butt < 35.
+        value   30.}
+    case lowmed  {
+        condition percent_butt < 45.
+        value   30. + (50. - 30.)*(percent_butt - 35.)/(45. - 35.)}
+        case med  {
+        condition percent_butt < 60.
+        value   50.}
+        case medhigh  {
+        condition percent_butt < 70.
+        value   50. + (100. - 50.)*(percent_butt - 60.)/(70. - 60.)}
+        case high {
+        condition always
+        value  100}
+}
+
+define napa_demprofile{
+    case low  {
+        condition percent_napa < 35.
+        value   30.}
+    case lowmed  {
+        condition percent_napa < 45.
+        value   30. + (50. - 30.)*(percent_napa - 35.)/(45. - 35.)}
+        case med  {
+        condition percent_napa < 60.
+        value   50.}
+        case medhigh  {
+        condition percent_napa < 70.
+        value   50. + (100. - 50.)*(percent_napa - 60.)/(70. - 60.)}
+        case high {
+        condition always
+        value  100}
+}
+ 
+define solano_demprofile {
+    case low  {
+        condition percent_solano < 35.
+        value   30.}
+    case lowmed  {
+        condition percent_solano < 45.
+        value   30. + (50. - 30.)*(percent_solano - 35.)/(45. - 35.)}
+        case med  {
+        condition percent_solano < 60.
+        value   50.}
+        case medhigh  {
+        condition percent_solano < 70.
+        value   50. + (100. - 50.)*(percent_solano - 60.)/(70. - 60.)}
+        case high {
+        condition always
+        value  100}
+}
 
 define dem_D810_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=1, month=month}
 define dem_D813_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=2, month=month}
@@ -85,7 +160,7 @@ define dem_D885_PMI  {select demand from swp_3pattern_demands given percent=swp_
 define dem_D895_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=24,month=month}
 define dem_D899_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=25,month=month}
 define dem_D881_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=26,month=month}
-define dem_D403B_PMI {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=27,month=month}
+define dem_D403B_PMI {select demand from swp_3pattern_demands given percent=napa_demprofile use linear where contractor=27,month=month}
 define dem_D802A_PAG {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=28,month=month}
 define dem_D878_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=29,month=month}
 define dem_D886_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=30,month=month}
@@ -94,10 +169,53 @@ define dem_D888_PMI  {select demand from swp_3pattern_demands given percent=swp_
 define dem_D869_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=33,month=month}
 define dem_D870_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=34,month=month}
 define dem_D815_PMI  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=35,month=month}
-define dem_D403C_PMI {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=36,month=month}
+define dem_D403C_PMI {select demand from swp_3pattern_demands given percent=solano_demprofile use linear where contractor=36,month=month}
 define dem_D848_PAG  {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=37,month=month}
 define dem_D28_PMI   {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=38,month=month}
 define dem_D29_PMI   {select demand from swp_3pattern_demands given percent=swp_demprofile use linear where contractor=39,month=month}
+
+
+!Output for contractor demands
+define dem_D810_PMI_dv  {alias dem_D810_PMI  kind 'swp-output' units 'TAF' }
+define dem_D813_PMI_dv  {alias dem_D813_PMI  kind 'swp-output' units 'TAF' }
+define dem_D814_PMI_dv  {alias dem_D814_PMI  kind 'swp-output' units 'TAF' }
+define dem_D877_PMI_dv  {alias dem_D877_PMI  kind 'swp-output' units 'TAF' }
+define dem_D868_PAG_dv  {alias dem_D868_PAG  kind 'swp-output' units 'TAF' }
+define dem_D896_PMI_dv  {alias dem_D896_PMI  kind 'swp-output' units 'TAF' }
+define dem_D883_PMI_dv  {alias dem_D883_PMI  kind 'swp-output' units 'TAF' }
+define dem_D847_PAG_dv  {alias dem_D847_PAG  kind 'swp-output' units 'TAF' }
+define dem_D25_PMI_dv   {alias dem_D25_PMI   kind 'swp-output' units 'TAF' }
+define dem_D884_PMI_dv  {alias dem_D884_PMI  kind 'swp-output' units 'TAF' }
+define dem_D849_PAG_dv  {alias dem_D849_PAG  kind 'swp-output' units 'TAF' }
+define dem_D846_PAG_dv  {alias dem_D846_PAG  kind 'swp-output' units 'TAF' }
+define dem_D851A_PMI_dv {alias dem_D851A_PMI kind 'swp-output' units 'TAF' }
+define dem_D851_PAG_dv  {alias dem_D851_PAG  kind 'swp-output' units 'TAF' }
+define dem_D859_PAG_dv  {alias dem_D859_PAG  kind 'swp-output' units 'TAF' }
+define dem_D863_PAG_dv  {alias dem_D863_PAG  kind 'swp-output' units 'TAF' }
+define dem_D867_PAG_dv  {alias dem_D867_PAG  kind 'swp-output' units 'TAF' }
+define dem_D879_PMI_dv  {alias dem_D879_PMI  kind 'swp-output' units 'TAF' }
+define dem_D27_PMI_dv   {alias dem_D27_PMI   kind 'swp-output' units 'TAF' }
+define dem_D851B_PMI_dv {alias dem_D851B_PMI kind 'swp-output' units 'TAF' }
+define dem_D885_PMI_dv  {alias dem_D885_PMI  kind 'swp-output' units 'TAF' }
+define dem_D895_PMI_dv  {alias dem_D895_PMI  kind 'swp-output' units 'TAF' }
+define dem_D899_PMI_dv  {alias dem_D899_PMI  kind 'swp-output' units 'TAF' }
+define dem_D881_PMI_dv  {alias dem_D881_PMI  kind 'swp-output' units 'TAF' }
+define dem_D403B_PMI_dv {alias dem_D403B_PMI kind 'swp-output' units 'TAF' }
+define dem_D802A_PAG_dv {alias dem_D802A_PAG kind 'swp-output' units 'TAF' }
+define dem_D878_PMI_dv  {alias dem_D878_PMI  kind 'swp-output' units 'TAF' }
+define dem_D886_PMI_dv  {alias dem_D886_PMI  kind 'swp-output' units 'TAF' }
+define dem_D887_PMI_dv  {alias dem_D887_PMI  kind 'swp-output' units 'TAF' }
+define dem_D888_PMI_dv  {alias dem_D888_PMI  kind 'swp-output' units 'TAF' }
+define dem_D869_PMI_dv  {alias dem_D869_PMI  kind 'swp-output' units 'TAF' }
+define dem_D870_PMI_dv  {alias dem_D870_PMI  kind 'swp-output' units 'TAF' }
+define dem_D815_PMI_dv  {alias dem_D815_PMI  kind 'swp-output' units 'TAF' }
+define dem_D403C_PMI_dv {alias dem_D403C_PMI kind 'swp-output' units 'TAF' }
+define dem_D848_PAG_dv  {alias dem_D848_PAG  kind 'swp-output' units 'TAF' }
+define dem_D28_PMI_dv   {alias dem_D28_PMI   kind 'swp-output' units 'TAF' }
+define dem_D29_PMI_dv   {alias dem_D29_PMI   kind 'swp-output' units 'TAF' }
+
+
+!***********************************************************************************
 
 /* renamed by CS2CL SV tool */
 !losses - constant pattern, never reduced.

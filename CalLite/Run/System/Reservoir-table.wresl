@@ -160,7 +160,7 @@ define S_Folsmlevel4 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
 define S_Folsm_4 {std kind 'STORAGE-ZONE' units 'TAF'}
 define S_Folsmlevel5 {timeseries kind 'STORAGE-LEVEL' units 'TAF'}
 define S_Folsm_5 {std kind 'STORAGE-ZONE' units 'TAF'}
-define S_Folsmlevel6 {value 975.}
+define S_Folsmlevel6 {value 966.832}
 define S_Folsm_6 {std kind 'STORAGE-ZONE' units 'TAF'}
 define S_Folsm {std kind 'STORAGE' units 'TAF'} !FOLSOM LAKE AKA RES_NUM = 8
 goal storage_Folsm {S_Folsm=S_Folsm_1+S_Folsm_2+S_Folsm_3+S_Folsm_4+S_Folsm_5+S_Folsm_6}

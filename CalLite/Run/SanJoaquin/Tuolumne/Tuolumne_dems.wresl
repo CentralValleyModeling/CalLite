@@ -193,18 +193,24 @@ amount of CUAW for that month.
 define D549_pag_factor {
     case march1 {
         condition month==mar .and. cuaw_549_pag<18.*taf_cfs
-        value .3}
+        value .65}
     case march2 {
         condition month==mar .and. cuaw_549_pag>=18.*taf_cfs .and. cuaw_549_pag<25.*taf_cfs
-        value .5 }
+        value .65 }
     case march3 {
         condition month==mar .and. cuaw_549_pag>=25.*taf_cfs
-        value .6 }
-    case FUTURE {
-        condition LOD_DLTSW >= 1 
-        select factD549 from sjr_monthly_data_Fut where month=month }
-    case Existing{
-        condition LOD_DLTSW == 0   ! existing condition
+        value .65 }
+    case april1 {
+        condition month==apr .and. cuaw_549_pag<18.*taf_cfs
+        value .575}
+    case april2 {
+        condition month==apr .and. cuaw_549_pag>=18.*taf_cfs .and. cuaw_549_pag<25.*taf_cfs
+        value .7 }
+    case april3 {
+        condition month==apr .and. cuaw_549_pag>=25.*taf_cfs
+        value .8 }
+    case otherwise {
+        condition always
         select factD549 from sjr_monthly_data_Ext where month=month }
 }
 
@@ -279,7 +285,7 @@ deliveries.
 define dloss_549_pag {
     case canal_flow {
         condition 1.1*cuaw_549_pag/D549_pag_factor - GP548_min_prv_limit > 0.
-        value .8 * taf_cfs }
+        value 3. * taf_cfs }
     case otherwise {
         condition always
         value 0. }
@@ -513,18 +519,24 @@ amount of CUAW for that month.
 define D533_pag_factor {
     case march1 {
         condition month==mar .and. cuaw_533_pag<9.*taf_cfs
-        value .35}
+        value .65}
     case march2 {
-        condition month==mar .and. cuaw_533_pag>=9.*taf_cfs .and. cuaw_533_pag<12.*taf_cfs
-        value .5 }
+        condition month==mar .and. cuaw_533_pag>=9.*taf_cfs .and. cuaw_533_pag<18.*taf_cfs
+        value .65 }
     case march3 {
-        condition month==mar .and. cuaw_533_pag>=12.*taf_cfs
-        value .6 }
-   case FUTURE {
-        condition LOD_DLTSW >= 1 
-        select factD533 from sjr_monthly_data_Fut where month=month }
-   case Existing{
-        condition LOD_DLTSW == 0   ! existing condition
+        condition month==mar .and. cuaw_533_pag>=18.*taf_cfs
+        value .65 }
+    case april1 {
+        condition month==apr .and. cuaw_533_pag<9.*taf_cfs
+        value .7}
+    case april2 {
+        condition month==apr .and. cuaw_533_pag>=9.*taf_cfs .and. cuaw_533_pag<18.*taf_cfs
+        value .7 }
+    case april3 {
+        condition month==apr .and. cuaw_533_pag>=18.*taf_cfs
+        value .8 }
+    case otherwise {
+        condition always
         select factD533 from sjr_monthly_data_Ext where month=month }
 }
 
@@ -563,7 +575,7 @@ define GP532_max_pag_lim1{
 }
 
 ! Allowable ground water pumping after min pumping has occurred
-define GP532_max_pag_limit {value GP532_max_pag_lim1 - GP532_min_pag_limit}
+define GP532_max_pag_limit {value max(0.,GP532_max_pag_lim1 - GP532_min_pag_limit)}
 
 ! Limit the private min ground water pumping to previously defined value
 goal set_GP532_min_prv {GP532_min_prv < GP532_min_prv_limit}
@@ -583,7 +595,7 @@ deliveries.
 define dloss_533_pag {
     case canal_flow {
         condition 1.1*cuaw_533_pag/D533_pag_factor - GP532_min_prv_limit > 0.
-        value .1 * taf_cfs }
+        value 0. * taf_cfs }
     case otherwise {
         condition always
         value 0. }

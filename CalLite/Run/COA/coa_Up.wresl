@@ -78,7 +78,7 @@ define IBU_UWFE_max     {value 9999999.}
   + Sutter Butte Canal + Thermalito Afterbay Release to Feather River
   - Lake Oroville Inflow - Kelly Ridge Power Plant Discharge             */
 
-goal swp_storage_change {SWPDS = C_Therm + D_Therm + D_Orovl - I_Orovl - I_KellyRidge}  !Define SWP Storage Change
+goal swp_storage_change {SWPDS = C_Therm + D_Therm + D_Orovl /* + D7C*/ - I_Orovl - I_KellyRidge}  !Define SWP Storage Change
 
 ! **************************** CVP STORAGE CHANGE DEFINITIONS ****************************
 

@@ -170,8 +170,21 @@ goal balS_ShstaFolsm_Zone4 {
   lhs<rhs penalty 2*taf_cfs
 }
 
+! In September, Folsom FC rule is 760, but level used for computing
+! reservoir balancing should be 650.  This will create a smaller layer5
+! in Folsom, which will result in higher flows at Nimbus while allowing
+! additional storage to be retained in the conditions when flood rules do control.
+define S_Folsmlevel5bal {
+    case september {
+        condition month==SEP
+        value 650.}
+    case otherwise {
+        condition always
+        value S_Folsmlevel5 }
+}
+
 define volS_ShstaZone5 {value S_Shstalevel5 - S_Shstalevel4}
-define volS_FolsmZone5 {value S_Folsmlevel5 - S_Folsmlevel4}
+define volS_FolsmZone5 {value S_Folsmlevel5bal - S_Folsmlevel4}
 
 define S_ShstaFolsm_Z5coeff {
     case Greater {

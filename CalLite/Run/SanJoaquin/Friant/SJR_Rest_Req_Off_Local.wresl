@@ -6,7 +6,7 @@
 ! and flood control operations at Friant and allows the solution for the overall
 ! volume movement of water in the month.  
 
-define SJRR_rel_taf {select release from SJRR_Reqs_off where month=month, yt=wyt_SJRRest}
+define SJRR_rel_taf {select release from SJRR_Reqs_off where month=month}
 define SJRR_rel {value SJRR_rel_taf*taf_cfs}
 
 define SJRR_relDV {alias SJRR_rel kind 'flow-min-requirement' units 'cfs'}

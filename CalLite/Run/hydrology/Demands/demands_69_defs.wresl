@@ -9,6 +9,7 @@ define dem_d7a_PAG    {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
 define dem_d7a_PWR    {timeseries kind 'DEMAND-SWP-WR' units 'TAF'}
 define dem_d7b_PAG    {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
 define dem_d7b_PWR    {timeseries kind 'DEMAND-SWP-WR' units 'TAF'}
+define dem_d7C_DCMP   {timeseries kind 'DEMAND-SWP-DECOMP' units 'TAF'}
 define dem_d202_PWR   {timeseries kind 'DEMAND-SWP-WR' units 'TAF'}
 define dem_d206a_PAG  {timeseries kind 'DEMAND-SWP-AG' units 'TAF'}
 define dem_d204_PIMI   {timeseries kind 'DEMAND-SWP-MI' units 'TAF'}

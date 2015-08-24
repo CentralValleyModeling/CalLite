@@ -28,7 +28,7 @@ GOAL   split_d7a_prj {d7a_prj = d7a_pag + d7a_pwr + d7a_prf}
 !(DJE)Need to figure out why continuity does not work here. May be found in Searching for: c220a
 !goal   set_d7a_prf   {d7a_prf < c220a + 0.0001}
 !goal   set_d7a_prf2  {d7a_prf > c220a - 0.0001}
-!goal   subcontinuity220   {d7a_prf - c220a = 0}
+!goal   subcontinuity220   {d7a_prf - c220a = 0}   
 
 !Split Demand arc d7b
 define D7B {std kind 'FLOW-DELIVERY' units 'CFS'} !Joint Canal
@@ -39,6 +39,8 @@ define d7b_prf     {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
 goal split_d7b     {d7b = d7b_prj}  ! Joint Board Canal
 goal split_d7b_prj {d7b_prj = d7b_pwr + d7b_pag + d7b_prf }
 !goal subcontinuity216   {d7b_prf - c216b = 0}
+
+define D7C {std kind 'FLOW-DELIVERY' units 'CFS'} !Western Canal and Joint WD rice straw decomp diversions
 
 !Split Demand arc d201
 define D201 {std kind 'FLOW-DELIVERY' units 'CFS'} !Butte County Diversion
@@ -144,3 +146,33 @@ define minpump_69_prj {VALUE min(mingw_69*perc_dr69,prj_dr69)  }       ! (UNITS 
 define minpump_69_np  {VALUE min(mingw_69*(1.0-perc_dr69),np_dr69)  }  ! (UNITS = TAF)
 goal set_gp65_prj   {c209_pgw > minpump_69_prj*taf_cfs  }
 goal set_gp65_np    {c209_gw > minpump_69_np*taf_cfs  }
+
+!Deliver rice decomp water.  The percent of decomp water to be delivered is based on end-of-Sept
+!storage in Oroville.  The intent is to avoid drawing Oroville below 850 TAF when release becomes limited to 1500 cfs
+
+define decomp_allocdv {std kind 'Decomp-Alloc' units 'None'}
+
+define decomp_alloc {
+	case Oro_high {
+		condition month==OCT .and. S_Orovl(-1) > 1200.
+			value 1.0	}
+	case Oro_1100 {
+		condition month==Oct .and. S_Orovl(-1) > 1100.
+			value 0.75	}
+	case Oro_1000 {
+		condition month==Oct .and. S_Orovl(-1) > 1000.
+			value 0.5	}
+	case Oro_900 {
+		condition month==Oct .and. S_Orovl(-1) > 900.
+			value 0.25	}
+	case Oro_low {
+		condition month==Oct .and. S_Orovl(-1) <= 900.
+			value 0.0	}
+	case other {
+		condition always
+		value decomp_allocdv(-1)	}
+}
+
+goal setdecomp_alloc {decomp_allocdv = decomp_alloc}
+
+goal set_D7C {D7C < dem_D7C_DCMP*taf_cfs*decomp_alloc}

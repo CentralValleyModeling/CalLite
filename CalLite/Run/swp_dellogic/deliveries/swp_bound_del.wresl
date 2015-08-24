@@ -17,12 +17,12 @@ define ad_d7a_pwr   {value dem_d7a_pwr*taf_cfs}
 define ad_d7a_pag   {value perdel_swp_fsc*dem_d7a_pag*taf_cfs}
 !(DJE) d7a_prf supplements water to Butte Sink DC (C221) and is subject to SWP allocation schedule.
 !define ad_d7a_prf   {value perdel_swp_ag1*dem_C221_prf*taf_cfs}
-define ad_d7a_prf   {value swp_perdel*dem_C221_prf*taf_cfs}
+define ad_d7a_prf   {value swp_perdel_butt*dem_C221_prf*taf_cfs}
 define ad_d7b_pwr   {value dem_d7b_pwr*taf_cfs}
 define ad_d7b_pag   {value perdel_swp_fsc*dem_d7b_pag*taf_cfs}
 !(DJE) d7b_prf provides water to Gray Lodge Refuge (C216b) and is subject to SWP allocation schedule.
 !define ad_d7b_prf   {value perdel_swp_ag1*dem_C216b_prf*taf_cfs}
-define ad_d7b_prf   {value swp_perdel*dem_C216b_prf*taf_cfs}
+define ad_d7b_prf   {value swp_perdel_butt*dem_C216b_prf*taf_cfs}
 define ad_d206a_pag {value perdel_swp_fsc*dem_d206a_pag*taf_cfs}
 define ad_d206b_pwr {value dem_d206b_pwr*taf_cfs}
 define ad_d206b_pag {value perdel_swp_fsc*dem_d206b_pag*taf_cfs}
@@ -35,10 +35,10 @@ define ad_d202_pwr  {value dem_d202_pwr*taf_cfs}
 !define ad_d201_pomi  {value perdel_swp_oth1*dem_d201_pomi*taf_cfs}
 !define ad_d204_pimi  {value perdel_swp_oth1*dem_d204_pimi*taf_cfs}
 !define ad_d204_pomi  {value perdel_swp_oth1*dem_d204_pomi*taf_cfs}
-define ad_d201_pimi  {value swp_perdel*dem_d201_pimi*taf_cfs}
-define ad_d201_pomi  {value swp_perdel*dem_d201_pomi*taf_cfs}
-define ad_d204_pimi  {value swp_perdel*dem_d204_pimi*taf_cfs}
-define ad_d204_pomi  {value swp_perdel*dem_d204_pomi*taf_cfs}
+define ad_d201_pimi  {value swp_perdel_butt*dem_d201_pimi*taf_cfs}
+define ad_d201_pomi  {value swp_perdel_butt*dem_d201_pomi*taf_cfs}
+define ad_d204_pimi  {value swp_perdel_yuba*dem_d204_pimi*taf_cfs}
+define ad_d204_pomi  {value swp_perdel_yuba*dem_d204_pomi*taf_cfs}
 !Limit all the Project Water Rights arcs to their contract minus any extra for the arc (NOD only).
 ! *** For the North of Delta *****************************************************************
 
