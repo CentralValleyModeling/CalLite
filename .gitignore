@@ -1,0 +1,79 @@
+# Directories #
+######################
+# fully excluded 
+run/=ILP=
+Results
+assets
+run/cvgroundwater/data/restart
+.vscode/
+
+# include as stub
+DSS/output/*
+!*.stub
+
+# include as stub
+DSS/input/*
+!*.stub
+!CS3_L2020_INIT_v7.dss
+
+# Files #
+#########
+*.bin
+*.config.ifs
+*.dsc
+*.pkc
+*.DSc
+*.dsd
+*.dsk
+*.launch.bak
+*.wresl.bak
+*.wresl.par
+*.out
+*.par
+*.launch.config
+*.sty
+*.table.bak
+*.pdf
+*.xlsx
+*.project
+Error_evaluation.txt
+Error_solving.txt
+__study.config
+*.launch.config.prgss
+CVGroundwater_Messages.out
+*/temp*.py
+temp*.py
+
+# Compiled source # 
+################### 
+*.com 
+*.exe 
+*.bat
+*.launch.bat
+*.launch.config
+*.launch.config.ifs
+*.launch.config.prgss
+*.o 
+*.rcc
+*.so 
+
+# Packages # 
+############ 
+# it's better to unpack these files and commit the raw source 
+# git has its own built in compression methods 
+*.7z 
+*.dmg 
+*.gz 
+*.iso 
+*.jar 
+*.rar 
+*.tar 
+*.zip 
+
+# Logs and databases # 
+###################### 
+*.log 
+*.sql 
+*.sqlite 
+*.csv
+
