@@ -14,3 +14,4 @@ goal split_C_Lwstn_EXC {C_Lwstn_EXC = C_Lwstn_EXC1 + C_Lwstn_EXC2}
 
 define int_cweir {timeseries kind 'integer' units 'none'}
 goal boundC100_EXC1 {C_Lwstn_EXC1 < int_cweir * 9999999.}
+!goal boundC100_EXC1 {C_Lwstn_EXC1 < int_cweir * 6000.}

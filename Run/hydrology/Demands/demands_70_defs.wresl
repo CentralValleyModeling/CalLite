@@ -16,20 +16,20 @@ define D_Nimbus_pmi {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
 !Monthly delivery pattern for each of the water purveyors
 define perdem_70       {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !AG monthly distribution--DSA 70
 define perdem_70smud   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--SMUD Folsom South Canal
-define perdem_70Sac    {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--City of Sacramento
+define perdem_70Sac    {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly diWFann_FSC025_60N_PUstribution--City of Sacramento
 define perdem_70Fol    {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Folsom City
 define perdem_70SJWDS   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--San Juan WD (Sac County)
-define perdem_70SJWDP  {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--San Juan WD (Placer County)
+!define perdem_70SJWDP  {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--San Juan WD (Placer County)
 define perdem_70Rose   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Roseville City
-define perdem_70ArcWD  {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Arcade WD
-define perdem_70NRWD   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Northridge WD
+!define perdem_70ArcWD  {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Arcade WD
+!define perdem_70NRWD   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Northridge WD
 define perdem_70Carm   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Carmichael WD
 define perdem_70PCWA   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Placer County WA
-define perdem_70FolP   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Folsom Prison
+!define perdem_70FolP   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Folsom Prison
 define perdem_70ElDor  {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--El Dorado ID
 define perdem_70ElDorCo {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--El Dorado County WA
 define perdem_70CARec  {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--CA Parks & Rec
-define perdem_70SCWC   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--SCWC/ACWC
+!define perdem_70SCWC   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--SCWC/ACWC
 define perdem_70SCWA   {timeseries kind 'DELIVERY-PATTERN' units 'NONE'} !MI monthly distribution--Sac County WA
 
 !The following are monthly demands on the Sacramento River

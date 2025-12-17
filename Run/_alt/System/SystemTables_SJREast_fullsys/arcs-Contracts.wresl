@@ -1,0 +1,31 @@
+!System file info for 64_XA for CalLite full system cycles
+
+!*******************************************
+!Demand Unit 64_XA  Columbia Canal Company
+
+define  CL_64_XA       {select contract from CVP_SOD_Contracts where contractor=6441} ! Annual contract amount from lookup table
+
+define AW_64_XA_ann_dv {std kind 'demand-annual' units 'taf'}
+define AW_64_XA_ann    {
+    case firstMon {  ! special case for first wateryear -- use annual demand over water year instead of contract year
+         condition month==OCT .and. wateryear==BgnWY
+         sum(i=0,11,1) ((AWO_64_XA(i)+AWR_64_XA(i))*cfs_taf(i))}
+    case Mar2009 {  ! specia case for last wateryear   -- use previous countract year
+         condition month==MAR .and. wateryear==EndWY
+         value         (AW_64_XA_ann_dv(-1))}
+    case March   {  ! compute annual demand at start of each contract year
+         condition month==MAR .and. wateryear<EndWY
+         sum(i=0,11,1) ((AWO_64_XA(i)+AWR_64_XA(i))*cfs_taf(i))}
+    case otherwise {! use annual demand for duration of year
+         condition always
+         value         (AW_64_XA_ann_dv(-1))}
+}         
+goal set_64_XA_ann_dv  {AW_64_XA_ann_dv = AW_64_XA_ann}
+
+define DIST_64_XA_dv   {std kind 'monthly-dist' units 'none'}
+define DIST_64_XA      {value  (AWO_64_XA+AWR_64_XA)*cfs_taf/AW_64_XA_ann}
+goal set_DIST_64_XA_dv {DIST_64_XA_dv = DIST_64_XA}
+
+define CLM_64_XA       {value CL_64_XA * DIST_64_XA}
+define CLM_64_XA_      {alias CL_64_XA * DIST_64_XA     kind 'contract-limit' units 'taf'}
+

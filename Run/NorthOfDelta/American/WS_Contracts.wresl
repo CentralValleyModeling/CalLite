@@ -1,0 +1,70 @@
+! There are two diversions off FPT013
+! The first is D_FPT013_WTPVNY which has some project deliveries. For now, this diversion will be fixed to a timeseries due to the complexity
+! of WS_Contracts implementation
+! The second diversion is D_FPT013_FSC013. This is treated as a non project diversion and not dynamically calculated
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Sacramento County Water Agency!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!---------------------------------------
+!Define CVP contract supplies
+!---------------------------------------
+! 22 TAF of PL 101-514 water, 7 TAF is subcontracted to the City of Folsom
+! SCWA has entered into agreements City of Sacramento and SMUD for the assignment to SCWA for a total of 30 TAF
+! Assume only Fazio water wheeled through Sac River WTP
+define CLmon_WTPSAC_SCWA {timeseries kind 'DIVERSION-LIMIT' units 'TAF'}
+define CLmon_WTPSACVNY_SCWA {timeseries kind 'DIVERSION-LIMIT' units 'TAF'}
+
+/*
+SCWA Zone 40 is divided into three regions:
+  - Mather Sunrise (NSA) - 26S_PU6: The NSA is currently supplied exclusively by groundwater.
+  - Laguna         (CSA) - 26S_PU6: The CSA is supplied by surface water from the Vineyard WTP and groundwater.
+  - Vineyard       (SSA) - 26S_PU4: The SSA is supplied by a mix of surface water and groundwater
+ */
+
+!---------------------------------------
+!Delineating sub-arcs
+!---------------------------------------
+define D_WTPSAC_26S_PU4_CVP       {std kind 'DIVERSION-CVP' units 'CFS'}
+define D_WTPSAC_26S_PU4_WHOLESALE {std kind 'DIVERSION-WHOLESALE' units 'CFS'}
+goal splitD_WTPSAC_26S_PU4 {D_WTPSAC_26S_PU4 = D_WTPSAC_26S_PU4_CVP + D_WTPSAC_26S_PU4_WHOLESALE}
+
+define D_FPT013_WTPVNY_CVP       {std kind 'DIVERSION-CVP' units 'CFS'}
+define D_FPT013_WTPVNY_WR        {std kind 'DIVERSION-WR' units 'CFS'}
+goal splitD_FPT013_WTPVNY {D_FPT013_WTPVNY = D_FPT013_WTPVNY_CVP + D_FPT013_WTPVNY_WR}
+
+define Wholesalemon_WTPSAC_26S_PU4_existing {timeseries kind 'DEMANDS-WHOLESALE' units 'TAF'}
+define Wholesalemon_WTPSAC_26S_PU4_2040 {timeseries kind 'DEMANDS-WHOLESALE' units 'TAF'}
+
+ define Wholesalemon_WTPSAC_26S_PU4 { 
+	case Existing {condition LODflag==0. value Wholesalemon_WTPSAC_26S_PU4_existing} ! Revised from 5.3 to zero
+	case LOD2040  {condition LODflag==1. value Wholesalemon_WTPSAC_26S_PU4_2040}}  ! From City of Sacramento 2015 UWMP table 4-7, Cannot exceed 12.44 beacuse of capacity limitation. Capacity constraint relaxed at 2040
+
+
+!---------------------------------------
+!Constraints
+!---------------------------------------
+!Capacity limitations
+goal setD_WTPSAC_26S_PU4_Capacity  {D_WTPSAC_26S_PU4 < 11.1*1.5472 - 11.1*1.5472*LODFlag + 9999.*LODFlag}
+goal limit_D_WTPVNY_SCWA           {D_WTPVNY_26S_PU4 + D_WTPVNY_26S_PU5 + D_WTPVNY_26S_PU6 < 85.* 1.5472} ! SCWA use of capacity set to max of 85 MGD
+
+goal continuityWTPVNY   {D_FPT013_WTPVNY - D_WTPVNY_26S_PU1 - D_WTPVNY_26S_PU4 - D_WTPVNY_26S_PU5 - D_WTPVNY_26S_PU6           = 0. }
+
+!CVP water
+goal setD_WTPSAC_26S_PU4_CVP       {D_WTPSAC_26S_PU4_CVP < CLmon_WTPSAC_SCWA*taf_cfs*perdel_cvpmi_sys }
+goal limitSCWA_CVP	               {D_WTPSAC_26S_PU4_CVP + D_FPT013_WTPVNY_CVP < CLmon_WTPSACVNY_SCWA*taf_cfs*perdel_cvpmi_sys}
+
+! Limits on Wholesale deliveries during Hodge restrictions and Waterforum limit
+! Soft penalty approach used here since giving these deliveries a standard high delivery weight and using a < in the goals below led to a few months where the model released additional water to get flow up the Hodge flow just so it can make these deliveries
+! Deliveries are essentially unweighted in Weight-table.wresl (see note there)
+define D_WTPSAC_WHOLESALE_TOT {std kind'DIVERSION-WHOLESALE' units'CFS'}
+
+!Wholesale water - constraint repeated under City of Sacramento section with additional constraints for (a) Hodge Criteria, (b) Dry years
+goal setD_WTPSAC_26S_PU4_WHOLESALE {D_WTPSAC_26S_PU4_WHOLESALE < Wholesalemon_WTPSAC_26S_PU4*taf_cfs}
+
+goal limitWholesale_D_WTPSAC_26S_PU4  {D_WTPSAC_26S_PU4_WHOLESALE < Wholesalemon_WTPSAC_26S_PU4*taf_cfs}!SCWA Zone 40
+
+goal setD_WTPSAC_WHOLESALE_TOT {D_WTPSAC_WHOLESALE_TOT = D_WTPSAC_26S_PU4_WHOLESALE}
+

@@ -1,5 +1,6 @@
 
 
+
 !Retrieve CalSim storage diversions and releases.
 
 define SW_DelValle {timeseries kind 'STORAGE-WITHDRAWAL' units 'CFS'} !Del Valle Reservoir
@@ -37,4 +38,24 @@ goal lim_D_Pyramid {D_Pyramid < SD_Pyramid}
 goal lim_I_Pyramid {I_Pyramid < SW_Pyramid}
 goal lim_D_Castaic {D_Castaic < SD_Castaic}
 goal lim_I_Castaic {I_Castaic < SW_Castaic}
+
+!Also adding evaporations for these reservoirs...  taken from CS3 TS currently.
+define E_DelValleSV {timeseries kind 'EVAPORATION' units 'CFS'} !Del Valle Reservoir
+define E_SilverwoodSV {timeseries kind 'EVAPORATION' units 'CFS'} !Silverwood Reservoir
+define E_PerrisSV {timeseries kind 'EVAPORATION' units 'CFS'} !Perris Reservoir
+define E_PyramidSV {timeseries kind 'EVAPORATION' units 'CFS'} !Pyramid Reservoir
+define E_CastaicSV {timeseries kind 'EVAPORATION' units 'CFS'} !Castaic Reservoir
+
+define E_DelValle {lower -99999 upper 99999 kind 'EVAPORATION' units 'CFS'} !Del Valle Reservoir
+define E_Silverwood {lower -99999 upper 99999  kind 'EVAPORATION' units 'CFS'} !Silverwood Reservoir
+define E_Perris {lower -99999 upper 99999  kind 'EVAPORATION' units 'CFS'} !Perris Reservoir
+define E_Pyramid {lower -99999 upper 99999  kind 'EVAPORATION' units 'CFS'} !Pyramid Reservoir
+define E_Castaic {lower -99999 upper 99999  kind 'EVAPORATION' units 'CFS'} !Castaic Reservoir
+
+goal fixE_DelValle {lhs E_DelValle rhs E_DelValleSV lhs<rhs penalty 999999 lhs>rhs penalty 999999}
+goal fixE_Silverwood {lhs E_Silverwood rhs E_SilverwoodSV lhs<rhs penalty 999999 lhs>rhs penalty 999999}
+goal fixE_Perris {lhs E_Perris rhs E_PerrisSV lhs<rhs penalty 999999 lhs>rhs penalty 999999}
+goal fixE_Pyramid {lhs E_Pyramid rhs E_PyramidSV lhs<rhs penalty 999999 lhs>rhs penalty 999999}
+goal fixE_Castaic {lhs E_Castaic rhs E_CastaicSV lhs<rhs penalty 999999 lhs>rhs penalty 999999}
+
 

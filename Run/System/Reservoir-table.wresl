@@ -176,6 +176,8 @@ goal area_Folsm {A_Folsm=A_Folsmlast+1000*coefev_Folsm*S_Folsm-1000*coefev_Folsm
 goal evap_Folsm {E_Folsm*cfs_af=(evap_S_Folsm/24)*A_Folsmlast+(evap_S_Folsm/24)*A_Folsm}
 define relcap_Folsm {select discharge from res_info given storage=1000*S_Folsm(-1) use linear where res_num=8}
 goal maxrelease_Folsm {C_Folsm<relcap_Folsm}
+!Then commented out since this is in the SJRWest system in CalSim 3 part of the model
+/*
 define S_SLCVPlevel1 {value 45.}
 define S_SLCVP_1 {std kind 'STORAGE-ZONE' units 'TAF'}
 goal S_SLCVPZone1 {S_SLCVP_1 < S_SLCVPlevel1}
@@ -226,3 +228,4 @@ goal area_SLSWP {A_SLSWP=A_SLSWPlast+1000*coefev_SLSWP*S_SLSWP-1000*coefev_SLSWP
 goal evap_SLSWP {E_SLSWP*cfs_af=(evap_S_SLSWP/24)*A_SLSWPlast+(evap_S_SLSWP/24)*A_SLSWP}
 define relcap_SLSWP {select discharge from res_info given storage=1000*S_SLSWP(-1) use linear where res_num=12}
 goal maxrelease_SLSWP {C_SLSWP<relcap_SLSWP}
+*/

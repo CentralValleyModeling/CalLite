@@ -1,0 +1,2 @@
+sumcvpCL_sys.wresl-common\cvp_dellogic\cvp_dellogic_sys\demands_sys
+sumcvpDR_sys.wresl-common\cvp_dellogic\cvp_dellogic_sys\demands_sys

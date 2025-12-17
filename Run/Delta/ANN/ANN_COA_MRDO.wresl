@@ -16,14 +16,14 @@ define CO_Z   {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
 if int(AN_DLTSW)==3 {define AN_Z   {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}}
 if int(CH_DLTSW)==3 {define CH_Z   {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}}
 
-goal aRSZ1 {RS_Z_1  = RS_MRDO_1 - D_DeltaReqd}
-goal aRSZ2 {RS_Z_2  = RS_MRDO_2 - D_DeltaReqd}
-goal aRSZ3 {RS_Z_3  = RS_MRDO_3 - D_DeltaReqd}
-goal aEMZ  {EM_Z    = EM_MRDO   - D_DeltaReqd}
-goal aJPZ  {JP_Z    = JP_MRDO   - D_DeltaReqd}
-goal aCOZ  {CO_Z    = CO_MRDO   - D_DeltaReqd}
-if int(AN_DLTSW)==3 {goal aANZ  {AN_Z    = AN_MRDO   - D_DeltaReqd}}
-if int(CH_DLTSW)==3 {goal aCHZ  {CH_Z    = CH_MRDO   - D_DeltaReqd}}
+goal aRSZ1 {RS_Z_1  = RS_MRDO_1 - NDOI_MIN}
+goal aRSZ2 {RS_Z_2  = RS_MRDO_2 - NDOI_MIN}
+goal aRSZ3 {RS_Z_3  = RS_MRDO_3 - NDOI_MIN}
+goal aEMZ  {EM_Z    = EM_MRDO   - NDOI_MIN}
+goal aJPZ  {JP_Z    = JP_MRDO   - NDOI_MIN}
+goal aCOZ  {CO_Z    = CO_MRDO   - NDOI_MIN}
+if int(AN_DLTSW)==3 {goal aANZ  {AN_Z    = AN_MRDO   - NDOI_MIN}}
+if int(CH_DLTSW)==3 {goal aCHZ  {CH_Z    = CH_MRDO   - NDOI_MIN}}
 
 !use slack/surplus type variables to get to positive values:
 define RS_X_1 {std kind 'FLOW' units 'CFS'}
@@ -74,12 +74,12 @@ if int(CH_DLTSW)==3 {goal cCHZ  {CH_Q   = CH_Z   + CH_X  }}
 
 !link ann outflow to coa outflow:
 define mrdo_ann_relax {std kind 'soft-constraint' units 'cfs'}
-goal coa_RS1 {C_Delta_ANN  > RS_Q_1 - mrdo_ann_relax}
-goal coa_RS2 {C_Delta_ANN  > RS_Q_2 - mrdo_ann_relax}
-goal coa_RS3 {C_Delta_ANN  > RS_Q_3 - mrdo_ann_relax}
-goal coa_EM  {C_Delta_ANN  > EM_Q - mrdo_ann_relax  }
-goal coa_JP  {C_Delta_ANN  > JP_Q - mrdo_ann_relax }
-goal coa_CO  {C_Delta_ANN  > CO_Q - mrdo_ann_relax  }
-if int(AN_DLTSW)==3 {goal coa_AN  {C_Delta_ANN > AN_Q - mrdo_ann_relax  }}
-if int(CH_DLTSW)==3 {goal coa_CH  {C_Delta_ANN > CH_Q - mrdo_ann_relax  }}
+goal coa_RS1 {NDOI_ADD_ANN  > RS_Q_1 - mrdo_ann_relax}
+goal coa_RS2 {NDOI_ADD_ANN  > RS_Q_2 - mrdo_ann_relax}
+goal coa_RS3 {NDOI_ADD_ANN  > RS_Q_3 - mrdo_ann_relax}
+goal coa_EM  {NDOI_ADD_ANN  > EM_Q - mrdo_ann_relax  }
+goal coa_JP  {NDOI_ADD_ANN  > JP_Q - mrdo_ann_relax }
+goal coa_CO  {NDOI_ADD_ANN  > CO_Q - mrdo_ann_relax  }
+if int(AN_DLTSW)==3 {goal coa_AN  {NDOI_ADD_ANN > AN_Q - mrdo_ann_relax  }}
+if int(CH_DLTSW)==3 {goal coa_CH  {NDOI_ADD_ANN > CH_Q - mrdo_ann_relax  }}
 

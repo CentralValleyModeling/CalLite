@@ -1,0 +1,14 @@
+!System file info for 64_XA for CalLite full system cycles
+
+define I_FSL012     {timeseries kind 'INFLOW' units 'TAF' convert 'CFS'} !INFLOW TO FRESNO SLOUGH
+define I_JBP006     {timeseries kind 'INFLOW' units 'TAF' convert 'CFS'} !INFLOW TO JAMES BYPASS
+
+if int(Dynamic_SJR)==1 {
+define C_SJR205     {std kind 'CHANNEL' units 'CFS'}!Outflow to Mendota Pool Bypass
+goal setC_SJR205 {C_SJR205 = C_SJR205[Upstream_DySJR]}}
+
+if int(Dynamic_SJR)==0 {
+define C_SJR205     {std kind 'CHANNEL' units 'CFS'}!Outflow to Mendota Pool Bypass
+!define C_SJR205_TS     {timeseries 'C_SJR205' kind 'CHANNEL' units 'CFS'} defined elsewhere now in ExportEstimate1.wresl files
+goal setC_SJR205 {C_SJR205 = C_SJR205_TS}
+}

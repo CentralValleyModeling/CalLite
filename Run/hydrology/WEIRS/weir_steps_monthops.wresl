@@ -38,24 +38,32 @@ NOTES:
 ! (River Mile 82), DSA 69.
 
 ! Estimated Sacramento River flow at weir crest elevation is 62,000 cfs
-define C_SacFea_0 {upper 62000. kind 'flow-channel' units 'cfs'}         ! segment from 0 to 62000
-define C_SacFea_1 {upper unbounded kind 'flow-channel' units 'cfs'}     ! segment above 62000
-goal sumN_SacFea_in {C_Wilkns + C_YubFea + AD_SacFea = C_SacFea_0 + C_SacFea_1 }
+define C_SacFea_0 {upper 36125. kind 'flow-channel' units 'cfs'}         ! segment from 0 to 36125
+define C_SacFea_1 {upper unbounded kind 'flow-channel' units 'cfs'}     ! segment above 36125
+define C_SacFea_2 {upper 93308. kind 'flow-channel' units 'cfs'}         ! segment from 36125 to 93308
+define C_SacFea_3 {upper unbounded kind 'flow-channel' units 'cfs'}     ! segment above 93308
+goal sumN_SacFeain1 {C_Wilkns + C_YubFea + AD_SacFea  = C_SacFea_0 + C_SacFea_1}
+goal sumN_SacFeain2 {C_Wilkns + C_YubFea + AD_SacFea  = C_SacFea_2 + C_SacFea_3}
 
 ! slopes of Fremont Weir overflow curves for each segment of Sac River flow
-define fwslope0 {value 0.}
-define fwslope1 {value 0.79808}
+define fwslope0 {value 0.0}
+define fwslope1 {value 0.645}
+define fwslope2 {value 0.8566}
 
 ! weir flow will be a sum of all the segment's linearized functions
-goal actfwflow {D_FreWeir = fwslope0*C_SacFea_0 + fwslope1*C_SacFea_1 }
+goal actfwflow {D_FreWeir = fwslope0*C_SacFea_0 + fwslope1*C_SacFea_2 - fwslope1*C_SacFea_0 + fwslope2*C_SacFea_3 }
 
 ! integer variable to bound segments for proper filling step by step
-define int_fweir {INTEGER STD KIND 'INTEGER' UNITS 'NONE'}
-goal boundN_SacFea_in_0 {C_SacFea_0 > int_fweir * 62000.}
-goal boundN_SacFea_in_1 {C_SacFea_1 < int_fweir * 9999999.}
+define int_fweir1 {INTEGER STD KIND 'INTEGER' UNITS 'NONE'}
+define int_fweir2 {INTEGER STD KIND 'INTEGER' UNITS 'NONE'}
+
+goal boundN_SacFeain_0 {C_SacFea_0 > int_fweir1 * 36125.}
+goal boundN_SacFeain_1 {C_SacFea_1 < int_fweir1 * 9999999.}
+goal boundN_SacFeain_2 {C_SacFea_2 > int_fweir2 * 93308.}
+goal boundN_SacFeain_3 {C_SacFea_3 < int_fweir2 * 9999999.}
 
 ! total flow entering SacFeather node
-define QSacFth {alias C_Wilkns + C_YubFea + AD_SacFea kind 'flow-channel' units 'cfs'}
+define QSacFth {alias C_Wilkns + C_YubFea + AD_SacFea  kind 'flow-channel' units 'cfs'}
 
 ! *******************************************************************************
 ! Estimated Overflow Rating for Sacramento Weir to the Yolo Bypass

@@ -11,71 +11,71 @@ define WQ424 {std kind 'salinity' units 'mg/l'}
 !Old River Pipeline
 define scale_421 {
 	case no_water {
-                condition       D408_OR[UPSTREAM] + D408_VC[UPSTREAM] < 0.01
+                condition       D408_OR[PRESETUP] + D408_VC[PRESETUP] < 0.01
 		value		0.
 	}
 	case otherwise {
 		condition	always
-                value           1./(D408_OR[UPSTREAM] + D408_VC[UPSTREAM])
+                value           1./(D408_OR[PRESETUP] + D408_VC[PRESETUP])
 	}
 }
-goal calc_WQ421 {WQ421 = WQ408_OR*D408_OR[UPSTREAM]*scale_421 + WQ408_VC*D408_VC[UPSTREAM]*scale_421}
+goal calc_WQ421 {WQ421 = WQ408_OR*D408_OR[PRESETUP]*scale_421 + WQ408_VC*D408_VC[PRESETUP]*scale_421}
 
 !Transfer Facility
 define scale_423 {
 	case no_water {
-                condition       C421_TFR[UPSTREAM] + C423_FILL[UPSTREAM] + C422_REL_CC[UPSTREAM] < 0.01
+                condition       C421_TFR[PRESETUP] + C423_FILL[PRESETUP] + C422_REL_CC[PRESETUP] < 0.01
 		value		0.
 	}
 	case otherwise {
 		condition	always
-                value           1./(C421_TFR[UPSTREAM] + C423_FILL[UPSTREAM] + C422_REL_CC[UPSTREAM])
+                value           1./(C421_TFR[PRESETUP] + C423_FILL[PRESETUP] + C422_REL_CC[PRESETUP])
 	}
 }
-goal calc_WQ423 {WQ423 = WQ421*C421_TFR[UPSTREAM]*scale_423 + WQ424_MOK*C423_FILL[UPSTREAM]*scale_423 + WQ422(-1)*C422_REL_CC[UPSTREAM]*scale_423}
+goal calc_WQ423 {WQ423 = WQ421*C421_TFR[PRESETUP]*scale_423 + WQ424_MOK*C423_FILL[PRESETUP]*scale_423 + WQ422(-1)*C422_REL_CC[PRESETUP]*scale_423}
 
 !Los Vaqueros
 
 define scale_422 {
 	case no_water {
-                condition       S422[UPSTREAM]*taf_cfs < 0.01
+                condition       S422[PRESETUP]*taf_cfs < 0.01
 		value		0.
 	}
 	case otherwise {
 		condition	always
-                value           1./(S422[UPSTREAM]*taf_cfs)
+                value           1./(S422[PRESETUP]*taf_cfs)
 	}
 }
 
-goal calc_WQ422 {WQ422 = WQ422(-1)*S422(-1)*taf_cfs*scale_422 - WQ422(-1)*C422_REL[UPSTREAM]*scale_422 - WQ422(-1)*C422_KC[UPSTREAM]*scale_422
-                        + WQ422_inflow*I422*scale_422 + WQ422_ppt*I422_ppt_cfs*scale_422 + WQ423*C422_FILL[UPSTREAM]*scale_422}
+goal calc_WQ422 {WQ422 = WQ422(-1)*S422(-1)*taf_cfs*scale_422 - WQ422(-1)*C422_REL[PRESETUP]*scale_422 - WQ422(-1)*C422_KC[PRESETUP]*scale_422
+                        + WQ422_inflow*I422*scale_422 + WQ422_ppt*I422_ppt_cfs*scale_422 + WQ423*C422_FILL[PRESETUP]*scale_422}
 
 
 !Los Vaqueros Pipeline at Mok Aq. Intertie
 define scale_424 {
 	case no_water {
-                condition       I424[UPSTREAM] + C423_DEL[UPSTREAM] < 0.01
+                condition       I424[PRESETUP] + C423_DEL[PRESETUP] < 0.01
 		value		0.
 	}
 	case otherwise {
 		condition	always
-                value           1./(I424[UPSTREAM] + C423_DEL[UPSTREAM])
+                value           1./(I424[PRESETUP] + C423_DEL[PRESETUP])
 	}
 }
 
-goal calc_WQ424 {WQ424 = WQ424_MOK*I424[UPSTREAM]*scale_424 + WQ423*C423_DEL[UPSTREAM]*scale_424}
+goal calc_WQ424 {WQ424 = WQ424_MOK*I424[PRESETUP]*scale_424 + WQ423*C423_DEL[PRESETUP]*scale_424}
 
 !Contra Costa Canal downstream of Mallard Slough intake
 
 define scale_420 {
 	case no_water {
-                condition       C424[UPSTREAM] + D408_RS[UPSTREAM] + D406A_MS[UPSTREAM] < 0.01
+                condition       C424[PRESETUP] + D408_RS[PRESETUP] + D406A_MS[PRESETUP] < 0.01
 		value		0.
 	}
 	case otherwise {
 		condition	always
-                value           1./(C424[UPSTREAM] + D408_RS[UPSTREAM] + D406A_MS[UPSTREAM])
+                value           1./(C424[PRESETUP] + D408_RS[PRESETUP] + D406A_MS[PRESETUP])
 	}
 }
 
-goal calc_WQ420 {WQ420 = WQ424*C424[UPSTREAM]*scale_420 + WQ408_RS*D408_RS[UPSTREAM]*scale_420 + WQ406A_MS*D406A_MS[UPSTREAM]*scale_420}
+goal calc_WQ420 {WQ420 = WQ424*C424[PRESETUP]*scale_420 + WQ408_RS*D408_RS[PRESETUP]*scale_420 + WQ406A_MS*D406A_MS[PRESETUP]*scale_420}

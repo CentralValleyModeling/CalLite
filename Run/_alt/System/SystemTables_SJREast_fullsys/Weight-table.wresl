@@ -1,0 +1,4 @@
+!System file info for 64_XA for CalLite full system cycles
+ 
+Objective obj_SYS_SJREAST = { !
+[D_MDOTA_64_XA,       79700]}

@@ -1,0 +1,8 @@
+!System file info for 64_XA for CalLite full system cycles
+
+! 64_XA
+
+define  GP_64_XA         {std kind 'GW-PUMPING'            units 'CFS'} 
+define  GPmin_64_XA  	 {select minfraction from AgMinMaxgw where id = 113} 
+define  GPmax_64_XA 	 {select maxfraction from AgMinMaxgw where id = 113}
+

@@ -21,6 +21,6 @@ define HC_min {
         value 0. }
 }
 
-goal meet_RedBluffQ {C_RedBlf_MIF < max(Rd_min,HC_min)}
+goal meet_RedBluffQ {C_RedBlf_MIF < Rd_min}!max(Rd_min,HC_min)}
 
 

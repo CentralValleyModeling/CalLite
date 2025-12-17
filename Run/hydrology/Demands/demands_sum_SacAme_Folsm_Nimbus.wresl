@@ -6,14 +6,18 @@ Tom FitzHugh BOR 5/20/2010
 Does final summation of Calsim project deliveries to get D_SacAme_P, D_Nimbus_P, and D_Folsm_P.
 Also sums up deliveries by type.
 **************************************/
+goal setD_Shsta_P {D_Shsta_P = D_SHSTA_WTPJMS}
+goal setD_Wkytn_P {D_Wkytn_P = D_WKYTN_02_PU + D_WKYTN_WTPBUK + D_WTPCSD_02_PU + D_WTPCSD_02_PA}!SP MBK Shankar Added
 
-goal setD_SacAme_P {D_SacAme_P = d163_prj + d165_prj + d162_prj + d167_prj}
+goal setD_SacAme_P {D_SacAme_P = D_SAC065_WTPBTB+D_SAC074_21_SA+D_SAC078_22_SA1+D_SAC082_22_SA1}!SP MBK Shankar Added
 goal setD_SacAme_pmi {D_SacAme_pmi = d167_pmi}
 goal setD_SacAme_psc {D_SacAme_psc = d163_psc + d165_psc + d162_psc}
 
-goal setD_Folsm_P {D_Folsm_P = d8_prj}
+goal setD_Folsm_P {D_Folsm_P = D_FOLSM_26S_PU3 + D_WTPRSV_26N_PU1}! SP MBK
 goal setD_Folsm_pmi {D_Folsm_pmi = d8_pmi}
   
 goal setD_Nimbus_P {D_Nimbus_P = d9_prj}
 goal setD_Nimbus_pmi {D_Nimbus_pmi = d9_pmi}
  
+goal setD_Freeport_P {D_Freeport_P = D_WTPVNY_26S_PU1+D_WTPVNY_26S_PU4+D_WTPVNY_26S_PU5+D_WTPVNY_26S_PU6+D_WTPSAC_26S_PU4}
+goal setD_Hood_P {D_Hood_P = 0.}

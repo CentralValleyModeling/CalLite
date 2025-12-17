@@ -6,7 +6,7 @@ months it applies can be set in CCWD_OMR_CONTROL.table.
 
 define lim_Fill_OMR {
 	case NoFill {
-		condition	OMR_switch > 0.5 .and. C_OMR[BASE] <= C408_limit
+		condition	OMR_switch > 0.5 .and. C_OMR[BASE] <= C_OMR014_limit
 		value		0.
 	}
 	case otherwise {
@@ -27,12 +27,12 @@ goal protect_SA {
 	lhs	C424_DT
 	case	NoOMR {
 		condition	lim_Fill_OMR > 0.5
-		rhs		C424[upstream]
+		rhs		C424[PRESETUP]
 		lhs<rhs		penalty 0
 	}
 	case	OMR {
 		condition	always
-		rhs		max(C424[upstream],ORVC_pref*min(D408_CVP[upstream]+D408_TX[upstream]+D408_ECC[upstream],C424[upstream]+C422_FILL_CC[upstream]))
+		rhs		max(C424[PRESETUP],ORVC_pref*min(D408_CVP[PRESETUP]+D408_TX[PRESETUP]+D408_ECC[PRESETUP],C424[PRESETUP]+C422_FILL_CC[PRESETUP]))
 		lhs<rhs		penalty 0
 	}
 }

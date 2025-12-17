@@ -126,7 +126,7 @@ goal set_C209_pag   {C209_pag  = D7a_pag + D7b_pag + D206a_pag + D206b_pag + D20
 goal set_C209_pwr   {C209_pwr  = D6_pwr + D7a_pwr + D7b_pwr + D202_pwr + D206b_pwr + D206c_pwr}
 
 goal set_c209_np_dr   {C209_np_dr = np_dr69*taf_cfs }
-goal set_c209_mi   {C209_mi = D_Daguer_NP}
+!goal set_c209_mi   {C209_mi = D_Daguer_NP}
 define D285        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Camp Far West I.D.
 goal set_C209_ag   {C209_ag = d285}
 goal set_c209_rg   {C209_rg = D207a}
@@ -134,7 +134,7 @@ define D217        {timeseries kind 'FLOW-DELIVERY' units 'CFS'} !Butte Creek di
 goal set_c209_bc   {C209_bc = D217}
 
 !Set non-project Feather River diversions
-goal setD_YubFea_NP{D_YubFea_NP=D207A}
+goal setD_YubFea_NP{D_YubFea_NP=0.}! SP MBK 20161212
 
 
 ! Constrain flow in C209_pimi

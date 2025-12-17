@@ -1,0 +1,9 @@
+! Estimates of Fall Folsom inflows at 90% exceedance for use with FMS
+! These are derived from the FOLSM_INFLOW timeseries
+! Approach is to identify 90% exceedance year for total OctDec flows, then use flows in fall months of that year
+AR_90EXCFALL
+month	Histflow
+1	42.72
+2	57.18
+3	77.15
+

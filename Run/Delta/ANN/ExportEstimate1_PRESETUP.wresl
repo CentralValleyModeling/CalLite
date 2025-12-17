@@ -1,0 +1,37 @@
+/*************************************
+ExportEstimate1_Presetup.wresl
+ 
+Export estimate for H&S to allow upstream control of operations.
+*/
+
+!*********************************************************************************************
+! SWP exports:
+! export for south-of-delta SWP: demand + rulecurve
+define EstSWPSodExp {value 300.}
+define exp_est_SWP {alias EstSWPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}
+
+!*********************************************************************************************
+! CVP exports:
+
+! export for south-of-delta CVP: demand
+
+! minimum Jones pumping
+define JonesMinPumpLevel {
+        case JonesShastaLow {
+                condition S_Shsta(-1) + S_ShstaE(-1) < 1500.0
+                value 600.0 }
+        case Joneslowshastafolsom {
+                condition S_Folsm(-1) < 400. .and. S_Shsta(-1) + S_ShstaE(-1) < 2000. !Better reflection of actual operations by trying to keep
+                value 800.  }                                                           !water from being released for SL storage during low storage
+        case JonesShastaHigh {
+                condition always
+                value 800.0 }
+}
+! export for south-of-delta CVP: demand + rulecurve
+define EstCVPSodExp {value JonesMinPumpLevel}
+
+define exp_est_CVP {alias EstCVPSodExp kind 'EXPORT-ESTIMATE' units 'CFS'}
+
+!defined here for consistency with other ExportEstimate1.wresl files, though not used in this one.
+define D_SJR180_ARY010_TS {timeseries 'D_SJR180_ARY010' kind 'DIVERSION' units 'CFS'}
+define C_SJR205_TS     {timeseries 'C_SJR205' kind 'CHANNEL' units 'CFS'}

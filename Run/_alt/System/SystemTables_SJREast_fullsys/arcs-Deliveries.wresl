@@ -1,0 +1,20 @@
+!System file info for 64_XA for CalLite full system cycles
+
+! 64_XA
+define  DN_MDOTA_64_XA    {std kind 'SW_DELIVERY-NET'       units 'CFS'}            
+define  DN_64_XA          {std kind 'SW_DELIVERY-NET'       units 'CFS'}            
+define  DG_64_XA          {std kind 'SW_DELIVERY-GROSS'     units 'CFS'}
+define  RU_64_XA          {std kind 'REUSE'                 units 'CFS'}
+define  RP_64_XA          {std kind 'RIPARIAN-MISC-ET'      units 'CFS'}    
+define  TW_64_XA          {timeseries kind 'TAILWATER'      units 'TAF' convert 'CFS'}
+define  AW_64_XA          {std kind 'APPLIED-WATER'         units 'CFS'}
+define  AWO_64_XA         {timeseries kind 'APPLIED-WATER'  units 'TAF' convert 'CFS'}
+define  AWR_64_XA         {timeseries kind 'APPLIED-WATER'  units 'TAF' convert 'CFS'}
+
+! 64_NU -- no surface deliveries
+define  UD_64_NU        {timeseries kind 'URBAN-DEMAND' units 'TAF' convert 'CFS'}      
+
+
+
+
+

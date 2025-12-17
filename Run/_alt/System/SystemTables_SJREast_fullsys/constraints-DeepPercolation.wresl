@@ -1,0 +1,8 @@
+!System file info for 64_XA for CalLite full system cycles
+
+define DP_64_INT         {timeseries kind 'deep-percolation' units 'TAF' convert 'CFS'}
+!define DP_WBATotal_64    {std kind 'deep-percolation' units 'CFS'}
+!goal setDP_WBATotal64    {DP_WBATotal_64  = DP_64_INT + DP_64_PA1 + DP_64_PA2 + DP_64_PA3 + DP_64_XA + DCL_64_XA 
+!                                          + DP_64_NA2 + WW_64_NU}
+
+

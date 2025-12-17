@@ -120,10 +120,10 @@ goal fixONeillFBSWP {
 }
 
 goal fixSL {
-  lhs     S_SLSWP
+  lhs     S_SLUIS_SWP
   case Wheeling {
   condition always !wheeling_ctrl > .1 .and. (CVC_ON + JPOD_ON)>.1
-  rhs     S_SLSWP[B2_BO]
+  rhs     S_SLUIS_SWP[B2_BO]
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999}
 }
@@ -214,10 +214,10 @@ goal fixIBU {
 }
 
 goal fixSurplus {
-  lhs     C_Delta_SWP + C_Delta_CVP + Surp1Terms + Surp2Terms
+  lhs     NDOI_ADD_SWP + NDOI_ADD_CVP + Surp1Terms + Surp2Terms
   case Wheeling {
   condition always !wheeling_ctrl > .1 .and. (CVC_ON + JPOD_ON)>.1
-  rhs     C_Delta_SWP[B2_BO] + C_Delta_CVP[B2_BO]
+  rhs     NDOI_ADD_SWP[B2_BO] + NDOI_ADD_CVP[B2_BO]
   lhs>rhs penalty 99999
   lhs<rhs penalty 99999}
 }

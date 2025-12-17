@@ -1,0 +1,35 @@
+!System file info for 64_XA for CalLite full system cycles
+
+!==========================================================================================
+! 64_XA - Columbia Canal Co. (Exchange Contractor) - Ag
+!==========================================================================================
+! The district has an open canal system. The canal system suffers from high seepage losses,
+! which the diostrict is attempting to reduce through a canal lining program. Seepage losses
+! are estimated to be 15%. The district operates the canals as a 'closed system' with no
+! operational spills. All tailwater is either recaptured at farm level or recaptured by the district.
+! Reference: CCC. 2012. Columbia Canal Company Agricultural Water Management Plan
+! Available at: http://www.usbr.gov/mp/watershare/wcplans/
+
+define EVF_MDOTA_64_XA    {value 0.01} ! evaporative loss fraction
+define DPF_MDOTA_64_XA    {value 0.15} ! deep percolation loss fraction
+define LFF_MDOTA_64_XA    {value 0.00} ! lateral flow loss fraction
+define OSF_MDOTA_64_XA    {value 0.00} ! canal operating spill fraction
+
+define EVF_MDOTA_64_XA_a  {alias EVF_MDOTA_64_XA kind 'Loss-Fraction' units 'NONE'}
+
+define EV_64_XA           {std kind 'EVAPORATIVE-LOSS'  units 'CFS'}
+define DP_64_XA           {std kind 'DEEP-PERCOLATION'  units 'CFS'}
+define LF_64_XA           {std kind 'LATERAL-FLOW-LOSS' units 'CFS'}
+define DL_64_XA           {std kind 'DELIVERY-LOSS'     units 'CFS'}
+
+define EV_MDOTA_64_XA     {std kind 'EVAPORATION-LOSS'  units 'CFS'}
+define DP_MDOTA_64_XA     {std kind 'DEEP-PERCOLATION'  units 'CFS'}
+define LF_MDOTA_64_XA     {std kind 'LATERAL-FLOW-LOSS' units 'CFS'}
+define DL_MDOTA_64_XA     {std kind 'DELIVERY-LOSS'     units 'CFS'}
+
+define RUFR_64_XA         {value 0.100}        ! reuse fraction for irrigated rice
+define RUFO_64_XA         {value 0.100}        ! reuse fraction for other irrigated crops
+define RUFW_64_XA         {value 0.100}        ! reuse fraction for wetlands 
+define RPF_64_XA          {value 0.025}        ! riparian/miscellaneous ET fraction 
+
+

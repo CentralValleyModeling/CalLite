@@ -13,56 +13,6 @@ Z.Q. Richard Chen, DWR 02/09/2010
 Use X2_DLTSW switch, GUI_X2Active, and GUI_X2KM tables to add user defined X2KM requirments.
 *************************************/
 
-define X2_Select { 
-    case X2_Udef {
-	condition X2_DLTSW == 2
-	select X2Active from GUI_X2Active where month=month} !X2 active momth table
-    case otherwise {
-	condition always 
-	value 0.0 }
-	}
-	
-define X2KM_Udef {
-    case X2_Udef {
-	condition X2_Select == 1
-	select X2KM from GUI_X2KM where wyT_Sac=wyT_Sac,month=month } ! Monthly X2 KM value table
-    case X2_Other {
-	condition always 
-	value 1000
-	}
-	}
-
-! set the distances from Golden Gate for each location (km)
-define km_roe { 
-     case X2_Udef {
-          condition X2_Select == 1  .or. X2_DLTSW == 0  
-          value X2KM_Udef }                                     
-     case D1641 {
-          condition always
-          value 64. }                 ! km to Roe Island/Port Chicago under D1641
-}        
-
-
-define km_chs {
-     case X2_Udef {
-          condition X2_Select == 1  .or. X2_DLTSW == 0  
-          value 0 } 
-     case D1641 {
-          condition always
-          value 74. }     ! km to Chipps Island
-}
-
-define km_cnf {
-     case X2_Udef {
-          condition X2_Select == 1  .or. X2_DLTSW == 0  
-          value 0 } 
-     case D1641 {
-          condition always
-          value 81. }     ! km to Confluence (Sac & SJR)
-}
-!define km_roe {value 64. }     ! km to Roe Island/Port Chicago
-!define km_chs {value 74. }     ! km to Chipps Island
-!define km_cnf {value 81. }     ! km to Confluence (Sac & SJR)
 
 ! set the flow cap for each station (cfs). this is max flow to meet X2 at each station
 !define flowcap_roe {value 29200. }     ! cfs for Roe Island/Port Chicago
@@ -109,7 +59,7 @@ define DO_req_X2roe_nocap {
      case StandardOn_ANN {
           condition      daysX2_roe_mod > 0.5 .and. X2_ANN_KM == 0
           value getNDO_X2(km_roe,
-                    X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),X2_last,
+                    SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),SMSCG_OPSV,
                     NDO(-4),NDO(-3),NDO(-2),NDO(-1),
                     int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),int(daysin),
                     10,month,wateryear,int(begday_roe),int(endday_roe)) }
@@ -170,7 +120,7 @@ define DO_req_X2chs_nocap {
      case StandardOn_ANN {
           condition      daysX2_chs_mod > 0.5 .and. X2_ANN_KM == 0
           value getNDO_x2_curMonNDOSplit(km_chs,
-                    X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),X2_last,
+                    SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),SMSCG_OPSV,
                     NDO(-4),NDO(-3),NDO(-2),NDO(-1),DO_req_X2roe,NDO(-1),
                     int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),int(daysin),
                     int(endday_roe),0,10,month,wateryear,int(begday_chs),int(endday_chs))}
@@ -196,6 +146,22 @@ define X2_chs  {
 define x2_chsDV {alias x2_chs kind 'debug' units 'none'} !Testing
 ! ******************************************************************************************
 ! Set the begin and end day for the standard -- Confluence always met last
+define begday_bkg {
+     case background {
+          condition daysX2_bkg_mod > 0.5
+          value    1. }
+     case None {
+          condition always
+          value    0. }
+}
+define endday_bkg {
+     case background {
+          condition daysX2_bkg_mod > 0.5
+          value    begday_bkg + daysX2_bkg_mod - 1. }
+     case None {
+          condition always
+          value    0. }
+}
 define begday_cnf {
      case X2_Off {
           condition X2_DLTSW == 0  
@@ -203,6 +169,9 @@ define begday_cnf {
      case StandardNone {
           condition      daysX2_cnf < 0.5
           value    0. }
+     case PA_SmeltAug {
+          condition      daysX2_cnf > 0.5 .and. month == AUG
+          value    endday_bkg + 1. }
      case StandardOn {
           condition      daysX2_cnf_mod > 0.5
           value    endday_chs + 1. }
@@ -239,10 +208,24 @@ define DO_req_X2cnf_nocap {
      case SpecFlowStd_KM {
           condition       month >= FEB .and. month <= JUN .and. daysX2_cnf < 0.5 .and. X2_ANN_KM == 1     ! if no days at confluence
           value           flowmin_specX2 }
-     case StandardOn_ANN {
-          condition      daysX2_cnf_mod > 0.5 .and. X2_ANN_KM == 0
+     case WQCP_StandardOn_ANN {
+          condition		range(month,feb,jun) .and. daysX2_cnf_mod > 0.5 .and. X2_ANN_KM == 0
           value getNDO_x2_curMonNDOSplit(km_cnf,
-                    X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),X2_last,
+                    SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),SMSCG_OPSV,
+                    NDO(-4),NDO(-3),NDO(-2),NDO(-1),DO_req_X2roe,DO_req_X2chs,
+                    int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),int(daysin),
+                    int(endday_roe),int(daysX2_chs_mod),10,month,wateryear,int(begday_cnf),int(endday_cnf))}
+     case FX2_Aug_StandardOn_ANN {
+          condition      month == aug .and. daysX2_cnf_mod > 0.5 .and. X2_ANN_KM == 0
+          value getNDO_x2(km_aug,
+                    SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),SMSCG_OPSV,
+                    NDO(-4),NDO(-3),NDO(-2),NDO(-1),
+                    int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),int(daysin),
+                    10,month,wateryear,int(begday_cnf),int(endday_cnf))}
+     case FX2_SEPOCT_StandardOn_ANN {
+          condition      daysX2_cnf_mod > 0.5 .and. X2_ANN_KM == 0
+          value getNDO_x2_curMonNDOSplit(km_PA,
+                    SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),SMSCG_OPSV,
                     NDO(-4),NDO(-3),NDO(-2),NDO(-1),DO_req_X2roe,DO_req_X2chs,
                     int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),int(daysin),
                     int(endday_roe),int(daysX2_chs_mod),10,month,wateryear,int(begday_cnf),int(endday_cnf))}

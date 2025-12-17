@@ -10,10 +10,10 @@ To limit Fall X2 to September and October to export reductions only, set SEP and
 define FWS_MaxExp_X2 {
      case Sep_FWS_W {
           condition      month == SEP .and. wyt_SAC <= 2  .and. FallX2 == 1 ! FWS BO (Dec 08) Action 4 - Fall X2
-          value          max(D_Jones[Base] + D_Banks[Base] + C_SacSJR[Base] - MRDO_X2nocapdv[Base],0.) }
+          value          max(D_Jones[Base] + D_Banks[Base] + NDOI_ADD[Base]  + NDOI_MIN[Base] + 0.1- MRDO_X2nocapdv[Base],0.) }
      case Oct_FWS_W {
           condition      month <= OCT .and. wyt_SAC <= 2 .and. FallX2 == 1 ! FWS BO (Dec 08) Action 4 - Fall X2
-          value          max(D_Jones[Base] + D_Banks[Base] + C_SacSJR[Base] - MRDO_X2nocapdv[Base],0.) }
+          value          max(D_Jones[Base] + D_Banks[Base] + NDOI_ADD[Base]  + NDOI_MIN[Base] - MRDO_X2nocapdv[Base],0.) }
      case NoExpCut {
           condition      always
           value          99999.    }

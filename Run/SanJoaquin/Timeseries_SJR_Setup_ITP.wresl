@@ -1,0 +1,43 @@
+define VernWQfinal_v {timeseries kind 'Salinity-EC' units 'umhos/cm'}
+
+define VernWQfinal_set {value VernWQfinal_v}
+
+define SJR_ann_est_v {timeseries kind 'ANN-PARAMETER' units 'CFS'}
+define c_calav {lower 0 upper 99999 kind 'flow-channel' units 'cfs'}
+define SJR_ann_est_set {value SJR_ann_est_v}
+define C_SJR070est {timeseries kind 'channel' units 'cfs'}
+define C_SJR070 {timeseries kind 'channel' units 'cfs'}
+define C_CLV004 {timeseries kind 'channel' units 'cfs'}
+define AD_SJR_v {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+!define AD_SJR_TS {timeseries kind 'channel' units 'cfs'}
+define AD_SJR_VAMP_v {timeseries kind 'CHANNEL' units 'CFS'}
+define AD_SJR_Pulse_v {timeseries kind 'CHANNEL' units 'CFS'}
+
+define C_SJRVER {lower 0 upper 99999 kind 'FLOW-CHANNEL' units 'CFS'} !SJR below Vernalis
+goal setCalav {C_CALAV = C_CLV004}
+
+define AD_SJR_VAMP {value AD_SJR_VAMP_v} !Flow at Vernalis during VAMP period
+
+define AD_SJR_Pulse {value AD_SJR_Pulse_v}  !VAMP baseflow (April flow from SJR_WQ2 cycle)
+define AD_SJR_PULSE_DV {alias ad_sjr_pulse kind 'debug' units 'cfs'}
+!For timeseries option set C_SJRVer = AD_SJR (timeseries from CS2CL) 
+goal setC_SJRVER {C_SJRVER = C_SJR070}! lhs>rhs penalty 9999. lhs<rhs penalty 9999.}
+define AD_SJR {alias AD_SJR_v kind 'FLOW-ACCRDEPL' units 'cfs'}  !Flow at Vernalis  
+!goal setC_SJRVER {C_SJRVER = AD_SJR}
+!define AD_SJR {value AD_SJR_TS}! kind 'flow-accrdepl' units 'cfs'}  !Flow at Vernalis  
+define ad_sjr_dv {alias ad_sjr kind 'debug' units 'cfs'}
+define AD_Calaveras {timeseries 'AD_SJRCal' kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SJRCalALL {std kind 'FLOW-ACCRDEPL' units 'CFS'}
+
+!For timeseries option set AD_SJRCalALL = AD_Calaveras (timeseries from CS2CL)  
+goal setAD_SJRCalALL {lhs AD_SJRCalALL rhs AD_Calaveras+C_CALAV lhs>rhs penalty 9999. lhs<rhs penalty 9999.}
+
+!define VernQ {value AD_SJR}
+define VernQ {value C_SJR070}
+!define vernq {timeseries kind 'flow-channel' units 'cfs'}
+!define VAMP_reqdv_VAMP {timeseries kind 'flow-requirement' units 'cfs'} !No VAMP requirements
+define VAMP_reqdv_VAMP {value 0.}
+
+define VAMP_reqdv {std kind 'flow-requirement' units 'cfs'}
+
+goal setVAMP_reqdv {VAMP_reqdv = VAMP_reqdv_VAMP}

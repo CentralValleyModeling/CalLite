@@ -117,7 +117,8 @@ goal setRSmrdo1 {
     rhs 0.}
   case Normal {
     condition always
-    rhs ((1-RS_m_1_sv)/RS_m_1_sv)*D_ExpNoWhlTD - RS_b_1_sv/RS_m_1_sv + netDeltaInflow}
+    rhs ((1-RS_m_1_sv)/RS_m_1_sv)*D_ExpNoWhlTD - RS_b_1_sv/RS_m_1_sv + DeltaInflowforNDOI - C_Hood_ANN - C_YoloBP - DeltaExportforNDOI + D_Banks_TD + D_Jones_TD
+						   + DeltaAccretionforNDOI - DeltaDepletionforNDOI}
 }
 
 define RS_MRDO_2 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
@@ -146,7 +147,8 @@ goal setRSmrdo2 {
     rhs 0.}
   case Normal {
     condition always
-    rhs ((1-RS_m_2_sv)/RS_m_2_sv)*D_ExpNoWhlTD - RS_b_2_sv/RS_m_2_sv + netDeltaInflow}
+    rhs ((1-RS_m_2_sv)/RS_m_2_sv)*D_ExpNoWhlTD - RS_b_2_sv/RS_m_2_sv + DeltaInflowforNDOI - C_Hood_ANN - C_YoloBP - DeltaExportforNDOI + D_Banks_TD + D_Jones_TD
+						   + DeltaAccretionforNDOI - DeltaDepletionforNDOI}
 }
 
 define RS_MRDO_3 {lower unbounded upper unbounded kind 'FLOW' units 'CFS'}
@@ -175,7 +177,8 @@ goal setRSmrdo3 {
     rhs 0.}
   case Normal {
     condition always
-    rhs ((1-RS_m_3_sv)/RS_m_3_sv)*D_ExpNoWhlTD - RS_b_3_sv/RS_m_3_sv + netDeltaInflow}
+    rhs ((1-RS_m_3_sv)/RS_m_3_sv)*D_ExpNoWhlTD - RS_b_3_sv/RS_m_3_sv + DeltaInflowforNDOI - C_Hood_ANN - C_YoloBP - DeltaExportforNDOI + D_Banks_TD + D_Jones_TD
+						   + DeltaAccretionforNDOI - DeltaDepletionforNDOI}
 }
 
 !****************************************************************************************
@@ -205,7 +208,7 @@ goal set_RS_ReqSac1 {
     rhs 0.}
   case Normal {
     condition always
-    rhs D_ExpTD/RS_m_1_sv - RS_b_1_sv/RS_m_1_sv}
+    rhs EXP_TD/RS_m_1_sv - RS_b_1_sv/RS_m_1_sv}
 }
 
 define RS_ReqSac2 {lower unbounded upper unbounded kind 'FLOW' units 'cfs'}
@@ -234,7 +237,7 @@ goal set_RS_ReqSac2 {
     rhs 0.}
   case Normal {
     condition always
-    rhs D_ExpTD/RS_m_2_sv - RS_b_2_sv/RS_m_2_sv}
+    rhs EXP_TD/RS_m_2_sv - RS_b_2_sv/RS_m_2_sv}
 }
 
 define RS_ReqSac3 {lower unbounded upper unbounded kind 'FLOW' units 'cfs'}
@@ -263,5 +266,5 @@ goal set_RS_ReqSac3 {
     rhs 0.}
   case Normal {
     condition always
-    rhs D_ExpTD/RS_m_3_sv - RS_b_3_sv/RS_m_3_sv}
+    rhs EXP_TD/RS_m_3_sv - RS_b_3_sv/RS_m_3_sv}
 }

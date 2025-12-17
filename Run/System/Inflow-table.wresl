@@ -1,11 +1,12 @@
 define I_Trnty {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Trinity Lake inflow
-define I_Lewiston {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Inflow to Lewiston node
+!define I_Lewiston {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Inflow to Lewiston node
+define I_ClrCrk {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Clear Creek near Igo local inflow
 define I_Wkytn {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Wiskeytown Lake Infolw
 define I_Shsta {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Shasta Lake Inflow
-define I_Orovl {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Oroville Lake Inflow
+define I_Orovl {timeseries 'i_orovl' kind 'Inflow' units 'CFS'} !Oroville Lake Inflow
 define I_Yuba {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Engle Bright flow
 define I_Folsm {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Folsom Lake inflow
-define I_Hood {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Hood (I400)
+!define I_Hood {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Hood (I400)
 define I_BrananIS {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion u/s of RioVista (I404)
 define I_MarshCr {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Marsh Creek local accretion
 define I_SacSJR {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Sac and SJR confluence(I406B)
@@ -17,3 +18,4 @@ define I_Kern {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Kern River Interties 
 define I_Nimbus {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local inflow into Nimbus (I9), NEEDED FOR COA ONLY
 define I_KellyRidge {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Local inflow at Kelly Ridge (I200), NEEDED FOR COA ONLY
 if int(Dynamic_SJR)==0 {define I_MDOTA {timeseries kind 'FLOW-INFLOW' units 'TAF' convert 'CFS'}} !James Bypass flows into the Mendota Pool
+

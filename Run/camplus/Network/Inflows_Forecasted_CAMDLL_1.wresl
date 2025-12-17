@@ -1,0 +1,210 @@
+! Various reservoir and river inflows are included below:
+
+! All systems should use the same forecast level for consistency. 
+! Note May and June must both be 50%
+
+! Ryan Wilbur 8-1-03
+! Hongbing Yin 7-20-04
+
+! oroville forecasted inflow:
+define I4_Jan {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(1,109,IYPOS,IMPOS,IYEAR,IM,IFREQOD_1,IFREQ1_1,IFREQ2_1,IFREQ3_1,IFREQ4_1,IFREQ5_1,                                                 
+SQKS_0_1,SQKS_0_2,SQKS_0_3,SQKS_0_4,SQKS_1_1,SQKS_1_2,SQKS_1_3,SQKS_1_4,SQKS_1_5,SQKS_1_6,
+SQKS_1_7,SQKS_1_8,SQKS_1_9,SQKS_1_10,SQKS_1_11,SQKS_1_12,SQKS_2_10,SQKS_2_11,SQKS_2_12,
+SQOR_0_1,SQOR_0_2,SQOR_0_3,SQOR_0_4,SQOR_1_1,SQOR_1_2,SQOR_1_3,SQOR_1_4,SQOR_1_5,SQOR_1_6,
+SQOR_1_7,SQOR_1_8,SQOR_1_9,SQOR_1_10,SQOR_1_11,SQOR_1_12,SQOR_2_10,SQOR_2_11,SQOR_2_12,
+SQFW_0_1,SQFW_0_2,SQFW_0_3,SQFW_0_4,SQFW_1_1,SQFW_1_2,SQFW_1_3,SQFW_1_4,SQFW_1_5,SQFW_1_6,
+SQFW_1_7,SQFW_1_8,SQFW_1_9,SQFW_1_10,SQFW_1_11,SQFW_1_12,SQFW_2_10,SQFW_2_11,SQFW_2_12,
+SQFP_0_1,SQFP_0_2,SQFP_0_3,SQFP_0_4,SQFP_1_1,SQFP_1_2,SQFP_1_3,SQFP_1_4,SQFP_1_5,SQFP_1_6,
+SQFP_1_7,SQFP_1_8,SQFP_1_9,SQFP_1_10,SQFP_1_11,SQFP_1_12,SQFP_2_10,SQFP_2_11,SQFP_2_12,
+SQSW_0_1,SQSW_0_2,SQSW_0_3,SQSW_0_4,SQSW_1_1,SQSW_1_2,SQSW_1_3,SQSW_1_4,SQSW_1_5,SQSW_1_6,
+SQSW_1_7,SQSW_1_8,SQSW_1_9,SQSW_1_10,SQSW_1_11,SQSW_1_12,SQSW_2_10,SQSW_2_11,SQSW_2_12,
+SQNB_0_1,SQNB_0_2,SQNB_0_3,SQNB_0_4,SQNB_1_1,SQNB_1_2,SQNB_1_3,SQNB_1_4,SQNB_1_5,SQNB_1_6,
+SQNB_1_7,SQNB_1_8,SQNB_1_9,SQNB_1_10,SQNB_1_11,SQNB_1_12,SQNB_2_10,SQNB_2_11,SQNB_2_12,
+QOR_0_1,QOR_0_2,QOR_0_3,QOR_0_4,QOR_1_1,QOR_1_2,QOR_1_3,QOR_1_4,QOR_1_5,QOR_1_6,
+QOR_1_7,QOR_1_8,QOR_1_9,QOR_1_10,QOR_1_11,QOR_1_12,QOR_2_10,QOR_2_11,QOR_2_12,
+QFO_0_1,QFO_0_2,QFO_0_3,QFO_0_4,QFO_1_10,QFO_1_11,QFO_1_12,
+QYU_0_1,QYU_0_2,QYU_0_3,QYU_0_4,QYU_1_10,QYU_1_11,QYU_1_12,
+QSH_0_1,QSH_0_2,QSH_0_3,QSH_0_4,QSH_1_10,QSH_1_11,QSH_1_12,
+QBD_0_1,QBD_0_2,QBD_0_3,QBD_0_4,QBD_1_10,QBD_1_11,QBD_1_12,
+POR_0_1,POR_0_2,POR_0_3,POR_0_4,POR_1_10,POR_1_11,POR_1_12,
+PFO_0_1,PFO_0_2,PFO_0_3,PFO_0_4,PFO_1_10,PFO_1_11,PFO_1_12,
+PYU_0_1,PYU_0_2,PYU_0_3,PYU_0_4,PYU_1_10,PYU_1_11,PYU_1_12,
+PSH_0_1,PSH_0_2,PSH_0_3,PSH_0_4,PSH_1_10,PSH_1_11,PSH_1_12)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}
+define I4_Feb {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,110)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Mar {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,111)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Apr {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,112)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_May {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0, 113)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Jun {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,114)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Jul {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,115)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Aug {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,116)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Sep {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,117)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Oct {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,118)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Nov {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,119)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define I4_Dec {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,120)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+
+! yuba river forecasted flows:
+define(fm) YUBA_fm {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,133+$m+month-Jan)
+		}
+	case JunToDec{
+		condition always
+		value 0.0
+	}		
+}   
+
+define(fm) I_Folsm_fm {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,121+$m+month-Jan)
+		}
+	case JunToDec{
+		condition always
+		value 0.0
+	}		
+}       
+
+define(fm) BB_fm {
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,157+$m+month-Jan)
+		}
+	case JunToDec{
+		condition always
+		value 0.0
+	}		
+}                                                                                                                                                                                                                                    
+
+define(fm) I4_fm{
+	case Jan{condition mv($m)==Jan value I4_Jan}
+	case Feb{condition mv($m)==Feb value I4_Feb}
+	case Mar{condition mv($m)==Mar value I4_Mar}
+	case Apr{condition mv($m)==Apr value I4_Apr}
+	case May{condition mv($m)==May value I4_May}
+	case Jun{condition mv($m)==Jun value I4_Jun}
+	case Jul{condition mv($m)==Jul value I4_Jul}
+	case Aug{condition mv($m)==Aug value I4_Aug}
+	case Sep{condition mv($m)==Sep value I4_Sep}
+	case Oct{condition mv($m)==Oct value I4_Oct}
+	case Nov{condition mv($m)==Nov value I4_Nov}
+	case Dec{condition mv($m)==Dec value I4_Dec}
+}   
+
+define(fm) I_Orovl_fm_Med{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,217+$m+month-Jan)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}
+define(fm) I_Orovl_fm_Med_dv{alias I_Orovl_fm_Med($m) kind 'forecasted-inflow-median' units 'taf'}
+
+define(fm) Yuba_fm_Med{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMDLL(0,241+$m+month-Jan)}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+} 
+define(fm) Yuba_fm_Med_dv{alias Yuba_fm_Med($m) kind 'forecasted-inflow-median' units 'taf'}                                                                                                                                                                                                                                         

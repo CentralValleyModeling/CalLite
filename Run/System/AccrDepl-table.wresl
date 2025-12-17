@@ -112,6 +112,21 @@ define short_AD_Wilkns {lower unbounded upper unbounded kind 'Shortage-Flow' uni
 goal short_ADWilkns {short_AD_Wilkns=AD_Wilkns_Actual-AD_Wilkns}
 
 define AD_SacFea {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_ColusaBasin_other {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_CBDrain {upper unbounded lower unbounded kind 'FLOW-ACCRDEPL' units 'cfs'}
+define AD_CBDrainSac {std kind 'FLOW-ACCRDEPL' units 'cfs'}
+define AD_CBDrainYolo {std kind 'FLOW-ACCRDEPL' units 'cfs'} ! Knights Landing Ridge Cut
+define c_cbd000_CL {timeseries kind 'CHANNEL' units 'CFS'}
+define c_klryol_CL {timeseries kind 'CHANNEL' units 'CFS'}
+
+
+goal setAD_CBDrain {AD_CBDrain + D_CBD028_08S_PA  + D_CBD037_08S_PR  + D_CBD049_08N_PA  - R_07N_PA_CBD044 - R_07S_PA_CBD028 - R_08N_PA_CBD044 - R_08N_PR1_CBD049 - R_08N_PR2_CBD044 - R_08N_SA1_CBD044 - R_08N_SA2_CBD049 - R_08S_PA_CBD012 - R_08S_PR_CBD031
+-	R_08S_SA1_CBD031 -	R_08S_SA2_CBD037 = AD_ColusaBasin_other }
+
+goal setAD_CBDrainSac  {AD_CBDrainYolo < c_klryol_CL}
+goal setAD_CBDrainYolo {AD_CBDrainSac + AD_CBDrainYolo - AD_CBDrain = 0.}
+
+
 define AD_SacFea_Actual {lower unbounded upper unbounded kind 'FLOW-ACCRDEPL' units 'CFS'}
 goal setAD_SacFea_Actual1{
 	lhs AD_SacFea_Actual
@@ -373,11 +388,153 @@ goal setAD_HSt_Actual2{
 define short_AD_Hst {lower unbounded upper unbounded kind 'Shortage-Flow' units 'cfs'}
 goal short_ADHst {short_AD_Hst=AD_Hst_Actual-AD_Hst}
 
+
+!Lewiston 
+define AD_LWSTN {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_LWSTN_Actual {lower unbounded upper unbounded kind 'FLOW-ACCRDEPL' units 'CFS'}
+goal setAD_LWSTN_Actual1{
+	lhs AD_LWSTN_Actual
+	case positive{
+		condition AD_LWSTN>=0
+		rhs AD_LWSTN
+		lhs>rhs constrain
+		lhs<rhs penalty 10000
+	}
+	case negative{
+		condition AD_LWSTN<0
+		rhs AD_LWSTN
+		lhs>rhs penalty 10000
+		lhs<rhs constrain
+	}
+	
+}
+goal setAD_LWSTN_Actual2{
+	lhs AD_LWSTN_Actual
+	case positive{
+		condition AD_LWSTN>=0
+		rhs 0
+		lhs>rhs penalty 0
+		lhs<rhs constrain
+	}
+	case negative{
+		condition AD_LWSTN<0
+		rhs 0
+		lhs>rhs constrain
+		lhs<rhs penalty 0
+	}
+	
+}
+define short_AD_LWSTN {lower unbounded upper unbounded kind 'Shortage-Flow' units 'cfs'}
+goal short_ADLWSTN {short_AD_LWSTN=AD_LWSTN_Actual-AD_LWSTN}
+
+!Freeport
+define AD_Freeport {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_Freeport_Actual {lower unbounded upper unbounded kind 'FLOW-ACCRDEPL' units 'CFS'}
+goal setAD_Freeport_Actual1{
+	lhs AD_Freeport_Actual
+	case positive{
+		condition AD_Freeport>=0
+		rhs AD_Freeport
+		lhs>rhs constrain
+		lhs<rhs penalty 10000
+	}
+	case negative{
+		condition AD_Freeport<0
+		rhs AD_Freeport
+		lhs>rhs penalty 10000
+		lhs<rhs constrain
+	}
+	
+}
+goal setAD_Freeport_Actual2{
+	lhs AD_Freeport_Actual
+	case positive{
+		condition AD_Freeport>=0
+		rhs 0
+		lhs>rhs penalty 0
+		lhs<rhs constrain
+	}
+	case negative{
+		condition AD_Freeport<0
+		rhs 0
+		lhs>rhs constrain
+		lhs<rhs penalty 0
+	}
+	
+}
+define short_AD_Freeport {lower unbounded upper unbounded kind 'Shortage-Flow' units 'cfs'}
+goal short_ADFreeport {short_AD_Freeport=AD_Freeport_Actual-AD_Freeport}
+
+!Hood
+define AD_Hood {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_Hood_Actual {lower unbounded upper unbounded kind 'FLOW-ACCRDEPL' units 'CFS'}
+goal setAD_Hood_Actual1{
+	lhs AD_Hood_Actual
+	case positive{
+		condition AD_Hood>=0
+		rhs AD_Hood
+		lhs>rhs constrain
+		lhs<rhs penalty 10000
+	}
+	case negative{
+		condition AD_Hood<0
+		rhs AD_Hood
+		lhs>rhs penalty 10000
+		lhs<rhs constrain
+	}
+	
+}
+goal setAD_Hood_Actual2{
+	lhs AD_Hood_Actual
+	case positive{
+		condition AD_Hood>=0
+		rhs 0
+		lhs>rhs penalty 0
+		lhs<rhs constrain
+	}
+	case negative{
+		condition AD_Hood<0
+		rhs 0
+		lhs>rhs constrain
+		lhs<rhs penalty 0
+	}
+	
+}
+define short_AD_Hood {lower unbounded upper unbounded kind 'Shortage-Flow' units 'cfs'}
+goal short_ADHood {short_AD_Hood=AD_Hood_Actual-AD_Hood}
+
+
 !Delta
-define AD_Mokelumne {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_Mokelumne {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}  !to comment out after eveything is working
+define AD_SJRCD {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_MokTrmns {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_DXC {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SACND {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SACRV {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SACSJR {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_VI {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+
+
 
 !South of Delta
-if int(Dynamic_SJR)==0 {define AD_JamesBP {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}} !James Bypass flows into the Mendota Pool
+!James Bypass flows into the Mendota Pool
+if int(Dynamic_SJR)==1 {
+define AD_JamesBP     {std kind 'FLOW-ACCRDEPL' units 'CFS'}
+goal setAD_JamesBP {AD_JamesBP = C_FSL005[Upstream_DySJR]}}
+
+if int(Dynamic_SJR)==0 {
+define AD_JamesBP     {std kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_JamesBPset {timeseries 'AD_JamesBP' kind 'FLOW-ACCRDEPL' units 'CFS'}
+goal setAD_JamesBP {AD_JamesBP = AD_JamesBPset}
+}
 !define AD_Castaic {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
 
+define AD_SJROldR {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SJRCal {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_SJRSto {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+define AD_ConeyIs {timeseries kind 'FLOW-ACCRDEPL' units 'CFS'}
+
+!For handling flows into bypass/wasteways off DMC
+define AD_CVPJU_BW {std kind 'FLOW-ACCRDEPL' units 'CFS'}
+goal setAD_CVPJU_BW {AD_CVPJU_BW = D_DMC076_XCC043 + D_DMC111_FBW001}
 

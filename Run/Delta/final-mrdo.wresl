@@ -4,7 +4,7 @@ final-mrdo.wresl
 Tom FitzHugh BOR 4/23/2010
 
 This module finds the max Delta outflow requirement of all possible constraints
-(Flow, Salinity, X2) and applies this at D_DeltaReqd
+(Flow, Salinity, X2) and applies this at NDOI_MIN
 
 For CalLite, for now just implementing requirements from X2 and delta-outflow.wresl.
 
@@ -104,4 +104,4 @@ define daysreqX2chs_out {alias int(endday_chs) - int(begday_chs) + 1 KIND 'DAYS-
 define daysreqX2cnf_out {alias int(endday_cnf) - int(begday_cnf) + 1 KIND 'DAYS-REQ-X2CNF' UNITS 'CFS'}
 define daysreqflow_out {alias int(endday_flw) - int(begday_flw) + 1 KIND 'DAYS-REQ-NDOI' UNITS 'CFS' }
 
-goal meetMRDO {D_DeltaReqd < MRDO_final}  ! Set the final Delta outflow requirement 
+goal meetMRDO {NDOI_MIN < MRDO_final}  ! Set the final Delta outflow requirement 

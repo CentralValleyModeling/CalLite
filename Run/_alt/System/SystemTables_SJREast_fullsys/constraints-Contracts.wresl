@@ -1,0 +1,14 @@
+!System file info for 64_XA for CalLite full system cycles
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! Mendota Pool      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Limit diversion from MDOTA to 64_XA based on contract limit
+goal limitD_MDOTA_64_XA    {D_MDOTA_64_XA < CLM_64_XA * taf_cfs * perdel_cvpex_s }
+
+
+
+
+
+
+

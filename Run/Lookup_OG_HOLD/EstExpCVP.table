@@ -1,0 +1,58 @@
+!Initial values from Reclamation_ROConLTO_CurrentOps_CALSIM_011319_rev06
+!
+!EstExpCVP
+!Index   MarAug  AprAug  MayAug                         
+!0.0 0   0   0
+!3.0 450 230 165
+!3.5 520 320 260
+!4.0 560 340 320
+!5.0 638 483 443
+!5.5 725 625 585
+!6.0 778 688 678
+!6.5 830 710 680
+!7.0 878 763 663
+!8.0 885 795 675
+!9.0 938 813 738
+!10.0    960 840 780
+!12.0    1013    893 843
+!99.0    1125    925 845
+!
+! Revised values based on scaling of CVP export results between studies
+! based on Reclamation_ROConLTO_ProposedAction_CALSIM_011419_rev03
+! Monthly_Compare_rev12_CVPALLOC_inc__PA_011419_rev03_v_COS_011319_rev06.xlsm
+!       
+!EstExpCVP          
+!Index  MarAug  AprAug  MayAug
+!0  0   0   0
+!3  451 241 161
+!3.5    538 346 265
+!4  595 382 334
+!5  707 555 476
+!5.5    811 712 627
+!6  880 791 700
+!6.5    949 828 726
+!7  1014    896 733
+!8  1055    958 764
+!9  1142    1007    845
+!10 1197    1064    906
+!12 1318    1178    1006
+!99 1497    1271    1045
+!
+!  Values from 12/2020 CalSim2 Baseline Development 
+EstExpCVP 
+Index   MarAug  AprAug  MayAug
+0   	340 	340 	340
+3   	340 	340 	340
+3.5 	434 	385 	340
+4   	558 	460 	383
+5   	704 	581 	529
+5.5 	818 	700 	621
+6   	1019    852 	749
+6.5 	1141    964 	841
+7   	1141    964 	841
+8   	1246    1065    898
+9   	1312    1139    949
+10  	1312    1139    949
+12  	1450    1272    1089
+15  	1679    1396    1122
+99  	1679    1396    1122

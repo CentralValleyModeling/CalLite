@@ -232,7 +232,7 @@ else {
 			select  pmi_0
 			from    eightriver
 			where   wateryear=wateryear}
-	    case CCScenario1 {
+	  /*  case CCScenario1 {
 	    	condition Climate_Proj == 1
 			select  pmi_1
 			from    eightriver
@@ -281,7 +281,7 @@ else {
 	    	condition Climate_Proj == 10
 			select  pmi_10
 			from    eightriver
-			where   wateryear=wateryear	}			
+			where   wateryear=wateryear	}	*/		
 	}
 
 	!define NDOreqflowstd {select flow from NDO_flow_std where month=month, wyt_SAC=wyt_SAC}

@@ -1,0 +1,37 @@
+! WheelCore.wresl - stuff that should always be there to support Wheeling logic
+! Set up variables to calculate the maximum flow that Jones can pump due to 
+! channel capacity restrictions.
+
+define dmc_dels_blw_4200 {value D_DMC054_DMCLOS[PRESETUP] + D_DMC054_NMW004[PRESETUP]
+                              + D_DMC049_DMCLOS[PRESETUP] + D_DMC044_71_PA5[PRESETUP]
+                              + D_DMC044_DMCLOS[PRESETUP] + D_DMC044_71_PA4[PRESETUP]
+                              + D_DMC039_DMCLOS[PRESETUP] + D_DMC034_DMCLOS[PRESETUP]
+                              + D_DMC034_71_PA2[PRESETUP] + D_DMC034_WWW001[PRESETUP]
+                              + D_DMC034_71_PA3[PRESETUP] + D_DMC030_DMCLOS[PRESETUP]
+                              + D_DMC030_71_PA1[PRESETUP] + D_DMC024_DMCLOS[PRESETUP]
+                              + D_DMC021_DMCLOS[PRESETUP] + D_DMC021_50_PA1[PRESETUP]
+                              + D_DMC016_WTPJJO[PRESETUP] + D_DMC016_DMCLOS[PRESETUP]
+                              + D_DMC011_71_PA8[PRESETUP] + D_DMC011_DMCLOS[PRESETUP]}
+define dmc_dels_blw_4300 {value D_DMC034_DMCLOS[PRESETUP] + D_DMC034_71_PA2[PRESETUP]
+                              + D_DMC034_WWW001[PRESETUP] + D_DMC034_71_PA3[PRESETUP]
+                              + D_DMC030_DMCLOS[PRESETUP] + D_DMC030_71_PA1[PRESETUP]
+                              + D_DMC024_DMCLOS[PRESETUP] + D_DMC021_DMCLOS[PRESETUP]
+                              + D_DMC021_50_PA1[PRESETUP]  + D_DMC016_WTPJJO[PRESETUP]
+                              + D_DMC016_DMCLOS[PRESETUP] + D_DMC011_71_PA8[PRESETUP]
+                              + D_DMC011_DMCLOS[PRESETUP]}
+define dmc_dels_blw_4400 {value D_DMC021_DMCLOS[PRESETUP] + D_DMC021_50_PA1[PRESETUP]
+                              + D_DMC016_WTPJJO[PRESETUP] + D_DMC016_DMCLOS[PRESETUP]
+                              + D_DMC011_71_PA8[PRESETUP] + D_DMC011_DMCLOS[PRESETUP]}
+define dmc_dels_blw_4500 {value D_DMC016_WTPJJO[PRESETUP] + D_DMC016_DMCLOS[PRESETUP]
+                              + D_DMC011_71_PA8[PRESETUP] + D_DMC011_DMCLOS[PRESETUP]}
+
+define maxJonescalc1 {value min(JonesMaxAllow,
+                     4500+dmc_dels_blw_4500, 4400+dmc_dels_blw_4400,
+                     4300+dmc_dels_blw_4300, 4200+dmc_dels_blw_4200) }
+define maxJonescalc {value min(maxJonescalc1 + Intertie_Cap, JonesMaxAllow)}
+define maxJonescalcDV {alias maxJonescalc kind 'output' Units 'cfs'}  ! For Output Only
+
+! SOD Flow Directions
+!Don't think either of the goals below are needed for CalLite -TF Stantec 101022
+!goal Wheeling4 {D_CAA238_CVPCV = C_CAA003_cvc}
+!goal wheel_gw {D_CAA242_Kern_GWRECH_CVPB < C_CAA003_cvpwhl}

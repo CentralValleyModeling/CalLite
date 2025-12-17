@@ -13,7 +13,7 @@ The position as a function of last month's position and current month's Net Delt
 
 ! total of mrdo and surplus
 define NDO {std kind 'FLOW-NDO' units 'CFS'}
-goal setNDO {NDO = D_DeltaReqd + C_Delta}
+goal setNDO {NDO = NDOI_MIN + NDOI_ADD}
 
 ! ******************************************************************************************
 ! Get last month's X2 position using ANN
@@ -35,18 +35,18 @@ define X2_last {
   case lastWaterYear {
     condition  month == Oct .and. X2_ANN_KM ==0
       value  ANN_X2(
-               X2_PRV(-5),X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),
+               SMSCG_OP(-5),SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),
                NDO(-5),NDO(-4),NDO(-3),NDO(-2),NDO(-1),
                int(daysindv(-5)),int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),
-               int(monthly_avg),12,(wateryear-1))}
+               int(monthly_ave),12,(wateryear-1))}
 
   case others {
     condition always
       value  Ann_X2(
-               X2_PRV(-5),X2_PRV(-4),X2_PRV(-3),X2_PRV(-2),X2_PRV(-1),
+               SMSCG_OP(-5),SMSCG_OP(-4),SMSCG_OP(-3),SMSCG_OP(-2),SMSCG_OP(-1),
                NDO(-5),NDO(-4),NDO(-3),NDO(-2),NDO(-1),
                int(daysindv(-5)),int(daysindv(-4)),int(daysindv(-3)),int(daysindv(-2)),int(daysindv(-1)),
-               int(monthly_avg),(month-1),wateryear)}
+               int(monthly_ave),(month-1),wateryear)}
 }
 
 goal X2lastperiod {X2_prv=X2_last}      ! output purposes only

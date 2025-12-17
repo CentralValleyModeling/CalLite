@@ -1,5 +1,7 @@
 ! LV - Los Vaqueros water year type index is based on the Sacramento River index but uses MARCH for the beginning of the year
-define wyt_SAC_LV {
+define wyt_SAC_LV {timeseries kind 'wateryeartype' units 'none'}  !Get from CS3-2-CL SV
+
+/*define wyt_SAC_LV {
     case firstyear {
         condition month >= oct .and. month < mar .and. wateryear == 1922
             select SACindex_0
@@ -18,4 +20,4 @@ define wyt_SAC_LV {
         from wytypes
         where wateryear = wateryear
     }
-}
+}*/

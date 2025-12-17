@@ -6,7 +6,7 @@ goal connect_D416 {D_CCWDINTK = D408_RS}
 !goal connect_MOK_Intertie {I424 = D168B_ccwd}
 
 !Limit LV water right to Delta Surplus
-goal lim_LVright_toDS {D408_DS < 1000.*C_DELTA_CVP + 1000.*C_DELTA_SWP}
+goal lim_LVright_toDS {D408_DS < 1000.*NDOI_ADD_CVP + 1000.*NDOI_ADD_SWP}
 
 !Limit transfers to in-Delta
 goal lim_TX {D_BrananIs + D_ConeyIs + D_MedfordIs + D_Stockton + D_Terminous + D408_TX < demand_D_BrananIs_NP + demand_D_ConeyIs_NP + demand_D_MedfordIs_NP + demand_D_Stockton_NP + demand_D_Terminous_NP}

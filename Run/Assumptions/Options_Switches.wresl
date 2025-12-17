@@ -107,7 +107,7 @@ define CVC_ON             {select Option from GUI_Operations where Index=1} !Whe
 !define JPOD_ON            {select Option from GUI_Operations where Index=2} !Wheeling\wheelcap.wresl 
 define IntertieSwitch     {select Option from GUI_Operations where Index=3} !Export_Ops\intertie.wresl
 define CVPDedBanksSwitch  {value 0} ! use as place holder
-!define SWPShastaSwitch    {value 0} ! use as place holder
+define SWPShastaSwitch    {value 0} ! use as place holder
  
 /* Water Management Action*/
 define fremont_notch_on   {value 0}  !hydrology\WEIRS\weir_steps_dailyops.wresl

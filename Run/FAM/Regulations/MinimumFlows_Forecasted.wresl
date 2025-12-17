@@ -184,7 +184,8 @@ goal(fm) set_C3MIF_fm {C3_fm($m) > C3MIF_fm($m) - XX3_fm($m)}
                     case d{condition              S4(-1)<=1900 value 4000.}
 		    case e{condition always                    value 4000.}}*/
 
-define perdv_cvpag_sys { std kind 'percent-delivery' units 'none'}
+!define perdv_cvpag_sys { std kind 'percent-delivery' units 'none'}! SP MBK
+define perdv_cvpag_sys { timeseries kind 'percent-delivery' units 'none'} ! SP MBK
 
 define perdel_cvpag_sys{
 	case March{

@@ -1,0 +1,16 @@
+/*
+daysX2_chs definition for use in SJR standalone module
+*/
+
+define daysX2_chs {
+     case FebtoJun {
+          condition      month >= FEB .and. month <= JUN .and. wyt_Driest == 0    !@jmg 2017.11.28 for 7 extreme years
+          value		chs_days    }
+	case FebtoJunTUCP {
+          condition      month >= FEB .and. month <= JUN .and. wyt_Driest == 1    !@jmg 2017.11.28 on/off for 7 extreme years
+		  value 		 0. }
+
+     case StandardOff {
+          condition      always
+          value          0.    }
+}

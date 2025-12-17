@@ -1,0 +1,2355 @@
+!This file defines all the input data to used in the CAM Forecast DLL
+
+!define IYPOS1 {select PA_Start from PA_switch where factor = 1}
+define IYPOS1 {value wateryear}
+define IYPOS2 {value IYPOS1 + 1}
+define IYPOS {case first {
+                condition wateryear == IYPOS1
+                value IYPOS1}
+              case second {
+                condition always
+                value IYPOS2}}  
+define IMPOS {case OCT_DEC {
+                condition month <= DEC
+                value month + 9}
+              case Rest {
+                condition always
+                value month - 3}}
+define IYEAR {value wateryear}
+/*define IYEAR {case first {
+                condition wateryear == IYPOS1
+                select FirstRandYear from RandomYearTable where PA_Sequence = 1}
+              case second {
+                condition always
+                select SecondRandYear from RandomYearTable where PA_Sequence = 1}}  */
+define IM {case OCT_DEC {
+             condition month <= DEC
+             value month + 9}
+           case Rest {
+             condition always
+             value month - 3}}
+define IFREQOD_1 {select IFREQOD from Freq_Exceedence where Cat = 1}
+define IFREQ1_1 {select IFREQ1 from Freq_Exceedence where Cat = 1}
+define IFREQ2_1 {select IFREQ2 from Freq_Exceedence where Cat = 1}
+define IFREQ3_1 {select IFREQ3 from Freq_Exceedence where Cat = 1}
+define IFREQ4_1 {select IFREQ4 from Freq_Exceedence where Cat = 1}
+define IFREQ5_1 {select IFREQ5 from Freq_Exceedence where Cat = 1}
+
+define IFREQOD_2 {select IFREQOD from Freq_Exceedence where Cat = 2}
+define IFREQ1_2 {select IFREQ1 from Freq_Exceedence where Cat = 2}
+define IFREQ2_2 {select IFREQ2 from Freq_Exceedence where Cat = 2}
+define IFREQ3_2 {select IFREQ3 from Freq_Exceedence where Cat = 2}
+define IFREQ4_2 {select IFREQ4 from Freq_Exceedence where Cat = 2}
+define IFREQ5_2 {select IFREQ5 from Freq_Exceedence where Cat = 2}
+
+define IFREQOD_3 {select IFREQOD from Freq_Exceedence where Cat = 3}
+define IFREQ1_3 {select IFREQ1 from Freq_Exceedence where Cat = 3}
+define IFREQ2_3 {select IFREQ2 from Freq_Exceedence where Cat = 3}
+define IFREQ3_3 {select IFREQ3 from Freq_Exceedence where Cat = 3}
+define IFREQ4_3 {select IFREQ4 from Freq_Exceedence where Cat = 3}
+define IFREQ5_3 {select IFREQ5 from Freq_Exceedence where Cat = 3}
+
+define SQKS_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_KSWCK(prevJAN)*cfs_taf(prevJAN)}}
+define SQKS_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_KSWCK(prevFEB)*cfs_taf(prevFEB)}}
+define SQKS_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_KSWCK(prevMAR)*cfs_taf(prevMAR)}}
+define SQKS_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_KSWCK(prevAPR)*cfs_taf(prevAPR)}}
+define SQKS_1_1 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 13}
+                 case second {
+                   condition always
+                   value C_KSWCK(-8-month)*cfs_taf(-8-month)}}  
+define SQKS_1_2 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 14}
+                 case second {
+                   condition always
+                   value C_KSWCK(-7-month)*cfs_taf(-7-month)}}  
+define SQKS_1_3 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 15}
+                 case second {
+                   condition always
+                   value C_KSWCK(-6-month)*cfs_taf(-6-month)}}  
+define SQKS_1_4 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 16}
+                 case second {
+                   condition always
+                   value C_KSWCK(-5-month)*cfs_taf(-5-month)}}
+define SQKS_1_5 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 17}
+                 case second {
+                   condition always
+                   value C_KSWCK(prevMAY)*cfs_taf(prevMAY)}} 
+define SQKS_1_6 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 18}
+                 case second {
+                   condition always
+                   value C_KSWCK(prevJUN)*cfs_taf(prevJUN)}}
+define SQKS_1_7 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 19}
+                 case second {
+                   condition always
+                   value C_KSWCK(prevJUL)*cfs_taf(prevJUL)}}
+define SQKS_1_8 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 20}
+                 case second {
+                   condition always
+                   value C_KSWCK(prevAUG)*cfs_taf(prevAUG)}}
+define SQKS_1_9 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 21}
+                 case second {
+                   condition always
+                   value C_KSWCK(prevSEP)*cfs_taf(prevSEP)}}
+define SQKS_1_10 {case first {
+                    condition wateryear == 1922
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_KSWCK(prevOCT)*cfs_taf(prevOCT)}}
+define SQKS_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_KSWCK(prevNOV)*cfs_taf(prevNOV)}}
+define SQKS_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_KSWCK(prevDEC)*cfs_taf(prevDEC)}}                    
+/*
+define SQKS_2_1 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 1}
+                 case second {
+                   condition always
+                   value C_KSWCK(-20-month)*cfs_taf(-20-month)}}
+define SQKS_2_2 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 2}
+                 case second {
+                   condition always
+                   value C_KSWCK(-19-month)*cfs_taf(-19-month)}} 
+define SQKS_2_3 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 3}
+                 case second {
+                   condition always
+                   value C_KSWCK(-18-month)*cfs_taf(-18-month)}} 
+define SQKS_2_4 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 4}
+                 case second {
+                   condition always
+                   value C_KSWCK(-17-month)*cfs_taf(-17-month)}}
+define SQKS_2_5 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 5}
+                 case second {
+                   condition always
+                   value C_KSWCK(-16-month)*cfs_taf(-16-month)}}
+define SQKS_2_6 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 6}
+                 case second {
+                   condition always
+                   value C_KSWCK(-15-month)*cfs_taf(-15-month)}}
+define SQKS_2_7 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 7}
+                 case second {
+                   condition always
+                   value C_KSWCK(-14-month)*cfs_taf(-14-month)}}
+define SQKS_2_8 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 8}
+                 case second {
+                   condition always
+                   value C_KSWCK(-13-month)*cfs_taf(-13-month)}}
+define SQKS_2_9 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 9}
+                 case second {
+                   condition always
+                   value C_KSWCK(-12-month)*cfs_taf(-12-month)}}
+*/
+define SQKS_2_10 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 10}
+                 case second {
+                   condition always
+                   value C_KSWCK(-11-month)*cfs_taf(-11-month)}}
+define SQKS_2_11 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 11}
+                 case second {
+                   condition always
+                   value C_KSWCK(-10-month)*cfs_taf(-10-month)}}
+define SQKS_2_12 {case first {
+                   condition wateryear == 1922
+                   select SQKS from HistoricFlow where month = 12}
+                 case second {
+                   condition always
+                   value C_KSWCK(-9-month)*cfs_taf(-9-month)}}
+define SQOR_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_FTR059(prevJAN)*cfs_taf(prevJAN)}}
+define SQOR_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_FTR059(prevFEB)*cfs_taf(prevFEB)}}
+define SQOR_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_FTR059(prevMAR)*cfs_taf(prevMAR)}}
+define SQOR_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_FTR059(prevAPR)*cfs_taf(prevAPR)}}
+define SQOR_1_1 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 13}
+                 case second {
+                   condition always
+                   value C_FTR059(-8-month)*cfs_taf(-8-month)}}  
+define SQOR_1_2 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 14}
+                 case second {
+                   condition always
+                   value C_FTR059(-7-month)*cfs_taf(-7-month)}}  
+define SQOR_1_3 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 15}
+                 case second {
+                   condition always
+                   value C_FTR059(-6-month)*cfs_taf(-6-month)}}  
+define SQOR_1_4 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 16}
+                 case second {
+                   condition always
+                   value C_FTR059(-5-month)*cfs_taf(-5-month)}}
+define SQOR_1_5 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 17}
+                 case second {
+                   condition always
+                   value C_FTR059(prevMAY)*cfs_taf(prevMAY)}} 
+define SQOR_1_6 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 18}
+                 case second {
+                   condition always
+                   value C_FTR059(prevJUN)*cfs_taf(prevJUN)}}
+define SQOR_1_7 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 19}
+                 case second {
+                   condition always
+                   value C_FTR059(prevJUL)*cfs_taf(prevJUL)}}
+define SQOR_1_8 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 20}
+                 case second {
+                   condition always
+                   value C_FTR059(prevAUG)*cfs_taf(prevAUG)}}
+define SQOR_1_9 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 21}
+                 case second {
+                   condition always
+                   value C_FTR059(prevSEP)*cfs_taf(prevSEP)}}
+define SQOR_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_FTR059(prevOCT)*cfs_taf(prevOCT)}}
+define SQOR_1_11 {Case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_FTR059(prevNOV)*cfs_taf(prevNOV)}}
+define SQOR_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_FTR059(prevDEC)*cfs_taf(prevDEC)}}                    
+/*
+define SQOR_2_1 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 1}
+                 case second {
+                   condition always
+                   value C_FTR059(-20-month)*cfs_taf(-20-month)}}
+define SQOR_2_2 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 2}
+                 case second {
+                   condition always
+                   value C_FTR059(-19-month)*cfs_taf(-19-month)}} 
+define SQOR_2_3 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 3}
+                 case second {
+                   condition always
+                   value C_FTR059(-18-month)*cfs_taf(-18-month)}}
+define SQOR_2_4 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 4}
+                 case second {
+                   condition always
+                   value C_FTR059(-17-month)*cfs_taf(-17-month)}}
+define SQOR_2_5 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 5}
+                 case second {
+                   condition always
+                   value C_FTR059(-16-month)*cfs_taf(-16-month)}}
+define SQOR_2_6 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 6}
+                 case second {
+                   condition always
+                   value C_FTR059(-15-month)*cfs_taf(-15-month)}}
+define SQOR_2_7 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 7}
+                 case second {
+                   condition always
+                   value C_FTR059(-14-month)*cfs_taf(-14-month)}}
+define SQOR_2_8 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 8}
+                 case second {
+                   condition always
+                   value C_FTR059(-13-month)*cfs_taf(-13-month)}}
+define SQOR_2_9 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 9}
+                 case second {
+                   condition always
+                   value C_FTR059(-12-month)*cfs_taf(-12-month)}}
+*/
+define SQOR_2_10 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 10}
+                 case second {
+                   condition always
+                   value C_FTR059(-11-month)*cfs_taf(-11-month)}}
+define SQOR_2_11 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 11}
+                 case second {
+                   condition always
+                   value C_FTR059(-10-month)*cfs_taf(-10-month)}}
+define SQOR_2_12 {case first {
+                   condition wateryear == 1922
+                   select SQOR from HistoricFlow where month = 12}
+                 case second {
+                   condition always
+                   value C_FTR059(-9-month)*cfs_taf(-9-month)}}
+define SQFW_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC083_YBP037(prevJAN)*cfs_taf(prevJAN)}}
+define SQFW_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC083_YBP037(prevFEB)*cfs_taf(prevFEB)}}
+define SQFW_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC083_YBP037(prevMAR)*cfs_taf(prevMAR)}}
+define SQFW_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC083_YBP037(prevAPR)*cfs_taf(prevAPR)}}
+define SQFW_1_1 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 13}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-8-month)*cfs_taf(-8-month)}}  
+define SQFW_1_2 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 14}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-7-month)*cfs_taf(-7-month)}}  
+define SQFW_1_3 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 15}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-6-month)*cfs_taf(-6-month)}}  
+define SQFW_1_4 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 16}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-5-month)*cfs_taf(-5-month)}}
+define SQFW_1_5 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 17}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(prevMAY)*cfs_taf(prevMAY)}} 
+define SQFW_1_6 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 18}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(prevJUN)*cfs_taf(prevJUN)}}
+define SQFW_1_7 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 19}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(prevJUL)*cfs_taf(prevJUL)}}
+define SQFW_1_8 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 20}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(prevAUG)*cfs_taf(prevAUG)}}
+define SQFW_1_9 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 21}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(prevSEP)*cfs_taf(prevSEP)}}
+define SQFW_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value SP_SAC083_YBP037(prevOCT)*cfs_taf(prevOCT)}}
+define SQFW_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value SP_SAC083_YBP037(prevNOV)*cfs_taf(prevNOV)}}
+define SQFW_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value SP_SAC083_YBP037(prevDEC)*cfs_taf(prevDEC)}}                    
+/*
+define SQFW_2_1 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 1}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-20-month)*cfs_taf(-20-month)}}
+define SQFW_2_2 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 2}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-19-month)*cfs_taf(-19-month)}} 
+define SQFW_2_3 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 3}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-18-month)*cfs_taf(-18-month)}} 
+define SQFW_2_4 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 4}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-17-month)*cfs_taf(-17-month)}}
+define SQFW_2_5 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 5}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-16-month)*cfs_taf(-16-month)}}
+define SQFW_2_6 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 6}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-15-month)*cfs_taf(-15-month)}}
+define SQFW_2_7 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 7}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-14-month)*cfs_taf(-14-month)}}
+define SQFW_2_8 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 8}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-13-month)*cfs_taf(-13-month)}}
+define SQFW_2_9 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 9}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-12-month)*cfs_taf(-12-month)}}
+*/
+define SQFW_2_10 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 10}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-11-month)*cfs_taf(-11-month)}}
+define SQFW_2_11 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 11}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-10-month)*cfs_taf(-10-month)}}
+define SQFW_2_12 {case first {
+                   condition wateryear == 1922
+                   select SQFW from HistoricFlow where month = 12}
+                 case second {
+                   condition always
+                   value SP_SAC083_YBP037(-9-month)*cfs_taf(-9-month)}}
+define SQFP_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_SAC049(prevJAN)*cfs_taf(prevJAN)}}
+define SQFP_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_SAC049(prevFEB)*cfs_taf(prevFEB)}}
+define SQFP_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_SAC049(prevMAR)*cfs_taf(prevMAR)}}
+define SQFP_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_SAC049(prevAPR)*cfs_taf(prevAPR)}}
+define SQFP_1_1 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 13}
+                 case second {
+                   condition always
+                   value C_SAC049(-8-month)*cfs_taf(-8-month)}}  
+define SQFP_1_2 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 14}
+                 case second {
+                   condition always
+                   value C_SAC049(-7-month)*cfs_taf(-7-month)}}  
+define SQFP_1_3 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 15}
+                 case second {
+                   condition always
+                   value C_SAC049(-6-month)*cfs_taf(-6-month)}}  
+define SQFP_1_4 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 16}
+                 case second {
+                   condition always
+                   value C_SAC049(-5-month)*cfs_taf(-5-month)}}
+define SQFP_1_5 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 17}
+                 case second {
+                   condition always
+                   value C_SAC049(prevMAY)*cfs_taf(prevMAY)}} 
+define SQFP_1_6 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 18}
+                 case second {
+                   condition always
+                   value C_SAC049(prevJUN)*cfs_taf(prevJUN)}}
+define SQFP_1_7 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 19}
+                 case second {
+                   condition always
+                   value C_SAC049(prevJUL)*cfs_taf(prevJUL)}}
+define SQFP_1_8 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 20}
+                 case second {
+                   condition always
+                   value C_SAC049(prevAUG)*cfs_taf(prevAUG)}}
+define SQFP_1_9 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 21}
+                 case second {
+                   condition always
+                   value C_SAC049(prevSEP)*cfs_taf(prevSEP)}}
+define SQFP_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_SAC049(prevOCT)*cfs_taf(prevOCT)}}
+define SQFP_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_SAC049(prevNOV)*cfs_taf(prevNOV)}}
+define SQFP_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_SAC049(prevDEC)*cfs_taf(prevDEC)}}                    
+/*
+define SQFP_2_1 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 1}
+                 case second {
+                   condition always
+                   value C_SAC049(-20-month)*cfs_taf(-20-month)}}
+define SQFP_2_2 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 2}
+                 case second {
+                   condition always
+                   value C_SAC049(-19-month)*cfs_taf(-19-month)}} 
+define SQFP_2_3 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 3}
+                 case second {
+                   condition always
+                   value C_SAC049(-18-month)*cfs_taf(-18-month)}} 
+define SQFP_2_4 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 4}
+                 case second {
+                   condition always
+                   value C_SAC049(-17-month)*cfs_taf(-17-month)}} 
+define SQFP_2_5 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 5}
+                 case second {
+                   condition always
+                   value C_SAC049(-16-month)*cfs_taf(-16-month)}} 
+define SQFP_2_6 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 6}
+                 case second {
+                   condition always
+                   value C_SAC049(-15-month)*cfs_taf(-15-month)}} 
+define SQFP_2_7 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 7}
+                 case second {
+                   condition always
+                   value C_SAC049(-14-month)*cfs_taf(-14-month)}} 
+define SQFP_2_8 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 8}
+                 case second {
+                   condition always
+                   value C_SAC049(-13-month)*cfs_taf(-13-month)}} 
+define SQFP_2_9 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 9}
+                 case second {
+                   condition always
+                   value C_SAC049(-12-month)*cfs_taf(-12-month)}} 
+*/
+define SQFP_2_10 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 10}
+                 case second {
+                   condition always
+                   value C_SAC049(-11-month)*cfs_taf(-11-month)}} 
+define SQFP_2_11 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 11}
+                 case second {
+                   condition always
+                   value C_SAC049(-10-month)*cfs_taf(-10-month)}} 
+define SQFP_2_12 {case first {
+                   condition wateryear == 1922
+                   select SQFP from HistoricFlow where month = 12}
+                 case second {
+                   condition always
+                   value C_SAC049(-9-month)*cfs_taf(-9-month)}} 
+define SQSW_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC066_YBP020(prevJAN)*cfs_taf(prevJAN)}}
+define SQSW_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC066_YBP020(prevFEB)*cfs_taf(prevFEB)}}
+define SQSW_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC066_YBP020(prevMAR)*cfs_taf(prevMAR)}}
+define SQSW_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value SP_SAC066_YBP020(prevAPR)*cfs_taf(prevAPR)}}
+define SQSW_1_1 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 13}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-8-month)*cfs_taf(-8-month)}}  
+define SQSW_1_2 {case first {
+                   condition wateryear ==1922
+                   select SQSW from HistoricFlow where month = 14}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-7-month)*cfs_taf(-7-month)}}  
+define SQSW_1_3 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 15}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-6-month)*cfs_taf(-6-month)}}  
+define SQSW_1_4 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 16}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-5-month)*cfs_taf(-5-month)}}
+define SQSW_1_5 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 17}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(prevMAY)*cfs_taf(prevMAY)}} 
+define SQSW_1_6 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 18}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(prevJUN)*cfs_taf(prevJUN)}}
+define SQSW_1_7 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 19}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(prevJUL)*cfs_taf(prevJUL)}}
+define SQSW_1_8 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 20}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(prevAUG)*cfs_taf(prevAUG)}}
+define SQSW_1_9 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 21}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(prevSEP)*cfs_taf(prevSEP)}}
+define SQSW_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value SP_SAC066_YBP020(prevOCT)*cfs_taf(prevOCT)}}
+define SQSW_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value SP_SAC066_YBP020(prevNOV)*cfs_taf(prevNOV)}}
+define SQSW_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value SP_SAC066_YBP020(prevDEC)*cfs_taf(prevDEC)}}                    
+/*
+define SQSW_2_1 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 1}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-20-month)*cfs_taf(-20-month)}}
+define SQSW_2_2 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 2}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-19-month)*cfs_taf(-19-month)}} 
+define SQSW_2_3 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 3}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-18-month)*cfs_taf(-18-month)}}
+define SQSW_2_4 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 4}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-17-month)*cfs_taf(-17-month)}}
+define SQSW_2_5 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 5}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-16-month)*cfs_taf(-16-month)}}
+define SQSW_2_6 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 6}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-15-month)*cfs_taf(-15-month)}}
+define SQSW_2_7 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 7}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-14-month)*cfs_taf(-14-month)}}
+define SQSW_2_8 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 8}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-13-month)*cfs_taf(-13-month)}}
+define SQSW_2_9 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 9}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-12-month)*cfs_taf(-12-month)}}
+*/
+define SQSW_2_10 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 10}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-11-month)*cfs_taf(-11-month)}}
+define SQSW_2_11 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 11}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-10-month)*cfs_taf(-10-month)}}
+define SQSW_2_12 {case first {
+                   condition wateryear == 1922
+                   select SQSW from HistoricFlow where month = 12}
+                 case second {
+                   condition always
+                   value SP_SAC066_YBP020(-9-month)*cfs_taf(-9-month)}}
+define SQNB_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_NTOMA(prevJAN)*cfs_taf(prevJAN)}}
+define SQNB_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_NTOMA(prevFEB)*cfs_taf(prevFEB)}}
+define SQNB_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_NTOMA(prevMAR)*cfs_taf(prevMAR)}}
+define SQNB_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value C_NTOMA(prevAPR)*cfs_taf(prevAPR)}}
+define SQNB_1_1 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 13}
+                 case second {
+                   condition always
+                   value C_NTOMA(-8-month)*cfs_taf(-8-month)}}  
+define SQNB_1_2 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 14}
+                 case second {
+                   condition always
+                   value C_NTOMA(-7-month)*cfs_taf(-7-month)}}  
+define SQNB_1_3 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 15}
+                 case second {
+                   condition always
+                   value C_NTOMA(-6-month)*cfs_taf(-6-month)}}  
+define SQNB_1_4 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 16}
+                 case second {
+                   condition always
+                   value C_NTOMA(-5-month)*cfs_taf(-5-month)}}
+define SQNB_1_5 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 17}
+                 case second {
+                   condition always
+                   value C_NTOMA(prevMAY)*cfs_taf(prevMAY)}} 
+define SQNB_1_6 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 18}
+                 case second {
+                   condition always
+                   value C_NTOMA(prevJUN)*cfs_taf(prevJUN)}}
+define SQNB_1_7 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 19}
+                 case second {
+                   condition always
+                   value C_NTOMA(prevJUL)*cfs_taf(prevJUL)}}
+define SQNB_1_8 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 20}
+                 case second {
+                   condition always
+                   value C_NTOMA(prevAUG)*cfs_taf(prevAUG)}}
+define SQNB_1_9 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 21}
+                 case second {
+                   condition always
+                   value C_NTOMA(prevSEP)*cfs_taf(prevSEP)}}
+define SQNB_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_NTOMA(prevOCT)*cfs_taf(prevOCT)}}
+define SQNB_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_NTOMA(prevNOV)*cfs_taf(prevNOV)}}
+define SQNB_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value C_NTOMA(prevDEC)*cfs_taf(prevDEC)}}                    
+/*
+define SQNB_2_1 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 1}
+                 case second {
+                   condition always
+                   value C_NTOMA(-20-month)*cfs_taf(-20-month)}}
+define SQNB_2_2 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 2}
+                 case second {
+                   condition always
+                   value C_NTOMA(-19-month)*cfs_taf(-19-month)}}
+define SQNB_2_3 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 3}
+                 case second {
+                   condition always
+                   value C_NTOMA(-18-month)*cfs_taf(-18-month)}}
+define SQNB_2_4 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 4}
+                 case second {
+                   condition always
+                   value C_NTOMA(-17-month)*cfs_taf(-17-month)}}
+define SQNB_2_5 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 5}
+                 case second {
+                   condition always
+                   value C_NTOMA(-16-month)*cfs_taf(-16-month)}}
+define SQNB_2_6 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 6}
+                 case second {
+                   condition always
+                   value C_NTOMA(-15-month)*cfs_taf(-15-month)}}
+define SQNB_2_7 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 7}
+                 case second {
+                   condition always
+                   value C_NTOMA(-14-month)*cfs_taf(-14-month)}}
+define SQNB_2_8 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 8}
+                 case second {
+                   condition always
+                   value C_NTOMA(-13-month)*cfs_taf(-13-month)}}
+define SQNB_2_9 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 9}
+                 case second {
+                   condition always
+                   value C_NTOMA(-12-month)*cfs_taf(-12-month)}}
+*/
+define SQNB_2_10 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 10}
+                 case second {
+                   condition always
+                   value C_NTOMA(-11-month)*cfs_taf(-11-month)}}
+define SQNB_2_11 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 11}
+                 case second {
+                   condition always
+                   value C_NTOMA(-10-month)*cfs_taf(-10-month)}}
+define SQNB_2_12 {case first {
+                   condition wateryear == 1922
+                   select SQNB from HistoricFlow where month = 12}
+                 case second {
+                   condition always
+                   value C_NTOMA(-9-month)*cfs_taf(-9-month)}}
+
+define UNIMP_OROV {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}	!CDEC(FTO)
+define UNIMP_FOLS {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}	!CDEC(AMF)
+define UNIMP_YUBA {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}	!CDEC(YRS)
+define UNIMP_SHAS {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}	!CDEC(SIS)
+define UNIMP_SRBB {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}	!CDEC(SBB)
+									
+define PPT_OROV {timeseries kind 'PRECIP' units 'INCHES'}
+define PPT_FOLS {timeseries kind 'PRECIP' units 'INCHES'}
+define PPT_YUBA {timeseries kind 'PRECIP' units 'INCHES'}
+define PPT_SHAS {timeseries kind 'PRECIP' units 'INCHES'}
+
+define QOR_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_OROV(prevJAN)}}
+define QOR_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_OROV(prevFEB)}}
+define QOR_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_OROV(prevMAR)}}
+define QOR_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_OROV(prevAPR)}}
+define QOR_1_1 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 13}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(-8-month)}}  
+define QOR_1_2 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 14}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(-7-month)}}  
+define QOR_1_3 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 15}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(-6-month)}}  
+define QOR_1_4 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 16}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(-5-month)}}
+define QOR_1_5 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 17}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(prevMAY)}} 
+define QOR_1_6 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 18}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(prevJUN)}}
+define QOR_1_7 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 19}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(prevJUL)}}
+define QOR_1_8 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 20}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(prevAUG)}}
+define QOR_1_9 {/*case first {
+                   condition wateryear == 1922
+                   select QOR from HistoricUnimp_Precip where month = 21}*/
+                 case second {
+                   condition always
+                   value UNIMP_OROV(prevSEP)}}
+define QOR_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_OROV(prevOCT)}}
+define QOR_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_OROV(prevNOV)}}
+define QOR_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_OROV(prevDEC)}}                    
+define QOR_2_1 {value UNIMP_OROV(-20-month)}
+define QOR_2_2 {value UNIMP_OROV(-19-month)}
+define QOR_2_3 {value UNIMP_OROV(-18-month)}
+define QOR_2_4 {value UNIMP_OROV(-17-month)}
+define QOR_2_5 {value UNIMP_OROV(-16-month)}
+define QOR_2_6 {value UNIMP_OROV(-15-month)}
+define QOR_2_7 {value UNIMP_OROV(-14-month)}
+define QOR_2_8 {value UNIMP_OROV(-13-month)}
+define QOR_2_9 {value UNIMP_OROV(-12-month)}
+define QOR_2_10 {value UNIMP_OROV(-11-month)}
+define QOR_2_11 {value UNIMP_OROV(-10-month)}
+define QOR_2_12 {value UNIMP_OROV(-9-month)}
+define QFO_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_FOLS(prevJAN)}}
+define QFO_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_FOLS(prevFEB)}}
+define QFO_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_FOLS(prevMAR)}}
+define QFO_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_FOLS(prevAPR)}}
+define QFO_1_1 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 13}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(-8-month)}}  
+define QFO_1_2 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 14}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(-7-month)}}  
+define QFO_1_3 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 15}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(-6-month)}}  
+define QFO_1_4 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 16}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(-5-month)}}
+define QFO_1_5 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 17}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(prevMAY)}} 
+define QFO_1_6 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 18}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(prevJUN)}}
+define QFO_1_7 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 19}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(prevJUL)}}
+define QFO_1_8 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 20}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(prevAUG)}}
+define QFO_1_9 {/*case first {
+                   condition wateryear == 1922
+                   select QFO from HistoricUnimp_Precip where month = 21}*/
+                 case second {
+                   condition always
+                   value UNIMP_FOLS(prevSEP)}}
+define QFO_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_FOLS(prevOCT)}}
+define QFO_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_FOLS(prevNOV)}}
+define QFO_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_FOLS(prevDEC)}}                    
+define QFO_2_1 {value UNIMP_FOLS(-20-month)}
+define QFO_2_2 {value UNIMP_FOLS(-19-month)} 
+define QFO_2_3 {value UNIMP_FOLS(-18-month)} 
+define QFO_2_4 {value UNIMP_FOLS(-17-month)}
+define QFO_2_5 {value UNIMP_FOLS(-16-month)}
+define QFO_2_6 {value UNIMP_FOLS(-15-month)}
+define QFO_2_7 {value UNIMP_FOLS(-14-month)}
+define QFO_2_8 {value UNIMP_FOLS(-13-month)}
+define QFO_2_9 {value UNIMP_FOLS(-12-month)}
+define QFO_2_10 {value UNIMP_FOLS(-11-month)}
+define QFO_2_11 {value UNIMP_FOLS(-10-month)}
+define QFO_2_12 {value UNIMP_FOLS(-9-month)}
+define QYU_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_YUBA(prevJAN)}}
+define QYU_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_YUBA(prevFEB)}}
+define QYU_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_YUBA(prevMAR)}}
+define QYU_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_YUBA(prevAPR)}}
+define QYU_1_1 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 13}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(-8-month)}}  
+define QYU_1_2 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 14}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(-7-month)}}  
+define QYU_1_3 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 15}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(-6-month)}}  
+define QYU_1_4 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 16}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(-5-month)}}
+define QYU_1_5 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 17}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(prevMAY)}} 
+define QYU_1_6 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 18}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(prevJUN)}}
+define QYU_1_7 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 19}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(prevJUL)}}
+define QYU_1_8 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 20}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(prevAUG)}}
+define QYU_1_9 {/*case first {
+                   condition wateryear == 1922
+                   select QYU from HistoricUnimp_Precip where month = 21}*/
+                 case second {
+                   condition always
+                   value UNIMP_YUBA(prevSEP)}}
+define QYU_1_10 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_YUBA(prevOCT)}}
+define QYU_1_11 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_YUBA(prevNOV)}}
+define QYU_1_12 {case first {
+                    condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                  case second {
+                    condition always
+                    value UNIMP_YUBA(prevDEC)}}                    
+define QYU_2_1 {value UNIMP_YUBA(-20-month)}
+define QYU_2_2 {value UNIMP_YUBA(-19-month)} 
+define QYU_2_3 {value UNIMP_YUBA(-18-month)} 
+define QYU_2_4 {value UNIMP_YUBA(-17-month)} 
+define QYU_2_5 {value UNIMP_YUBA(-16-month)} 
+define QYU_2_6 {value UNIMP_YUBA(-15-month)} 
+define QYU_2_7 {value UNIMP_YUBA(-14-month)} 
+define QYU_2_8 {value UNIMP_YUBA(-13-month)} 
+define QYU_2_9 {value UNIMP_YUBA(-12-month)} 
+define QYU_2_10 {value UNIMP_YUBA(-11-month)} 
+define QYU_2_11 {value UNIMP_YUBA(-10-month)} 
+define QYU_2_12 {value UNIMP_YUBA(-9-month)} 
+define QSH_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SHAS(prevJAN)}}
+define QSH_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SHAS(prevFEB)}}
+define QSH_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SHAS(prevMAR)}}
+define QSH_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SHAS(prevAPR)}}
+define QSH_1_1 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 13}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-8-month)}}  
+define QSH_1_2 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 14}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-7-month)}} 
+define QSH_1_3 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 15}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-6-month)}}  
+define QSH_1_4 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 16}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-5-month)}}
+define QSH_1_5 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 17}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(prevMAY)}} 
+define QSH_1_6 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 18}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(prevJUN)}}
+define QSH_1_7 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 19}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(prevJUL)}}
+define QSH_1_8 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 20}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(prevAUG)}}
+define QSH_1_9 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 21}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(prevSEP)}}
+define QSH_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_SHAS(prevOCT)}}
+define QSH_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_SHAS(prevNOV)}}
+define QSH_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_SHAS(prevDEC)}}                    
+/*
+define QSH_2_1 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 1}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-20-month)}}
+define QSH_2_2 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 2}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-19-month)}}
+define QSH_2_3 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 3}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-18-month)}} 
+define QSH_2_4 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 4}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-17-month)}}
+define QSH_2_5 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 5}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-16-month)}}
+define QSH_2_6 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 6}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-15-month)}}
+define QSH_2_7 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 7}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-14-month)}}
+define QSH_2_8 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 8}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-13-month)}}
+define QSH_2_9 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 9}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-12-month)}}
+*/
+define QSH_2_10 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 10}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-11-month)}}
+define QSH_2_11 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 11}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-10-month)}}
+define QSH_2_12 {case first {
+                   condition wateryear == 1922
+                   select QSH from HistoricUnimp_Precip where month = 12}
+                 case second {
+                   condition always
+                   value UNIMP_SHAS(-9-month)}}
+define QBD_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SRBB(prevJAN)}}
+define QBD_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SRBB(prevFEB)}}
+define QBD_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SRBB(prevMAR)}}
+define QBD_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SRBB(prevAPR)}}
+define QBD_1_1 {value UNIMP_SRBB(-8-month)}  
+define QBD_1_2 {value UNIMP_SRBB(-7-month)}  
+define QBD_1_3 {value UNIMP_SRBB(-6-month)}  
+define QBD_1_4 {value UNIMP_SRBB(-5-month)}
+define QBD_1_5 {value UNIMP_SRBB(prevMAY)} 
+define QBD_1_6 {value UNIMP_SRBB(prevJUN)}
+define QBD_1_7 {value UNIMP_SRBB(prevJUL)}
+define QBD_1_8 {value UNIMP_SRBB(prevAUG)}
+define QBD_1_9 {value UNIMP_SRBB(prevSEP)}
+define QBD_1_10 {value UNIMP_SRBB(prevOCT)}
+define QBD_1_11 {value UNIMP_SRBB(prevNOV)}
+define QBD_1_12 {value UNIMP_SRBB(prevDEC)}                    
+define QBD_2_1 {value UNIMP_SRBB(-20-month)}
+define QBD_2_2 {value UNIMP_SRBB(-19-month)}
+define QBD_2_3 {value UNIMP_SRBB(-18-month)}
+define QBD_2_4 {value UNIMP_SRBB(-17-month)}
+define QBD_2_5 {value UNIMP_SRBB(-16-month)}
+define QBD_2_6 {value UNIMP_SRBB(-15-month)}
+define QBD_2_7 {value UNIMP_SRBB(-14-month)}
+define QBD_2_8 {value UNIMP_SRBB(-13-month)}
+define QBD_2_9 {value UNIMP_SRBB(-12-month)}
+define QBD_2_10 {value UNIMP_SRBB(-11-month)}
+define QBD_2_11 {value UNIMP_SRBB(-10-month)}
+define QBD_2_12 {value UNIMP_SRBB(-9-month)}
+define POR_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_OROV(prevJAN)}}
+define POR_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_OROV(prevFEB)}}
+define POR_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_OROV(prevMAR)}}
+define POR_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_OROV(prevAPR)}}
+define POR_1_1 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 13}
+                  case second {
+                    condition always
+                    value PPT_OROV(-8-month)}}  
+define POR_1_2 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 14}
+                  case second {
+                    condition always
+                    value PPT_OROV(-7-month)}}  
+define POR_1_3 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 15}
+                  case second {
+                    condition always
+                    value PPT_OROV(-6-month)}}  
+define POR_1_4 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 16}
+                  case second {
+                    condition always
+                    value PPT_OROV(-5-month)}}
+define POR_1_5 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 17}
+                  case second {
+                    condition always
+                    value PPT_OROV(prevMAY)}} 
+define POR_1_6 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 18}
+                  case second {
+                    condition always
+                    value PPT_OROV(prevJUN)}}
+define POR_1_7 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 19}
+                  case second {
+                    condition always
+                    value PPT_OROV(prevJUL)}}
+define POR_1_8 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 20}
+                  case second {
+                    condition always
+                    value PPT_OROV(prevAUG)}}
+define POR_1_9 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 21}
+                  case second {
+                    condition always
+                    value PPT_OROV(prevSEP)}}
+define POR_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                    value PPT_OROV(prevOCT)}}
+define POR_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_OROV(prevNOV)}}
+define POR_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_OROV(prevDEC)}}                    
+/*
+define POR_2_1 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 1}
+                  case second {
+                    condition always
+                    value PPT_OROV(-20-month)}}
+define POR_2_2 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 2}
+                  case second {
+                    condition always
+                    value PPT_OROV(-19-month)}}
+define POR_2_3 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 3}
+                  case second {
+                    condition always
+                    value PPT_OROV(-18-month)}}
+define POR_2_4 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 4}
+                  case second {
+                    condition always
+                    value PPT_OROV(-17-month)}}
+define POR_2_5 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 5}
+                  case second {
+                    condition always
+                    value PPT_OROV(-16-month)}}
+define POR_2_6 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 6}
+                  case second {
+                    condition always
+                    value PPT_OROV(-15-month)}}
+define POR_2_7 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 7}
+                  case second {
+                    condition always
+                    value PPT_OROV(-14-month)}}
+define POR_2_8 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 8}
+                  case second {
+                    condition always
+                    value PPT_OROV(-13-month)}}
+define POR_2_9 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 9}
+                  case second {
+                    condition always
+                    value PPT_OROV(-12-month)}}
+*/
+define POR_2_10 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 10}
+                  case second {
+                    condition always
+                    value PPT_OROV(-11-month)}}
+define POR_2_11 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 11}
+                  case second {
+                    condition always
+                    value PPT_OROV(-10-month)}}
+define POR_2_12 {case first {
+                    condition wateryear == 1922
+                    select POR from HistoricUnimp_Precip where month = 12}
+                  case second {
+                    condition always
+                    value PPT_OROV(-9-month)}}
+define PFO_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_FOLS(prevJAN)}}
+define PFO_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_FOLS(prevFEB)}}
+define PFO_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_FOLS(prevMAR)}}
+define PFO_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_FOLS(prevAPR)}}
+define PFO_1_1 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 13}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-8-month)}}  
+define PFO_1_2 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 14}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-7-month)}}  
+define PFO_1_3 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 15}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-6-month)}}  
+define PFO_1_4 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 16}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-5-month)}}
+define PFO_1_5 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 17}
+                  case second {
+                    condition always
+                    value PPT_FOLS(prevMAY)}} 
+define PFO_1_6 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 18}
+                  case second {
+                    condition always
+                    value PPT_FOLS(prevJUN)}}
+define PFO_1_7 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 19}
+                  case second {
+                    condition always
+                    value PPT_FOLS(prevJUL)}}
+define PFO_1_8 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 20}
+                  case second {
+                    condition always
+                    value PPT_FOLS(prevAUG)}}
+define PFO_1_9 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 21}
+                  case second {
+                    condition always
+                    value PPT_FOLS(prevSEP)}}
+define PFO_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_FOLS(prevOCT)}}
+define PFO_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_FOLS(prevNOV)}}
+define PFO_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_FOLS(prevDEC)}}                    
+/*
+define PFO_2_1 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 1}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-20-month)}}
+define PFO_2_2 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 2}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-19-month)}}
+define PFO_2_3 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 3}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-18-month)}}
+define PFO_2_4 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 4}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-17-month)}}
+define PFO_2_5 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 5}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-16-month)}
+                    }
+define PFO_2_6 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 6}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-15-month)}
+                    }
+define PFO_2_7 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 7}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-14-month)}
+                    }
+define PFO_2_8 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 8}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-13-month)}
+                    }
+define PFO_2_9 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 9}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-12-month)}
+                    }
+*/
+define PFO_2_10 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 10}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-11-month)}
+                    }
+define PFO_2_11 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 11}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-10-month)}
+                    }
+define PFO_2_12 {case first {
+                    condition wateryear == 1922
+                    select PFO from HistoricUnimp_Precip where month = 12}
+                  case second {
+                    condition always
+                    value PPT_FOLS(-9-month)}
+                    }
+define PYU_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_YUBA(prevJAN)}}
+define PYU_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_YUBA(prevFEB)}}
+define PYU_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_YUBA(prevMAR)}}
+define PYU_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_YUBA(prevAPR)}}
+define PYU_1_1 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 13}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-8-month)}
+                    }  
+define PYU_1_2 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 14}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-7-month)}
+                    }  
+define PYU_1_3 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 15}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-6-month)}
+                    }  
+define PYU_1_4 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 16}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-5-month)}
+                    }
+define PYU_1_5 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 17}
+                  case second {
+                    condition always
+                    value PPT_YUBA(prevMAY)}
+                    }
+define PYU_1_6 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 18}
+                  case second {
+                    condition always
+                    value PPT_YUBA(prevJUN)}
+                    }
+define PYU_1_7 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 19}
+                  case second {
+                    condition always
+                    value PPT_YUBA(prevJUL)}
+                    }
+define PYU_1_8 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 20}
+                  case second {
+                    condition always
+                    value PPT_YUBA(prevAUG)}
+                    }
+define PYU_1_9 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 21}
+                  case second {
+                    condition always
+                    value PPT_YUBA(prevSEP)}
+                    }
+define PYU_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_YUBA(prevOCT)}}
+define PYU_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_YUBA(prevNOV)}}
+define PYU_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_YUBA(prevDEC)}}                    
+/*
+define PYU_2_1 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 1}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-20-month)}
+                    }
+define PYU_2_2 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 2}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-19-month)}
+                    } 
+define PYU_2_3 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 3}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-18-month)}
+                    }
+define PYU_2_4 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 4}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-17-month)}
+                    }
+define PYU_2_5 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 5}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-16-month)}
+                    }
+define PYU_2_6 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 6}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-15-month)}
+                    }
+define PYU_2_7 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 7}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-14-month)}
+                    }
+define PYU_2_8 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 8}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-13-month)}
+                    }
+define PYU_2_9 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 9}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-12-month)}
+                    }
+*/
+define PYU_2_10 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 10}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-11-month)}
+                    }
+define PYU_2_11 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 11}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-10-month)}
+                    }
+define PYU_2_12 {case first {
+                    condition wateryear == 1922
+                    select PYU from HistoricUnimp_Precip where month = 12}
+                  case second {
+                    condition always
+                    value PPT_YUBA(-9-month)}
+                    }
+define PSH_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SHAS(prevJAN)}}
+define PSH_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SHAS(prevFEB)}}
+define PSH_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SHAS(prevMAR)}}
+define PSH_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SHAS(prevAPR)}}
+define PSH_1_1 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 13}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-8-month)}
+                    }  
+define PSH_1_2 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 14}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-7-month)}
+                    }
+define PSH_1_3 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 15}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-6-month)}
+                    }  
+define PSH_1_4 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 16}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-5-month)}
+                    }
+define PSH_1_5 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 17}
+                  case second {
+                    condition always
+                    value PPT_SHAS(prevMAY)}
+                    } 
+define PSH_1_6 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 18}
+                  case second {
+                    condition always
+                    value PPT_SHAS(prevJUN)}
+                    }
+define PSH_1_7 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 19}
+                  case second {
+                    condition always
+                    value PPT_SHAS(prevJUL)}
+                    }
+define PSH_1_8 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 20}
+                  case second {
+                    condition always
+                    value PPT_SHAS(prevAUG)}
+                    }
+define PSH_1_9 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 21}
+                  case second {
+                    condition always
+                    value PPT_SHAS(prevSEP)}
+                    }
+define PSH_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_SHAS(prevOCT)}}
+define PSH_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_SHAS(prevNOV)}}
+define PSH_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_SHAS(prevDEC)}}                    
+/*
+define PSH_2_1 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 1}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-20-month)}
+                    }
+define PSH_2_2 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 2}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-19-month)}
+                    } 
+define PSH_2_3 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 3}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-18-month)}
+                    } 
+define PSH_2_4 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 4}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-17-month)}
+                    } 
+define PSH_2_5 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 5}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-16-month)}
+                    } 
+define PSH_2_6 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 6}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-15-month)}
+                    } 
+define PSH_2_7 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 7}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-14-month)}
+               } 
+define PSH_2_8 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 8}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-13-month)}
+               } 
+define PSH_2_9 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 9}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-12-month)}
+                 }
+*/
+define PSH_2_10 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 10}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-11-month)}
+                } 
+define PSH_2_11 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 11}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-10-month)}
+                } 
+define PSH_2_12 {case first {
+                    condition wateryear == 1922
+                    select PSH from HistoricUnimp_Precip where month = 12}
+                  case second {
+                    condition always
+                    value PPT_SHAS(-9-month)}
+                }

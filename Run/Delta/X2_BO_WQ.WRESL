@@ -6,5 +6,61 @@ Nazrul Islam, 11/05/10
 
 Include 'Ann\lastX2_ANN_KM.wresl'
 INCLUDE 'Ann\X2days_FWS_WQ.wresl'
+
+define X2_Select { 
+    case X2_Udef {
+	condition X2_DLTSW == 2
+	select X2Active from GUI_X2Active where month=month} !X2 active momth table
+    case otherwise {
+	condition always 
+	value 0.0 }
+	}
+	
+define X2KM_Udef {
+    case X2_Udef {
+	condition X2_Select == 1
+	select X2KM from GUI_X2KM where wyT_Sac=wyT_Sac,month=month } ! Monthly X2 KM value table
+    case X2_Other {
+	condition always 
+	value 1000
+	}
+	}
+
+! set the distances from Golden Gate for each location (km)
+define km_roe { 
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value X2KM_Udef }                                     
+     case D1641 {
+          condition always
+          value 64. }                 ! km to Roe Island/Port Chicago under D1641
+}        
+
+
+define km_chs {
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value 0 } 
+     case D1641 {
+          condition always
+          value 74. }     ! km to Chipps Island
+}
+
+define km_cnf {
+     case X2_Udef {
+          condition X2_Select == 1  .or. X2_DLTSW == 0  
+          value 0 } 
+     case D1641 {
+          condition always
+          value 81. }     ! km to Confluence (Sac & SJR)
+}
+
+define km_PA {value 80. }     ! km to Confluence (Sac & SJR)    
+define km_Aug {value 82. }     ! km to Confluence (Sac & SJR)    
+
+!define km_roe {value 64. }     ! km to Roe Island/Port Chicago
+!define km_chs {value 74. }     ! km to Chipps Island
+!define km_cnf {value 81. }     ! km to Confluence (Sac & SJR)
+
 Include 'Ann\X2req_ann_KM.wresl'
 Include 'final-mrdo.wresl'

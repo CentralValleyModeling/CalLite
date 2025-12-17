@@ -94,7 +94,7 @@ goal set_KC_spill_int {I422_P < 99999*INT_I422_P}
 goal set_KC_spill_int2 {C422_FILL_CC < 99999-99999*INT_I422_P}
 
 !Read in Los Vaqueros Reservoir (LVR) local preciptation and convert to cfs for use in continuity, wq ops, and wq calcs.
-define I422_ppt { timeseries kind 'PRECIP-RATE' units 'IN' }     !inches of precip
+define I422_ppt { timeseries kind 'PRECIP-RATE' units 'INCHES' }     !CQ: Updated !inches of precip
 define I422_ppt_cfs  {value I422_ppt/12000. * A422last * taf_cfs }
 define I422_ppt_cfs_ {alias I422_ppt_cfs kind 'flow-inflow' units 'cfs'}
 

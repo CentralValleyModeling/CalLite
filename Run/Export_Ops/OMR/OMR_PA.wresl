@@ -1,0 +1,197 @@
+! OMR_PA.wresl
+!
+! Implements only Action 1 from the 15 Dec 2008 FWS Delta Smelt BO.
+! Action 1: Limit Exports so OMR flows >= -2,000 cfs (14-day avg.) w/ 5-day running avg. + 25%
+!
+! Action 2 and 3 are replaced with a limit on exports so that OMR flows >= -5,000 cfs (14-day avg.) w/ 5-day running avg. +/- 25%
+!   if Jan, the limit is adjusted to -5,500 CFS
+!   if Apr or May, the limit is adjusted to -3,500 CFS in AN and BN year types
+!
+! Action 4, the fall X2 action in W and AN years is not included in this model
+!
+! Action 5, HORB gate operations, see SoDeltaChannels code for this modification
+!
+! **********************************************************************************************
+define OMR_background {        ! 
+        case DEC {
+                condition month==DEC
+                value -8000. }
+        case JAN_JUNE {
+                condition month>=JAN .and. month<=JUN
+                value -5000. }
+        case otherwise {
+                condition always		
+                value -9999. }
+}
+
+!December Action Turbidity Trigger
+!Assumes monthly sum of unimpaired flows for four rivers in Sacramento River Basin (Sac, American, Yuba, and Feather) exceeding 20,000 cfs is a good
+!but conservative indicator of turbidty (12NTU) at the three turbidity stations defined in the FWS BO ( Holland Cut, Prisoner's Point, and Victoria Canal).
+define TurbT_Thresh {value 20000.}
+define SAC_RI {timeseries kind 'SRI_FLOW' units 'CFS'} !Jay
+!define SAC_RI{value (UNIMP_OROV + UNIMP_FOLS + UNIMP_YUBA + UNIMP_SRBB)*taf_cfs} !CDEC unimpaired flow at FTO,AMF,YRS,SBB
+
+define SRIdv {alias SAC_RI kind 'FLOW-CHANNEL' units 'CFS'}
+
+define TurbTdv {std kind 'DECAct' units 'NONE'}
+define TurbT {
+        case Initialize {
+            condition month==OCT .and. wateryear==1922
+                value 99.}
+    case ON { 
+                condition month >= DEC .and. month<= MAR .and. SAC_RI>=TurbT_Thresh      !month<= FEB .and. SAC_RI>=TurbT_Thresh
+                value 1.}
+    case OFF {
+		condition always
+                value 99.}
+}
+goal set_TurbTdv {TurbTdv = TurbT}
+
+define OMR_NoTurbBrid { value -2000. }
+define OMR_NoTurbBriddv {alias OMR_NoTurbBrid kind 'FLOW' units 'CFS' }
+
+define SLMN_MAR_MAY { value -3500. }
+define SLMN_MAR_MAYdv {alias SLMN_MAR_MAY kind 'FLOW' units 'CFS' }
+
+!define SLMN_MAR_2 { value -2500. }                                      #AA_07012019 commented out
+!define SLMN_MAR_2_dv {alias SLMN_MAR_2 kind 'FLOW' units 'CFS' }	 #AA_07012019 commented out
+
+
+!define OMR_Storm { value -6000. }
+define OMR_Storm { value -6250. }                                        !12272019
+define OMR_Stormdv {alias OMR_Storm kind 'FLOW' units 'CFS' }
+
+define OMR_JanJun { value -5000. }
+define OMR_JanJundv {alias OMR_JanJun kind 'FLOW' units 'CFS' }
+
+define OMR_wet_an_bn_MAR_APR { value -3500. }
+define OMR_wet_an_bn_MAR_APRdv {alias OMR_wet_an_bn_MAR_APR kind 'FLOW' units 'CFS' }
+
+define WIIN_Wetness { ! Sac WYT is not yet defined in Jan. Use an alternative method to determine if it's a wet or dry Jan.
+    case JanFeb {
+         condition  month == JAN 
+         select     Jan
+         from       WIIN_wetness
+         where      wateryear=wateryear}
+ /*    case JanFeb {
+         condition  month == FEB
+         select     Feb
+         from       WIIN_wetness
+         where      wateryear=wateryear}*/
+ case rest {
+         condition  always
+         value 99. }
+}
+define WIIN_Wetnessdv {alias WIIN_Wetness kind 'index' units 'none'}
+
+define dryJanCheckdv {std kind 'index' units 'NONE'}
+define dryJanCheck {
+    case ON { 
+                condition month == JAN .and. TurbT==99.0 .and. WIIN_wetness==4.
+                value 1.}
+    case OFF {
+        condition always
+                value 99.}
+}
+goal set_dryJanCheckdv {dryJanCheckdv = dryJanCheck}
+
+!OMR PA 14 day average
+define OMR_PA_1 {
+
+ case Initialize {
+         condition month==OCT .and. wateryear==1922
+         value -99999.}
+ case Oct_Dec {
+        condition month>=OCT .and. month<DEC
+        value -99999.}
+
+ case OFF_DEC {
+        condition month==DEC .and. SAC_RI<TurbT_Thresh
+        value -99999.}
+
+ case DEC_JAN {
+        condition month>=DEC .and. month<=JAN .and. TurbTdv(-1)==99. .and. SAC_RI>=TurbT_Thresh
+        value (OMR_background*17.+ OMR_NoTurbBrid* 14.)/daysin }
+ case JAN_TURB_AVOID {									!AA_07312019 Added for turbidity avoidance (JAN)
+        condition month==JAN  .and. TurbTdv(-1)==1. .and. SAC_RI>=TurbT_Thresh
+        value ((OMR_background *(daysin-5.)+ OMR_NoTurbBrid * 5.)/daysin )} 
+ case JANANBN {                                            				 !AA_07312019 Added for storm flex AN&BN  (JAN)
+        condition month==JAN .and. WIIN_Wetness >1. .and. WIIN_Wetness <= 3.		 
+	value ((OMR_Storm * 6.+ OMR_JanJun *(daysin-6.))/daysin )
+		}
+ case JANDry {									      !AA_07312019 Added for storm flex D   (JAN)
+	condition month==JAN .and. WIIN_Wetness==4.  
+	value ((OMR_Storm * 6.+ OMR_JanJun *(daysin-6.))/daysin )
+		}   
+  case Feb_TURB_AVOID {								    !AA_07312019 Added for turbidity avoidance  (FEB)
+        condition month==FEB .and. SAC_RI>=TurbT_Thresh
+        value ((OMR_background *(daysin-5.)+ OMR_NoTurbBrid * 5.)/daysin )
+		}
+  case FebANBN {									!AA_07312019 Added for storm flex AN&BN  (FEB)
+        condition month==FEB .and. wyt_SAC >1. .and. wyt_SAC <=3.
+        value ((OMR_Storm * 6.+ OMR_JanJun *(daysin-6.))/daysin )
+		}
+  case FebDry {										!AA_07312019 Added for storm flex D   (FEB)
+        condition month==FEB .and. wyt_SAC==4. .and. dryJanCheckdv(-1)==99.
+        value ((OMR_Storm * 6.+ OMR_JanJun *(daysin-6.))/daysin )
+		}     
+      
+  !case MarAprT_W_AN_BN_Turb_Slvg {									   !081319 No April
+    !      condition month >= MAR .and. month <= APR .and. wyt_SAC<=4. .and. SAC_RI>=TurbT_Thresh			
+    !      value 	 (OMR_wet_an_bn_MAR_APR *(daysin-5.)+ OMR_NoTurbBrid * 5.)/daysin  }
+    
+    case MarT_W_AN_BN_DTurb_Slvg {									   !AK_08132019 with Aaron Turbidity avoidance only with Aaron  (Mar)
+            condition month == MAR .and. wyt_SAC<=4. .and. SAC_RI>=TurbT_Thresh			
+          value 	 (OMR_wet_an_bn_MAR_APR *(daysin-5.)+ OMR_NoTurbBrid * 5.)/daysin  }
+    
+    case MarMayT_W_AN_BN_D {										   !AA_07312019 Salvage only     (Mar-Apr) exctended to May
+          condition month >= MAR .and. month <= MAY .and. wyt_SAC<=4.						
+          value 	 OMR_wet_an_bn_MAR_APR }
+          
+    ! case MarAprT_TURB_AVOID {										   !081319 No April		
+    !        condition month >= MAR .and. month <= APR .and. SAC_RI>=TurbT_Thresh						
+    !      value 	 ((OMR_background *(daysin-5.)+ OMR_NoTurbBrid * 5.)/daysin ) }
+     
+     case MarT_TURB_AVOID {										   !AK_08132019 with Aaron Turbidity avoidance only with Aaron	 (Mar) 			
+            condition month == MAR .and. SAC_RI>=TurbT_Thresh						
+          value 	 ((OMR_background *(daysin-5.)+ OMR_NoTurbBrid * 5.)/daysin ) }      
+   
+  ! case MAY_JUN {											   !AA_07312019 with Aaron Turbidity avoidance only	 (May-Jun)
+  !        condition month >= MAY  .and. month <= JUN .and. SAC_RI>=TurbT_Thresh
+  !        value ((OMR_background *(daysin-5.)+  OMR_NoTurbBrid * 5.)/daysin )}  
+  
+   case MAY_JUN {											   !AK_08132019 with Aaron Turbidity avoidance only 	 (May-Jun)
+          condition month >= MAY  .and. month <= JUN 
+          value OMR_background }                                                                           !Just the OMR background
+          
+    case JANJUN {
+          condition month >= JAN .and. month <=JUN   
+          value OMR_background }			
+     case otherwise {
+          condition always
+          value -99999. }
+  }
+  
+  define OMR_PA_1dv {alias OMR_PA_1 kind 'FLOW' units 'CFS'}
+  
+  define OMR_RPA_14day{value OMR_PA_1} !Remove reference to RPAs to avoid confusion.
+  
+  !Put an additional constraint so that 5 day OMR is not negative more than 25% of the 14 day OMR
+  define OMR_RPA_5day {
+        case Action {
+              condition OMR_RPA_14day >= -12000.
+              value 1.25*OMR_RPA_14day}
+        case None {
+              condition always
+              value -99999.}
+  }
+  
+  ! Use Paul Hutton's regression equation to determine an aggregate based on a determination of whether
+  ! the 5 day or the 14 day will control
+  define OMR_RPA_FWS {value max(OMR_RPA_14day,(OMR_RPA_5day+389.)/1.02)}
+  
+  !QA/QC
+  define OMR_RPA14d {alias OMR_RPA_14day  kind 'FLOW-REG' units 'CFS'} ! for output
+  !define OMR_RPA5d {alias OMR_RPA_5day  kind 'FLOW-REG' units 'CFS'}
+define OMR_RPA_FWSdv {alias OMR_RPA_FWS  kind 'FLOW-REG' units 'CFS'}
+!

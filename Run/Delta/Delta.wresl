@@ -10,9 +10,11 @@ Richard Chen 4/20/2011 add User Defined Qwest constrain (C_SJRVI-Venice Island)
 
 Include 'SpecProjects.wresl'
 Include 'vallejo.wresl'
+Include 'Napa_Solano.wresl'
 
 if int(DCC_DLTSW)== 1 .or. int(DCC_DLTSW)==0 .or. int(DCC_DLTSW)==2 {
-	define nmfs_days_open {value daysin}
+!	define nmfs_days_open {value daysin}
+	Include '../Export_Ops/DCC_stub.wresl'
 	Include 'xc-gates.wresl' 
 }
 
@@ -23,4 +25,3 @@ include 'Delta_ANN.wresl'
 Include 'riovista.wresl'                 
 Include 'SoDeltaChannels.wresl' 
 Include 'Qwest_constraint.wresl'
-

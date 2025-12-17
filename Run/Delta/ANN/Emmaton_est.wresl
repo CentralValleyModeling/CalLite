@@ -7,7 +7,7 @@ Get the required Sac flow for ESTIMATED exports
 Add a switch to turn off D1641/D1485 constrain at Emmaton
 Z.Q. Richard Chen; DWR; (02/07/2011)
 **************************/
-
+!define emreqsac {timeseries kind 'flow' units 'cfs'}
 define EMReqSac {
   case DRegsOff{
     condition EM_DLTSW == 0

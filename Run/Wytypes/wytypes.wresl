@@ -9,8 +9,8 @@ WATER YEAR TYPE DEFINITIONS
 
 ! ================ INDICES AS DEFINED BY DWR (CHANGE IN FEB) =====================
 ! the 40-30-30 index for Sacramento Basin
-define wyt_SAC {
-    case OCTtoJAN_CC0 {
+define wyt_SAC {timeseries kind 'wateryeartype' units 'none'}
+/*    case OCTtoJAN_CC0 {
          condition  month >= OCT .and. month <= JAN .and. Climate_Proj == 0
          select     SACindex_0
          from       wytypes
@@ -120,12 +120,19 @@ define wyt_SAC {
          select     SACindex_10
          from       wytypes
          where      wateryear=wateryear}         
-}
+}*/
+
+define wyt_SAC_{alias wyt_SAC kind 'wateryeartype' units 'none'}
+
+!ANN input
+define wyt_Driest { value 0.0} 
+
+
 
 ! ================ INDICES AS DEFINED BY CVP (CHANGE IN MAR) =====================
 ! the 40-30-30 index for Sacramento Basin as defined by the CVP (changes in March)
-define wyt_SAC_cvp {
-     case OCTtoFEB_CC0 {
+define wyt_SAC_cvp {timeseries kind 'wateryeartype' units 'none'}
+/*     case OCTtoFEB_CC0 {
         condition   month >= OCT .and. month <= FEB .and. Climate_Proj == 0
         select      SACindex_0
         from        wytypes
@@ -246,11 +253,11 @@ define wyt_SAC_cvp {
         select      SACindex_10
         from        wytypes
         where       wateryear=wateryear}        
-}
+}*/
 
 ! the Shasta index as defined by the CVP (changes in March)
-define wyt_SHASTA_cvp {
-        case OCTtoFEB_CC0 {
+define wyt_SHASTA_cvp {timeseries kind 'wateryeartype' units 'none'}
+/*        case OCTtoFEB_CC0 {
         condition   month >= OCT .and. month <= FEB .and. Climate_Proj == 0
         select      SHASTAindex_0
         from        wytypes
@@ -372,11 +379,11 @@ define wyt_SHASTA_cvp {
         select      SHASTAindex_10
         from        wytypes
         where       wateryear=wateryear}        
-}
+}*/
 
 ! the American River D893 index as defined by the CVP (changes in March)
-define wyt_AMERd893_cvp {
-        case OCTtoFEB_CC0 {
+define wyt_AMERd893_cvp {timeseries kind 'wateryeartype' units 'none'}
+/*        case OCTtoFEB_CC0 {
         condition   month >= OCT .and. month <= FEB .and. Climate_Proj == 0
         select      AmerD893_0
         from        wytypes
@@ -498,7 +505,7 @@ define wyt_AMERd893_cvp {
         select      AmerD893_10
         from        wytypes
         where       wateryear=wateryear}        
-}
+}*/
 
 ! ============================== YEAR TYPES ====================================
 ! the following year type names can be used to represent the numbers found in the tables
@@ -509,8 +516,8 @@ define Dry          {value 4}
 define Critical     {value 5}
 
 ! the Trinity index   1=Very Wet, 2=Wet, 3=Normal, 4=Dry, 5=Critically Dry: Note: Index changes in Apr.
-define wyt_TRIN {
-         case OCTtoMar_CC0 {
+define wyt_TRIN_ {timeseries kind 'wateryeartype' units 'none'}
+/*         case OCTtoMar_CC0 {
                    condition        month >= OCT .and. month <= MAR .and. Climate_Proj == 0
                    select           Trinityindex_0
                    from               wytypes
@@ -631,7 +638,7 @@ define wyt_TRIN {
                    select           Trinityindex_10
                    from               wytypes
                    where            wateryear=wateryear}                   
-}
+}*/
 ! So first define the calendar year since deliveries are based on Jan-Dec year
 define calendaryear {
     case JantoSep {
@@ -643,8 +650,8 @@ define calendaryear {
 }
 
 ! the Feather Index for the Feather River Basin
-define wyt_FEATHER {
-    case OCTtoJAN_CC0 {
+define wyt_FEATHER {timeseries kind 'wateryeartype' units 'none'}
+/*    case OCTtoJAN_CC0 {
          condition  month >= OCT .and. month <= JAN .and. Climate_Proj == 0
          select     FEATHERindex_0
          from       wytypes
@@ -765,7 +772,7 @@ define wyt_FEATHER {
          select     FEATHERindex_10
          from       wytypes
          where      wateryear=wateryear}         
-}
+}*/
 
 /**
  MODIFIED 40-30-30 index so that values are updated in Jan.
@@ -835,8 +842,8 @@ define mod_wyt_SAC {
 
 
 ! the 60-20-20 index for San Joaquin basin
-define wyt_SJR {
-    case OCTtoJAN_CC0 {
+define wyt_SJR {timeseries kind 'wateryeartype' units 'none'}
+/*    case OCTtoJAN_CC0 {
          condition  month >= OCT .and. month <= JAN .and. Climate_Proj == 0
          select     SJRindex_0
          from       wytypes
@@ -957,11 +964,11 @@ define wyt_SJR {
          select     SJRindex_10
          from       wytypes
          where      wateryear=wateryear}         
-}
+}*/
 
 ! Previous year's SJR water year type index, select water year type from lookup table
-define wyt_SJR_prv1 {
-    case OCTtoJAN_CC0 {
+define wyt_SJR_prv1 {timeseries kind 'wateryeartype' units 'none'}
+/*   case OCTtoJAN_CC0 {
          condition     month >= OCT .and. month <= JAN .and. Climate_Proj == 0
          select        index_0
          from        wytypeSJR
@@ -1082,11 +1089,11 @@ define wyt_SJR_prv1 {
          select        index_10
          from        wytypeSJR
          where        wateryear=wateryear -1. }         
-        }
+        }*/
 
 ! Two years ago's SJR water year type index, select water year type from lookup table
-define wyt_SJR_prv2 {
-    case OCTtoJAN_CC0 {
+define wyt_SJR_prv2 {timeseries kind 'wateryeartype' units 'none'}
+/*    case OCTtoJAN_CC0 {
          condition     month >= OCT .and. month <= JAN .and. Climate_Proj == 0
          select        index_0
          from        wytypeSJR
@@ -1207,7 +1214,7 @@ define wyt_SJR_prv2 {
          select        index_10
          from        wytypeSJR
          where        wateryear=wateryear -2. }         
-        }
+        }*/
 		
 ! Definition of Mar-Feb contract month
 define contract_month {
@@ -1342,3 +1349,19 @@ define wyt_ann {
     	condition always
     	value mod_wyt_SAC}
 }
+define SacIndex {timeseries kind 'index' units 'taf'}
+/*define SacIndex{ 
+    case OCTtoDec {
+         condition  month >= OCT .and. month <= Dec !water year type index for Fish and Wildlife standards in ANN (wyt_ann) renew in Jan
+         value SacIndex_dv(prevMay)
+         }
+    case JuntoSep {
+         condition  month >= Jun .and. month <= Sep 
+         value SacIndex_dv(prevMay)
+         }
+    case rest {
+         condition  always
+	 value 0.4*(C_BB_AprJul+i_Orovl_AprJul+i_Folsm_AprJul+yuba_AprJul)+0.3*(C_BB_OctMar+i_Orovl_OctMar+i_Folsm_OctMar+yuba_OctMar)+0.3*min(10000, SacIndexPrev)
+	}
+}*/
+define SacIndex_dv{alias SacIndex kind 'index' units 'taf'}

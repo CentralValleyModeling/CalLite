@@ -1,0 +1,98 @@
+! SJR_restrict.wresl
+! This code restricts regulated flows in various arcs within the SJR system
+! ###############################################################################
+/*
+Restrict Millerton, Hensley, and Eastman regulated releases to deliveries and losses
+The balance of release will be flood-related
+*/
+
+
+/*********************************************************************************
+Millerton
+
+Regulated release is an interim implementation to match CalSim2 operations.
+Main release is SJRR or the minimum annual 116.8 taf, with 40% of that 116.8 taf
+available to Gravelly Ford and the rest destined for loss at Gravelly Ford.
+Flow below Gravelly Ford is split into the Restoration portion and the rest
+(from flood releases or local accretions).
+*********************************************************************************/
+
+
+goal limitD_SJR227_64_PA3 { D_SJR227_64_PA3 < 0.4 * min(SJRR_rel, SJRR_min) }
+
+!goal setC_SJR227_mainSJRR {C_SJR227_mainSJRR < max(0.,SJRR_rel - SJRR_min + min(0,UpperSJRSeep))} !SJRR_L605 losses (subtracted above) were positive, UpperSJRSeep losses are neg
+
+!Route Settlement flow to Sack Dam.   
+!goal setC605C {D_SJR205_SJR201 = C_SJR227_mainSJRR}
+
+! Make sure Settlement flow goes past Sack Dam
+goal SJRR_PassThru {C_SJR180 > D_SJR205_SJR201}
+
+
+
+
+
+
+
+
+
+
+! TODO -- 
+! hard or soft constraints - need to re-address after initial replication of CalSim2 SJRR operation
+
+! goal boundC_MLRTNmain  { C_MLRTNm < max(0.,-UpperSJRSeep-I_SJR265-I_SJR258-(SR_64*Area_64_SJR227 /*+ BF_64*Area_64_SJR227*/)) + D_SJR227_64_PA3 }    
+!goal boundC_MLRTNmain  {lhs C_MLRTNm
+!                        rhs max(0.,-UpperSJRSeep-I_SJR265-I_SJR258-(SR_64*Area_64_SJR227 /*+ BF_64*Area_64_SJR227*/)) + D_SJR227_64_PA3
+!                        lhs>rhs penalty 999999
+!                        lhs<rhs penalty 0}
+                        
+
+! Restrict Hensley regulated release to Fresno River losses, Fresno River delivery and Fresno River minimum instream flow 
+
+! TODO -- 
+! Hard constraint can result in infeasibility w/ dynamic GW linkage...
+! Conver to soft constraint... 
+
+
+! goal boundC_HNSLYmain  { C_HNSLYm < max(0.,-UpperFresnoSeep + C_FRS036_min - I_FRS046) - SP_MDC019_FRS045 + D_FRS036_64_PA1 }
+
+goal boundC_HNSLYmain  {lhs C_HNSLYm
+                        rhs max(0.,-UpperFresnoSeep+C_FRS036_min-I_FRS046) - SP_MDC019_FRS045 + D_FRS036_64_PA1
+                        lhs>rhs penalty 999999
+                        lhs<rhs penalty 0}
+                        
+! Restrict Eastman regulated release to Chowchilla River delivery & Chowchilla River losses  
+
+! TODO -- 
+! Hard constraint can result in infeasibility w/ dynamic GW linkage...
+! Conver to soft constraint... 
+
+! goal boundC_ESTMNmain { C_ESTMNm < D_CHW017_64_PA2 + D_CHW028_ASL013 + D_CHW028_BRS018
+!                                    - SG80_CHW031_11 - SG81_CHW028_11 - SG82_CHW024_11
+!                                    - SG83_CHW021_11 - SG84_CHW017_11 - C_MDC032 }
+
+goal boundC_ESTMNmain  {lhs C_ESTMNm
+                        rhs D_CHW017_64_PA2 + D_CHW028_ASL013 + D_CHW028_BRS018
+                            - SG80_CHW031_11 - SG81_CHW028_11 - SG82_CHW024_11
+                            - SG83_CHW021_11 - SG84_CHW017_11 - C_MDC032
+                        lhs>rhs penalty 999999
+                        lhs<rhs penalty 0}                                        
+                        
+
+! Regulated releases from Goodwin Dam (Tulloch Reservoir) < 1500 cfs
+! NOTE -- limits in table MaxPermissible upped to 7500 to match latest CSII
+define maxGoodwin { select MaxLimit from MaxPermissible_CS3 where nodeid=16 }
+goal RestrGoodwin{ C_STS059 - C_STS059F < maxGoodwin }
+
+
+/*
+Water released from New Melones for WQ and DO must flow past Goodwin (if below channel capacity)
+*/
+! Water released from New Melones for water quality route past Goodwin
+goal routeC_STS059WQ   {C_STS059WQ = C_MELONWQ}
+! Water released from New Melones for DO route past Goodwin
+goal routeC_STS059DO   {C_STS059DO = C_MELONDO}
+! Water released from New Melones for minimum flow (?) route past Goodwin
+goal routeC_STS059MIN  {C_STS059MIN = C_MELONMIN}
+
+

@@ -1,0 +1,111 @@
+define I50_Jan_75{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value camsjrdll(1, 1, IYPOSSJR, IMPOSSJR, IYEARSJR, IMSJR, 
+	IFREQODSJR_75, IFREQ1SJR_75, IFREQ2SJR_75, IFREQ3SJR_75, IFREQ4SJR_75, IFREQ5SJR_75, 
+	QST_0_1, QST_0_2, QST_0_3, QST_0_4, 
+	QST_1_1, QST_1_2, QST_1_3, QST_1_4, QST_1_5, QST_1_6, 
+	QST_1_7, QST_1_8, QST_1_9, QST_1_10, QST_1_11, QST_1_12, 
+	QST_2_10, QST_2_11, QST_2_12, 
+	QTU_0_1, QTU_0_2, QTU_0_3, QTU_0_4, QTU_1_10, QTU_1_11, QTU_1_12, 
+	QME_0_1, QME_0_2, QME_0_3, QME_0_4, QME_1_10, QME_1_11, QME_1_12, 
+	QSJ_0_1, QSJ_0_2, QSJ_0_3, QSJ_0_4, QSJ_1_10, QSJ_1_11, QSJ_1_12, 
+	PST_0_1, PST_0_2, PST_0_3, PST_0_4, PST_1_10, PST_1_11, PST_1_12, 
+	PTU_0_1, PTU_0_2, PTU_0_3, PTU_0_4, PTU_1_10, PTU_1_11, PTU_1_12, 
+	PME_0_1, PME_0_2, PME_0_3, PME_0_4, PME_1_10, PME_1_11, PME_1_12, 
+	PSJ_0_1, PSJ_0_2, PSJ_0_3, PSJ_0_4, PSJ_1_10, PSJ_1_11, PSJ_1_12)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}
+
+define(fm) I_ST_fm_75{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,325+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}  !Stanislaus at New Melones
+define(fm) I_SJ_fm_75{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,361+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}  !SJR Milton
+define(fm) I_ME_fm_75{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,349+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}  !Merced at Exchequer Reservoir
+define(fm) I_TU_fm_75{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,337+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}	
+}  !Tuolumne at New Don Pedero
+
+define(fm) I_ST_fm_Med{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,373+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}  !Stanislaus at New Melones
+define(fm) I_ST_fm_Med_dv{alias I_ST_fm_Med($m) kind 'forecasted-inflow-median' units 'taf'}
+
+define(fm) I_SJ_fm_Med{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,409+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}  !SJR Milton
+define(fm) I_SJ_fm_Med_dv{alias I_SJ_fm_Med($m) kind 'forecasted-inflow-median' units 'taf'}
+
+define(fm) I_ME_fm_Med{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,397+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}  !Merced at Exchequer Reservoir
+define(fm) I_ME_fm_Med_dv{alias I_ME_fm_Med($m) kind 'forecasted-inflow-median' units 'taf'}
+
+define(fm) I_TU_fm_Med{
+	case JanToMay{
+		condition month>=Jan .and. month<=May
+		value CAMSJRDLL(0,385+$m+month-Jan)
+	}
+	case JunToDec{
+		condition always
+		value 0.0
+	}
+}  !Tuolumne at New Don Pedero
+define(fm) I_TU_fm_Med_dv{alias I_TU_fm_Med($m) kind 'forecasted-inflow-median' units 'taf'}

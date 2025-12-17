@@ -1,0 +1,53 @@
+! Output of Results
+
+!include 'deliv_short_cvp_n.wresl'  !Need to get this file working once NOD is all updated
+include 'deliv_short_cvp_s.wresl'
+include 'deliv_short_swp.wresl'
+
+
+define WRassume_02_PUDV {timeseries kind 'WR-delivery' units 'cfs'}
+define WRassume_08S_PRDV {timeseries kind 'WR-delivery' units 'cfs'}
+define WRassume_08N_SA1DV {timeseries kind 'WR-delivery' units 'cfs'}
+define WRassume_08S_SA3DV {timeseries kind 'WR-delivery' units 'cfs'}
+
+
+define del_cvp_pag_n {alias D_WTPCSD_02_PA + D_SAC294_03_PA + D_CCL005_04_PA1 + D_TCC022_04_PA2 + D_TCC036_07N_PA + D_TCC081_07S_PA + D_TCC111_07S_PA + D_CBD028_08S_PA + D_CBD049_08N_PA + D_FTR021_16_PA + D_KLR005_21_PA kind 'delivery-cvp' units 'cfs'}
+define del_cvp_pmi_n {alias D_WTPBUK_03_PU3 + D_WTPCSD_02_PU - WRassume_02_PUDV + D_WKYTN_02_PU + D_WTPJMS_03_PU1 + D_WTPBLV_03_PU2 /*+ CL2_FOLSM + CL2_SJWD_S + CL2_ELDOR + CL2_ROSEV + CL2_CAREC + CL2_SMUD + CL2_PCWA_S + CL2_SCWA + CL2_PCWA_A*/ kind 'delivery-cvp' units 'cfs'}
+define del_cvp_psc_n_year {alias D_SAC296_02_SA + D_WTPFTH_03_SU + D_WTPFTH_02_SU + D_SAC289_03_SA + D_SAC178_08N_SA1 + D_SAC159_08N_SA1 - WRassume_08N_SA1DV + D_GCC027_08N_SA2 + D_SAC159_08S_SA1 + D_GCC056_08S_SA2 + D_SAC121_08S_SA3 + D_SAC109_08S_SA3 - WRassume_08S_SA3DV + D_MTC000_09_SA1 + D_SAC162_09_SA2 + D_SAC136_18_SA + D_SAC122_19_SA + D_SAC115_19_SA + D_SAC099_19_SA + D_SAC091_19_SA + D_SAC083_21_SA + D_SAC074_21_SA + D_SAC082_22_SA1 + D_SAC078_22_SA1 kind 'delivery-cvp' units 'cfs'}
+define del_cvp_prf_n {alias D_GCC027_08N_PR1 + D_GCC039_08N_PR2 + D_GCC056_08S_PR + (D_CBD037_08S_PR - WRassume_08S_PRDV)/*+ D_WEC005_11_PR + D_RVC005_11_PR*/ + D_MTC000_09_PR kind 'delivery-cvp' units 'cfs'}
+
+define del_cvp_psc_n {lower unbounded upper unbounded kind 'delivery-cvp' units 'cfs'}
+goal del_cvp_psc_n_  {
+    lhs del_cvp_psc_n
+    case APR_OCT {
+    condition month == OCT .or. month >= APR .and. month <= SEP
+    rhs del_cvp_psc_n_year }
+    
+    case otherwise {
+    condition always
+    rhs 0. }
+    }
+
+! TOTAL CVP North (non-Water Forum)
+define del_cvp_total_n {alias del_cvp_pag_n + del_cvp_pmi_n + del_cvp_psc_n + del_cvp_prf_n kind 'delivery-cvp' units 'cfs'}
+
+
+!Below does not match the SwpTotalDel variable calculate in CalLite code, have not resolved the differences 
+define SwpTotalDel_CS3 {alias D_CAA046_71_PA7+D_CAA173_EMPIRE+D_CAA181_KINGS+D_CAA183_TULARE+D_CAA184_DUDLEY+D_CSB015_KERN_BMWD+D_CSB009_CLRTA1_DDWD+D_CAA194_KERN/*+D853*/+D_CAA242_Kern_prj+D_CAA279_Kern+
+                          D_PRRIS_MWDSC+D_ESB413_MWDSC+D_ESB433_MWDSC+D_WSB031_MWDSC+D_SVRWD_CSTLN+D_PYRMD_VNTRA+D_CSTIC_VNTRA+D_BKR004_NBA009_PRJ+D_CSB038_OBISPO+D_CSB103_BRBRA+D_ESB324_AVEK+D_ESB347_PLMDL+D_ESB355_LROCK+D_ESB403_MOJVE+D_ESB407_CCHLA+D_ESB408_DESRT+
+                          D_ESB414_BRDNO+D_ESB415_GABRL+D_ESB420_GRGNO+D_WSB032_CLRTA2+D_SBA009_ACFC+D_SBA020_ACFC+D_SBA029_ACWD+D_SBA036_SCVWD+
+                          SG_R1R2_SWP+SG_R3_SWP+SG_R4_SWP+SG_R5_SWP+SG_R6_SWP+SG_R7_SWP+D_CAA220_CAALOS+D_CAA278_CAALOS+D_CAA280_CAALOS+
+                          D_ESB361_ESBLOS+D_ESB406_ESBLOS+D_ESB425_ESBLOS+D_WSB006_WSBLOS+D_WSB026_WSBLOS+D_WSB027_WSBLOS+D_SBA042_SBALOS
+                          kind 'FLOW-DELIVERY' units 'CFS' }
+
+
+
+!Commented out below since this calculation is done using CalLite variables (could reactivate for debugging)
+/*define CvpTotalDel_CS3 {alias del_cvp_pag_s_CS3 + D_CAA238_CVPCV + ! AG
+                          del_cvp_pex_s_CS3 + ! EX
+                          del_cvp_pmi_s_CS3 + ! MI
+                          del_cvp_prf_s_CS3 + ! RF
+                          del_cvp_pls_s_CS3   ! losses
+                          kind 'FLOW-DELIVERY' units 'CFS' }
+*/
+

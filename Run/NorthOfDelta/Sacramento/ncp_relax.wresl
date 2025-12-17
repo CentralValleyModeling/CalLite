@@ -9,18 +9,34 @@ for Ag is 65% or less, in which case it can be 3250-4500 depending on percent
 delivery.  Minimum flow can change during Jan-May, and then May value is used 
 during June-Dec.
 *************************************/
+define ShastaNCPlow {select low from ShastaNCPlevel where month=month} !@jmg 2017.11.28 - added from CSII 'current ops' v2017.11.07 @NP
+define ShastaNCPmed {select med from ShastaNCPlevel where month=month} !@jmg 2017.11.28 - added from CSII 'current ops' v2017.11.07 @NP
 
 define ncp_with_relax {
-    select flow
-    from ncp_with_relax
-    given Ag_alloc = perdel_cvpag_sys * 100
-    use maximum
-       }
+	case low { 
+		condition S_SHSTA(-1)<ShastaNCPlow 
+		select low 
+		from ncp_with_relax 
+		given Ag_alloc = perdel_cvpag_sys * 100 
+		use maximum }
+	case med { 
+		condition S_SHSTA(-1)<ShastaNCPmed 
+		select med 
+		from ncp_with_relax 
+		given Ag_alloc = perdel_cvpag_sys * 100 
+		use maximum }
+	case high { 
+		condition always   
+		select high 
+		from ncp_with_relax 
+		given Ag_alloc = perdel_cvpag_sys * 100 
+		use maximum }
+}
 
 define minflow_C_Wilkns {std kind 'flow-min-required' units 'cfs'}
 
-define ncp_relax_final {
-
+define ncp_relax_final {value ncp_with_relax}  !@jmg 2017.12.01 - set this value for every month instead of holding for Jun-Dec
+/*
      case yr1922 {
           condition month <= MAR .and. wateryear == 1922
           value     ncp_with_relax
@@ -33,7 +49,7 @@ define ncp_relax_final {
           condition always
           value     min(ncp_with_relax, minflow_C_Wilkns(-1))
           }
-     }
+     }*/
 
 goal set_minflow_C_Wilkns {minflow_C_Wilkns = ncp_relax_final}
 

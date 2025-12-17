@@ -8,7 +8,7 @@ Z.Q. Richard Chen DWR (12/8/2010)
 
 ! Set cvc wheeling to zero
 goal wheeling2 {D_Banks_cvc = 0.0}
-goal wheeling2a {C_Delta_whlcv = 0.0}
+goal wheeling2a {NDOI_ADD_whlcv = 0.0}
 goal wheel_Cl_1 {C_Wkytn_whlcv = 0.0} 
 goal wheel_Sp_1 {D_Spring_whlcv = 0.0} 
 goal wheel_Ks_1 {C_Kswck_whlcv = 0.0}

@@ -9,6 +9,6 @@ Calculate extra water needed to satisfy Delta Flow Criteria
 define ExtraWater_RioVista{lower unbounded upper unbounded kind 'ExtraWater' units 'cfs'}
 goal ExtraWaterRioVista {ExtraWater_RioVista=RioVista_SWRCB_DV-C_SACRV}
 define ExtraWater_NDO{lower unbounded upper unbounded kind 'ExtraWater' units 'cfs'}
-goal ExtraWaterNDO {ExtraWater_NDO=NDO_SWRCB_DV-C_Delta}
+goal ExtraWaterNDO {ExtraWater_NDO=NDO_SWRCB_DV-NDOI_ADD}
 define ExtraWater_SJR{lower unbounded upper unbounded kind 'ExtraWater' units 'cfs'}
 goal ExtraWaterSJR {ExtraWater_SJR=SJR_SWRCB_DV-C_SJRVER}

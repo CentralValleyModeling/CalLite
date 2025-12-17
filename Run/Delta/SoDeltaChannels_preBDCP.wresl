@@ -118,7 +118,7 @@ define coefC{
 ! Total South of Delta Pumping and Depletions
 define Qsod {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-DELIVERY' units 'CFS'}
 
-goal setQsod { Qsod = D_ExpTD + D_CCWDVCOR + netDICU_SOD}
+goal setQsod { Qsod = EXP_TD + D_CCWDVCOR + netDICU_SOD}
 
 ! Flow split through Indian Slough
 goal setC_IndnSl { C_IndnSl = coefB * Qsod + Qsod } ! Indian Slough component of OMR flow equation

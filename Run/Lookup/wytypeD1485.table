@@ -1,5 +1,5 @@
 ! Water Year Type Classification - D1485 only
-! 1=W, 2=AN, 3=BN, 4=D, 5=C
+! 1=W, 2=AN, 3=BN, 4=D, 5=C  2004-2015 uses placeholders (repeat indexes from 1992-2003)
 wytypeD1485
 wateryear  index
 1921		1
@@ -85,3 +85,15 @@ wateryear  index
 2001		5
 2002		4
 2003		2
+2004		5
+2005		2
+2006		5
+2007		1
+2008		1
+2009		1
+2010		1
+2011		1
+2012		2
+2013		5
+2014		4
+2015		2

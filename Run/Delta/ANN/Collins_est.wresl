@@ -7,6 +7,7 @@ Get the required Sac flow for ESTIMATED exports
 Add a switch to turn off D1641/D1485 constrain at Collins
 Z.Q. Richard Chen; DWR; (02/07/2011)
 **************************/
+!define coreqsac {timeseries kind 'flow' units 'cfs'}
 define COReqSac {
           case DRegsOff{
             condition CO_DLTSW == 0

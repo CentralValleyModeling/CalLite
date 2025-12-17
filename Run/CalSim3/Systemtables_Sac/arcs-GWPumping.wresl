@@ -1,0 +1,521 @@
+/*
+File Name: arcs-GWpumping.wresl
+CalSim 3.0 System File
+
+Purpose:
+Define arcs associated with delivery of water from groundwater pumping
+
+
+Naming takes the following form:
+
+GP_{Demand Unit} - Total Groundwater Pumping
+GPmin_{Demand Unit} - Minimum Groundwater Pumping
+
+*/
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 1 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!Not used
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 2 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_02_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_02_PA 	{select minfraction from AgMinMaxgw where id = 2}
+define GPmax_02_PA 	{select maxfraction from AgMinMaxgw where id = 2}
+
+define GP_02_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_02_SA 	{select minfraction from AgMinMaxgw where id = 3}
+define GPmax_02_SA 	{select maxfraction from AgMinMaxgw where id = 3}
+
+define GP_02_PU 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_02_PU	{select minfraction from UrbanMinMaxgw where id = 2}
+define GPmax_02_PU 	{select maxfraction from UrbanMinMaxgw where id = 2}
+
+define GP_02_SU 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_02_SU 	{select minfraction from UrbanMinMaxgw where id = 3}
+define GPmax_02_SU 	{select maxfraction from UrbanMinMaxgw where id = 3}
+
+define GP_WBATotal_2 	{std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 3 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_03_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_03_PA 	{select minfraction from AgMinMaxgw where id = 5}
+define GPmax_03_PA 	{select maxfraction from AgMinMaxgw where id = 5}
+
+define GP_03_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_03_SA 	{select minfraction from AgMinMaxgw where id = 6}
+define GPmax_03_SA 	{select maxfraction from AgMinMaxgw where id = 6}
+
+define GP_03_PU1 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_03_PU1 	{select minfraction from UrbanMinMaxgw where id = 5}
+define GPmax_03_PU1 	{select maxfraction from UrbanMinMaxgw where id = 5}
+
+define GP_03_PU2 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_03_PU2 	{select minfraction from UrbanMinMaxgw where id = 6}
+define GPmax_03_PU2 	{select maxfraction from UrbanMinMaxgw where id = 6}
+
+define GP_03_PU3 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_03_PU3 	{select minfraction from UrbanMinMaxgw where id = 7}
+define GPmax_03_PU3 	{select maxfraction from UrbanMinMaxgw where id = 7}
+
+define GP_03_SU 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_03_SU 	{select minfraction from UrbanMinMaxgw where id = 8}
+define GPmax_03_SU 	{select maxfraction from UrbanMinMaxgw where id = 8}
+
+define GP_WBATotal_3 	{std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 4 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_04_PA1 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_04_PA1 	{select minfraction from AgMinMaxgw where id = 8}
+define GPmax_04_PA1 	{select maxfraction from AgMinMaxgw where id = 8}
+
+define GP_04_PA2 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_04_PA2 	{select minfraction from AgMinMaxgw where id = 9}
+define GPmax_04_PA2 	{select maxfraction from AgMinMaxgw where id = 9}
+
+define GP_WBATotal_4 	{std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 5 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+define GP_WBATotal_5 	{std kind 'GW-PUMPING' units 'CFS'} 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 6 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_06_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_06_PA 	{select minfraction from AgMinMaxgw where id = 12}
+define GPmax_06_PA 	{select maxfraction from AgMinMaxgw where id = 12}
+
+define GP_WBATotal_6 	{std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 7-NORTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_07N_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_07N_PA 	{select minfraction from AgMinMaxgw where id = 14}
+define GPmax_07N_PA 	{select maxfraction from AgMinMaxgw where id = 14}
+
+define GP_WBATotal_7N {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 7-SOUTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_07S_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_07S_PA 	{select minfraction from AgMinMaxgw where id = 16}
+define GPmax_07S_PA 	{select maxfraction from AgMinMaxgw where id = 16}
+
+define GP_WBATotal_7S {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 8-NORTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_08N_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08N_PA 	{select minfraction from AgMinMaxgw where id = 18}
+define GPmax_08N_PA 	{select maxfraction from AgMinMaxgw where id = 18}
+
+define GP_08N_SA1 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08N_SA1 	{select minfraction from AgMinMaxgw where id = 19}
+define GPmax_08N_SA1 	{select maxfraction from AgMinMaxgw where id = 19}
+
+define GP_08N_SA2 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08N_SA2 	{select minfraction from AgMinMaxgw where id = 20}
+define GPmax_08N_SA2 	{select maxfraction from AgMinMaxgw where id = 20}
+
+define GP_08N_PR1 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08N_PR1 	{select minfraction from WetlandMinMaxgw where id = 1}
+define GPmax_08N_PR1 	{select maxfraction from WetlandMinMaxgw where id = 1}
+
+define GP_08N_PR2 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08N_PR2 	{select minfraction from WetlandMinMaxgw where id = 2}
+define GPmax_08N_PR2 	{select maxfraction from WetlandMinMaxgw where id = 2}
+
+define GP_WBATotal_8N {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 8-SOUTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_08S_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08S_PA 	{select minfraction from AgMinMaxgw where id = 23}
+define GPmax_08S_PA 	{select maxfraction from AgMinMaxgw where id = 23}
+
+define GP_08S_SA1 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08S_SA1 	{select minfraction from AgMinMaxgw where id = 24}
+define GPmax_08S_SA1 	{select maxfraction from AgMinMaxgw where id = 24}
+
+define GP_08S_SA2 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08S_SA2 	{select minfraction from AgMinMaxgw where id = 25}
+define GPmax_08S_SA2 	{select maxfraction from AgMinMaxgw where id = 25}
+
+define GP_08S_SA3 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08S_SA3 	{select minfraction from AgMinMaxgw where id = 26}
+define GPmax_08S_SA3 	{select maxfraction from AgMinMaxgw where id = 26}
+
+define GP_08S_PR 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_08S_PR 	{select minfraction from WetlandMinMaxgw where id = 3}
+define GPmax_08S_PR 	{select maxfraction from WetlandMinMaxgw where id = 3}
+
+define GP_WBATotal_8S {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 9 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_09_SA1 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_09_SA1 	{select minfraction from AgMinMaxgw where id = 28}
+define GPmax_09_SA1 	{select maxfraction from AgMinMaxgw where id = 28}
+
+define GP_09_SA2 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_09_SA2 	{select minfraction from AgMinMaxgw where id = 29}
+define GPmax_09_SA2 	{select maxfraction from AgMinMaxgw where id = 29}
+
+define GP_09_PR 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_09_PR 	{select minfraction from WetlandMinMaxgw where id = 4}
+define GPmax_09_PR 	{select maxfraction from WetlandMinMaxgw where id = 4}
+
+define GP_WBATotal_9 	{std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 10 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_WBATotal_10 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 11 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_11_SA1 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_11_SA1 	{select minfraction from AgMinMaxgw where id = 32}
+define GPmax_11_SA1 	{select maxfraction from AgMinMaxgw where id = 32}
+
+define GP_11_SA2 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_11_SA2 	{select minfraction from AgMinMaxgw where id = 33}
+define GPmax_11_SA2 	{select maxfraction from AgMinMaxgw where id = 33}
+
+define GP_11_SA3 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_11_SA3 	{select minfraction from AgMinMaxgw where id = 34}
+define GPmax_11_SA3 	{select maxfraction from AgMinMaxgw where id = 34}
+
+define GP_11_SA4 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_11_SA4 	{select minfraction from AgMinMaxgw where id = 35}
+define GPmax_11_SA4 	{select maxfraction from AgMinMaxgw where id = 35}
+
+define GP_11_PR 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_11_PR 	{select minfraction from WetlandMinMaxgw where id = 5}
+define GPmax_11_PR 	{select maxfraction from WetlandMinMaxgw where id = 5}
+
+define GP_WBATotal_11 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 12 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_12_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_12_SA 	{select minfraction from AgMinMaxgw where id = 37}
+define GPmax_12_SA 	{select maxfraction from AgMinMaxgw where id = 37}
+
+define GP_WBATotal_12 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 13 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_WBATotal_13 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 14 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_WBATotal_14 {std kind 'GW-PUMPING' units 'CFS'}
+ 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 15-NORTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_15N_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_15N_SA 	{select minfraction from AgMinMaxgw where id = 42}
+define GPmax_15N_SA 	{select maxfraction from AgMinMaxgw where id = 42}
+
+define GP_WBATotal_15N {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 15-SOUTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_15S_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_15S_SA 	{select minfraction from AgMinMaxgw where id = 45}
+define GPmax_15S_SA 	{select maxfraction from AgMinMaxgw where id = 45}
+
+define GP_WBATotal_15S {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 16 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_16_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_16_PA 	{select minfraction from AgMinMaxgw where id = 48}
+define GPmax_16_PA 	{select maxfraction from AgMinMaxgw where id = 48}
+
+define GP_16_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_16_SA 	{select minfraction from AgMinMaxgw where id = 49}
+define GPmax_16_SA 	{select maxfraction from AgMinMaxgw where id = 49}
+
+define GP_16_PU 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_16_PU 	{select minfraction from UrbanMinMaxgw where id = 30}
+define GPmax_16_PU 	{select maxfraction from UrbanMinMaxgw where id = 30}
+
+define GP_WBATotal_16 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 17-NORTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_17N_NR 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_17N_NR 	{select minfraction from WetlandMinMaxgw where id = 6}
+define GPmax_17N_NR 	{select maxfraction from WetlandMinMaxgw where id = 6}
+
+define GP_17N_PR 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_17N_PR 	{select minfraction from WetlandMinMaxgw where id = 7}
+define GPmax_17N_PR 	{select maxfraction from WetlandMinMaxgw where id = 7}
+
+define GP_WBATotal_17N {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 17-SOUTH !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_17S_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_17S_SA 	{select minfraction from AgMinMaxgw where id = 52}
+define GPmax_17S_SA 	{select maxfraction from AgMinMaxgw where id = 52}
+ 
+define GP_17S_PR 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_17S_PR 	{select minfraction from WetlandMinMaxgw where id = 8}
+define GPmax_17S_PR 	{select maxfraction from WetlandMinMaxgw where id = 8}
+
+define GP_WBATotal_17S {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 18 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_18_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_18_SA 	{select minfraction from AgMinMaxgw where id = 54}
+define GPmax_18_SA 	{select maxfraction from AgMinMaxgw where id = 54}
+
+define GP_WBATotal_18 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 19 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_19_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_19_SA 	{select minfraction from AgMinMaxgw where id = 56}
+define GPmax_19_SA 	{select maxfraction from AgMinMaxgw where id = 56}
+
+define GP_WBATotal_19 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 20 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_20_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_20_PA 	{select minfraction from AgMinMaxgw where id = 59}
+define GPmax_20_PA 	{select maxfraction from AgMinMaxgw where id = 59}
+
+define GP_WBATotal_20 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 21 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_21_PA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_21_PA 	{select minfraction from AgMinMaxgw where id = 61}
+define GPmax_21_PA 	{select maxfraction from AgMinMaxgw where id = 61}
+
+define GP_21_SA 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_21_SA 	{select minfraction from AgMinMaxgw where id = 62}
+define GPmax_21_SA 	{select maxfraction from AgMinMaxgw where id = 62}
+
+define GP_21_PU 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_21_PU 	{select minfraction from UrbanMinMaxgw where id = 38}
+define GPmax_21_PU 	{select maxfraction from UrbanMinMaxgw where id = 38} 
+
+define GP_WBATotal_21 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 22 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_22_SA1 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_22_SA1 	{select minfraction from AgMinMaxgw where id = 64}
+define GPmax_22_SA1 	{select maxfraction from AgMinMaxgw where id = 64}
+
+define GP_22_SA2 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_22_SA2 	{select minfraction from AgMinMaxgw where id = 65}
+define GPmax_22_SA2 	{select maxfraction from AgMinMaxgw where id = 65}
+
+define GP_WBATotal_22 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 23 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_WBATotal_23 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 24 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+define GP_WBATotal_24 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 25 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_25_PA1 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_25_PA1 	{select minfraction from AgMinMaxgw where id = 71}
+define GPmax_25_PA1 	{select maxfraction from AgMinMaxgw where id = 71}
+
+define GP_25_PA2 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_25_PA2 	{select minfraction from AgMinMaxgw where id = 72}
+define GPmax_25_PA2 	{select maxfraction from AgMinMaxgw where id = 72}
+
+define GP_25_PU 		{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_25_PU 	{select minfraction from UrbanMinMaxgw where id = 46}
+define GPmax_25_PU 	{select maxfraction from UrbanMinMaxgw where id = 46} 
+
+define GP_WBATotal_25 {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 26N !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_26N_PU1 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26N_PU1 	{select minfraction from UrbanMinMaxgw where id = 52}
+define GPmax_26N_PU1 	{select maxfraction from UrbanMinMaxgw where id = 52} 
+
+define GP_26N_PU2 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26N_PU2 	{select minfraction from UrbanMinMaxgw where id = 53}
+define GPmax_26N_PU2 	{select maxfraction from UrbanMinMaxgw where id = 53} 
+
+define GP_26N_PU3 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26N_PU3 	{select minfraction from UrbanMinMaxgw where id = 54}
+define GPmax_26N_PU3 	{select maxfraction from UrbanMinMaxgw where id = 54} 
+
+define GP_WBATotal_26N {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 26S !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_26S_PU1 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26S_PU1 	{select minfraction from UrbanMinMaxgw where id = 59}
+define GPmax_26S_PU1 	{select maxfraction from UrbanMinMaxgw where id = 59} 
+
+define GP_26S_PU2 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26S_PU2 	{select minfraction from UrbanMinMaxgw where id = 60}
+define GPmax_26S_PU2 	{select maxfraction from UrbanMinMaxgw where id = 60} 
+
+define GP_26S_PU3 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26S_PU3 	{select minfraction from UrbanMinMaxgw where id = 61}
+define GPmax_26S_PU3 	{select maxfraction from UrbanMinMaxgw where id = 61} 
+
+define GP_26S_PU4 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26S_PU4 	{select minfraction from UrbanMinMaxgw where id = 62}
+define GPmax_26S_PU4 	{select maxfraction from UrbanMinMaxgw where id = 62} 
+
+define GP_26S_PU5 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26S_PU5 	{select minfraction from UrbanMinMaxgw where id = 63}
+define GPmax_26S_PU5 	{select maxfraction from UrbanMinMaxgw where id = 63} 
+
+define GP_26S_PU6 	{std kind 'GW-PUMPING' units 'CFS'} 
+define GPmin_26S_PU6 	{select minfraction from UrbanMinMaxgw where id = 64}
+define GPmax_26S_PU6 	{select maxfraction from UrbanMinMaxgw where id = 64} 
+
+define GP_WBATotal_26S {std kind 'GW-PUMPING' units 'CFS'}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 60N !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+define GP_60N_PU 		{std kind 'GW-PUMPING' units 'CFS'} 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! EXTERNAL AREAS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+define GP_PCWA3 		{std kind 'GW-PUMPING' units 'CFS'} 
+!SP MBK add timeseries definitions
+define    GP_11_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_11_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_11_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_20_NA1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_20_NA2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_20_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_20_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_02_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_02_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_03_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_03_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_04_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_04_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_04_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_05_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_05_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_06_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_06_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_07N_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_07N_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_07S_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_07S_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_08N_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_08N_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_08S_NA1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_08S_NA2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_08S_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_09_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_09_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_10_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_10_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_10_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_12_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_12_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_12_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_13_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_13_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_13_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_14_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_14_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_15N_NA1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_15N_NA2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_15N_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_15S_NA1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_15S_NA2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_15S_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_16_NA1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_16_NA2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_16_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_17N_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_17S_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_17S_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_18_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_18_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_19_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_21_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_21_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_22_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_22_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_23_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_23_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NA1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NA2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NA3       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NU3       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_24_NU4       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_25_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_25_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26N_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26N_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26N_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26N_NU3       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26N_NU4       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26N_NU5       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26S_NU1       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26S_NU2       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26S_NU3       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26S_NU4       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_26S_NA       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+define    GP_17N_NU       {timeseries kind 'GW-PUMPING' units 'CFS'}	
+
+

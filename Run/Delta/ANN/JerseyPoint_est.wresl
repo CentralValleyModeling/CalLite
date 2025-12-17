@@ -7,7 +7,7 @@ Get the required Sac flow for ESTIMATED exports
 Add a switch to turn off D1641/D1485 constrain at JerseyPoint
 Z.Q. Richard Chen; DWR; (02/07/2011)
 **************************/
-
+!define jpreqsac {timeseries kind 'flow' units 'cfs'}
 define JPReqSac {
       case DRegsOff{
         condition JP_DLTSW == 0

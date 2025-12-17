@@ -1,0 +1,391 @@
+define IYPOS1SJR {value wateryear}
+define IYPOS2SJR {value IYPOS1SJR + 1}
+define IYPOSSJR {case first {
+                condition wateryear == IYPOS1SJR
+                value IYPOS1SJR}
+              case second {
+                condition always
+                value IYPOS2SJR}}  
+define IMPOSSJR {case OCT_DEC {
+                condition month <= DEC
+                value month + 9}
+              case Rest {
+                condition always
+                value month - 3}}
+define IYEARSJR {value wateryear}
+/*define IYEAR {case first {
+                condition wateryear == IYPOS1
+                select FirstRandYear from RandomYearTable where PA_Sequence = 1}
+              case second {
+                condition always
+                select SecondRandYear from RandomYearTable where PA_Sequence = 1}}  */
+define IMSJR {case OCT_DEC {
+             condition month <= DEC
+             value month + 9}
+           case Rest {
+             condition always
+             value month - 3}}
+define IFREQODSJR {select IFREQOD from Freq_Exceedence where Cat = 1}
+define IFREQ1SJR {select IFREQ1 from Freq_Exceedence where Cat = 1}
+define IFREQ2SJR {select IFREQ2 from Freq_Exceedence where Cat = 1}
+define IFREQ3SJR {select IFREQ3 from Freq_Exceedence where Cat = 1}
+define IFREQ4SJR {select IFREQ4 from Freq_Exceedence where Cat = 1}
+define IFREQ5SJR {select IFREQ5 from Freq_Exceedence where Cat = 1}
+
+define IFREQODSJR_75 {select IFREQOD from Freq_Exceedence where Cat = 3}
+define IFREQ1SJR_75 {select IFREQ1 from Freq_Exceedence where Cat = 3}
+define IFREQ2SJR_75 {select IFREQ2 from Freq_Exceedence where Cat = 3}
+define IFREQ3SJR_75 {select IFREQ3 from Freq_Exceedence where Cat = 3}
+define IFREQ4SJR_75 {select IFREQ4 from Freq_Exceedence where Cat = 3}
+define IFREQ5SJR_75 {select IFREQ5 from Freq_Exceedence where Cat = 3}
+
+define UNIMP_ST {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}
+define UNIMP_TU {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}
+define UNIMP_ME {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}
+define UNIMP_SJ {timeseries kind 'FLOW-UNIMPAIRED' units 'TAF'}
+
+define PPT_ST {timeseries kind 'PRECIP' units 'INCHES'}
+define PPT_TU {timeseries kind 'PRECIP' units 'INCHES'}
+define PPT_ME {timeseries kind 'PRECIP' units 'INCHES'}
+define PPT_SJ {timeseries kind 'PRECIP' units 'INCHES'}
+
+define QST_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ST(prevJAN)}}
+define QST_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ST(prevFEB)}}
+define QST_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ST(prevMAR)}}
+define QST_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ST(prevAPR)}}
+define QST_1_1 {value UNIMP_ST(-8-month)} 
+define QST_1_2 {value UNIMP_ST(-7-month)}  
+define QST_1_3 {value UNIMP_ST(-6-month)}  
+define QST_1_4 {value UNIMP_ST(-5-month)}
+define QST_1_5 {value UNIMP_ST(prevMAY)} 
+define QST_1_6 {value UNIMP_ST(prevJUN)}
+define QST_1_7 {value UNIMP_ST(prevJUL)}
+define QST_1_8 {value UNIMP_ST(prevAUG)}
+define QST_1_9 {value UNIMP_ST(prevSEP)}
+define QST_1_10 {value UNIMP_ST(prevOCT)}
+define QST_1_11 {value UNIMP_ST(prevNOV)}
+define QST_1_12 {value UNIMP_ST(prevDEC)}                    
+define QST_2_10 {value UNIMP_ST(-11-month)}
+define QST_2_11 {value UNIMP_ST(-10-month)}
+define QST_2_12 {value UNIMP_ST(-9-month)}
+                    
+define QTU_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_TU(prevJAN)}}
+define QTU_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_TU(prevFEB)}}
+define QTU_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_TU(prevMAR)}}
+define QTU_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_TU(prevAPR)}}
+define QTU_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_TU(prevOCT)}}
+define QTU_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_TU(prevNOV)}}
+define QTU_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_TU(prevDEC)}}  
+                    
+define QME_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ME(prevJAN)}}
+define QME_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ME(prevFEB)}}
+define QME_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ME(prevMAR)}}
+define QME_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_ME(prevAPR)}}
+define QME_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_ME(prevOCT)}}
+define QME_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_ME(prevNOV)}}
+define QME_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_ME(prevDEC)}}                   
+
+define QSJ_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SJ(prevJAN)}}
+define QSJ_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SJ(prevFEB)}}
+define QSJ_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SJ(prevMAR)}}
+define QSJ_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value UNIMP_SJ(prevAPR)}}
+define QSJ_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_SJ(prevOCT)}}
+define QSJ_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_SJ(prevNOV)}}
+define QSJ_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value UNIMP_SJ(prevDEC)}}
+
+define PST_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ST(prevJAN)}}
+define PST_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ST(prevFEB)}}
+define PST_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ST(prevMAR)}}
+define PST_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ST(prevAPR)}}
+define PST_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_ST(prevOCT)}}
+define PST_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_ST(prevNOV)}}
+define PST_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_ST(prevDEC)}}                    
+                    
+define PTU_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_TU(prevJAN)}}
+define PTU_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_TU(prevFEB)}}
+define PTU_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_TU(prevMAR)}}
+define PTU_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_TU(prevAPR)}}
+define PTU_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_TU(prevOCT)}}
+define PTU_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_TU(prevNOV)}}
+define PTU_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_TU(prevDEC)}}  
+                    
+define PME_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ME(prevJAN)}}
+define PME_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ME(prevFEB)}}
+define PME_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ME(prevMAR)}}
+define PME_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_ME(prevAPR)}}
+define PME_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_ME(prevOCT)}}
+define PME_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_ME(prevNOV)}}
+define PME_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_ME(prevDEC)}}                   
+
+define PSJ_0_1 {case JAN {
+                   condition month <= JAN
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SJ(prevJAN)}}
+define PSJ_0_2 {case FEB {
+                   condition month <= FEB
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SJ(prevFEB)}}
+define PSJ_0_3 {case MAR {
+                   condition month <= MAR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SJ(prevMAR)}}
+define PSJ_0_4 {case APR {
+                   condition month <= APR
+                   value 0.0}
+                 case rest {
+                   condition always
+                   value PPT_SJ(prevAPR)}}
+define PSJ_1_10 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_SJ(prevOCT)}}
+define PSJ_1_11 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_SJ(prevNOV)}}
+define PSJ_1_12 {case first{
+					condition wateryear == 1922 .and. month<=Dec
+                    value 0.0}
+                 case second{
+                 	condition always 
+                 	value PPT_SJ(prevDEC)}}
