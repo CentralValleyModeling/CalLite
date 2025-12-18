@@ -1,0 +1,2 @@
+!No Delta export recapture until the ITP cycle.
+goal noExpRecapture {D_OMR027_SJRRrecap < 0}

@@ -1,48 +1,51 @@
 ! Outputs for spreadsheet analyzing controlling factors
 
-define[local] D_NapaBASE  {alias D_NAPA[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
-define[local] c_YubFeaBASE  {alias c_YubFea[Base]      kind 'FLOW-CHANNEL'  units 'CFS'}
+define[local] D_NapaBASE  {alias D_NAPA[BASE]     KIND 'debug' UNITS 'CFS'}
+define[local] c_YubFeaBASE  {alias c_YubFea[Base]      kind 'debug'  units 'CFS'}
 
-define[local] c_OMRUP  {alias c_OMR[UPSTREAM]      kind 'FLOW-CHANNEL'  units 'CFS'}
-define[local] c_OMRBASE  {alias c_OMR[Base]      kind 'FLOW-CHANNEL'  units 'CFS'}
+define[local] c_OMRPRE  {alias c_OMR[PRESETUP]      kind 'debug'  units 'CFS'}
+define[local] c_OMRBASE  {alias c_OMR[Base]      kind 'debug'  units 'CFS'}
 
-define[local] D_BanksUP     {alias D_Banks[UPSTREAM]    KIND 'debug' UNITS 'CFS'}
-define[local] D_Banks_swpUP     {alias D_Banks_swp[UPSTREAM]    KIND 'debug' UNITS 'CFS'}
-define[local] D_JonesUp         {alias D_Jones[UPSTREAM]        KIND 'debug' UNITS 'CFS'}
-define[local] D_Banks_exp1UP    {alias D_Banks_exp1[UPSTREAM]   KIND 'debug' UNITS 'CFS'}
-define[local] D_Banks_exp2UP    {alias D_Banks_exp2[UPSTREAM]   KIND 'debug' UNITS 'CFS'}
-define[local] D_Jones_exp1UP    {alias D_Jones_exp1[UPSTREAM]   KIND 'debug' UNITS 'CFS'}
-define[local] D_Jones_exp2UP    {alias D_Jones_exp2[UPSTREAM]   KIND 'debug' UNITS 'CFS'}
-define[local] C_Delta_swpUP     {alias C_Delta_swp[UPSTREAM]    KIND 'debug' UNITS 'CFS'}
-define[local] C_Delta_cvpUP     {alias C_Delta_cvp[UPSTREAM]    KIND 'debug' UNITS 'CFS'}
-define[local] D_EXPTDUP         {alias D_EXPTD[UPSTREAM]        KIND 'debug' units 'cfs'}
-define[local] eiexpctrlUP       {alias eiexpctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
-define[local] aprmayexpctrlUP       {alias aprmayexpctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
-define[local] aprmaybanksctrlUP       {alias aprmaybanksctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
-define[local] aprmayjonesctrlUP       {alias aprmayjonesctrl[UPSTREAM]      KIND 'debug' units 'cfs'}
+define[local] D_BanksPRE     {alias D_Banks[PRESETUP]    KIND 'debug' UNITS 'CFS'}
+define[local] D_Banks_swpPRE      {alias D_Banks_swp[PRESETUP]    KIND 'debug' UNITS 'CFS'}
+define[local] D_JonesPRE          {alias D_Jones[PRESETUP]        KIND 'debug' UNITS 'CFS'}
+define[local] D_Banks_exp1PRE     {alias D_Banks_exp1[PRESETUP]   KIND 'debug' UNITS 'CFS'}
+define[local] D_Banks_exp2PRE     {alias D_Banks_exp2[PRESETUP]   KIND 'debug' UNITS 'CFS'}
+define[local] D_Jones_exp1PRE     {alias D_Jones_exp1[PRESETUP]   KIND 'debug' UNITS 'CFS'}
+define[local] D_Jones_exp2PRE    {alias D_Jones_exp2[PRESETUP]   KIND 'debug' UNITS 'CFS'}
+define[local] NDOI_ADD_swpPRE     {alias NDOI_ADD_swp[PRESETUP]    KIND 'debug' UNITS 'CFS'}
+define[local] NDOI_ADD_cvpPRE     {alias NDOI_ADD_cvp[PRESETUP]    KIND 'debug' UNITS 'CFS'}
+define[local] EXP_TDPRE         {alias EXP_TD[PRESETUP]        KIND 'debug' units 'cfs'}
+define[local] eiexpctrlPRE       {alias eiexpctrl[PRESETUP]      KIND 'debug' units 'cfs'}
+define[local] aprmayexpctrlPRE       {alias aprmayexpctrl[PRESETUP]      KIND 'debug' units 'cfs'}
+define[local] aprmaybanksctrlPRE       {alias aprmaybanksctrl[PRESETUP]      KIND 'debug' units 'cfs'}
+define[local] aprmayjonesctrlPRE       {alias aprmayjonesctrl[PRESETUP]      KIND 'debug' units 'cfs'}
 define[local] C209_np_exc_up    {alias C209_np_exc KIND 'FLOW-CHANNEL' UNITS 'CFS'}
 define[local] C209_prj_exc_up   {alias c209_prj KIND 'FLOW-CHANNEL' UNITS 'CFS'}
 
-define[local] D_BanksBASE  {alias D_Banks[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
-define[local] D_Banks_swpBASE  {alias D_Banks_swp[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
-define[local] D_JonesBASE  {alias D_Jones[BASE]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+define[local] D_BanksBASE  {alias D_Banks[BASE]     KIND 'debug' UNITS 'CFS'}
+define[local] D_Banks_swpBASE  {alias D_Banks_swp[BASE]     KIND 'debug' UNITS 'CFS'}
+define[local] D_Banks_SWP_TDBASE  {alias D_Banks_SWP_TD[BASE]     KIND 'debug' UNITS 'CFS'}
+
+define[local] D_JonesBASE  {alias D_Jones[BASE]     KIND 'debug' UNITS 'CFS'}
 define[local] D_Banks_exp1BASE  {alias D_Banks_exp1[BASE]   KIND 'debug' UNITS 'CFS'}
 define[local] D_Banks_exp2BASE  {alias D_Banks_exp2[BASE]   KIND 'debug' UNITS 'CFS'}
 define[local] D_Jones_exp1BASE  {alias D_Jones_exp1[BASE]   KIND 'debug' UNITS 'CFS'}
 define[local] D_Jones_exp2BASE  {alias D_Jones_exp2[BASE]   KIND 'debug' UNITS 'CFS'}
-define[local] C_Delta_swpBASE       {alias C_Delta_swp[BASE]    KIND 'debug' UNITS 'CFS'}
-define[local] C_Delta_cvpBASE       {alias C_Delta_cvp[BASE]    KIND 'debug' UNITS 'CFS'}
-define[local] D_EXPTDBASE           {alias D_EXPTD[BASE]        KIND 'debug' units 'cfs'}
+define[local] NDOIBASE	{alias NDOI[BASE] kind 'debug' units 'CFS'}
+define[local] NDOI_ADD_swpBASE       {alias NDOI_ADD_swp[BASE]    KIND 'debug' UNITS 'CFS'}
+define[local] NDOI_ADD_cvpBASE       {alias NDOI_ADD_cvp[BASE]    KIND 'debug' UNITS 'CFS'}
+define[local] EXP_TDBASE           {alias EXP_TD[BASE]        KIND 'debug' units 'cfs'}
 define[local] eiexpctrlBASE     {alias eiexpctrl[BASE]      KIND 'debug' units 'cfs'}
 define[local] aprmayexpctrlBASE     {alias aprmayexpctrl[BASE]      KIND 'debug' units 'cfs'}
 define[local] aprmaybanksctrlBASE       {alias aprmaybanksctrl[BASE]      KIND 'debug' units 'cfs'}
 define[local] aprmayjonesctrlBASE       {alias aprmayjonesctrl[BASE]      KIND 'debug' units 'cfs'}
 
-define[local] c_kswck_mUP   {alias c_kswck_m[UPSTREAM]  KIND 'debug' UNITS 'CFS'}
-define[local] c_nimbus_mUP  {alias c_nimbus_m[UPSTREAM] KIND 'debug' UNITS 'CFS'}
-define[local] c_wkytn_mUP   {alias c_wkytn_m[UPSTREAM]  KIND 'debug' UNITS 'CFS'}
-define[local] d_spring_mUP  {alias d_spring_m[UPSTREAM] KIND 'debug' UNITS 'CFS'}
-define[local] c_thermUP     {alias c_therm[UPSTREAM]    KIND 'debug' UNITS 'CFS'}
+define[local] c_kswck_mPRE   {alias c_kswck_m[PRESETUP]  KIND 'debug' UNITS 'CFS'}
+define[local] c_nimbus_mPRE  {alias c_nimbus_m[PRESETUP] KIND 'debug' UNITS 'CFS'}
+define[local] c_wkytn_mPRE   {alias c_wkytn_m[PRESETUP]  KIND 'debug' UNITS 'CFS'}
+define[local] d_spring_mPRE  {alias d_spring_m[PRESETUP] KIND 'debug' UNITS 'CFS'}
+define[local] c_thermPRE     {alias c_therm[PRESETUP]    KIND 'debug' UNITS 'CFS'}
 
 define[local] c_kswck_mBASE     {alias c_kswck_m[BASE]  KIND 'debug' UNITS 'CFS'}
 define[local] c_nimbus_mBASE    {alias c_nimbus_m[BASE] KIND 'debug' UNITS 'CFS'}
@@ -50,17 +53,17 @@ define[local] c_wkytn_mBASE     {alias c_wkytn_m[BASE]  KIND 'debug' UNITS 'CFS'
 define[local] d_spring_mBASE    {alias d_spring_m[BASE] KIND 'debug' UNITS 'CFS'}
 define[local] c_thermBASE       {alias c_therm[BASE]    KIND 'debug' UNITS 'CFS'}
 
-define[local] Inflow_UP {alias Inflow[upstream] kind 'debug' units 'cfs'}
+define[local] Inflow_PRE {alias Inflow[PRESETUP] kind 'debug' units 'cfs'}
 define[local] Inflow_BASE {alias Inflow[BASE] kind 'debug' units 'cfs'}
 
-define[local] SWPDS_up       {alias SWPDS[UPSTREAM]     KIND 'debug' UNITS 'CFS'}
-define[local] SHADS_up       {alias SHADS[UPSTREAM]     KIND 'debug' UNITS 'CFS'}
-define[local] FOLDS_up       {alias FOLDS[UPSTREAM]     KIND 'debug' UNITS 'CFS'}
-define[local] WHSSW_up       {alias WHSSW[UPSTREAM]     KIND 'debug' UNITS 'CFS'}
-define[local] IBU_up         {alias IBU[UPSTREAM]       KIND 'debug' UNITS 'CFS'}
-define[local] UWFE_up        {alias UWFE[UPSTREAM]      KIND 'debug' UNITS 'CFS'}
-define[local] UNUSED_FS_up   {alias UNUSED_FS[UPSTREAM] KIND 'debug' UNITS 'CFS'}
-define[local] UNUSED_SS_up   {alias UNUSED_SS[UPSTREAM] KIND 'debug' UNITS 'CFS'}
+define[local] SWPDS_PRE       {alias SWPDS[PRESETUP]     KIND 'debug' UNITS 'CFS'}
+define[local] SHADS_PRE       {alias SHADS[PRESETUP]     KIND 'debug' UNITS 'CFS'}
+define[local] FOLDS_PRE       {alias FOLDS[PRESETUP]     KIND 'debug' UNITS 'CFS'}
+define[local] WHSSW_PRE       {alias WHSSW[PRESETUP]     KIND 'debug' UNITS 'CFS'}
+define[local] IBU_PRE         {alias IBU[PRESETUP]       KIND 'debug' UNITS 'CFS'}
+define[local] UWFE_PRE        {alias UWFE[PRESETUP]      KIND 'debug' UNITS 'CFS'}
+define[local] UNUSED_FS_PRE   {alias UNUSED_FS[PRESETUP] KIND 'debug' UNITS 'CFS'}
+define[local] UNUSED_SS_PRE   {alias UNUSED_SS[PRESETUP] KIND 'debug' UNITS 'CFS'}
                                                         
 define[local] SWPDS_base       {alias SWPDS[BASE]     KIND 'debug' UNITS 'CFS'}
 define[local] SHADS_base       {alias SHADS[BASE]     KIND 'debug' UNITS 'CFS'}
@@ -71,137 +74,137 @@ define[local] UWFE_base        {alias UWFE[BASE]      KIND 'debug' UNITS 'CFS'}
 define[local] UNUSED_FS_base   {alias UNUSED_FS[BASE] KIND 'debug' UNITS 'CFS'}
 define[local] UNUSED_SS_base   {alias UNUSED_SS[BASE] KIND 'debug' UNITS 'CFS'}
                                                         
-define[local] exp_est_SWP_up        {alias exp_est_SWP[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] exp_est_SWP_PRE        {alias exp_est_SWP[PRESETUP] kind 'debug' units 'cfs'}
 define[local] exp_est_SWP_base      {alias exp_est_SWP[BASE] kind 'debug' units 'cfs'}
 define[local] exp_estSWPlim3c2  {alias exp_estSWPlim3[BASE] kind 'debug' units 'cfs'}
-define[local] exp_est_CVP_up        {alias exp_est_CVP[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] exp_est_CVP_PRE        {alias exp_est_CVP[PRESETUP] kind 'debug' units 'cfs'}
 define[local] exp_est_CVP_base      {alias exp_est_CVP[BASE] kind 'debug' units 'cfs'}
 
-define[local] RSReqSacDVup {alias RSReqSacDV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] RSReqSacDVPRE {alias RSReqSacDV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] RSReqSacDVbase {alias RSReqSacDV[BASE] kind 'debug' units 'CFS'}
 
-define[local] JPReqSacDVup {alias JPReqSacDV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] JPReqSacDVPRE {alias JPReqSacDV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] JPReqSacDVbase {alias JPReqSacDV[BASE] kind 'debug' units 'CFS'}
 
-define[local] EMReqSacDVup {alias EMReqSacDV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] EMReqSacDVPRE {alias EMReqSacDV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] EMReqSacDVbase {alias EMReqSacDV[BASE] kind 'debug' units 'CFS'}
 
-define[local] COReqSacDVup {alias COReqSacDV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] COReqSacDVPRE {alias COReqSacDV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] COReqSacDVbase {alias COReqSacDV[BASE] kind 'debug' units 'CFS'}
 
-define[local] AnnSacReqDVup {alias AnnSacReqDV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] AnnSacReqDVPRE {alias AnnSacReqDV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] AnnSacReqDVbase {alias AnnSacReqDV[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_HOOD_MIFUP {alias C_HOOD_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_HOOD_MIFPRE {alias C_HOOD_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_HOOD_MIFBASE {alias C_HOOD_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_HOOD_EXCUP {alias C_HOOD_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_HOOD_EXCPRE {alias C_HOOD_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_HOOD_EXCBASE {alias C_HOOD_EXC[BASE] kind 'debug' units 'CFS'}
-define[local] C_HOOD_ANNUP {alias C_HOOD_ANN[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_HOOD_ANNPRE {alias C_HOOD_ANN[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_HOOD_ANNBASE {alias C_HOOD_ANN[BASE] kind 'debug' units 'CFS'}
 define[local] C_HOODbase    {alias C_HOOD[BASE] kind 'debug' units 'cfs'}
-define[local] C_HOODup      {alias C_HOOD[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_HOODPRE      {alias C_HOOD[PRESETUP] kind 'debug' units 'cfs'}
 
-define[local] C_HST_MIFUP {alias C_HST_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_HST_MIFPRE {alias C_HST_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_HST_MIFBASE {alias C_HST_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_HST_EXCUP {alias C_HST_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_HST_EXCPRE {alias C_HST_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_HST_EXCBASE {alias C_HST_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_KSWCK_MIFUP {alias C_KSWCK_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_KSWCK_MIFPRE {alias C_KSWCK_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_KSWCK_MIFBASE {alias C_KSWCK_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_KSWCK_EXCUP {alias C_KSWCK_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_KSWCK_EXCPRE {alias C_KSWCK_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_KSWCK_EXCBASE {alias C_KSWCK_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_NIMBUS_MIFUP {alias C_NIMBUS_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_NIMBUS_MIFPRE {alias C_NIMBUS_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_NIMBUS_MIFBASE {alias C_NIMBUS_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_NIMBUS_EXCUP {alias C_NIMBUS_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_NIMBUS_EXCPRE {alias C_NIMBUS_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_NIMBUS_EXCBASE {alias C_NIMBUS_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_OROVL_MIFUP {alias C_OROVL_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_OROVL_MIFPRE {alias C_OROVL_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_OROVL_MIFBASE {alias C_OROVL_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_OROVL_EXCUP {alias C_OROVL_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_OROVL_EXCPRE {alias C_OROVL_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_OROVL_EXCBASE {alias C_OROVL_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_REDBLF_MIFUP {alias C_REDBLF_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_REDBLF_MIFPRE {alias C_REDBLF_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_REDBLF_MIFBASE {alias C_REDBLF_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_REDBLF_EXCUP {alias C_REDBLF_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_REDBLF_EXCPRE {alias C_REDBLF_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_REDBLF_EXCBASE {alias C_REDBLF_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_SACRV_MIFUP {alias C_SACRV_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_SACRV_MIFPRE {alias C_SACRV_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_SACRV_MIFBASE {alias C_SACRV_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_SACRV_EXCUP {alias C_SACRV_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_SACRV_EXCPRE {alias C_SACRV_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_SACRV_EXCBASE {alias C_SACRV_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_THERM_MIFUP {alias C_THERM_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_THERM_MIFPRE {alias C_THERM_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_THERM_MIFBASE {alias C_THERM_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_THERM_EXCUP {alias C_THERM_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_THERM_EXCPRE {alias C_THERM_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_THERM_EXCBASE {alias C_THERM_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_WILKNS_MIFUP {alias C_WILKNS_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_WILKNS_MIFPRE {alias C_WILKNS_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_WILKNS_MIFBASE {alias C_WILKNS_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_WILKNS_EXCUP {alias C_WILKNS_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_WILKNS_EXCPRE {alias C_WILKNS_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_WILKNS_EXCBASE {alias C_WILKNS_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_WKYTN_MIFUP {alias C_WKYTN_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_WKYTN_MIFPRE {alias C_WKYTN_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_WKYTN_MIFBASE {alias C_WKYTN_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_WKYTN_EXCUP {alias C_WKYTN_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_WKYTN_EXCPRE {alias C_WKYTN_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_WKYTN_EXCBASE {alias C_WKYTN_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_YOLOBP_MIFUP {alias C_YOLOBP_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_YOLOBP_MIFPRE {alias C_YOLOBP_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_YOLOBP_MIFBASE {alias C_YOLOBP_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_YOLOBP_EXCUP {alias C_YOLOBP_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_YOLOBP_EXCPRE {alias C_YOLOBP_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_YOLOBP_EXCBASE {alias C_YOLOBP_EXC[BASE] kind 'debug' units 'CFS'}
-define[local] C_YOLOBPup    {alias C_YOLOBP[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_YOLOBPPRE    {alias C_YOLOBP[PRESETUP] kind 'debug' units 'cfs'}
 define[local] C_YOLOBPbase  {alias C_YOLOBP[BASE] kind 'debug' units 'cfs'}
 
-define[local] C_YUBFEA_MIFUP {alias C_YUBFEA_MIF[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_YUBFEA_MIFPRE {alias C_YUBFEA_MIF[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_YUBFEA_MIFBASE {alias C_YUBFEA_MIF[BASE] kind 'debug' units 'CFS'}
-define[local] C_YUBFEA_EXCUP {alias C_YUBFEA_EXC[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] C_YUBFEA_EXCPRE {alias C_YUBFEA_EXC[PRESETUP] kind 'debug' units 'CFS'}
 define[local] C_YUBFEA_EXCBASE {alias C_YUBFEA_EXC[BASE] kind 'debug' units 'CFS'}
 
-define[local] S_SHSTAUP {alias S_SHSTA[UPSTREAM] kind 'debug' units 'TAF'}
+define[local] S_SHSTAPRE {alias S_SHSTA[PRESETUP] kind 'debug' units 'TAF'}
 define[local] S_SHSTABASE {alias S_SHSTA[BASE] kind 'debug' units 'TAF'}
 
-define[local] S_FOLSMUP {alias S_FOLSM[UPSTREAM] kind 'debug' units 'TAF'}
+define[local] S_FOLSMPRE {alias S_FOLSM[PRESETUP] kind 'debug' units 'TAF'}
 define[local] S_FOLSMBASE {alias S_FOLSM[BASE] kind 'debug' units 'TAF'}
 
-define[local] S_TRNTYUP {alias S_TRNTY[UPSTREAM] kind 'debug' units 'TAF'}
+define[local] S_TRNTYPRE {alias S_TRNTY[PRESETUP] kind 'debug' units 'TAF'}
 define[local] S_TRNTYBASE {alias S_TRNTY[BASE] kind 'debug' units 'TAF'}
 
-define[local] S_OROVLUP {alias S_OROVL[UPSTREAM] kind 'debug' units 'TAF'}
+define[local] S_OROVLPRE {alias S_OROVL[PRESETUP] kind 'debug' units 'TAF'}
 define[local] S_OROVLBASE {alias S_OROVL[BASE] kind 'debug' units 'TAF'}
 
-define[local] S_SLCVPUP {alias S_SLCVP[UPSTREAM] kind 'debug' units 'TAF'}
-define[local] S_SLCVPBASE {alias S_SLCVP[BASE] kind 'debug' units 'TAF'}
+define[local] S_SLUIS_CVPPRE {alias S_SLUIS_CVP[PRESETUP] kind 'debug' units 'TAF'}
+define[local] S_SLUIS_CVPBASE {alias S_SLUIS_CVP[BASE] kind 'debug' units 'TAF'}
 
-define[local] S_SLSWPUP {alias S_SLSWP[UPSTREAM] kind 'debug' units 'TAF'}
-define[local] S_SLSWPBASE {alias S_SLSWP[BASE] kind 'debug' units 'TAF'}
+define[local] S_SLUIS_SWPPRE {alias S_SLUIS_SWP[PRESETUP] kind 'debug' units 'TAF'}
+define[local] S_SLUIS_SWPBASE {alias S_SLUIS_SWP[BASE] kind 'debug' units 'TAF'}
 
-define[local] CVPRULECVUP {alias CVPRULECV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] CVPRULECVPRE {alias CVPRULECV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] CVPRULECVBASE {alias CVPRULECV[BASE] kind 'debug' units 'CFS'}
 
-define[local] SWPRULECVUP {alias SWPRULECV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] SWPRULECVPRE {alias SWPRULECV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] SWPRULECVBASE {alias SWPRULECV[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_DELTAUP {alias C_DELTA[UPSTREAM] kind 'debug' units 'CFS'}
-define[local] C_DELTABASE {alias C_DELTA[BASE] kind 'debug' units 'CFS'}
+define[local] NDOI_ADDPRE {alias NDOI_ADD[PRESETUP] kind 'debug' units 'CFS'}
+define[local] NDOI_ADDBASE {alias NDOI_ADD[BASE] kind 'debug' units 'CFS'}
 
-define[local] D_DELTAREQDUP {alias D_DELTAREQD[UPSTREAM] kind 'debug' units 'CFS'}
-define[local] D_DELTAREQDBASE {alias D_DELTAREQD[BASE] kind 'debug' units 'CFS'}
+define[local] NDOI_MINPRE {alias NDOI_MIN[PRESETUP] kind 'debug' units 'CFS'}
+define[local] NDOI_MINBASE {alias NDOI_MIN[BASE] kind 'debug' units 'CFS'}
 
-define[local] C_DELTA_ANNUP {alias C_DELTA_ANN[UPSTREAM] kind 'debug' units 'CFS'}
-define[local] C_DELTA_ANNBASE {alias C_DELTA_ANN[BASE] kind 'debug' units 'CFS'}
+define[local] NDOI_ADD_ANNPRE {alias NDOI_ADD_ANN[PRESETUP] kind 'debug' units 'CFS'}
+define[local] NDOI_ADD_ANNBASE {alias NDOI_ADD_ANN[BASE] kind 'debug' units 'CFS'}
 
-define[local] MRDO_FINALUP {alias MRDO_FINALDV[UPSTREAM] kind 'debug' units 'CFS'}
+define[local] MRDO_FINALPRE {alias MRDO_FINALDV[PRESETUP] kind 'debug' units 'CFS'}
 define[local] MRDO_FINALBASE {alias MRDO_FINALDV[BASE] kind 'debug' units 'CFS'}
 
-define[local] exp_est_totalup {alias exp_est_total[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] exp_est_totalPRE {alias exp_est_total[PRESETUP] kind 'debug' units 'cfs'}
 define[local] exp_est_totalbase {alias exp_est_total[BASE] kind 'debug' units 'cfs'}
 
-define[local] S_SHSTALEVEL3DVUP {alias S_SHSTALEVEL3DV[UPSTREAM] kind 'debug' units 'TAF'}
-define[local] S_FOLSMLEVEL3DVUP {alias S_FOLSMLEVEL3DV[UPSTREAM] kind 'debug' units 'TAF'}
-define[local] S_TRNTYLEVEL3DVUP {alias S_TRNTYLEVEL3DV[UPSTREAM] kind 'debug' units 'TAF'}
-define[local] S_OROVLLEVEL3DVUP {alias S_OROVLLEVEL3DV[UPSTREAM] kind 'debug' units 'TAF'}
-define[local] S_OROVLLEVEL4DVUP {alias S_OROVLLEVEL4DV[UPSTREAM] kind 'debug' units 'TAF'}
+define[local] S_SHSTALEVEL3DVPRE {alias S_SHSTALEVEL3DV[PRESETUP] kind 'debug' units 'TAF'}
+define[local] S_FOLSMLEVEL3DVPRE {alias S_FOLSMLEVEL3DV[PRESETUP] kind 'debug' units 'TAF'}
+define[local] S_TRNTYLEVEL3DVPRE {alias S_TRNTYLEVEL3DV[PRESETUP] kind 'debug' units 'TAF'}
+define[local] S_OROVLLEVEL3DVPRE {alias S_OROVLLEVEL3DV[PRESETUP] kind 'debug' units 'TAF'}
+define[local] S_OROVLLEVEL4DVPRE {alias S_OROVLLEVEL4DV[PRESETUP] kind 'debug' units 'TAF'}
 
 define[local] S_SHSTALEVEL3DVBASE {alias S_SHSTALEVEL3DV[BASE] kind 'debug' units 'TAF'}
 define[local] S_FOLSMLEVEL3DVBASE {alias S_FOLSMLEVEL3DV[BASE] kind 'debug' units 'TAF'}
@@ -210,7 +213,7 @@ define[local] S_OROVLLEVEL3DVBASE {alias S_OROVLLEVEL3DV[BASE] kind 'debug' unit
 define[local] S_OROVLLEVEL4DVBASE {alias S_OROVLLEVEL4DV[BASE] kind 'debug' units 'TAF'}
 
 
-define[local] C_OrovlUp     {alias C_Orovl[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_OrovlPRE     {alias C_Orovl[PRESETUP] kind 'debug' units 'cfs'}
 define[local] C_OrovlBase   {alias C_Orovl[BASE] kind 'debug' units 'cfs'}
 
 define[local] exest_SWPDemB     {alias exp_est_SWPDem[BASE] kind 'debug' units 'cfs'}
@@ -219,10 +222,284 @@ define[local] exest_CVPDemB     {alias exp_est_CVPDem[Base] kind 'debug' units '
 define[local] exest_CVPRCB  {alias exp_est_CVPRC[BASE] kind 'debug' units 'cfs'}
 define[local] C_Orovl_IBU_B     {alias C_Orovl_IBU[Base] kind 'debug' units 'cfs'}
 define[local] C_Orovl_EXP_B {alias C_Orovl_EXP[BASE] kind 'debug' units 'cfs'}
-define[local] C_Orovl_IBU_U     {alias C_Orovl_IBU[UPSTREAM] kind 'debug' units 'cfs'}
-define[local] C_Orovl_EXP_U {alias C_Orovl_EXP[UPSTREAM] kind 'debug' units 'cfs'}
+define[local] C_Orovl_IBU_P     {alias C_Orovl_IBU[PRESETUP] kind 'debug' units 'cfs'}
+define[local] C_Orovl_EXP_P {alias C_Orovl_EXP[PRESETUP] kind 'debug' units 'cfs'}
 
-define[local] dxc_daysopenUP	{alias dxc_daysopen [UPSTREAM] kind 'debug' units 'NONE'}
-define[local] C_SacSJRUP	{alias C_SacSJR [UPSTREAM] kind 'debug' units 'CFS'}
+define[local] dxc_daysopenPRE	{alias dxc_daysopen [PRESETUP] kind 'debug' units 'NONE'}
+define[local] NDOIPRE	{alias NDOI[PRESETUP] kind 'debug' units 'CFS'}
 
+define[local] s_SLUIS_SWP_base	{alias s_slUIS_swp [BASE] kind 'debug' units 'taf'}
+define[local] s_SLUIS_SWP_PRESETUP	{alias s_slUIS_swp [PRESETUP] kind 'debug' units 'taf'}
+define[local] s_SLUIS_SWP_b2_bo	{alias s_slUIS_swp [b2_bo] kind 'debug' units 'taf'}
+
+define[local] D_JONES_DELTA {alias D_JONES[B2_BO] kind 'debug' units 'CFS'}
+define[local] D_BANKS_DELTA {alias D_BANKS[B2_BO] kind 'debug' units 'CFS'}
+
+define[local] JP_MAXEXPORT_DELTA {alias JP_MAXEXPORT[B2_BO] kind 'debug' units 'CFS'}
+define[local] EM_MAXEXPORT_DELTA {alias EM_MAXEXPORT[B2_BO] kind 'debug' units 'CFS'}
+define[local] CO_MAXEXPORT_DELTA {alias CO_MAXEXPORT[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_MAXEXPORT_1_DELTA {alias RS_MAXEXPORT_1[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_MAXEXPORT_2_DELTA {alias RS_MAXEXPORT_2[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_MAXEXPORT_3_DELTA {alias RS_MAXEXPORT_3[B2_BO] kind 'debug' units 'CFS'}
+define[local] JP_REQSAC_DELTA {alias JP_REQSAC[B2_BO] kind 'debug' units 'CFS'}
+define[local] EM_REQSAC_DELTA  {alias EM_REQSAC[B2_BO] kind 'debug' units 'CFS'}
+define[local] CO_REQSAC_DELTA {alias CO_REQSAC[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_REQSAC1_DELTA {alias RS_REQSAC1[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_REQSAC2_DELTA {alias RS_REQSAC2[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_REQSAC3_DELTA {alias RS_REQSAC3[B2_BO] kind 'debug' units 'CFS'}
+define[local] JP_MRDO_DELTA {alias JP_MRDO[B2_BO] kind 'debug' units 'CFS'}
+define[local] EM_MRDO_DELTA {alias EM_MRDO[B2_BO] kind 'debug' units 'CFS'}
+define[local] CO_MRDO_DELTA {alias CO_MRDO[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_MRDO_1_DELTA {alias RS_MRDO_1[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_MRDO_2_DELTA {alias RS_MRDO_2[B2_BO] kind 'debug' units 'CFS'}
+define[local] RS_MRDO_3_DELTA {alias RS_MRDO_3[B2_BO] kind 'debug' units 'CFS'}
+
+define[local] C_SACTOT_ANN_DELTA {alias C_Hood_ANN[B2_BO] kind 'debug' units 'CFS'}
+define[local] EXP_TDDELTA         {alias EXP_TD[B2_BO]        KIND 'debug' units 'cfs'}
+define[local] NDOI_MIN_DELTA         {alias NDOI_MIN[B2_BO]        KIND 'debug' units 'cfs'}
+define[local] NDOI_ADD_ANN_DELTA         {alias NDOI_ADD_ANN[B2_BO]        KIND 'debug' units 'cfs'}
+
+define[local] D_BANKS_SWPWHEELING     {alias D_BANKS_SWP[WHEELING]    KIND 'debug' UNITS 'CFS'}
+define[local] D_JONESWHEELING     {alias D_JONES[WHEELING]    KIND 'debug' UNITS 'CFS'}
+define[local] EXP_TDWHEELING         {alias EXP_TD[WHEELING]        KIND 'debug' units 'cfs'}
+!Delta_Surplus cycle variables
+if int(simulateDelta_Srplscycle) > 0.5 {
+!define D403BDS  {alias D403B[delta_srpls]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+!define C112DS  {alias C112[delta_srpls]      kind 'FLOW-CHANNEL'  units 'CFS'}
+!define C408DS  {alias C408[delta_srpls]      kind 'FLOW-CHANNEL'  units 'CFS'}
+define C_OMRDS  {alias C_OMR[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define C_OMR014_LBOUNDDS  {alias C_OMR014_LBOUND[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_OMR_DS  {alias MAXEXP_OMR[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_OMR_CVPDS  {alias MAXEXP_OMR_CVP[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_OMR_SWPDS  {alias MAXEXP_OMR_SWP[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_RPA_DS  {alias MAXEXP_RPA[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_RPA_CVPDS  {alias MAXEXP_RPA_CVP[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_RPA_SWPDS  {alias MAXEXP_RPA_SWP[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define D_BanksDS  {alias D_Banks[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define D_Banks_swpDS  {alias D_Banks_swp[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define D_JonesDS  {alias D_Jones[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define D_Jones_CVPDS    {alias D_Jones_CVP[delta_srpls] KIND 'debug' UNITS 'CFS'}
+define D_Banks_exp1DS  {alias D_Banks_exp1[delta_srpls]   KIND 'debug' UNITS 'CFS'}
+define D_Banks_exp2DS  {alias D_Banks_exp2[delta_srpls]   KIND 'debug' UNITS 'CFS'}
+define D_Jones_exp1DS  {alias D_Jones_exp1[delta_srpls]   KIND 'debug' UNITS 'CFS'}
+define D_Jones_exp2DS  {alias D_Jones_exp2[delta_srpls]   KIND 'debug' UNITS 'CFS'}
+define D_Banks_SWP_TD_DS  {alias D_Banks_SWP_TD[delta_srpls] KIND 'TRANSFER' UNITS 'CFS'}
+define D_Jones_TD_DS    {alias D_Jones_TD[delta_srpls] KIND 'TRANSFER' UNITS 'CFS'}
+
+define NDOI_ADD_swpDS       {alias NDOI_ADD_swp[delta_srpls]    KIND 'TRANSFER' UNITS 'CFS'}
+define NDOI_ADD_cvpDS       {alias NDOI_ADD_cvp[delta_srpls]    KIND 'TRANSFER' UNITS 'CFS'}
+define EXP_TDDS           {alias EXP_TD[delta_srpls]        KIND 'debug' units 'cfs'}
+define eiexpctrlDS     {alias eiexpctrl[delta_srpls]      KIND 'debug' units 'cfs'}
+define aprmayexpctrlDS     {alias aprmayexpctrl[delta_srpls]      KIND 'debug' units 'cfs'}
+define aprmaybanksctrlDS       {alias aprmaybanksctrl[delta_srpls]      KIND 'debug' units 'cfs'}
+define aprmayjonesctrlDS       {alias aprmayjonesctrl[delta_srpls]      KIND 'debug' units 'cfs'}
+define NonPulsExpCtrlDS   {alias NonPulseExpCtrl[delta_srpls]      KIND 'TRANSFER' units 'cfs'}
+
+!define C5_mDS     {alias C5_m[delta_srpls]  KIND 'debug' UNITS 'CFS'}
+!define C9_mDS    {alias C9_m[delta_srpls] KIND 'debug' UNITS 'CFS'}
+!define C3_mDS     {alias C3_m[delta_srpls]  KIND 'debug' UNITS 'CFS'}
+!define C203DS       {alias C203[delta_srpls]    KIND 'debug' UNITS 'CFS'}
+!define C203_mDS       {alias C203_m[delta_srpls]    KIND 'debug' UNITS 'CFS'}
+define[local] C_KSWCK_EXCDS {alias C_KSWCK_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define[local] C_REDBLF_EXCDS {alias C_REDBLF_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define[local] C_WILKNS_EXCDS {alias C_WILKNS_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define[local] C_NIMBUS_EXCDS {alias C_NIMBUS_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define[local] C_HST_EXCDS {alias C_HST_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define[local] C_THERM_EXCDS {alias C_THERM_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define[local] C_YUBFEA_EXCDS {alias C_YUBFEA_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define Inflow_DS {alias Inflow[delta_srpls] kind 'debug' units 'cfs'}
+
+define SWPDS_DS       {alias SWPDS[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define SHADS_DS       {alias SHADS[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define FOLDS_DS       {alias FOLDS[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define WHSSW_DS       {alias WHSSW[delta_srpls]     KIND 'debug' UNITS 'CFS'}
+define IBU_DS         {alias IBU[delta_srpls]       KIND 'debug' UNITS 'CFS'}
+define UWFE_DS        {alias UWFE[delta_srpls]      KIND 'debug' UNITS 'CFS'}
+define UNUSED_FS_DS   {alias UNUSED_FS[delta_srpls] KIND 'debug' UNITS 'CFS'}
+define UNUSED_SS_DS   {alias UNUSED_SS[delta_srpls] KIND 'debug' UNITS 'CFS'}
+
+define exp_est_SWP_DS      {alias exp_est_SWP[delta_srpls] kind 'debug' units 'cfs'}
+define exp_est_CVP_DS      {alias exp_est_CVP[delta_srpls] kind 'debug' units 'cfs'}
+
+define RSReqSacDVDS {alias RSReqSacDV[delta_srpls] kind 'debug' units 'CFS'}
+define JPReqSacDVDS {alias JPReqSacDV[delta_srpls] kind 'debug' units 'CFS'}
+define EMReqSacDVDS {alias EMReqSacDV[delta_srpls] kind 'debug' units 'CFS'}
+define COReqSacDVDS {alias COReqSacDV[delta_srpls] kind 'debug' units 'CFS'}
+define AnnSacReqDVDS {alias AnnSacReqDV[delta_srpls] kind 'debug' units 'CFS'}
+
+define C_Hood_MIFDS {alias C_Hood_MIF[delta_srpls] kind 'debug' units 'CFS'}
+define C_Hood_EXCDS {alias C_Hood_EXC[delta_srpls] kind 'debug' units 'CFS'}
+define C_Hood_ANNDS {alias C_Hood_ANN[delta_srpls] kind 'debug' units 'CFS'}
+
+!define C303_MIFDS {alias C303_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C303_EXCDS {alias C303_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C5_MIFDS {alias C5_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C5_EXCDS {alias C5_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C9_MIFDS {alias C9_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C9_EXCDS {alias C9_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C200a_MIFDS {alias C200a_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C200a_EXCDS {alias C200a_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!define C200bDS {alias C200b[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C112_MIFDS {alias C112_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C112_EXCDS {alias C112_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C405_MIFDS {alias C405_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C405_EXCDS {alias C405_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C203_MIFDS {alias C203_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C203_EXCDS {alias C203_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C129_MIFDS {alias C129_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C129_EXCDS {alias C129_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C3_MIFDS {alias C3_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C3_EXCDS {alias C3_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C157_MIFDS {alias C157_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C157_EXCDS {alias C157_EXC[delta_srpls] kind 'debug' units 'CFS'}
+!
+!define C223_MIFDS {alias C223_MIF[delta_srpls] kind 'debug' units 'CFS'}
+!define C223_EXCDS {alias C223_EXC[delta_srpls] kind 'debug' units 'CFS'}
+
+define S_ShstaDS {alias S_Shsta[delta_srpls] kind 'debug' units 'CFS'}
+define S_FolsmDS {alias S_Folsm[delta_srpls] kind 'debug' units 'CFS'}
+define S_TrntyDS {alias S_Trnty[delta_srpls] kind 'debug' units 'CFS'}
+define S_OrovlDS {alias S_Orovl[delta_srpls] kind 'debug' units 'CFS'}
+define S_SLUIS_CVPDS {alias S_SLUIS_CVP[delta_srpls] kind 'debug' units 'CFS'}
+define S_SLUIS_SWPDS {alias S_SLUIS_SWP[delta_srpls] kind 'debug' units 'CFS'}
+
+define CVPRULECVDS {alias CVPRULECV[delta_srpls] kind 'debug' units 'CFS'}
+define SWPRULECVDS {alias SWPRULECV[delta_srpls] kind 'debug' units 'CFS'}
+define NDOIDS	{alias NDOI[DELTA_SRPLS] kind 'debug' units 'CFS'}
+define NDOI_ADDDS {alias NDOI_ADD[delta_srpls] kind 'debug' units 'CFS'}
+define NDOI_MINDS {alias NDOI_MIN[delta_srpls] kind 'debug' units 'CFS'}
+define NDOI_ADD_ANNDS {alias NDOI_ADD_ANN[delta_srpls] kind 'debug' units 'CFS'}
+define MRDO_FINALDS {alias MRDO_FINALDV[delta_srpls] kind 'debug' units 'CFS'}
+
+define exp_est_totalDS {alias exp_est_total[delta_srpls] kind 'debug' units 'cfs'}
+}
+
+!Delta cycle variables
+!define D403BDLT  {alias D403B[B2_BO]     KIND 'FLOW-DELIVERY' UNITS 'CFS'}
+!define C112DLT  {alias C112[B2_BO]      kind 'FLOW-CHANNEL'  units 'CFS'}
+!define C_OMR014DLT  {alias C_OMR014[B2_BO]      kind 'FLOW-CHANNEL'  units 'CFS'}
+define C_OMRDLT  {alias C_OMR[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define C_OMR014_LBOUNDDLT  {alias C_OMR014_LBOUND[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_OMR_DLT  {alias MAXEXP_OMR[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_OMR_CVPDLT  {alias MAXEXP_OMR_CVP[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_OMR_SWPDLT  {alias MAXEXP_OMR_SWP[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_RPA_DLT  {alias MAXEXP_RPA[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_RPA_CVPDLT  {alias MAXEXP_RPA_CVP[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define MAXEXP_RPA_SWPDLT  {alias MAXEXP_RPA_SWP[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define D_BanksDLT  {alias D_Banks[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define D_Banks_swpDLT  {alias D_Banks_swp[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define D_JonesDLT  {alias D_Jones[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define D_Jones_CVPDLT    {alias D_Jones_CVP[B2_BO] KIND 'debug' UNITS 'CFS'}
+define D_Banks_exp1DLT  {alias D_Banks_exp1[B2_BO]   KIND 'debug' UNITS 'CFS'}
+define D_Banks_exp2DLT  {alias D_Banks_exp2[B2_BO]   KIND 'debug' UNITS 'CFS'}
+define D_Jones_exp1DLT  {alias D_Jones_exp1[B2_BO]   KIND 'debug' UNITS 'CFS'}
+define D_Jones_exp2DLT  {alias D_Jones_exp2[B2_BO]   KIND 'debug' UNITS 'CFS'}
+define D_Banks_SWP_TD_DLT  {alias D_Banks_SWP_TD[B2_BO] KIND 'TRANSFER' UNITS 'CFS'}
+define D_Jones_TD_DLT    {alias D_Jones_TD[B2_BO] KIND 'TRANSFER' UNITS 'CFS'}
+
+define NDOI_ADD_swpDLT       {alias NDOI_ADD_swp[B2_BO]    KIND 'TRANSFER' UNITS 'CFS'}
+define NDOI_ADD_cvpDLT       {alias NDOI_ADD_cvp[B2_BO]    KIND 'TRANSFER' UNITS 'CFS'}
+define EXP_TDDLT           {alias EXP_TD[B2_BO]        KIND 'debug' units 'cfs'}
+define eiexpctrlDLT     {alias eiexpctrl[B2_BO]      KIND 'debug' units 'cfs'}
+define aprmayexpctrlDLT     {alias aprmayexpctrl[B2_BO]      KIND 'debug' units 'cfs'}
+define aprmaybanksctrlDLT       {alias aprmaybanksctrl[B2_BO]      KIND 'debug' units 'cfs'}
+define aprmayjonesctrlDLT       {alias aprmayjonesctrl[B2_BO]      KIND 'debug' units 'cfs'}
+define NonPulsExpCtrlDLT   {alias NonPulseExpCtrl[B2_BO]      KIND 'TRANSFER' units 'cfs'}
+
+!define C5_mDLT     {alias C5_m[B2_BO]  KIND 'debug' UNITS 'CFS'}
+!define C9_mDLT    {alias C9_m[B2_BO] KIND 'debug' UNITS 'CFS'}
+!define C3_mDLT     {alias C3_m[B2_BO]  KIND 'debug' UNITS 'CFS'}
+!define C203DLT       {alias C203[B2_BO]    KIND 'debug' UNITS 'CFS'}
+!define C203_mDLT       {alias C203_m[B2_BO]    KIND 'debug' UNITS 'CFS'}
+define[local] C_KSWCK_EXCDLT {alias C_KSWCK_EXC[B2_BO] kind 'debug' units 'CFS'}
+define[local] C_REDBLF_EXCDLT {alias C_REDBLF_EXC[B2_BO] kind 'debug' units 'CFS'}
+define[local] C_WILKNS_EXCDLT {alias C_WILKNS_EXC[B2_BO] kind 'debug' units 'CFS'}
+define[local] C_NIMBUS_EXCDLT {alias C_NIMBUS_EXC[B2_BO] kind 'debug' units 'CFS'}
+define[local] C_HST_EXCDLT {alias C_HST_EXC[B2_BO] kind 'debug' units 'CFS'}
+define[local] C_THERM_EXCDLT {alias C_THERM_EXC[B2_BO] kind 'debug' units 'CFS'}
+define[local] C_YUBFEA_EXCDLT {alias C_YUBFEA_EXC[B2_BO] kind 'debug' units 'CFS'}
+define Inflow_DLT {alias Inflow[B2_BO] kind 'debug' units 'cfs'}
+
+define SWPDS_DLT       {alias SWPDS[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define SHADS_DLT       {alias SHADS[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define FOLDS_DLT       {alias FOLDS[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define WHSSW_DLT       {alias WHSSW[B2_BO]     KIND 'debug' UNITS 'CFS'}
+define IBU_DLT         {alias IBU[B2_BO]       KIND 'debug' UNITS 'CFS'}
+define UWFE_DLT        {alias UWFE[B2_BO]      KIND 'debug' UNITS 'CFS'}
+define UNUSED_FS_DLT   {alias UNUSED_FS[B2_BO] KIND 'debug' UNITS 'CFS'}
+define UNUSED_SS_DLT   {alias UNUSED_SS[B2_BO] KIND 'debug' UNITS 'CFS'}
+
+define exp_est_SWP_DLT      {alias exp_est_SWP[B2_BO] kind 'debug' units 'cfs'}
+define exp_est_CVP_DLT      {alias exp_est_CVP[B2_BO] kind 'debug' units 'cfs'}
+
+define RSReqSacDVDLT {alias RSReqSacDV[B2_BO] kind 'debug' units 'CFS'}
+define JPReqSacDVDLT {alias JPReqSacDV[B2_BO] kind 'debug' units 'CFS'}
+define EMReqSacDVDLT {alias EMReqSacDV[B2_BO] kind 'debug' units 'CFS'}
+define COReqSacDVDLT {alias COReqSacDV[B2_BO] kind 'debug' units 'CFS'}
+define AnnSacReqDVDLT {alias AnnSacReqDV[B2_BO] kind 'debug' units 'CFS'}
+
+define C_Hood_MIFDLT {alias C_Hood_MIF[B2_BO] kind 'debug' units 'CFS'}
+define C_Hood_EXCDLT {alias C_Hood_EXC[B2_BO] kind 'debug' units 'CFS'}
+define C_Hood_ANNDLT {alias C_Hood_ANN[B2_BO] kind 'debug' units 'CFS'}
+
+!define C303_MIFDLT {alias C303_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C303_EXCDLT {alias C303_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C5_MIFDLT {alias C5_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C5_EXCDLT {alias C5_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C9_MIFDLT {alias C9_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C9_EXCDLT {alias C9_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C200a_MIFDLT {alias C200a_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C200a_EXCDLT {alias C200a_EXC[B2_BO] kind 'debug' units 'CFS'}
+!define C200bDLT {alias C200b[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C112_MIFDLT {alias C112_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C112_EXCDLT {alias C112_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C405_MIFDLT {alias C405_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C405_EXCDLT {alias C405_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C203_MIFDLT {alias C203_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C203_EXCDLT {alias C203_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C129_MIFDLT {alias C129_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C129_EXCDLT {alias C129_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C3_MIFDLT {alias C3_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C3_EXCDLT {alias C3_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C157_MIFDLT {alias C157_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C157_EXCDLT {alias C157_EXC[B2_BO] kind 'debug' units 'CFS'}
+!
+!define C223_MIFDLT {alias C223_MIF[B2_BO] kind 'debug' units 'CFS'}
+!define C223_EXCDLT {alias C223_EXC[B2_BO] kind 'debug' units 'CFS'}
+
+define S_ShstaDLT {alias S_Shsta[B2_BO] kind 'debug' units 'CFS'}
+define S_FolsmDLT {alias S_Folsm[B2_BO] kind 'debug' units 'CFS'}
+define S_TrntyDLT {alias S_Trnty[B2_BO] kind 'debug' units 'CFS'}
+define S_OrovlDLT {alias S_Orovl[B2_BO] kind 'debug' units 'CFS'}
+define S_SLUIS_CVPDLT {alias S_SLUIS_CVP[B2_BO] kind 'debug' units 'CFS'}
+define S_SLUIS_SWPDLT {alias S_SLUIS_SWP[B2_BO] kind 'debug' units 'CFS'}
+
+define CVPRULECVDLT {alias CVPRULECV[B2_BO] kind 'debug' units 'CFS'}
+define SWPRULECVDLT {alias SWPRULECV[B2_BO] kind 'debug' units 'CFS'}
+
+define NDOIDLT	{alias NDOI[B2_BO] kind 'debug' units 'CFS'}
+define NDOI_ADDDLT {alias NDOI_ADD[B2_BO] kind 'debug' units 'CFS'}
+define NDOI_MINDLT {alias NDOI_MIN[B2_BO] kind 'debug' units 'CFS'}
+define NDOI_ADD_ANNDLT {alias NDOI_ADD_ANN[B2_BO] kind 'debug' units 'CFS'}
+define MRDO_FINALDLT {alias MRDO_FINALDV[B2_BO] kind 'debug' units 'CFS'}
+
+define exp_est_totalDLT {alias exp_est_total[B2_BO] kind 'debug' units 'cfs'}
 

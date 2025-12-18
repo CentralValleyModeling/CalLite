@@ -1,0 +1,95 @@
+! Variables to hold CalLite deliveries by type
+/************** CVP **************/
+define D_MendotaPl_pag {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_MendotaPl_pex {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_MendotaPl_prf {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_MendotaPl_pls {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_UpDMC_pag {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_UpDMC_pmi {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_UpDMC_pls {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_CVPJU_LDMC_pag {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_CVPJU_LDMC_pex {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_CVPJU_LDMC_prf {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_CVPJU_LDMC_pls {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_SLUIS_CVP_pag {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_SLUIS_CVP_pmi {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_DsAmgosCVP_pag {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_DsAmgosCVP_pls {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_DsAmgosCVP_pmi {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_ONeillFBCVP_pmi {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_CVP_CVC_pag {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+define D_CVPRfg_854_prf {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+define D_CVPRfg_854_pls {STD KIND 'FLOW-DELIVERY' UNITS 'CFS' }
+
+/***  Aggregating final deliveries for CalLite, and deliveries by type ***/
+!Note that this delivery term for D_MendotaPl also includes deliveries from Sack Dam (D_ARY010 terms) for simplicity so the SJR doesn't need to 
+!be represented in CalLite connectivity between MP and Sack Dam, and also includes deliveries off the XCC which come from the DMC (through
+!the D_DMC076_XCC043 connection in CalSim 3 (again to avoid representing this connection explicitly in CalLite) 
+goal setD_MendotaPl {D_MendotaPl = D_MendotaPl_pag + D_MendotaPl_pex + D_MendotaPl_prf + D_MendotaPl_pls}
+goal setD_MendotaPl_pag {D_MendotaPl_pag = D_MDOTA_90_PA1 + D_MDOTA_91_PA + D_XCC025_72_PA}
+goal setD_MendotaPl_pex {D_MendotaPl_pex = D_MDOTA_73_XA + D_MDOTA_64_XA + D_ARY010_72_XA1 + D_XCC010_72_XA2 + D_XCC054_72_XA3}
+goal setD_MendotaPl_prf {D_MendotaPl_prf = D_MDOTA_91_PR + D_XCC033_72_PR2 + D_ARY010_72_PR3 + D_XCC033_72_PR4 + D_ARY010_72_PR4 + D_XCC054_72_PR5   
+                          + D_ARY010_72_PR6 + D_XCC025_72_PR6   }
+goal setD_MendotaPl_pls {D_MendotaPl_pls = - D_MDOTA_LOSS}
+
+goal setD_UpDMC_P {D_UpDMC_P = D_UpDMC_pag + D_UpDMC_pmi + D_UpDMC_pls}
+goal setD_UpDMC_pag {D_UpDMC_pag = D_DMC011_71_PA8 + D_DMC021_50_PA1 + D_DMC030_71_PA1 + D_DMC034_71_PA2 + D_DMC034_71_PA3 + D_DMC044_71_PA4 + D_DMC044_71_PA5
+	 + D_DMC064_71_PA6 }
+goal setD_UpDMC_pmi {D_UpDMC_pmi = D_DMC016_WTPJJO}
+goal setD_UpDMC_pls {D_UpDMC_pls = - D_DMC003_DMCLOS - D_DMC007_DMCLOS - D_DMC011_DMCLOS - D_DMC016_DMCLOS - D_DMC021_DMCLOS - D_DMC024_DMCLOS - D_DMC030_DMCLOS 
+	 - D_DMC034_DMCLOS - D_DMC039_DMCLOS - D_DMC044_DMCLOS - D_DMC049_DMCLOS - D_DMC054_DMCLOS - D_DMC058_DMCLOS - D_DMC064_DMCLOS }
+
+goal setD_CVPJU_LDMC_P {D_CVPJU_LDMC_P = D_CVPJU_LDMC_pag + D_CVPJU_LDMC_pex + D_CVPJU_LDMC_prf + D_CVPJU_LDMC_pls}
+goal setD_CVPJU_LDMC_pag {D_CVPJU_LDMC_pag = D_DMC070_73_PA1 + D_DMC091_73_PA3 + D_DMC105_73_PA2}
+goal setD_CVPJU_LDMC_pex {D_CVPJU_LDMC_pex = D_DMC111_73_XA}
+goal setD_CVPJU_LDMC_prf {D_CVPJU_LDMC_prf = D_VLW008_72_PR1 + D_VLW008_72_PR5}
+goal setD_CVPJU_LDMC_pls {D_CVPJU_LDMC_pls = - D_DMC070_DMCLOS - D_DMC074_DMCLOS - D_DMC076_DMCLOS - D_DMC080_DMCLOS - D_DMC085_DMCLOS - D_DMC091_DMCLOS - D_DMC097_DMCLOS 
+	- D_DMC105_DMCLOS - D_DMC111_DMCLOS - D_DMC116_DMCLOS}
+
+goal setD_SLUIS_CVP_P {D_SLUIS_CVP_P = D_SLUIS_CVP_pag + D_SLUIS_CVP_pmi}
+goal setD_SLUIS_CVP_pag {D_SLUIS_CVP_pag = D_PCH000_SCVWD_PA + D_PCH000_SBCWD_PA}
+goal setD_SLUIS_CVP_pmi {D_SLUIS_CVP_pmi = D_PCH000_SCVWD_PU + D_PCH000_SBCWD_PU}
+
+goal setD_DosAmigosCVP_P {D_DosAmigosCVP_P = D_DsAmgosCVP_pag + D_DsAmgosCVP_pmi + D_DsAmgosCVP_pls} 
+goal setD_DsAmgosCVP_pag {D_DsAmgosCVP_pag =  D_CAA087_73_PA1 + D_CAA109_73_PA3 + D_CAA109_90_PA1 + D_CAA143_90_PA1 + D_CAA155_90_PA1 + D_CAA172_90_PA1  
+                          + D_CAA143_90_PA2 }
+goal setD_DsAmgosCVP_pmi {D_DsAmgosCVP_pmi = D_CAA143_90_PU + D_CAA156_90_PU + D_CAA165_90_PU }
+goal setD_DsAmgosCVP_pls {D_DsAmgosCVP_pls = - D_CAA071_CAALOS_CVP - D_CAA087_CAALOS_CVP - D_CAA095_CAALOS_CVP - D_CAA109_CAALOS_CVP - D_CAA143_CAALOS_CVP 
+	- D_CAA155_CAALOS_CVP - D_CAA156_CAALOS_CVP - D_CAA165_CAALOS_CVP - D_CAA172_CAALOS_CVP}
+
+goal setD_ONeillFBCVP_P {D_ONeillFBCVP_P = D_ONeillFBCVP_pmi}
+goal setD_ONeillFBCVP_pmi {D_ONeillFBCVP_pmi = D_CAA012_71_PU1 + D_CAA066_71_PU2}
+
+goal setD_CVP_CVC_P {D_CVP_CVC_P = D_CVP_CVC_pag}
+goal setD_CVP_CVC_pag {D_CVP_CVC_pag = D_CAA238_CVPCV}
+
+goal setD_CVPRfg_854_P {D_CVPRfg_854_P = D_CVPRfg_854_prf}
+goal setD_CVPRfg_854_prf {D_CVPRfg_854_prf = D_CAA239_CVPRF_PRF}
+
+
+
+
+
+/************** SWP **************/
+goal totalD_Sbay         { D_Sbay         = D_SBA009_ACFC_PRJ + D_SBA020_ACFC_PRJ + D_SBA029_ACWD_PRJ + D_SBA036_SCVWD_PRJ + D_SBA042_SBALOS_PRJ}
+goal totalD_SB2INT       { D_SB2INT     = - D_CAA005_CAALOS - D_CAA006_CAALOS - D_CAA009_CAALOS}
+goal totalD_ONeillFBSWP  { D_ONeillFBSWP  = D_CAA046_71_PA7_PRJ - D_CAA012_CAALOS - D_CAA024_CAALOS - D_CAA046_CAALOS - D_CAA051_CAALOS - D_CAA066_CAALOS 
+											- D_CAA067_CAALOS - D_CAA069_CAALOS_SWP}
+goal totalD_DosAmigosSWP { D_DosAmigosSWP = - D_CAA071_CAALOS_SWP - D_CAA087_CAALOS_SWP - D_CAA095_CAALOS_SWP - D_CAA109_CAALOS_SWP - D_CAA143_CAALOS_SWP 
+											- D_CAA155_CAALOS_SWP - D_CAA156_CAALOS_SWP - D_CAA165_CAALOS_SWP - D_CAA172_CAALOS_SWP}     
+goal totalD_Emp2Dud      { D_Emp2Dud      = D_CAA173_EMPIRE + D_CAA181_KINGS + D_CAA183_TULARE + D_CAA184_DUDLEY}                    
+goal totalD_CoastAqdct   { D_CoastAqdct   = D_CSB004_GVWD + D_CSB009_CLRTA1_DDWD + D_CSB015_KERN_BMWD + D_CSB038_OBISPO + D_CSB103_BRBRA} 
+goal totalD_KCWA         { D_KCWA         = D_CAA194_KERN - D_CAA220_CAALOS}                                               
+goal totalD_CVC2Chris    { D_CVC2Chris    = D_CAA242_Kern + D_CAA279_Kern - D_CAA278_CAALOS - D_CAA280_CAALOS} 
+goal totalD_OSO          { D_OSO          = D_WSB006_WSBLOS}                                               
+goal totalD_WarnePP      { D_WarnePP      = D_WSB026_WSBLOS + D_WSB027_WSBLOS + D_WSB031_MWDSC + D_WSB032_CLRTA2 + D_PYRMD_VNTRA_PMI  + D_CSTIC_VNTRA_PMI}
+goal totalD_Alamo        { D_Alamo        = D_ESB324_AVEK + D_ESB347_PLMDL + D_ESB355_LROCK + D_ESB361_ESBLOS + D_ESB403_MOJVE}                     
+goal totalD_PearBlPP     { D_PearBlPP     = D_ESB406_ESBLOS + D_ESB407_CCHLA + D_ESB408_DESRT + D_ESB413_MWDSC + D_ESB414_BRDNO + D_ESB415_GABRL
+											+ D_ESB420_GRGNO + D_ESB425_ESBLOS + D_ESB433_MWDSC + D_SVRWD_CSTLN + D_PRRIS_MWDSC}

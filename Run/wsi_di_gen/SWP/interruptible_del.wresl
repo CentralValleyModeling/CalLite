@@ -54,7 +54,7 @@ define swpdel_pin403B{
 
        case      JAN  {
        condition month == JAN .and. wateryear > 1922
-       sum(i=-1,-12,-1) D403B_pin(i) * cfs_taf(i) }
+       sum(i=-1,-12,-1) D_BKR004_NBA009_NAPA_pin(i) * cfs_taf(i) }
 
        case      otherwise {
        condition always

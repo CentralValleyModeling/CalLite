@@ -6,66 +6,79 @@ Z.Q. Richard Chen DWR 10/5/2012
 Add 3 nodes CCWDIF, SODIF, and Freeport in order to implement IF operation.
 ***********************/
 goal continuityTrnty {I_Trnty-C_Trnty-F_Trnty-E_Trnty=S_Trnty*taf_cfs-S_Trnty(-1)*taf_cfs} !CLAIR ENGLE LAKE
-goal continuityLwstn {C_Trnty+I_Lewiston-D_ClearTu-C_Lwstn=0.} !Lewiston Lake
-goal continuityWkytn {I_Wkytn+D_ClearTu-D_Spring-C_Wkytn-F_Wkytn-E_Wkytn=S_Wkytn*taf_cfs-S_Wkytn(-1)*taf_cfs} !Whiskeytown Lake
-goal continuityShsta {I_Shsta+C_ShstaE_02-C_Shsta-C_ShstaE_01-F_Shsta-E_Shsta=S_Shsta*taf_cfs-S_Shsta(-1)*taf_cfs} !Shasta Lake
+goal continuityLwstn {C_Trnty+AD_Lwstn-D_ClearTu-C_Lwstn=0.} !Lewiston Lake
+goal continuityWkytn {I_Wkytn+D_ClearTu-D_Spring-C_Wkytn-D_Wkytn-F_Wkytn-E_Wkytn=S_Wkytn*taf_cfs-S_Wkytn(-1)*taf_cfs} !Whiskeytown Lake
+goal continuityClrCrk {C_Wkytn+I_ClrCrk-D_ClrCrk-C_ClrCrk=0.} !Clear Creek near Igo
+goal continuityShsta {I_Shsta+C_ShstaE_02-C_Shsta-C_ShstaE_01-F_Shsta-D_Shsta-E_Shsta=S_Shsta*taf_cfs-S_Shsta(-1)*taf_cfs} !Shasta Lake
 goal continuityShstaE {C_ShstaE_01-C_ShstaE_02-F_ShstaE-E_ShstaE=S_ShstaE*taf_cfs-S_ShstaE(-1)*taf_cfs} !CVP SHASTA ENLARGEMENT
 goal continuityKswck {C_Shsta+D_Spring+AD_Kswck_Actual-C_Kswck=0.} !Keswick Reservoir
-goal continuityRedBlf {C_Kswck+C_Wkytn+AD_Redblf_Actual-C_RedBlf-D_RedBlf=0.} !Red Bluf node
+goal continuityRedBlf {C_Kswck+C_ClrCrk+AD_Redblf_Actual-C_RedBlf-D_RedBlf=0.} !Red Bluf node
 goal continuityWilkns {C_RedBlf+AD_Wilkns_Actual-C_Wilkns-D_Wilkns=0.} !Wilkins Slough
-goal continuitySacFea {C_Wilkns+C_YubFea+AD_SacFea_Actual-C_SacFea-D_FreWeir=0.} !Sacramento Feather River junction
+goal continuitySacFea {C_Wilkns+C_YubFea+AD_SacFea_Actual - c_cbd000_CL + AD_CBDrainSac -C_SacFea-D_SacFea-D_FreWeir=0.} !Sacramento Feather River junction
 goal continuityOrovl {I_Orovl-D_Orovl-C_Orovl-F_Orovl-E_Orovl=S_Orovl*taf_cfs-S_Orovl(-1)*taf_cfs} !Oroville Lake
 goal continuityTherm {C_Orovl+AD_Therm_Actual-C_Therm-D_Therm=0.} !Thermalito
-goal continuityYubFea {C_Therm+C_Daguer+AD_YubFea_Actual-C_YubFea-D_YubFea=0.} !Yuba Feather River Junction
-goal continuityDaguer {I_Yuba-C_Daguer-D_Daguer=0.} !Daguerre Point
+goal continuityYubFea {C_Therm+AD_YubFea_Actual-C_YubFea-D_YubFea=0.} !Yuba Feather River Junction
 goal continuityFolsm {I_Folsm-C_Folsm-D_Folsm-F_Folsm-E_Folsm=S_Folsm*taf_cfs-S_Folsm(-1)*taf_cfs} !Folsom Lake
 goal continuityNimbus {C_Folsm+AD_Nimbus_Actual-C_Nimbus-D_Nimbus=0.} !Nimbus node
 goal continuityHSt {C_Nimbus+AD_HSt_Actual-C_HSt-D_HSt=0.} !H Street node
 goal continuitySacAme {C_SacFea+C_HSt+AD_SacAme_Actual-C_SacAme-D_SacAme-D_SacWeir=0.} !Sacramento American River junction
-goal continuityYoloBP {D_FreWeir+AD_YoloBP_Actual+D_SacWeir-C_YoloBP=0.} !Yolo Bypass
+goal continuityYoloBP {D_FreWeir+AD_YoloBP_Actual-C_KLRYOL_CL+AD_CBDrainYolo-D_YoloBP+D_SacWeir-C_YoloBP=0.} !Yolo Bypass
 
-goal continuityFreeport {C_SacAme-C_Freeport=0.} !
-goal continuityHOOD {C_Freeport+I_Hood-C_Hood-D_Hood =0.} !
+goal continuityFreeport {C_SacAme+AD_Freeport_Actual-C_Freeport-D_Freeport=0.} !
+goal continuityHOOD {C_Freeport+AD_Hood-C_Hood-D_Hood =0.} !
 goal continuityHoodIF {D_HoodIF - D_CCWDIF -D_SODIF = 0.} !Delta Isolated Facility 
 
-goal continuityDxc {C_Hood-C_SacDXC-C_DXC=0.} !Delta Cross Channel
-goal continuityNDelta {C_YoloBP+C_SacDXC-C_SacND-C_NBA=0.} !North Delta node (Yolo
+goal continuityDxc {C_Hood-C_SacDXC-C_DXC+AD_DXC=0.} !Delta Cross Channel
+goal continuityNDelta {C_YoloBP+C_SacDXC-C_SacND-C_NBA+AD_SACND-D_SacND=0.} !North Delta node (Yolo
 goal continuityNBA {C_NBA-D_Solano-D_Napa-D_Vallejo-D_FVB=0.} !North Bay Aqueduct
-goal continuityBrananIS {C_SacND+I_BrananIS-D_BrananIS-C_SacBI=0.} !Brannan Island
-goal continuitySacRV {C_SacBI-C_SacRV=0.} !Rio Vista
-goal continuitySacSJR {C_SacRV+C_SJRVI+I_MarshCr+I_SacSJR-C_SacSJR-D_Antioch-D_SacSJR=0.} !Confluence of Sacramento River and San Joaquin River
-goal continuityDelta {C_SacSJR-C_Delta-D_DeltaReqd=0.} !Delta Outflow node
-goal continuityMoklmn {C_DXC+AD_Mokelumne-C_Moklmn=0.} !Mokelumne River
-goal continuityTrmns {C_Moklmn+I_Terminous-C_Trmns-D_Terminous=0.} !Terminous
-goal continuitySJRCD {C_SJRSto+C_Trmns-C_SJRCD=0.} !San Joaquin River and Central Delta Junction
-goal continuitySJRMI {C_SJRCD+I_MedfordIS-C_SJRMI-D_MedfordIS=0.} !San Joaquin River at Medford Island
-goal continuitySJRVI {C_SJRMI+C_OMR-C_SJRVI-C_IndnSl-D_CCWDINTK=0.} !San Joaquin River at Venice Island
-goal continuitySJRSto {C_SJRCal+I_Stockton-C_SJRSto-D_Stockton=0.} !San Joaquin River at Stockton
+!goal continuityBrananIS {C_SacND+I_BrananIS-D_BrananIS-C_SacBI=0.} !Brannan Island
+goal continuitySacRV {C_SacND-C_SacRV+AD_SACRV=0.} !Rio Vista
+goal continuitySacSJR {C_SacRV+C_SJRVI+I_MarshCr+I_SacSJR-C_SacSJR-D_Antioch-D_SacSJR+AD_SACSJR=0.} !Confluence of Sacramento River and San Joaquin River
+!goal continuityDelta {C_SacSJR-C_Delta-NDOI_MIN=0.} !Delta Outflow node
+!goal continuityMoklmn {C_DXC+AD_Mokelumne-C_Moklmn=0.} !Mokelumne River
+!goal continuityTrmns {C_Moklmn+I_Terminous-C_Trmns-D_Terminous=0.} !Terminous
+goal continuityMokTrmns {C_DXC+I_Terminous-D_MokTrmns+AD_MokTrmns-C_MokTrmns=0.} !Mokelumne River MERGE with Terminous
+goal continuitySJRCD {C_SJRSto+C_MokTrmns-C_SJRCD+AD_SJRCD-D_SJRCD=0.} !San Joaquin River and Central Delta Junction
+!goal continuitySJRMI {C_SJRCD+I_MedfordIS-C_SJRMI-D_MedfordIS=0.} !San Joaquin River at Medford Island
+goal continuitySJRVI {C_SJRCD+C_OMR_PH-C_SJRVI-C_IndnSl-D_CCWDINTK+I_MedfordIS-D_VI+AD_VI=0.} !San Joaquin River at Venice Island
+goal continuitySJRSto {C_SJRCal+I_Stockton-C_SJRSto-D_SJRSto+AD_SJRSto=0.} !San Joaquin River at Stockton
 goal continuitySJRCal {C_SJROldR+AD_SJRCalALL-C_SJRCal=0.} !Calaveras River
-goal continuitySJRDelta {C_SJRVer-C_OldRiver-C_SJROldR=0.} !San Joaquin entering Delta
-goal continuityConeyIs {C_OldRiver+I_ConeyIS-D_ExpTD-C_ConyIS-D_ConeyIs=0.} !Coney Island
+goal continuitySJRDelta {C_SJRVer-C_OldRiver-C_SJROldR+AD_SJROldR=0.} !San Joaquin entering Delta
+goal continuityConeyIs {C_OldRiver+I_ConeyIS-D_ExpJones-D_ExpBnk-C_ConyIS-D_ConeyIs_new+AD_ConeyIs-D_OMR027_SJRRrecap=0.} !Coney Island
 
-goal continuityOMR {C_ConyIS+C_IndnSl+D_CCWDIF-C_OMR-D_CCWDVCOR=0.} !Conta Costa Water District diversion and West Delta flow
-goal continuityJones {D_ExpTD+D_SODIF-D_Jones-C_BnkExp=0.} !Jones PP (Fedural)
+goal continuityOMR {C_ConyIS+C_IndnSl+D_CCWDIF-C_OMR_PH-D_CCWDVCOR+C_LOSVQ=0.} !Conta Costa Water District diversion and West Delta flow
+goal continuityJones {D_ExpJones-D_Jones=0.} !Jones PP (Fedural)
+goal continuityBanks {D_ExpBnk-D_Banks-DD_50_PA2=0.} !Banks PP (State)
 
-goal continuityBanks {C_BnkExp-D_Banks=0.} !Banks PP (State)
+!REVERT
+!goal continuitySJRMI {C_SJRCD+I_MedfordIS-C_SJRMI-D_MedfordIS=0.} !San Joaquin River at Medford Island
+!goal continuitySJRVI {C_SJRMI+C_OMR_PH-C_SJRVI-C_IndnSl-D_CCWDINTK=0.} !San Joaquin River at Venice Island
+!goal continuityOMR {C_ConyIS+C_IndnSl+D_CCWDIF-C_OMR_PH-D_CCWDVCOR=0.} !Conta Costa Water District diversion and West Delta flow
+!goal continuityConeyIs {C_OldRiver+I_ConeyIS-D_ExpTD-C_ConyIS-D_ConeyIs+AD_ConeyIs=0.} !Coney Island
+!goal continuityJones {D_ExpTD+D_SODIF-D_Jones-C_BnkExp=0.} !Jones PP (Fedural)
+!goal continuityBanks {C_BnkExp-D_Banks=0.} !Banks PP (State)
+
+
 goal continuityUpDMC {D_Jones-C_UpDMC-C_Intrti-D_UpDMC=0.} !Upper DMC
-goal continuitySBay {D_Banks+C_Intrti-C_SBay-D_SBay=0.} !South Bay Diversion
+goal continuitySBay {D_Banks+C_Intrti-C_SBay-D_SBay-D_SB2INT=0.} !South Bay Diversion
 goal continuity809 {D_SBay-C809=0} !
-goal continuity810 {C809-D810_PRJ-C810=0} !
-goal continuity811 {C810-D_DelValle-C811=0} !
+goal continuity810 {C809-D_SBA009_ACFC_PRJ-C810=0} !
+goal continuity811 {C810-D_DelValle-E_DelValle-C811=0} !
 goal continuity812 {C811+I_DelValle-C812=0} !
-goal continuity813 {C812-D813_PRJ-C813=0} !ACFC R5-7
-goal continuity814 {C813-D814_PRJ-C814=0} !ACWA R7-8
-goal continuity815 {C814-D815_PRJ-C815=0} !Santa Clara R9
-goal continuity816 {C815-D816_PRJ=0} !Loss R1-9
-goal continuityOFBSWP {C_SBay-C_OFBSWP-D_OFBSWP-D_ONeillFBSWP-C_ONlFB=0.} !O'Neil Forebay SWP
+goal continuity813 {C812-D_SBA020_ACFC_PRJ-C813=0} !ACFC R5-7
+goal continuity814 {C813-D_SBA029_ACWD_PRJ-C814=0} !ACWA R7-8
+goal continuity815 {C814-D_SBA036_SCVWD_PRJ-C815=0} !Santa Clara R9
+goal continuity816 {C815-D_SBA042_SBALOS_PRJ=0} !Loss R1-9
+goal continuityOFBSWP {C_SBay-C_OFBSWP-D_OFBSWP-D_ONeillFBSWP-D_ONeillFBCVP-C_ONlFB=0.} !O'Neil Forebay SWP
 goal continuityOFBCVP {C_UpDMC+C_ONlFB-C_OFBCVP-D_OFBCVP=0.} !O'Neil Forebay CVP
-goal continuitySLSWP {D_OFBSWP-C_SLSWP-F_SLSWP-E_SLSWP=S_SLSWP*taf_cfs-S_SLSWP(-1)*taf_cfs} !SWP San Luis Reservior
-goal continuitySLCVP {D_OFBCVP-C_SLCVP-D_SLCVP-F_SLCVP-E_SLCVP=S_SLCVP*taf_cfs-S_SLCVP(-1)*taf_cfs} !CVP San Luis Reservior
-goal continuitySWPJU {C_OFBSWP+C_SLSWP-C_SWPJU-D_SWPJUCVP=0.} !SWP Joint Use
-goal continuityCVPJU {C_OFBCVP+C_SLCVP-C_CVPJU-C_CVPDMC-D_CVPJUSWP-D_CVPJU_LDMC=0} !CVP Joint Use
-if int(Dynamic_SJR)==0 {goal continuityMPool {C_CVPDMC+AD_JamesBP-D_MENDOTAPL-C_Mdota=0}} !Mendota Pool
+goal continuitySLUIS_SWP {D_OFBSWP-C_SLUIS_SWP-/*F_SLUIS_SWP-*/E_SLUIS_SWP=S_SLUIS_SWP*taf_cfs-S_SLUIS_SWP(-1)*taf_cfs} !SWP San Luis Reservior
+goal continuitySLUIS_CVP {D_OFBCVP-C_SLUIS_CVP-D_SLUIS_CVP-/*F_SLUIS_CVP-*/E_SLUIS_CVP=S_SLUIS_CVP*taf_cfs-S_SLUIS_CVP(-1)*taf_cfs} !CVP San Luis Reservior
+goal continuitySWPJU {C_OFBSWP+C_SLUIS_SWP-C_SWPJU-D_SWPJUCVP=0.} !SWP Joint Use
+goal continuityCVPJU {C_OFBCVP+C_SLUIS_CVP-C_CVPJU-C_CVPDMC-D_CVPJUSWP-D_CVPJU_LDMC-AD_CVPJU_BW-AD_CVPJU_BW=0} !CVP Joint Use
+!In MPool connectivity, D_SJR180_ARY010 is removed from MP deliveries since C_MDOTA is set to come the from the SJR cycle, but in Calsim 3 it includes
+!the water that goes to D_SJR180_ARY010 (delivery off Sack Dam)
+!D_DMC076_XCC043 is also removed since that water goes to deliveries included in D_MENDOTAPL but it actually comes from the DMC.
+goal continuityMPool {C_SJR205+C_CVPDMC+AD_JamesBP-(D_MENDOTAPL-D_SJR180_ARY010-D_DMC076_XCC043)-C_Mdota=0} !Mendota Pool
 goal continuityDsAmgS {C_SWPJU+D_CVPJUSWP-C_DsAmgS-D_DosAmigosSWP=0.} !Dos Amigos SWP Node (SWP)
 goal continuityDsAmgC {C_CVPJU+D_SWPJUCVP-C_DsAmgC-D_DosAmigosCVP=0.} !Dos Amigos CVP node (CVP)
 goal continuityJtUTerm {C_DsAmgS+C_DsAmgC-C_JtUTerm=0.} !Terminal node of Joint Use
@@ -76,6 +89,53 @@ goal continuityCVC {C_KCWA-C_CVC-D_CVP_CVC-D_CVPRfg_854=0.} !Cross Valley Canal 
 goal continuityChrisPP {C_CVC+I_Kern-C_ChrisPP-D_CVC2Chris=0.} !Chrisman Pumping Plant
 goal continuityOsoAlamo {C_ChrisPP-C_Alamo-C_OSO=0.} !OSO pumping plant and Alamo power plant bifurcation point
 goal continuityPearBlPP {C_Alamo-C_PearBlPP-D_Alamo=0.} !East Brach at Pearblossom Pumping Plant
-goal continuityEastBr {C_PearBlPP-D_PearBlPP-D_Silverwood+I_Silverwood-D_Perris+I_Perris=0.} !Rest of CalSim East Branch (End of CA)
+goal continuityEastBr {C_PearBlPP-D_PearBlPP-D_Silverwood+I_Silverwood-E_Silverwood-D_Perris+I_Perris-E_Perris=0.} !Rest of CalSim East Branch (End of CA)
 goal continuityWarnePP {C_OSO-C_WarnePP-D_OSO=0.} !West Branch at Warne Power Plant node
-goal continuityWestBR {C_WarnePP/*+AD_Castaic*/-D_WarnePP-D_WarnePP_Spill-D_Pyramid+I_Pyramid-D_Castaic+I_Castaic=0.} !Rest of CalSim West Branch (End of CA)
+goal continuityWestBR {C_WarnePP/*+AD_Castaic*/-D_WarnePP-D_WarnePP_Spill-D_Pyramid+I_Pyramid-E_Pyramid-D_Castaic+I_Castaic-e_Castaic=0.} !Rest of CalSim West Branch (End of CA)
+
+!Some additional connectivity equations still needed after integration with CalSim 3
+!Most of CS3 channels were removed and replaceD with CalLite, but still some CS3 connections to get water to deliveries
+!Connectivity for Pacheco tunnel:
+goal continuityPCH000   {D_PCH000_SCVWD + D_PCH000_SBCWD - D_SLUIS_PCH000				= 0.}
+goal continuitySCVWD    {D_PCH000_SCVWD = D_PCH000_SCVWD_PA + D_PCH000_SCVWD_PU}
+goal continuitySBCWD    {D_PCH000_SBCWD = D_PCH000_SBCWD_PA + D_PCH000_SBCWD_PU}
+!Other needed connections
+goal continuityRFS71A       {R_71_PA8_RFS71A - D_RFS71A_50_PA1  - R_RFS71A_OMR039			= 0.}
+goal continuityWTPJJO       {D_DMC016_WTPJJO - D_WTPJJO_50_PU						= 0.}
+!Simplified main canal continuity to get water to deliveries, soft penalties needed to prevent occasional infeasibilities
+goal continuityXCC  	{lhs D_MDOTA_XCC010 rhs D_XCC010_72_XA2 + D_XCC025_72_PA + D_XCC025_72_PR6 + D_XCC033_72_PR2 + D_XCC033_72_PR4 - D_DMC076_XCC043 + 
+						R_71_PA6_XCC054 + D_XCC054_72_PR5 + D_XCC054_72_XA3 lhs<rhs penalty 999999 lhs>rhs penalty 999999} 
+!Setting the ones below to last SJR cycle because of difficulty of integrating this connection into CalLite  
+if int(Dynamic_SJR)==1 {goal setD_DMC070_VLW008 {lhs D_DMC070_VLW008 rhs  D_DMC070_VLW008[Upstream_DySJR] lhs<rhs penalty 999999 lhs>rhs penalty 999999} }   
+!For timeseries operation set to timeseries from CS3           
+if int(Dynamic_SJR)==0 {
+	define D_DMC070_VLW008_TS {timeseries 'D_DMC070_VLW008' kind 'DIVERSION' units 'CFS'}
+	goal setD_DMC070_VLW008 {lhs D_DMC070_VLW008 rhs D_DMC070_VLW008_TS lhs<rhs penalty 999999 lhs>rhs penalty 999999}
+}   
+!Need to set connectivity too for this one to connect to deliveries
+goal continuityVLW008       {D_DMC070_VLW008 - D_VLW008_72_PR1 - D_VLW008_72_PR5 /*- C_VLW008*/				= 0.}          
+
+if int(Dynamic_SJR)==1 {goal setD_DMC076_XCC043 {D_DMC076_XCC043 = D_DMC076_XCC043[Upstream_DySJR] } }   
+if int(Dynamic_SJR)==0 {
+	define D_DMC076_XCC043_TS {timeseries 'D_DMC076_XCC043' kind 'DIVERSION' units 'CFS'}
+	goal setD_DMC076_XCC043 {D_DMC076_XCC043 = D_DMC076_XCC043_TS }
+}   
+           
+if int(Dynamic_SJR)==1 {goal setD_DMC111_FBW001 {D_DMC111_FBW001 = D_DMC111_FBW001[Upstream_DySJR] } }   
+if int(Dynamic_SJR)==0 {
+	define D_DMC111_FBW001_TS {timeseries 'D_DMC111_FBW001' kind 'DIVERSION' units 'CFS'}
+	goal setD_DMC111_FBW001 {D_DMC111_FBW001 = D_DMC111_FBW001_TS }
+}              
+!Arroyo canal off Sack Dam
+goal continuityARY010   {D_SJR180_ARY010 - D_ARY010_72_XA1 - D_ARY010_72_PR3 - D_ARY010_72_PR4 - D_ARY010_72_PR6 = 0.}
+!Setting this diversion to the last SJR cycle too, might need to improve this
+if int(Dynamic_SJR)==1 {goal setD_SJR180_ARY010 {D_SJR180_ARY010 = D_SJR180_ARY010[Upstream_DySJR]}}
+!For timeseries operation set to timeseries from CS3
+if int(Dynamic_SJR)==0 {
+!	define D_SJR180_ARY010_TS {timeseries 'D_SJR180_ARY010' kind 'DIVERSION' units 'CFS'}  defined elsewhere in ExportEstimate1.wresl files
+	goal setD_SJR180_ARY010 {D_SJR180_ARY010 = D_SJR180_ARY010_TS }
+}              
+
+
+
+

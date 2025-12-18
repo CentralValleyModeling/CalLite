@@ -1,0 +1,13 @@
+/*************************************
+demands_YoloBP.wresl
+ 
+Megan Lionberger HDR 8/12/2022
+ 
+
+
+*/
+
+
+! Set total project deliveries for Yolo Bypass
+goal setD_YoloBP_P {D_YoloBP_P = D_YBP023_21_SA}
+

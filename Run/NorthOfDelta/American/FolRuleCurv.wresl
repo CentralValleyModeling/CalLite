@@ -18,7 +18,7 @@ define S_FolsmLevel3 {
         value 400.0 }
 }
 
-define FolInf {value (I_Folsm  + AD_Nimbus)*cfs_taf }   !AD_Nimbus used here since Calsim combined together Folsom and Nimbus inflows for this term too
+define FolInf {value (I_Folsm   + AD_Nimbus)*cfs_taf }   !AD_Nimbus used here since Calsim combined together Folsom and Nimbus inflows for this term too
 
 define FolInfEst {sum(i=0,SEP-month,1) (I_Folsm(i)+ AD_Nimbus(i))*cfs_taf(i) }
 

@@ -1,0 +1,7 @@
+!EBMUD.wresl
+
+define perdel_cvpmi_EBMUD {value perdel_cvpmi_sys}
+          
+!include '..\..\..\..\run\SanJoaquin\LowerMokelumne\Mok_FPT.wresl'
+define D_FPT013_FSC013_CL    {timeseries 'd_fpt013_fsc013' kind 'DIVERSION' units 'CFS'}
+goal setD_FPT013_FSC013   {D_FPT013_FSC013 = D_FPT013_FSC013_CL}

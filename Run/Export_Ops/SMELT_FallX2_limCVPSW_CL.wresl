@@ -1,0 +1,63 @@
+! SMELT_FallX2_LimCVPSW_CL.wresl
+!
+! Fall X2 criteria is implemented in the PRESETUP cycle.
+! The PRESETUP cycle minimizes reservoir releases to support exports.
+! If Fall X2 is controlling August-October, hold CVP exports to minimum determined
+! in PRESETUP cycle.  Also, do not allow CVP wheeling if Fall X2 is controlling
+
+
+!define FWS_MaxExp_X2 {value 99999.}
+!define FWS_MaxExpX2dv {alias FWS_MaxExp_X2 kind 'Export-Limit' units 'cfs'} !for output only
+
+! look back at the monthlyweighted solution to calculate what the required increase in DO was to meet Fall X2
+define FallX2_DOinc {
+    case AugSepWAN {condition month>=AUG .and. wyt_SAC<=2 .and. C_Delta[PRESETUP] < 0.1 value max(0., MRDO_X2nocap - DO_req_flow)}  
+    case OctWAN    {condition month==OCT .and. wyt_SAC<=2 .and. C_Delta[PRESETUP] < 0.1 value max(0., MRDO_X2nocap - DO_req_flow)}  
+    case otherwise {condition always value 0.}
+}
+
+define SL_Based_Exp_Inc {
+	case OctToJuly {
+		condition	range(month,oct,jul) .or. FallX2_DOinc < 1. .or. S_SLUIS_CVP[PRESETUP] >= CVPRuleCalc1
+		value		0.
+	}
+	case August {
+		condition	month == aug
+		value		((CVPRuleCalc1 - S_SLUIS_CVP[PRESETUP])*0.67 + S_SLUIS_CVPlevel1)*taf_cfs
+	}
+	case September {
+		condition	always
+		value		((CVPRuleCalc1 - S_SLUIS_CVP[PRESETUP])*0.1 + S_SLUIS_CVPlevel1)*taf_cfs
+	}
+}
+
+define CVP_FallX2_ExpInc {
+    case FallX2Action {
+        condition FallX2_DOinc > 1.
+        value Short_CVP_Tot_S[PRESETUP] + SL_Based_Exp_Inc
+        }
+    case otherwise {condition always value 0. }
+}   
+
+goal lim_Jones_Exports_FX2 {
+	lhs D_Jones
+	case FX2_Control {
+		condition	FallX2_DOinc > 1.
+		rhs			D_Jones[PRESETUP] + CVP_FallX2_ExpInc
+		lhs<rhs		penalty 0
+	}
+}
+
+! limit CVP wheeling operations
+goal lmtCVPwheelrels {
+    lhs D_Banks_cvcrels + D_Banks_whlrels 
+    case FallX2 {
+        condition FallX2_DOinc > 1.
+        rhs 0.
+        lhs<rhs penalty 0}
+}
+
+define FallX2_DOinc_ {alias FallX2_DOinc kind 'FallX2-Outflow-Increase' units 'cfs'}
+define SL_Based_Exp_Inc_ {alias SL_Based_Exp_Inc kind 'FallX2-Export-Increase' units 'cfs'}
+define Short_CVP_Tot_S_Pre {alias Short_CVP_Tot_S[PRESETUP] kind 'shortage' units 'cfs'}
+define CVP_FallX2_ExpInc_ {alias CVP_FallX2_ExpInc kind 'FallX2-Export-Increase' units 'cfs'}

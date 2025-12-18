@@ -90,7 +90,7 @@ goal swp_storage_change {SWPDS = C_Therm + D_Therm + D_Orovl /*+ D7C */ - I_Orov
     - Shasta Inflow - Discharge from Spring Creek Power Plant
     This results in:                            */
 
-goal shasta_storage_change {SHADS = C_Kswck_m - I_Shsta - D_Spring_m}                   !Define Shasta Storage Change
+goal shasta_storage_change {SHADS = C_Kswck_m - I_Shsta - D_Spring_m  + D_Shsta}                   !Define Shasta Storage Change
 
 ! Folsom Reservoir
 
@@ -103,7 +103,7 @@ goal folsom_storage_change {FOLDS = C_Nimbus_m + D_Nimbus + D_Folsm - I_Folsm - 
 
 ! Whiskeytown Reservoir
 
-goal whiskey_storage_change {WHSSW - WHSSI = C_Wkytn_m + D_Spring_m - I_Wkytn}
+goal whiskey_storage_change {WHSSW - WHSSI = C_Wkytn_m + D_Spring_m + D_Wkytn - I_Wkytn}
 
 goal WHSSW_force {WHSSW < int_WHS_stor_chg * WHS_stor_chg_max}                      ! if int=0, WHSSW=0, WHSSI=pos
 goal WHSSI_force {WHSSI < WHS_stor_chg_max - int_WHS_stor_chg * WHS_stor_chg_max}   ! if int=1, WHSSW=pos, WHSSI=0
@@ -114,31 +114,32 @@ goal WHSSI_force {WHSSI < WHS_stor_chg_max - int_WHS_stor_chg * WHS_stor_chg_max
    total change in storage. If RHS is positive you have UWFE, If negative you have IBU.
    D_Jones = Pumping at Jones
    D_Banks = Puming at Banks
-   C_Delta = Surplus Delta outflow 
+   NDOI = Surplus Delta outflow 
    D_CCWD = Diversions at Contra Costa Water District */
    
-define C_Delta_CVP {std kind 'FLOW-CHANNEL' units 'CFS'}
-define C_Delta_SWP {std kind 'FLOW-CHANNEL' units 'CFS'}
-define C_Delta_ANN {std kind 'FLOW-CHANNEL' units 'CFS'}
+define NDOI_ADD_CVP {std kind 'FLOW-CHANNEL' units 'CFS'}
+define NDOI_ADD_SWP {std kind 'FLOW-CHANNEL' units 'CFS'}
+define NDOI_ADD_ANN {std kind 'FLOW-CHANNEL' units 'CFS'}
 
-goal SrpArcSplit {C_Delta = C_Delta_CVP + C_Delta_SWP + C_Delta_ANN + C_Delta_whlcv + C_Delta_whljp}
+goal SrpArcSplit {NDOI_ADD = NDOI_ADD_CVP + NDOI_ADD_SWP + NDOI_ADD_ANN + NDOI_ADD_whlcv + NDOI_ADD_whlJP}
 
-goal COA_Balance {UWFE - IBU = C_Delta_CVP + C_Delta_SWP + D_CCWD + 2./3.*D_Napa + 2./3.* D_Solano + D_Jones_EXP1 + D_Banks_EXP1
+goal COA_Balance {UWFE - IBU = NDOI_ADD_CVP + NDOI_ADD_SWP + D_CCWD + 2./3.*D_Napa + 2./3.* D_Solano + D_Jones_EXP1 + D_Banks_EXP1
                                + Surp1Terms + Surp2Terms - SHADS - FOLDS - WHSSW - SWPDS + UNUSED_FS + UNUSED_SS}
 
 goal UWFE_force {UWFE < int_IBU_UWFE * IBU_UWFE_max}                                ! if int=0, UWFE=0, IBU=pos
 goal IBU_force  {IBU < IBU_UWFE_max - int_IBU_UWFE * IBU_UWFE_max}                  ! if int=1, UWFE=pos, IBU=0
 
-define CVP_UWFE {value 0.55}                                                        ! CVP COA Share of unstored water for export
-define CVP_IBU  {value 0.75}                                                        ! CVP COA Share of storage withdrawals
+! 5/6/19. Defined in the SharingRatios.wresl
+!define CVP_UWFE {value 0.55}                           ! CVP COA Share of unstored water for export
+!define CVP_IBU  {value 0.75}                             ! CVP COA Share of storage withdrawals
 goal CVP_Split {CVP_share = int_IBU_UWFE * CVP_UWFE + CVP_IBU - CVP_IBU * int_IBU_UWFE}  !CVP Share
 goal SWP_Split {SWP_share = 1.0 - CVP_share }                                       !SWP Share
 
 /*  Restrict exports to satisfy COA:  Exports = storage withdrawal - storage increase -
     share of in basin uses + share of unstored water for export + other party's unused share  */
 
-goal COA_CVP { D_Jones_EXP1 + Surp1Terms + D_CCWD = SHADS + FOLDS + WHSSW - .75*IBU + .55*UWFE - UNUSED_FS - C_Delta_CVP}
-goal COA_SWP { D_Banks_EXP1 + 2./3.*D_Napa + 2./3.* D_Solano + Surp2Terms = SWPDS - .25*IBU + .45*UWFE - UNUSED_SS - C_Delta_SWP}
+goal COA_CVP { D_Jones_EXP1 + Surp1Terms + D_CCWD = SHADS + FOLDS + WHSSW - CVP_IBU*IBU + CVP_UWFE*UWFE - UNUSED_FS - NDOI_ADD_CVP + SMSCG_Dyr_watercost_sv*CVP_UWFE*int_IBU_UWFE + SMSCG_Dyr_watercost_sv*CVP_IBU - SMSCG_Dyr_watercost_sv*CVP_IBU*int_IBU_UWFE}
+goal COA_SWP { D_Banks_EXP1 + 2./3.*D_Napa + 2./3.* D_Solano + Surp2Terms = SWPDS - SWP_IBU*IBU + SWP_UWFE*UWFE - UNUSED_SS - NDOI_ADD_SWP - SMSCG_Dyr_watercost_sv*CVP_UWFE*int_IBU_UWFE - SMSCG_Dyr_watercost_sv*CVP_IBU + SMSCG_Dyr_watercost_sv*CVP_IBU*int_IBU_UWFE}
 
 goal setUNUSED_FS { D_Banks_EXP2 < UNUSED_FS }
 goal setUNUSED_SS { D_Jones_EXP2 < UNUSED_SS }
@@ -148,15 +149,16 @@ if int(EI_DLTSW)==1 .or. int(EI_DLTSW)==2 {
 ! The projects share available export capacity when EI is controlling.
 
 
-!EI_control_on = 1 when the EI Ratio was controlling total exports in the Upstream cycle.  When EI is controlling in the Upstream cycle,
+!EI_control_on = 1 when the EI Ratio was controlling total exports in the PRESETUP cycle.  When EI is controlling in the PRESETUP cycle,
 !and if it is determined that exports are not going to be further controlled by a BO RPA, then sharing logic under the EI control is implemented in the B2_BO_DailyWeir cycle.
-!When NOT controlling in the Upstream cycle, EI sharing logic is turned off and protections are implemented to prevent one project from incurring the carriage
+!When NOT controlling in the PRESETUP cycle, EI sharing logic is turned off and protections are implemented to prevent one project from incurring the carriage
 !costs of another project aggressively pressing against the EI constraint in the remaining cycles.
+/*
 define EI_control_on {
     case EI_control {
-        condition   c_delta_swp[Upstream] + c_delta_cvp[Upstream] > 0.1 .and. 
-                    eiexpctrl[Upstream] - d_exptd[Upstream] < 0.01 .and.
-                    MRDO_final < C_SacSJR[Upstream] + 0.1
+        condition   NDOI_ADD_SWP[PRESETUP] + NDOI_ADD_CVP[PRESETUP] > 0.1 .and. 
+                    eiexpctrl[PRESETUP] - EXP_TD[PRESETUP] < 0.01 .and.
+                    MRDO_final < NDOI_ADD[PRESETUP] + NDOI_MIN[PRESETUP] + 0.1
         value       1.
     }
     case otherwise {
@@ -165,44 +167,45 @@ define EI_control_on {
     }
 }
 
-define EI_control_onDV {alias EI_control_on kind 'control-switch' units 'none'}
+define EI_control_onDV {alias EI_control_on kind 'control-switch' units 'none'}*/
 
 goal EI_split_swp {
     lhs     D_Banks_EXP1_TD
     case ei_control {
-    condition   EI_control_on > 0.5 .and. C_OMR[base] > C408_Limit .and. MAXEXP_RPA > d_exptd[base]
-     rhs        0.5*EiExpCtrl[Upstream] + ExpRatio*c_therm - ExpRatio*c_therm[Upstream] /*- ExpRatio*D_Banks_EXP1_IF
-     			+ ExpRatio*D_Jones_exp2[Upstream] - ExpRatio*D_Jones_exp2*/
+    condition   EI_control > 0.5 .and. C_OMR[DELTA_SRPLS] > C_OMR014_Limit + 0.1 .and. MAXEXP_RPA > EXP_TD[DELTA_SRPLS] + 0.1
+     rhs        SWPExpCapShare_D1641*EiExpCtrl
      lhs>rhs    penalty 1285
      lhs<rhs    penalty 0}
 }
 goal EI_split_cvp {
     lhs     D_Jones_EXP1_TD
     case ei_control {
-    condition   EI_control_on > 0.5 .and. C_OMR[base] > C408_Limit .and. MAXEXP_RPA > d_exptd[base]
-     rhs        0.5*EiExpCtrl[Upstream] + ExpRatio*c_wkytn_m + ExpRatio*c_kswck_m + ExpRatio*c_nimbus_m 
-                              - ExpRatio*c_wkytn_m[Upstream] - ExpRatio*c_kswck_m[Upstream] - ExpRatio*c_nimbus_m[Upstream]
-                               /*- ExpRatio*D_Jones_EXP1_IF + ExpRatio*D_Banks_exp2[Upstream] - ExpRatio*D_Banks_exp2*/
+    condition   EI_control > 0.5 .and. C_OMR[DELTA_SRPLS] > C_OMR014_Limit + 0.1 .and. MAXEXP_RPA > EXP_TD[DELTA_SRPLS] + 0.1
+     rhs        CVPExpCapShare_D1641*EiExpCtrl
+     
      lhs>rhs    penalty 1285
      lhs<rhs    penalty 0}
 }
 
+! If nothing (EI, OMR, RPAs) was specifically controlling exports in DELTA_SRPLS, the following goals apply
+! Added no control by AprilMay D-1641 export cap to this, exclusion was causing sharing under AprilMay D-1641 to not be met if sharing went to Balanced in DELTA cycle.  -TF Stantec 02-26-21
+! UPSTREAM cycle outflow was used instead of PRESETUP because CalLite does not have PRESETUP. UPSTREAM is the first cycle.
 goal No_EI_split_swp1 {
     lhs     D_Banks_SWP
     case no_ei_control {
-    condition   EI_control_on < 0.5 .and. C_OMR[base] > C408_Limit .and. 
-                MAXEXP_RPA > d_exptd[base] .and. MRDO_final < C_SacSJR[Upstream] + 0.1
-    rhs        D_Banks_SWP[Upstream]
+    condition   EI_control < 0.5 .and. C_OMR[DELTA_SRPLS] > C_OMR014_Limit .and. 
+                MAXEXP_RPA > EXP_TD[DELTA_SRPLS] .and. AprMayExpCtrl[DELTA_SRPLS] > EXP_TD[DELTA_SRPLS] + 0.1 .and. MRDO_final < NDOI_ADD[PRESETUP] + NDOI_MIN[PRESETUP] + 0.1
+    rhs        D_Banks_SWP[DELTA_SRPLS]
     lhs>rhs    penalty 0
     lhs<rhs penalty 1290}
 }
 
 goal No_EI_split_swp2 {
-    lhs     C_Delta_SWP
+    lhs     NDOI_ADD_SWP
     case no_ei_control {
-    condition   EI_control_on < 0.5 .and. S_SLSWP[Upstream] > swprulecv[Upstream] + 0.01 .and. 
-                C_OMR[base] > C408_Limit .and. MAXEXP_RPA > d_exptd[base]
-    rhs        C_Delta_SWP[Upstream]
+    condition   EI_control < 0.5 .and. S_SLUIS_SWP[PRESETUP] > swprulecv[PRESETUP] + 0.01 .and. 
+                C_OMR[DELTA_SRPLS] > C_OMR014_Limit .and. MAXEXP_RPA > EXP_TD[DELTA_SRPLS] .and. AprMayExpCtrl[DELTA_SRPLS] > EXP_TD[DELTA_SRPLS] + 0.1
+    rhs        NDOI_ADD_SWP[DELTA_SRPLS]
     lhs<rhs    penalty 0
     lhs>rhs    penalty 1290}
 }
@@ -210,34 +213,34 @@ goal No_EI_split_swp2 {
 goal No_EI_split_cvp1 {
     lhs     D_Jones_CVP
     case no_ei_control {
-    condition   EI_control_on < 0.5 .and. C_OMR[base] > C408_Limit .and. 
-                MAXEXP_RPA > d_exptd[base] .and. MRDO_final < C_SacSJR[Upstream] + 0.1
-    rhs        D_Jones_CVP[Upstream]
+    condition   EI_control < 0.5 .and. C_OMR[DELTA_SRPLS] > C_OMR014_Limit .and. 
+                MAXEXP_RPA > EXP_TD[DELTA_SRPLS] .and. AprMayExpCtrl[DELTA_SRPLS] > EXP_TD[DELTA_SRPLS] + 0.1 .and. MRDO_final < NDOI_ADD[PRESETUP] + NDOI_MIN[PRESETUP] + 0.1
+    rhs        D_Jones_CVP[PRESETUP]
     lhs>rhs    penalty 0
     lhs<rhs penalty 1290}
 }
 
 goal No_EI_split_cvp2 {
-    lhs     C_Delta_CVP
+    lhs     NDOI_ADD_CVP
     case no_ei_control {
-    condition   EI_control_on < 0.5 .and. S_SLCVP[Upstream] > cvprulecv[Upstream] + 0.01 .and. 
-                C_OMR[base] > C408_Limit .and. MAXEXP_RPA > d_exptd[base]
-    rhs        C_Delta_CVP[Upstream]
+    condition   EI_control < 0.5 .and. S_SLUIS_CVP[PRESETUP] > cvprulecv[PRESETUP] + 0.01 .and. 
+                C_OMR[DELTA_SRPLS] > C_OMR014_Limit .and. MAXEXP_RPA > EXP_TD[DELTA_SRPLS] .and. AprMayExpCtrl[DELTA_SRPLS] > EXP_TD[DELTA_SRPLS] + 0.1
+    rhs        NDOI_ADD_CVP[DELTA_SRPLS]
     lhs<rhs    penalty 0
     lhs>rhs    penalty 1290}
 }
 
 
 
-! Only apply sharing logic under the AprilMay pulse flow export contraint when this constraint was controlling operations in the Upstream cycle.
-goal AprMay_split_swp {
+! Only apply sharing logic under the AprilMay pulse flow export contraint when this constraint was controlling operations in the PRESETUP cycle.
+/*goal AprMay_split_swp {
     lhs     D_Banks_EXP1_TD
      case AprMay {
         condition      range(month,apr,may) .and. VAMP_DLTSW == 1 .and. 
-                       c_delta_swp[Upstream] + c_delta_cvp[Upstream] > 0.1 .and. 
-                       aprmayexpctrl[Upstream] - d_exptd[Upstream] < 0.01 .and. 
-                       MAXEXP_RPA > d_exptd[base]
-     rhs        0.5*AprMayExpCtrl
+                       NDOI_ADD_SWP[PRESETUP] + NDOI_ADD_CVP[PRESETUP] > 0.1 .and. 
+                       aprmayexpctrl[PRESETUP] - EXP_TD[PRESETUP] < 0.01 .and. 
+                       MAXEXP_RPA > EXP_TD[DELTA_SRPLS]
+     rhs        SWPExpCapShare_D1641*AprMayExpCtrl
      lhs>rhs    penalty 1285
      lhs<rhs    penalty 0
      }
@@ -246,13 +249,13 @@ goal AprMay_split_cvp {
     lhs     D_Jones_EXP1_TD 
      case AprMay {
         condition      range(month,apr,may) .and. VAMP_DLTSW == 1 .and. 
-                       c_delta_swp[Upstream] + c_delta_cvp[Upstream] > 0.1 .and. 
-                       aprmayexpctrl[Upstream] - d_exptd[Upstream] < 0.01 .and. 
-                       MAXEXP_RPA > d_exptd[base]
-     rhs        0.5*AprMayExpCtrl
+                       NDOI_ADD_SWP[PRESETUP] + NDOI_ADD_CVP[PRESETUP] > 0.1 .and. 
+                       aprmayexpctrl[PRESETUP] - EXP_TD[PRESETUP] < 0.01 .and. 
+                       MAXEXP_RPA > EXP_TD[DELTA_SRPLS]
+     rhs        CVPExpCapShare_D1641*AprMayExpCtrl
      lhs>rhs    penalty 1285
      lhs<rhs        penalty 0
      }
-}
+}*/
 
 }

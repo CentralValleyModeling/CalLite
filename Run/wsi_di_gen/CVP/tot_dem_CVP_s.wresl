@@ -75,7 +75,7 @@ define cvpdem_pls { ! Annual Sum of Reduced Demands for LS
 
        case      MAR  {
        condition month == MAR .and. wateryear > 1922
-       value     acvpdem_pls_s }
+       value     ANNCVPCL_PLS_S }
        
        case      otherwise {
        condition always

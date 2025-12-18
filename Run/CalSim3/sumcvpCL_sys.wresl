@@ -1,0 +1,89 @@
+! E. Reyes 10/27/00
+
+! This file sums the monthly contract limits by type into annual contract limits
+
+define CLann_WTPCSD_02_PA	{select contract from Contracts_CVPService where diversion=1}
+define CLann_WTPCSD_02_PU	{select contract from Contracts_CVPService where diversion=12}
+define CLann_WKYTN_02_PU	{select contract from Contracts_CVPService where diversion=13}
+define CLann_WTPBUK_03_PU3	{select contract from Contracts_CVPService where diversion=11}
+define CLann_SHSTA_03_PU1	{select contract from Contracts_CVPService where diversion=14}
+define CLann_WTPBLV_03_PU2	{select contract from Contracts_CVPService where diversion=15}
+define CLann_SAC294_03_PA	{select contract from Contracts_CVPService where diversion=2}
+define CLann_CCL005_04_PA1	{select contract from Contracts_CVPService where diversion=3}
+define CLann_TCC022_04_PA2	{select contract from Contracts_CVPService where diversion=4}
+define CLann_TCC036_07N_PA	{select contract from Contracts_CVPService where diversion=7}
+define CLann_TCC081_07S_PA	{select contract from Contracts_CVPService where diversion=8}
+define CLann_TCC111_07S_PA	{select contract from Contracts_CVPService where diversion=23}
+define CLann_GCC027_08N_PR1	{select contract from Contracts_CVPService where diversion=16}
+define CLann_GCC039_08N_PR2	{select contract from Contracts_CVPService where diversion=18}
+define CLann_CBD037_08S_PR	{select contract from Contracts_CVPService where diversion=22} ! Water diverted under water right
+define CLann_GCC056_08S_PR	{select contract from Contracts_CVPService where diversion=17}
+define CLann_JBC002_17N_PR	{select contract from Contracts_CVPService where diversion=19}
+define CLann_FTR021_16_PA	{select contract from Contracts_CVPService where diversion=9}
+
+! Define CVP Settlement Contract limits for peak months (July-August or July-September)
+define	CLP_WTPFTH_02_SU	{select peak from Contracts_CVPSettlement where diversion=1}
+define	CLP_SAC296_02_SA	{select peak from Contracts_CVPSettlement where diversion=2}
+define	CLP_WTPFTH_03_SU	{select peak from Contracts_CVPSettlement where diversion=3}
+define	CLP_SAC289_03_SA	{select peak from Contracts_CVPSettlement where diversion=4}
+define	CLP_SAC224_04_NA	{select peak from Contracts_CVPSettlement where diversion=5}
+define	CLP_SAC240_05_NA	{select peak from Contracts_CVPSettlement where diversion=6}
+define	CLP_SAC178_08N_SA1	{select peak from Contracts_CVPSettlement where diversion=7}
+define	CLP_SAC159_08N_SA1	{select peak from Contracts_CVPSettlement where diversion=8}
+define	CLP_GCC027_08N_SA2	{select peak from Contracts_CVPSettlement where diversion=9}
+define	CLP_SAC159_08S_SA1	{select peak from Contracts_CVPSettlement where diversion=10}
+define	CLP_GCC056_08S_SA2	{select peak from Contracts_CVPSettlement where diversion=11}
+define	CLP_SAC121_08S_SA3	{select peak from Contracts_CVPSettlement where diversion=12}
+define	CLP_SAC109_08S_SA3	{select peak from Contracts_CVPSettlement where diversion=13}
+define	CLP_MTC000_09_SA1	{select peak from Contracts_CVPSettlement where diversion=14}
+define	CLP_SAC162_09_SA2	{select peak from Contracts_CVPSettlement where diversion=15}
+define	CLP_SAC136_18_SA	{select peak from Contracts_CVPSettlement where diversion=16}
+define	CLP_SAC122_19_SA	{select peak from Contracts_CVPSettlement where diversion=17}
+define	CLP_SAC115_19_SA	{select peak from Contracts_CVPSettlement where diversion=18}
+define	CLP_SAC091_19_SA	{select peak from Contracts_CVPSettlement where diversion=19}
+define	CLP_SAC083_21_SA	{select peak from Contracts_CVPSettlement where diversion=20}
+define	CLP_SAC074_21_SA	{select peak from Contracts_CVPSettlement where diversion=21}
+define	CLP_SAC082_22_SA1	{select peak from Contracts_CVPSettlement where diversion=22}
+define	CLP_SAC078_22_SA1	{select peak from Contracts_CVPSettlement where diversion=23}
+define	CLP_SAC099_19_SA	{select peak from Contracts_CVPSettlement where diversion=24}
+
+! Define CVP Settlement Contract limits for non-peak months
+define	CLN_WTPFTH_02_SU	{select nonpeak from Contracts_CVPSettlement where diversion=1}
+define	CLN_SAC296_02_SA	{select nonpeak from Contracts_CVPSettlement where diversion=2}
+define	CLN_WTPFTH_03_SU	{select nonpeak from Contracts_CVPSettlement where diversion=3}
+define	CLN_SAC289_03_SA	{select nonpeak from Contracts_CVPSettlement where diversion=4}
+define	CLN_SAC224_04_NA	{select nonpeak from Contracts_CVPSettlement where diversion=5}
+define	CLN_SAC240_05_NA	{select nonpeak from Contracts_CVPSettlement where diversion=6}
+define	CLN_SAC178_08N_SA1	{select nonpeak from Contracts_CVPSettlement where diversion=7}
+define	CLN_SAC159_08N_SA1	{select nonpeak from Contracts_CVPSettlement where diversion=8}
+define	CLN_GCC027_08N_SA2	{select nonpeak from Contracts_CVPSettlement where diversion=9}
+define	CLN_SAC159_08S_SA1	{select nonpeak from Contracts_CVPSettlement where diversion=10}
+define	CLN_GCC056_08S_SA2	{select nonpeak from Contracts_CVPSettlement where diversion=11}
+define	CLN_SAC121_08S_SA3	{select nonpeak from Contracts_CVPSettlement where diversion=12}
+define	CLN_SAC109_08S_SA3	{select nonpeak from Contracts_CVPSettlement where diversion=13}
+define	CLN_MTC000_09_SA1	{select nonpeak from Contracts_CVPSettlement where diversion=14}
+define	CLN_SAC162_09_SA2	{select nonpeak from Contracts_CVPSettlement where diversion=15}
+define	CLN_SAC136_18_SA	{select nonpeak from Contracts_CVPSettlement where diversion=16}
+define	CLN_SAC122_19_SA	{select nonpeak from Contracts_CVPSettlement where diversion=17}
+define	CLN_SAC115_19_SA	{select nonpeak from Contracts_CVPSettlement where diversion=18}
+define	CLN_SAC091_19_SA	{select nonpeak from Contracts_CVPSettlement where diversion=19}
+define	CLN_SAC083_21_SA	{select nonpeak from Contracts_CVPSettlement where diversion=20}
+define	CLN_SAC074_21_SA	{select nonpeak from Contracts_CVPSettlement where diversion=21}
+define	CLN_SAC082_22_SA1	{select nonpeak from Contracts_CVPSettlement where diversion=22}
+define	CLN_SAC078_22_SA1	{select nonpeak from Contracts_CVPSettlement where diversion=23}
+define	CLN_SAC099_19_SA	{select nonpeak from Contracts_CVPSettlement where diversion=24}
+
+!Define demands for CVP contract water - reduced by WF agreement
+
+define CLWF_ANN_PCWA_A   {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !
+define CLWF_ANN_FOLSM     {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !City of Folsom 
+define CLWF_ANN_SJWD_S   {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !
+define CLWF_ANN_ELDOR_ID     {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !Includes EID + Fazio water (7.55 TAF + 7.50 TAF), need to check
+define CLWF_ANN_ELDOR_CO     {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !
+define CLWF_ANN_SMUD       {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !
+define CLWF_ANN_GSWC       {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !
+define CLWF_ANN_SCWA       {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !
+define CLWF_ANN_ROSEV     {timeseries kind 'CVPWF-CONTRACT-LIMIT'  units 'TAF'}  !*/
+define CLann_ANN_SCWA_FRPT    		{VALUE 0.0}  !
+define CLann_ANN_EBMD_FRPT    		{VALUE 0.0}  !
+define anncvpDR_sys{ TIMESERIES KIND 'ANNUAL-DIVR-REQMENT' UNITS 'TAF'}   

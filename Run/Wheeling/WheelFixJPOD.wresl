@@ -1,0 +1,33 @@
+! This file sets JPOD wheeling to the WHEELJPOD.
+
+goal fixD_Banks_CVPWHL {D_Banks_cvpwhl = D_Banks_cvpwhl[WHEELING]}
+goal fixD_Banks_cvpwhl_IF {D_Banks_cvpwhl_IF = D_Banks_cvpwhl_IF[WHEELING]}
+goal fixD_Banks_cvpwhl_TD {D_Banks_cvpwhl_TD = D_Banks_cvpwhl_TD[WHEELING]}
+goal fixD_Banks_whlrels {D_Banks_whlrels = D_Banks_whlrels[WHEELING]}
+goal fixD_Banks_whlsurp {D_Banks_whlsurp = D_Banks_whlsurp[WHEELING]}
+goal fixD_Banks_whlsurp1 {D_Banks_whlsurp1 = D_Banks_whlsurp1[WHEELING]}
+goal fixD_Banks_whlsurp2 {D_Banks_whlsurp2 = D_Banks_whlsurp2[WHEELING]}
+goal fixD_Banks_whlsurp_IF {D_Banks_whlsurp_IF = D_Banks_whlsurp_IF[WHEELING]}
+goal fixD_Banks_whlsurp_TD {D_Banks_whlsurp_TD = D_Banks_whlsurp_TD[WHEELING]}
+
+!goal fixD400_WHLJP {D400_WHLJP = D400_WHLJP[WHEELING]}
+
+/*goal fixD408_P_WHL {D408_P_WHL = D408_P_WHL[WHEELING]}
+goal fixD408_P_WHL_SB {D408_P_WHL_SB = D408_P_WHL_SB[WHEELING]}
+goal fixD408_P_WHL_SF {D408_P_WHL_SF = D408_P_WHL_SF[WHEELING]}
+*/
+goal fixC_WKYTN_whljp {C_WKYTN_whljp = C_WKYTN_whljp[WHEELING]}
+goal fix_D_Spring_whljp {D_Spring_whljp = D_Spring_whljp[WHEELING]}
+goal fixC_KSWCK_whljp {C_KSWCK_whljp = C_KSWCK_whljp[WHEELING]}
+goal fixC_NIMBUS_whljp {C_NIMBUS_whljp = C_NIMBUS_whljp[WHEELING]}
+goal fixNDOI_ADD_WHLJP {NDOI_ADD_whljp = NDOI_ADD_whljp[WHEELING]}
+goal fixC_HOOD_whljp {C_HOOD_whljp = C_HOOD_whljp[WHEELING]}
+
+!goal fixC32_whljp {C32_whljp = C32_whljp[WHEELING]}
+
+/*goal fixC422_REL_P_WHL {C422_REL_P_WHL = C422_REL_P_WHL[WHEELING]}
+goal fixC422_REL_P_WHLSB {C422_REL_P_WHLSB = C422_REL_P_WHLSB[WHEELING]}
+goal fixC422_REL_P_WHLSF {C422_REL_P_WHLSF = C422_REL_P_WHLSF[WHEELING]}
+goal fixC423B_WHL {C423B_WHL = C423B_WHL[WHEELING]}
+goal fixC423B_WHL_SB {C423B_WHL_SB = C423B_WHL_SB[WHEELING]}
+goal fixC423B_WHL_SF {C423B_WHL_SF = C423B_WHL_SF[WHEELING]}*/

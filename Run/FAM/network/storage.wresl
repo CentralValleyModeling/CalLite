@@ -25,4 +25,3 @@ define(fm) S_SLSWP {lower 55 upper 1067 kind 'STORAGE' units 'TAF'}
 
 ! cvp san luis storage:
 define(fm) S_SLCVP {lower 45 upper 972 kind 'STORAGE' units 'TAF'}
-

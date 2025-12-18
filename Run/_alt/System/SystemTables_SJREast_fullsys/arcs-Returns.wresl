@@ -1,0 +1,5 @@
+!System file info for 64_XA for CalLite full system cycles
+
+define R_64_XA          {std kind 'RETURN-FLOW' units 'CFS'}
+define  R_64_XA_SJR185     {std kind 'RETURN-FLOW' units 'CFS'}
+

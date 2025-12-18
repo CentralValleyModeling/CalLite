@@ -1,0 +1,169 @@
+
+Objective obj_SOD = {
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! South of Delta !!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/* 
+[S_DELVE_1,20000*taf_cfs],
+[S_DELVE_2,1245*taf_cfs],
+[S_DELVE_3,1240*taf_cfs],
+[S_DELVE_4,40*taf_cfs],
+[S_DELVE_5,-2500*taf_cfs],
+
+[S_SVRWD_1,20000*taf_cfs],
+[S_SVRWD_2,1245*taf_cfs],
+[S_SVRWD_3,1240*taf_cfs],
+[S_SVRWD_4,40*taf_cfs],
+[S_SVRWD_5,-2500*taf_cfs],
+
+[S_PRRIS_1,20000*taf_cfs],
+[S_PRRIS_2,1245*taf_cfs],
+[S_PRRIS_3,1240*taf_cfs],
+[S_PRRIS_4,40*taf_cfs],
+[S_PRRIS_5,-2500*taf_cfs],
+
+[S_PYRMD_1,20000*taf_cfs],
+[S_PYRMD_2,1245*taf_cfs],
+[S_PYRMD_3,1240*taf_cfs],
+[S_PYRMD_4,40*taf_cfs],
+[S_PYRMD_5,-2500*taf_cfs],
+
+[S_CSTIC_1,20000*taf_cfs],
+[S_CSTIC_2,1245*taf_cfs],
+[S_CSTIC_3,1240*taf_cfs],
+[S_CSTIC_4,40*taf_cfs],
+[S_CSTIC_5,-2500*taf_cfs],
+
+[F_DELVE,-100000],
+[F_SVRWD,-100000],
+[F_PRRIS,-100000],
+[F_PYRMD,-100000],
+[F_CSTIC,-100000],
+*/
+![C_CAA003_CVPDED,-10],
+[D_CAA238_CVPCV,1265],
+[D_CAA239_CVPRF,1265],
+
+[D_SVRWD_CSTLN_PMI,1265],
+[D_PRRIS_MWDSC_PMI,1265],
+[D_PRRIS_MWDSC_PIN,20],
+[D_PYRMD_VNTRA_PMI,1265],
+[D_CSTIC_VNTRA_PMI,1265],
+[D_CSTIC_VNTRA_PIN,20], ! New Article 21 demand for Ventura County. 1/2/2020
+
+[D_CAA046_71_PA7_PAG,1265],
+[D_CAA046_71_PA7_PCO,1264],
+[D_CAA046_71_PA7_PIN,20],
+![D803_PLS,1285], !@jmg 2017v13 - in DWR split but not merged model
+
+![D805,-1],        !@jmg 2017v13 - in DWR split but not merged model
+![D807,-1],        !@jmg 2017v13 - in DWR split but not merged model
+
+[D_SBA009_ACFC_PMI,1265],   ! South Bay Aqueduct
+[D_SBA009_ACFC_PIN,  20],   ! South Bay Aqueduct
+[D_SBA016_DELVE,      -1],   ! South Bay Aqueduct
+[D_SBA020_ACFC_PMI,1265],   ! South Bay Aqueduct
+[D_SBA029_ACWD_PMI,1265],   ! South Bay Aqueduct
+[D_SBA029_ACWD_PIN,  20],   ! South Bay Aqueduct
+[D_SBA036_SCVWD_PMI,1265],   ! South Bay Aqueduct
+[D_SBA036_SCVWD_PIN,  20],   ! South Bay Aqueduct
+[D_SBA042_SBALOS_PLS,1285],   ! South Bay Aqueduct
+
+[D_CAA173_EMPIRE_PAG,1265],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+[D_CAA173_EMPIRE_PIN,  20],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+[D_CAA181_KINGS_PAG,1265],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+[D_CAA181_KINGS_PIN,  20],   ! Califonia Aqueduct - Joint Reach, SWP share of losses ! New Article 21 demand for Kings County. 1/2/2020
+[D_CAA183_TULARE_PAG,1265],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+[D_CAA183_TULARE_PIN,  20],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+[D_CAA184_DUDLEY_PAG,1265],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+[D_CAA184_DUDLEY_PIN,  20],   ! Califonia Aqueduct - Joint Reach, SWP share of losses
+
+[D_CSB015_KERN_BMWD_PAG,1265],   ! Califonia Aqueduct - Coastal Branch
+[D_CSB009_CLRTA1_DDWD_PAG,1265],   ! Califonia Aqueduct - Coastal Branch
+[D_CSB009_CLRTA1_DDWD_PIN,  20],   ! Califonia Aqueduct - Coastal Branch
+[D_CSB038_OBISPO_PMI,1266],   ! Califonia Aqueduct - Coastal Branch
+[D_CSB038_OBISPO_PIN,20],
+[D_CSB103_BRBRA_PMI,1265],   ! Califonia Aqueduct - Coastal Branch
+[D_CSB103_BRBRA_PIN,  20],   ! Califonia Aqueduct - Coastal Branch ! New Article 21 demand for Santa Barbara. 1/2/2020
+
+[D_CAA194_KERN_PAG,1265],   ! Califonia Aqueduct
+[D_CAA194_KERNA_PMI,1265],  ! Califonia Aqueduct
+[D_CAA194_KERNB_PMI,1265],  ! Califonia Aqueduct
+![D853_PAG,1265],  ! Arc not used
+[D_CAA220_CAALOS_PLS,1285],   ! Califonia Aqueduct
+![D_CAA242_Kern_GWRECH_SWP,15],
+[D_CAA242_Kern_PAG,1265],   ! Califonia Aqueduct
+[D_CAA242_Kern_PIN,  20],   ! Califonia Aqueduct
+[D_CAA278_CAALOS_PLS,1285],   ! Califonia Aqueduct
+[D_CAA279_Kern_PAG,1265],   ! Califonia Aqueduct
+[D_CAA280_CAALOS_PLS,1285],   ! Califonia Aqueduct
+
+[D_ESB324_AVEK_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB324_AVEK_PIN,  20],   ! Califonia Aqueduct - East Branch
+[D_ESB347_PLMDL_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB347_PLMDL_PIN,20],
+[D_ESB355_LROCK_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB361_ESBLOS_PLS,1285],   ! Califonia Aqueduct - East Branch
+[D_ESB403_MOJVE_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB406_ESBLOS_PLS,1285],   ! Califonia Aqueduct - East Branch
+[D_ESB407_CCHLA_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB407_CCHLA_PIN,  20],   ! Califonia Aqueduct - East Branch
+[D_ESB408_DESRT_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB408_DESRT_PIN,  20],   ! Califonia Aqueduct - East Branch
+[D_ESB413_MWDSC_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB413_MWDSC_PIN,  20],   ! Califonia Aqueduct - East Branch
+[D_ESB414_BRDNO_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB414_BRDNO_PIN,20],
+[D_ESB415_GABRL_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB415_GABRL_PIN,  20],   ! Califonia Aqueduct - East Branch ! New Article 21 demand for San Gabriel Valley. 1/2/2020
+[D_ESB420_GRGNO_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB420_GRGNO_PIN,20],
+[D_ESB425_ESBLOS_PLS,1285],   ! Califonia Aqueduct - East Branch
+[D_ESB433_MWDSC_PMI,1265],   ! Califonia Aqueduct - East Branch
+[D_ESB433_MWDSC_PIN,  20],   ! Califonia Aqueduct - East Branch
+
+[D_WSB006_WSBLOS_PLS,1285],   ! Califonia Aqueduct - West Branch
+[D_WSB026_WSBLOS_PLS,1285],   ! Califonia Aqueduct - West Branch
+[D_WSB027_WSBLOS_PLS,1285],   ! Califonia Aqueduct - West Branch
+[D_WSB031_MWDSC_PMI,1265],   ! Califonia Aqueduct - West Branch
+[D_WSB031_MWDSC_PIN,  20],   ! Califonia Aqueduct - West Branch
+[D_WSB032_CLRTA2_PMI,1265],   ! Califonia Aqueduct - West Branch
+
+[D_SVRWD_CSTLN_PCO,1264],
+[D_PRRIS_MWDSC_PCO,1264],
+[D_PYRMD_VNTRA_PCO,1264],
+[D_CSTIC_VNTRA_PCO,1264],
+[D_SBA009_ACFC_PCO,1264],
+[D_SBA020_ACFC_PCO,1264],
+[D_SBA029_ACWD_PCO,1264],
+[D_SBA036_SCVWD_PCO,1264],
+[D_CAA173_EMPIRE_PCO,1264],
+[D_CAA181_KINGS_PCO,1264],
+[D_CAA183_TULARE_PCO,1264],
+[D_CAA184_DUDLEY_PCO,1264],
+[D_CAA194_KERN_PCO,1264],
+[D_CAA242_Kern_PCO,1264],
+[D_CAA279_Kern_PCO,1264],
+[D_CSB015_KERN_BMWD_PCO,1264],
+[D_CSB009_CLRTA1_DDWD_PCO,1264],
+[D_CSB038_OBISPO_PCO,1264],
+[D_CSB103_BRBRA_PCO,1264],
+[D_ESB324_AVEK_PCO,1264],
+[D_ESB347_PLMDL_PCO,1264],
+[D_ESB355_LROCK_PCO,1264],
+[D_ESB403_MOJVE_PCO,1264],
+[D_ESB407_CCHLA_PCO,1264],
+[D_ESB408_DESRT_PCO,1264],
+[D_ESB413_MWDSC_PCO,1264],
+[D_ESB414_BRDNO_PCO,1264],
+[D_ESB415_GABRL_PCO,1264],
+[D_ESB420_GRGNO_PCO,1264],
+[D_WSB031_MWDSC_PCO,1264],
+[D_WSB032_CLRTA2_PCO,1264],
+[D_ESB433_MWDSC_PCO,1264],
+
+ }
+ 
+ 
+ 
+ 

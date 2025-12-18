@@ -1,0 +1,151 @@
+
+define S_DELVElevel1 {value 9.8}
+define S_DELVE_1 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_DELVEZone1 {S_DELVE_1 < S_DELVElevel1}
+define S_DELVElevel2 {value 9.8}
+define S_DELVE_2 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_DELVEZone2 {S_DELVE_2 < S_DELVElevel2-S_DELVElevel1}
+define S_DELVElevel3 {select target from res_level where res_num=15,level=3,month=month}
+define S_DELVE_3 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_DELVEZone3 {S_DELVE_3 < S_DELVElevel3-S_DELVElevel2}
+define S_DELVElevel4 {value 40}
+define S_DELVE_4 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_DELVEZone4 {S_DELVE_4 < S_DELVElevel4-S_DELVElevel3}
+define S_DELVElevel5 {value 77}
+define S_DELVE_5 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_DELVEZone5 {S_DELVE_5 < S_DELVElevel5-S_DELVElevel4}
+define S_DELVE {std kind 'STORAGE' units 'TAF'} !LAKE DEL VALLE
+goal storage15 {S_DELVE=S_DELVE_1+S_DELVE_2+S_DELVE_3+S_DELVE_4+S_DELVE_5}
+define F_DELVE {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
+define E_DELVE {lower unbounded kind 'EVAPORATION' units 'CFS'}
+define A_DELVE {std kind 'SURFACE-AREA' units 'ACRES'}
+define ER_S_DELVE {timeseries kind 'EVAPORATION-RATE' units 'INCHES'}
+define A_DELVElast {select area from res_info given storage=1000*S_DELVE(-1) use linear where res_num=15}
+define A_DELVEforward {select area from res_info given storage=1050*S_DELVE(-1) use linear where res_num=15}
+define A_DELVEback {select area from res_info given storage=950*S_DELVE(-1) use linear where res_num=15}
+define coefev_DELVE {value (A_DELVEforward - A_DELVEback)/(100*max(0.01,S_DELVE(-1)))}
+goal area15 {A_DELVE=A_DELVElast+1000*coefev_DELVE*S_DELVE-1000*coefev_DELVE*S_DELVE(-1)}
+goal evap15 {E_DELVE*cfs_af=(ER_S_DELVE/24)*A_DELVElast+(ER_S_DELVE/24)*A_DELVE}
+define relcap_DELVE {select discharge from res_info given storage=1000*S_DELVE(-1) use linear where res_num=15}
+goal maxrelease15 {C_DELVE<relcap_DELVE}
+define S_SVRWDlevel1 {value 44}
+define S_SVRWD_1 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_SVRWDZone1 {S_SVRWD_1 < S_SVRWDlevel1}
+define S_SVRWDlevel2 {value 44}
+define S_SVRWD_2 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_SVRWDZone2 {S_SVRWD_2 < S_SVRWDlevel2-S_SVRWDlevel1}
+define S_SVRWDlevel3 {select target from res_level where res_num=25,level=3,month=month}
+define S_SVRWD_3 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_SVRWDZone3 {S_SVRWD_3 < S_SVRWDlevel3-S_SVRWDlevel2}
+define S_SVRWDlevel4 {value 72}
+define S_SVRWD_4 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_SVRWDZone4 {S_SVRWD_4 < S_SVRWDlevel4-S_SVRWDlevel3}
+define S_SVRWDlevel5 {value 75}
+define S_SVRWD_5 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_SVRWDZone5 {S_SVRWD_5 < S_SVRWDlevel5-S_SVRWDlevel4}
+define S_SVRWD {std kind 'STORAGE' units 'TAF'} !SILVERWOOD LAKE
+goal storage25 {S_SVRWD=S_SVRWD_1+S_SVRWD_2+S_SVRWD_3+S_SVRWD_4+S_SVRWD_5}
+define F_SVRWD {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
+define E_SVRWD {lower unbounded kind 'EVAPORATION' units 'CFS'}
+define A25 {std kind 'SURFACE-AREA' units 'ACRES'}
+define ER_SVRWD {timeseries kind 'EVAPORATION-RATE' units 'INCHES'}
+define A25last {select area from res_info given storage=1000*S_SVRWD(-1) use linear where res_num=25}
+define A25forward {select area from res_info given storage=1050*S_SVRWD(-1) use linear where res_num=25}
+define A25back {select area from res_info given storage=950*S_SVRWD(-1) use linear where res_num=25}
+define coefev25 {value (A25forward - A25back)/(100*max(0.01,S_SVRWD(-1)))}
+goal area25 {A25=A25last+1000*coefev25*S_SVRWD-1000*coefev25*S_SVRWD(-1)}
+goal evap25 {E_SVRWD*cfs_af=(ER_SVRWD/24)*A25last+(ER_SVRWD/24)*A25}
+define relcap25 {select discharge from res_info given storage=1000*S_SVRWD(-1) use linear where res_num=25}
+goal maxrelease25 {C_SVRWD<relcap25}
+define S_PRRISlevel1 {value 31}
+define S_PRRIS_1 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PRRISZone1 {S_PRRIS_1 < S_PRRISlevel1}
+define S_PRRISlevel2 {value 85}
+define S_PRRIS_2 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PRRISZone2 {S_PRRIS_2 < S_PRRISlevel2-S_PRRISlevel1}
+define S_PRRISlevel3 {select target from res_level where res_num=27,level=3,month=month}
+define S_PRRIS_3 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PRRISZone3 {S_PRRIS_3 < S_PRRISlevel3-S_PRRISlevel2}
+define S_PRRISlevel4 {value 122}
+define S_PRRIS_4 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PRRISZone4 {S_PRRIS_4 < S_PRRISlevel4-S_PRRISlevel3}
+define S_PRRISlevel5 {value 131}
+define S_PRRIS_5 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PRRISZone5 {S_PRRIS_5 < S_PRRISlevel5-S_PRRISlevel4}
+define S_PRRIS {std kind 'STORAGE' units 'TAF'} !LAKE PERRIS
+goal storage27 {S_PRRIS=S_PRRIS_1+S_PRRIS_2+S_PRRIS_3+S_PRRIS_4+S_PRRIS_5}
+define F_PRRIS {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
+define E_PRRIS {lower unbounded kind 'EVAPORATION' units 'CFS'}
+define A27 {std kind 'SURFACE-AREA' units 'ACRES'}
+define ER_PRRIS {timeseries kind 'EVAPORATION-RATE' units 'INCHES'}
+define A27last {select area from res_info given storage=1000*S_PRRIS(-1) use linear where res_num=27}
+define A27forward {select area from res_info given storage=1050*S_PRRIS(-1) use linear where res_num=27}
+define A27back {select area from res_info given storage=950*S_PRRIS(-1) use linear where res_num=27}
+define coefev27 {value (A27forward - A27back)/(100*max(0.01,S_PRRIS(-1)))}
+goal area27 {A27=A27last+1000*coefev27*S_PRRIS-1000*coefev27*S_PRRIS(-1)}
+goal evap27 {E_PRRIS*cfs_af=(ER_PRRIS/24)*A27last+(ER_PRRIS/24)*A27}
+define relcap27 {select discharge from res_info given storage=1000*S_PRRIS(-1) use linear where res_num=27}
+goal maxrelease27 {D_PRRIS_MWDSC<relcap27}
+define S_PYRMDlevel1 {value 95}
+define S_PYRMD_1 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PYRMDZone1 {S_PYRMD_1 < S_PYRMDlevel1}
+define S_PYRMDlevel2 {value 120}
+define S_PYRMD_2 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PYRMDZone2 {S_PYRMD_2 < S_PYRMDlevel2-S_PYRMDlevel1}
+define S_PYRMDlevel3 {value 165}
+define S_PYRMD_3 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PYRMDZone3 {S_PYRMD_3 < S_PYRMDlevel3-S_PYRMDlevel2}
+define S_PYRMDlevel4 {value 165}
+define S_PYRMD_4 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PYRMDZone4 {S_PYRMD_4 < S_PYRMDlevel4-S_PYRMDlevel3}
+define S_PYRMDlevel5 {value 171}
+define S_PYRMD_5 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_PYRMDZone5 {S_PYRMD_5 < S_PYRMDlevel5-S_PYRMDlevel4}
+define S_PYRMD {std kind 'STORAGE' units 'TAF'} !PYRAMID LAKE
+goal storage28 {S_PYRMD=S_PYRMD_1+S_PYRMD_2+S_PYRMD_3+S_PYRMD_4+S_PYRMD_5}
+define F_PYRMD {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
+define E_PYRMD {lower unbounded kind 'EVAPORATION' units 'CFS'}
+define A28 {std kind 'SURFACE-AREA' units 'ACRES'}
+define ER_PYRMD {timeseries kind 'EVAPORATION-RATE' units 'INCHES'}
+define A28last {select area from res_info given storage=1000*S_PYRMD(-1) use linear where res_num=28}
+define A28forward {select area from res_info given storage=1050*S_PYRMD(-1) use linear where res_num=28}
+define A28back {select area from res_info given storage=950*S_PYRMD(-1) use linear where res_num=28}
+define coefev28 {value (A28forward - A28back)/(100*max(0.01,S_PYRMD(-1)))}
+goal area28 {A28=A28last+1000*coefev28*S_PYRMD-1000*coefev28*S_PYRMD(-1)}
+goal evap28 {E_PYRMD*cfs_af=(ER_PYRMD/24)*A28last+(ER_PYRMD/24)*A28}
+define relcap28 {select discharge from res_info given storage=1000*S_PYRMD(-1) use linear where res_num=28}
+goal maxrelease28 {C_PYRMD<relcap28}
+define S_CSTIClevel1 {value 280}
+define S_CSTIC_1 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_CSTICZone1 {S_CSTIC_1 < S_CSTIClevel1}
+define S_CSTIClevel2 {value 280}
+define S_CSTIC_2 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_CSTICZone2 {S_CSTIC_2 < S_CSTIClevel2-S_CSTIClevel1}
+define S_CSTIClevel3 {select target from res_level where res_num=29,level=3,month=month}
+define S_CSTIC_3 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_CSTICZone3 {S_CSTIC_3 < S_CSTIClevel3-S_CSTIClevel2}
+define S_CSTIClevel4 {value 315}
+define S_CSTIC_4 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_CSTICZone4 {S_CSTIC_4 < S_CSTIClevel4-S_CSTIClevel3}
+define S_CSTIClevel5 {value 324}
+define S_CSTIC_5 {std kind 'STORAGE-ZONE' units 'TAF'}
+goal S_CSTICZone5 {S_CSTIC_5 < S_CSTIClevel5-S_CSTIClevel4}
+define S_CSTIC {std kind 'STORAGE' units 'TAF'} !CASTAIC LAKE
+goal storage29 {S_CSTIC=S_CSTIC_1+S_CSTIC_2+S_CSTIC_3+S_CSTIC_4+S_CSTIC_5}
+define F_CSTIC {std kind 'FLOW-SPILL-NON-RECOV' units 'CFS'}
+define E_CSTIC {lower unbounded kind 'EVAPORATION' units 'CFS'}
+define A29 {std kind 'SURFACE-AREA' units 'ACRES'}
+define ER_CSTIC {timeseries kind 'EVAPORATION-RATE' units 'INCHES'}
+define A29last {select area from res_info given storage=1000*S_CSTIC(-1) use linear where res_num=29}
+define A29forward {select area from res_info given storage=1050*S_CSTIC(-1) use linear where res_num=29}
+define A29back {select area from res_info given storage=950*S_CSTIC(-1) use linear where res_num=29}
+define coefev29 {value (A29forward - A29back)/(100*max(0.01,S_CSTIC(-1)))}
+goal area29 {A29=A29last+1000*coefev29*S_CSTIC-1000*coefev29*S_CSTIC(-1)}
+goal evap29 {E_CSTIC*cfs_af=(ER_CSTIC/24)*A29last+(ER_CSTIC/24)*A29}
+define relcap29 {select discharge from res_info given storage=1000*S_CSTIC(-1) use linear where res_num=29}
+goal maxrelease29 {C_CSTIC<relcap29}
+
+! Transfer Storage Accounts
+!define S_SHSTA_WTS {std kind 'storage' units 'taf'}
+!define S_OROVL_WTS {std kind 'storage' units 'taf'}
+

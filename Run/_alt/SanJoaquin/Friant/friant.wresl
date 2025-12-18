@@ -1,0 +1,42 @@
+! Friant.wresl  
+! MBK (consultants for USBR)
+! 11/21/02
+! Created for the Upper San Joaquin River Basin Storage Investigation Project
+! File that includes all Friant operations files 
+
+! ################################################################
+    include 'Restoration_16B.wresl'
+    include 'friant_adj_fld_spc.wresl'
+    include 'friant_wsf.wresl'
+    include 'friant_allocation.wresl'
+    include 'friant_delivery.wresl'
+    include 'friant_rain_fld_est.wresl'
+    include 'friant_delivery_adjustments.wresl'
+    include 'friant_operation.wresl'
+
+/* 
+other friant/release operations are contained in 
+SJR_ChannelSplits.wresl
+SJR_restrict_cycle1.wresl
+SJR_restrict_cycle2on.wresl
+
+define L603 {std kind 'loss' units 'cfs'}
+define L605 {std kind 'loss' units 'cfs'}
+
+goal limitD_SJR227_64_PA3 { D_SJR227_64_PA3 < 0.4 * min(SJRR_rel, SJRR_min) }
+goal set_L603 { L603 = min(SJRR_rel, SJRR_min) - D_SJR227_64_PA3 }
+
+define SJRR_L605 {value max(0., min(SJRR_rel - SJRR_min, 0.05*(SJRR_rel - SJRR_min) + 95.))}
+goal setC_SJR227_mainSJRR {C_SJR227_mainSJRR < max(0.,SJRR_rel - SJRR_min - SJRR_L605)}
+
+! Gravelly Ford to Bifurcation Loss - L605 
+! the first 100 cfs plus 5% of the rest of the flow in C603 is lost at 605
+goal limit1_L605 {L605 < C_SJR227 * 0.05 + 100. - 100.* 0.05 }  !WB
+! Ensure that there is no loss if there is no flow
+goal limit2_L605 { L605 = C_SJR227_loss }
+
+!Route Settlement flow to Sack Dam.   
+goal setC605C {D_SJR205_SJR201 = C_SJR227_mainSJRR}
+
+
+*/

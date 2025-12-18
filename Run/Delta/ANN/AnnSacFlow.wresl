@@ -66,4 +66,15 @@ define C_YoloBP_mif {std kind 'FLOW-MIN-INSTREAM' units 'cfs'}
 define C_YoloBP_exc {std kind 'FLOW-EXCESS-INSTREAM' units 'cfs'}
 goal C_YoloBPtotal {C_YoloBP = C_YoloBP_mif + C_YoloBP_exc}
 
-goal setAnnSacFlow { C_Hood_mif + C_YoloBP_mif < AnnSacReq}
+!goal setAnnSacFlow { C_Hood_mif + C_YoloBP_mif < AnnSacReq}
+
+goal JulyWQcost {
+	lhs C_Hood_mif + C_YoloBP_mif
+	case JunJulyAug {
+		condition month==JUN .or. month==JUL .or. month==AUG
+		rhs AnnSacReq
+		lhs<rhs penalty 0. }
+		case otherwise {
+		condition always
+		rhs 0.
+		lhs<rhs penalty 0. }}

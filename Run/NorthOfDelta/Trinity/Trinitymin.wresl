@@ -5,14 +5,21 @@ Tom FitzHugh BOR 4/7/2010
 
 Sets minimum flow on Trinity River below Lewiston.
 *************************************/
+define MF_LWSTNROD { 
+       select       river_q_high
+       from         Trinitymin
+       where        month=month, wyt_TRIN=wyt_TRIN}
 
 define minflow_C_Lewiston { 
 	case LowerMinFlows{
 		condition Trnty_DLTSW == 3
 		select river_q_low from Trinitymin where month=month, wyt_TRIN=wyt_TRIN}
+	case TFFA {
+        	condition month>JUL .and. wyt_TRIN>1
+        	value MF_LWSTNROD + 420.14 }	
 	case HigherMinFlows{
 		condition always
-		select river_q_high from Trinitymin where month=month, wyt_TRIN=wyt_TRIN}
+		value MF_LWSTNROD}
 }
 
 goal TrinityMin {C_Lwstn_MIF < minflow_C_Lewiston }

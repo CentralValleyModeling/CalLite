@@ -13,8 +13,13 @@ This is the main file which 'includes' all Delta Operations and Constraints code
 if int(Dynamic_SJR)==0  {INCLUDE 'Ann\AnnSJRTimeseries.wresl'}
 if int(Dynamic_SJR)==1  {INCLUDE 'Ann\AnnSJRDynamic.wresl'}
 
+include 'Ann\Ann_wyt_D1641.wresl'
+
 ! Contains files for implementation of Artifical Neural Network's for salinity control.
 INCLUDE 'Ann\AnnCommon.wresl'
+
+!Suisun Marsh Salinity Control Gate Operations.
+INCLUDE 'Ann\SMSCG_MTZ_BASE.wresl'
 
 !These files establish the standards and parameters for each station:
 INCLUDE 'Ann\JerseyPoint_data_reduced_calls.wresl'

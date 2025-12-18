@@ -1,0 +1,123 @@
+! FixedDeliveries.wresl
+! Diversions fixed to the WHEELJPOD cycle
+
+!Trinity R blw Lewiston
+goal fixC_LWSTN {lhs C_LWSTN rhs C_LWSTN[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+
+!Sacramento River upstream of Red Bluff 
+goal fixC_WKYTN {lhs C_WKYTN rhs C_WKYTN[WHEELING]}  
+goal fixC_KSWCK {lhs C_KSWCK rhs C_KSWCK[WHEELING]} ! Shasta storage/releases have been observed to change in ITP cycle. This should not happen in the ITP cycle so hard constraint is used.
+goal fixC_REDBLF {lhs C_REDBLF rhs C_REDBLF[WHEELING]}
+
+!Sacramento River at Wilkins Slough
+goal fixC_Wilkns {lhs C_Wilkns rhs C_Wilkns[WHEELING]}
+
+!Feather/ Yuba River
+goal fixC_OROVL {C_OROVL = C_OROVL[WHEELING] + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO - Alt2BSWPExpCut_Carryover + remain_ITP_Carryover_Oro_rel*taf_cfs} ! Oroville release
+goal fixC_Therm {C_Therm = C_Therm[WHEELING] + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO - Alt2BSWPExpCut_Carryover + remain_ITP_Carryover_Oro_rel*taf_cfs } !below Thermalito return
+goal fixC_YubFea {C_YubFea = C_YubFea[WHEELING] + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO - Alt2BSWPExpCut_Carryover + remain_ITP_Carryover_Oro_rel*taf_cfs} ! at the mouth
+
+!American River
+goal fixC_Nimbus {lhs C_Nimbus rhs C_Nimbus[WHEELING]}
+goal fixC_HSt {lhs C_HSt rhs C_HSt[WHEELING]}    ! at the mouth
+
+!Lower Sacramento River
+goal fixC_SACFEA {lhs C_SACFEA rhs C_SACFEA[WHEELING] + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO - Alt2BSWPExpCut_Carryover + remain_ITP_Carryover_Oro_rel*taf_cfs} !below Fremont Weir
+goal fixC_SACAME {lhs C_SACAME rhs C_SACAME[WHEELING] + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO - Alt2BSWPExpCut_Carryover + remain_ITP_Carryover_Oro_rel*taf_cfs } !below Americaan River
+goal fixC_HOOD {lhs C_HOOD rhs C_HOOD[WHEELING] + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO - Alt2BSWPExpCut_Carryover + remain_ITP_Carryover_Oro_rel*taf_cfs} !Sac River inflow into Delta
+goal fixC_YOLOBP {lhs C_YOLOBP rhs C_YOLOBP[WHEELING]}  !Yolo Bypass flow
+
+!Delta Inflow
+!goal fixC_SACtot_ANN {lhs C_SACtot_ANN rhs C_SACtot_ANN[WHEELING]} 
+!goal fixC_MOK019 {lhs C_MOK019 rhs C_MOK019[WHEELING]} 
+!goal fixC_CLV004 {lhs C_CLV004 rhs C_CLV004[WHEELING]} 
+!goal fixC_SJR070est {lhs C_SJR070est rhs C_SJR070est[WHEELING]} 
+
+!NOD Storages
+goal fixS_TRNTY {lhs S_TRNTY rhs S_TRNTY[WHEELING]} ! Prevent changing in the last cycle. Use hard constraint.
+goal fixS_SHSTA {lhs S_SHSTA rhs S_SHSTA[WHEELING]} ! Shasta storage/releases have been observed to change in ITP cycle. This should not happen in the ITP cycle so hard constraint is used.
+goal fixS_FOLSM {lhs S_FOLSM rhs S_FOLSM[WHEELING]}
+!goal fixS_OROVL {lhs S_OROVL rhs S_OROVL[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999} ! Not needed due to hard constraint on C_OROVL
+
+!Delta Outflow
+goal fixD_Jones {D_Jones = D_Jones[WHEELING]}  
+
+goal fixNDOI_MIN {NDOI_MIN = NDOI_MIN[WHEELING]}
+goal fixNDOI_ANN {NDOI_ADD_ANN = NDOI_ADD_ANN[WHEELING]}
+goal fixNDOI_ADD_CVP {NDOI_ADD_CVP = NDOI_ADD_CVP[WHEELING]}
+
+! If there is remaining ITP Oroville carryover after paying 60 day SMSCG water cost during D following W, AN, push the remaining to delta outflow 
+goal fixNDOI_ADD_SWP { NDOI_ADD_SWP = NDOI_ADD_SWP[WHEELING] + Alt2BSWPExpCut_SJRIE + Alt2BSWPExpCut_X2 + Alt2BSWPExpCut_Outflow
+			      + release_ITP_Carryover + SMSCG_Oro_Rel_for_DO + remain_ITP_Carryover_Oro_rel*taf_cfs}
+
+!goal fixNDOI_ADD_WTS {NDOI_ADD_WTS = NDOI_ADD_WTS[WHEELING]}	
+!goal fixNDOI_ADD_WHLCV {NDOI_ADD_WHLCV = NDOI_ADD_WHLCV[WHEELING]}	
+!goal fixNDOI_ADD_WHLJP {NDOI_ADD_WHLJP = NDOI_ADD_WHLJP[WHEELING]}	
+/*goal fixNDOI_ADD_ITP {NDOI_ADD_ITP = 0.0}
+goal fixNDOI_ADD_VSA {NDOI_ADD_VSA = FriantVA_flow}*/
+goal fixNDOI_ADD_SJRR {NDOI_ADD_SJRR = FriantVA_EXC}
+!Del_CVP_PSC_n
+/*goal fixZ_SAC296_02_SA {lhs Z_SAC296_02_SA rhs Z_SAC296_02_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_WTPFTH_03_SU  {lhs Z_WTPFTH_03_SU rhs Z_WTPFTH_03_SU[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_WTPFTH_02_SU {lhs Z_WTPFTH_02_SU rhs Z_WTPFTH_02_SU[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC289_03_SA {lhs Z_SAC289_03_SA rhs Z_SAC289_03_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixZ_SAC178_08N_SA1  {lhs Z_SAC178_08N_SA1  rhs Z_SAC178_08N_SA1 [WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixZ_SAC159_08N_SA1 {lhs Z_SAC159_08N_SA1 rhs Z_SAC159_08N_SA1[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_TOTAL_08N_SA1 {lhs Z_TOTAL_08N_SA1 rhs Z_TOTAL_08N_SA1[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_GCC027_08N_SA2 {lhs Z_GCC027_08N_SA2 rhs Z_GCC027_08N_SA2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC159_08S_SA1 {lhs Z_SAC159_08S_SA1 rhs Z_SAC159_08S_SA1[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_GCC056_08S_SA2 {lhs Z_GCC056_08S_SA2 rhs Z_GCC056_08S_SA2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixZ_SAC121_08S_SA3 {lhs Z_SAC121_08S_SA3 rhs Z_SAC121_08S_SA3[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixZ_SAC109_08S_SA3 {lhs Z_SAC109_08S_SA3 rhs Z_SAC109_08S_SA3[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_TOTAL_08S_SA3 {lhs Z_TOTAL_08S_SA3 rhs Z_TOTAL_08S_SA3[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_MTC000_09_SA1 {lhs Z_MTC000_09_SA1 rhs Z_MTC000_09_SA1[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC162_09_SA2 {lhs Z_SAC162_09_SA2 rhs Z_SAC162_09_SA2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC136_18_SA {lhs Z_SAC136_18_SA rhs Z_SAC136_18_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC122_19_SA {lhs Z_SAC122_19_SA rhs Z_SAC122_19_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}    
+goal fixZ_SAC115_19_SA {lhs Z_SAC115_19_SA rhs Z_SAC115_19_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC099_19_SA {lhs Z_SAC099_19_SA rhs Z_SAC099_19_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC091_19_SA {lhs Z_SAC091_19_SA rhs Z_SAC091_19_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC083_21_SA {lhs Z_SAC083_21_SA rhs Z_SAC083_21_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC074_21_SA {lhs Z_SAC074_21_SA rhs Z_SAC074_21_SA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixZ_SAC082_22_SA1 {lhs Z_SAC082_22_SA1 rhs Z_SAC082_22_SA1[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999} 
+goal fixZ_SAC078_22_SA1 {lhs Z_SAC078_22_SA1 rhs Z_SAC078_22_SA1[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999} */
+
+!SWP_TA
+/*goal fixswp_TA_Feath {lhs swp_TA_Feath rhs swp_TA_Feath[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_TA_NBay {lhs swp_TA_NBay rhs swp_TA_NBay[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_TA_SBay {lhs swp_TA_SBay rhs swp_TA_SBay[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_TA_SJV {lhs swp_TA_SJV rhs swp_TA_SJV[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_TA_CCoast {lhs swp_TA_CCoast rhs swp_TA_CCoast[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_TA_SoCal {lhs swp_TA_SoCal rhs swp_TA_SoCal[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+
+!SWP_CO
+goal fixswp_CO_Feath {lhs swp_CO_Feath rhs swp_CO_Feath[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_CO_NBay {lhs swp_CO_NBay rhs swp_CO_NBay[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_CO_SBay {lhs swp_CO_SBay rhs swp_CO_SBay[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_CO_SJV {lhs swp_CO_SJV rhs swp_CO_SJV[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_CO_CCoast {lhs swp_CO_CCoast rhs swp_CO_CCoast[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixswp_CO_SoCal {lhs swp_CO_SoCal rhs swp_CO_SoCal[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+
+!Shortage
+goal fixSHORT_SWP_MWD {lhs SHORT_SWP_MWD rhs SHORT_SWP_MWD[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_OTH {lhs SHORT_SWP_OTH rhs SHORT_SWP_OTH[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PAG {lhs SHORT_SWP_PAG rhs SHORT_SWP_PAG[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PAG_N {lhs SHORT_SWP_PAG_N rhs SHORT_SWP_PAG_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PAG_S {lhs SHORT_SWP_PAG_S rhs SHORT_SWP_PAG_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PLS {lhs SHORT_SWP_PLS rhs SHORT_SWP_PLS[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PMI {lhs SHORT_SWP_PMI rhs SHORT_SWP_PMI[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PMI_N {lhs SHORT_SWP_PMI_N rhs SHORT_SWP_PMI_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_PMI_S {lhs SHORT_SWP_PMI_S rhs SHORT_SWP_PMI_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_TOT_S {lhs SHORT_SWP_TOT_S rhs SHORT_SWP_TOT_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_SWP_TOTA {lhs SHORT_SWP_TOTA rhs SHORT_SWP_TOTA[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}*/
+/*goal fixSHORT_CVP_TOT_S {lhs SHORT_CVP_TOT_S rhs SHORT_CVP_TOT_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_TOT_N {lhs SHORT_CVP_TOT_N rhs SHORT_CVP_TOT_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PSC_N {lhs SHORT_CVP_PSC_N rhs SHORT_CVP_PSC_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PRF_S {lhs SHORT_CVP_PRF_S rhs SHORT_CVP_PRF_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PRF_N {lhs SHORT_CVP_PRF_N rhs SHORT_CVP_PRF_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PMI_S {lhs SHORT_CVP_PMI_S rhs SHORT_CVP_PMI_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PMI_N {lhs SHORT_CVP_PMI_N rhs SHORT_CVP_PMI_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PLS_S {lhs SHORT_CVP_PLS_S rhs SHORT_CVP_PLS_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PEX_S {lhs SHORT_CVP_PEX_S rhs SHORT_CVP_PEX_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PAG_S {lhs SHORT_CVP_PAG_S rhs SHORT_CVP_PAG_S[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixSHORT_CVP_PAG_N {lhs SHORT_CVP_PAG_N rhs SHORT_CVP_PAG_N[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}*/

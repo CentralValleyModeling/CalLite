@@ -1,0 +1,28 @@
+! FixedOperations.wresl
+! Systemwide operations fixed to the WHEELJPOD cycle
+
+!Coordinated Operations Agreement
+!!Unused Federal Share
+goal fixD_Banks_EXP1 {lhs D_Banks_EXP1 rhs D_Banks_EXP1[WHEELING] lhs < rhs penalty 999. lhs > rhs constrain}
+goal fixD_Banks_EXP2 {lhs D_Banks_EXP2 rhs D_Banks_EXP2[WHEELING] lhs < rhs penalty 0. lhs > rhs constrain}
+!goal fixD408_P_WHL_SB_E2 {lhs D408_P_WHL_SB_E2 rhs D408_P_WHL_SB_E2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixUNUSED_FS {lhs UNUSED_FS rhs  UNUSED_FS[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixSTORED_FS {lhs STORED_FS rhs  STORED_FS[WHEELING]} ! This variable was increasing to very high values. Need to constrain this
+
+!!Unused State Share
+goal fixD_Jones_EXP2 {lhs D_Jones_EXP2 rhs D_Jones_EXP2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixD_Banks_cvpded_Exp2 {lhs D_Banks_cvpded_Exp2 rhs D_Banks_cvpded_Exp2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixD168B_EXP2 {D168B_EXP2 = D168B_EXP2[WHEELING]}
+!goal fixD408_DS_EXP2 {lhs D408_DS_EXP2 rhs D408_DS_EXP2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixD408_P_WHL_SF_E2 {lhs D408_P_WHL_SF_E2 rhs D408_P_WHL_SF_E2[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixUNUSED_SS {lhs UNUSED_SS rhs UNUSED_SS[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+
+!!COA Sharing
+goal fixIBU {lhs IBU rhs IBU[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixUWFE {lhs UWFE rhs UWFE[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+goal fixint_IBU_UWFE {lhs int_IBU_UWFE rhs int_IBU_UWFE[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+
+!!Sharing of available export capacity
+!goal fixSWPExpCapShare_D1641 {lhs SWPExpCapShare_D1641 rhs SWPExpCapShare_D1641[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+!goal fixCVPExpCapShare_D1641 {lhs CVPExpCapShare_D1641 rhs CVPExpCapShare_D1641[WHEELING] lhs>rhs penalty 999999 lhs<rhs penalty 999999}
+

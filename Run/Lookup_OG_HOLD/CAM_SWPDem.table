@@ -1,0 +1,21 @@
+! New Baselines version (Jun 2009), based on (version 9B1) Common Assumptions CMP
+! 2020D09E Level of Development Assumptions
+! source spreadsheet: FIXED_BST_SWP_SOD_2019DCR_August2020.xlsm
+!
+! Demands from SWPAO/O&M spreadsheets not including carryover demands
+! month=99 is for carryover demand
+CAM_SWPDem
+month                          Dem100      Dem60       Dem50       Dem30
+                              1      366.04      405.44      379.69      430.16
+                              2      325.63      335.10      307.29      337.42
+                              3      230.07      321.24      287.21      289.33
+                              4       79.04       55.31      108.15       85.73
+                              5       85.52       72.20      115.44       94.77
+                              6      148.44      159.29      152.47      145.25
+                              7      201.05      242.93      254.97      226.75
+                              8      262.06      324.59      352.93      311.27
+                              9      439.17      473.55      521.86      529.65
+                             10      473.57      536.26      561.44      610.65
+                             11      483.74      512.66      507.51      557.90
+                             12      407.70      426.56      398.69      392.07
+                             99      668.06      405.44      222.43      159.15

@@ -7,17 +7,20 @@ Nazrul Islam DWR (02/04/2011)
 **************************************/
  
 
-define C_SJR  {alias C_SJRVER kind 'FLOW-ACCRDEPL'  units 'CFS'}
+define C_SJR_DV  {alias C_SJRVER kind 'FLOW-ACCRDEPL'  units 'CFS'}
 define C_MoklmnR  {alias Ad_Mokelumne kind 'FLOW-ACCRDEPL'  units 'CFS'}
 
 define I_Trnty_S2D {alias I_Trnty kind 'FLOW-INFLOW' units 'CFS'} !Trinity Lake inflow
-define I_Lewiston_S2D {alias I_Lewiston kind 'FLOW-INFLOW' units 'CFS'} !Inflow to Lewiston node
+!define I_Lewiston_S2D {alias I_Lewiston kind 'FLOW-INFLOW' units 'CFS'} !Inflow to Lewiston node
 define I_Wkytn_S2D {alias I_Wkytn kind 'FLOW-INFLOW' units 'CFS'} !Wiskeytown Lake Infolw
 define I_Shsta_S2D {alias I_Shsta kind 'FLOW-INFLOW' units 'CFS'} !Shasta Lake Inflow
-define I_Orovl_S2D {alias I_Orovl kind 'FLOW-INFLOW' units 'CFS'} !Oroville Lake Inflow
-define I_Yuba_S2D {alias I_Yuba kind 'FLOW-INFLOW' units 'CFS'} !Engle Bright flow
+define I_Orovl_S2D {alias I_Orovl kind 'INFLOW' units 'CFS'} !Oroville Lake Inflow
+!define I_Orovl_S2D_{timeseries 'I_Orovl' kind 'INFLOW' units 'CFS' convert 'TAF'} !Oroville Lake Inflow
+!define I_Orovl_S2D_TAF {alias I_Orovl_S2D_ kind 'INFLOW' units 'TAF'} !Oroville Lake Inflow
+
+!define I_Yuba_S2D {alias I_Yuba kind 'FLOW-INFLOW' units 'CFS'} !Engle Bright flow
 define I_Folsm_S2D {alias I_Folsm kind 'FLOW-INFLOW' units 'CFS'} !Folsom Lake inflow
-define I_Hood_S2D {alias I_Hood kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Hood (I400)
+!define I_Hood_S2D {alias I_Hood kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Hood (I400)
 define I_BrananIS_S2D {alias I_BrananIS kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion u/s of RioVista (I404)
 define I_MarshCr_S2D {alias I_MarshCr kind 'FLOW-INFLOW' units 'CFS'} !Marsh Creek local accretion
 define I_SacSJR_S2D {alias I_SacSJR kind 'FLOW-INFLOW' units 'CFS'} !Local Accretion at Sac and SJR confluence(I406B)
@@ -61,14 +64,14 @@ define S_OrovlLevel2dv {alias S_Orovllevel2 kind 'STORAGE-LEVEL' units 'TAF'}
 define S_OrovlLevel5dv {alias S_Orovllevel5 kind 'STORAGE-LEVEL' units 'TAF'}
 define S_OrovlLevel6dv {alias S_Orovllevel6 kind 'STORAGE-LEVEL' units 'TAF'}
 
-define S_SLCVPLevel1dv {alias S_SLCVPlevel1 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLCVPLevel2dv {alias S_SLCVPlevel2 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLCVPLevel3dv {alias S_SLCVPlevel3 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLCVPLevel4dv {alias S_SLCVPlevel4 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLCVPLevel5dv {alias S_SLCVPlevel5 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_CVPLevel1dv {alias S_SLUIS_CVPlevel1 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_CVPLevel2dv {alias S_SLUIS_CVPlevel2 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_CVPLevel3dv {alias S_SLUIS_CVPlevel3 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_CVPLevel4dv {alias S_SLUIS_CVPlevel4 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_CVPLevel5dv {alias S_SLUIS_CVPlevel5 kind 'STORAGE-LEVEL' units 'TAF'}
 
-define S_SLSWPLevel1dv {alias S_SLSWPlevel1 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLSWPLevel2dv {alias S_SLSWPlevel2 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLSWPLevel3dv {alias S_SLSWPlevel3 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLSWPLevel4dv {alias S_SLSWPlevel4 kind 'STORAGE-LEVEL' units 'TAF'}
-define S_SLSWPLevel5dv {alias S_SLSWPlevel5 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_SWPLevel1dv {alias S_SLUIS_SWPlevel1 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_SWPLevel2dv {alias S_SLUIS_SWPlevel2 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_SWPLevel3dv {alias S_SLUIS_SWPlevel3 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_SWPLevel4dv {alias S_SLUIS_SWPlevel4 kind 'STORAGE-LEVEL' units 'TAF'}
+define S_SLUIS_SWPLevel5dv {alias S_SLUIS_SWPlevel5 kind 'STORAGE-LEVEL' units 'TAF'}

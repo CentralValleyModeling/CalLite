@@ -13,10 +13,10 @@ Include 'American\Americanmin.wresl'
 !INCLUDE 'american\NimbusHistMinQ.wresl'
 !INCLUDE 'american\HSt_base.wresl'
 !INCLUDE 'american\FMPInput.wresl'
-INCLUDE 'american\FMStandard.wresl'
+INCLUDE 'american\FMStandard_fixed.wresl'
 Include 'American\NimbusPower.wresl'  
  
-Include 'Clear_Creek\clear_ck_min.wresl'  
+Include 'Clear_Creek\ClearCk.wresl'  
 Include 'Trinity\TrinRuleCurv.wresl'  
 Include 'Sacramento\ShaRuleCurv.wresl'
 

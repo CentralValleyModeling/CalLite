@@ -8,9 +8,9 @@
 define Delta_Surplus {std kind 'surplus-estimate' units 'cfs'}
 define Delta_Surplus_CC {std kind 'surplus-estimate' units 'cfs'}
 
-goal set_Delta_Surplus_CC {Delta_Surplus_CC = C_delta_SWP + c_delta_CVP}
+goal set_Delta_Surplus_CC {Delta_Surplus_CC = NDOI_ADD_SWP + NDOI_ADD_CVP}
 goal lim_Delta_Surplus {Delta_Surplus < Delta_Surplus_CC}
-goal lim_Delta_Surplus2 {Delta_Surplus < eiexpctrl - d_exptd - D408_P}
+goal lim_Delta_Surplus2 {Delta_Surplus < eiexpctrl - EXP_TD - D408_P}
 
 
         !

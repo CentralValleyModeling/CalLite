@@ -27,8 +27,10 @@ DICU is Delta Island Consumptive Use
                     }*/
 
 ! Calculate So Delta Channel net DICU for flow split calculations
-! Newly defined splits of DICU and Delta Precip for So Delta Channel calculations
-define netDICU_SOD{ value demand_D_ConeyIs_NP - I_ConeyIs }
+! Update definition based on DCR21, YC Sep22
+define netDICU_SOD{ value 0.25*(DeltaDepletionforNDOI - DeltaAccretionforNDOI)}! Operation office uses 25% of Dayflow depletion to represent DICU_SOD
+define netDICU_SODdv {lower unbounded upper unbounded kind 'NET-DICU' units 'CFS'}
+goal SETnetDICU_SOD {lhs netDICU_SODdv rhs netDICU_SOD lhs<rhs penalty 999999 lhs>rhs penalty 999999}
 
 !Define case to use appropriate coef. for flow splits
 define casedef {
@@ -66,10 +68,11 @@ define casedef {
 
 !PP_ELT April 2011 refinement assumptions
 !Define case to use appropriate coef. for flow splits when HORB is in and closed
+!Set to default case to mirror DCR21, YC Sep 22
 define casedef_HORB {
 ! HORB operations and appropriate coefficients for January through May months - barriers are in and operated.
 ! Assuming Jan - Mar and Jun HORB installation is similar to the SpringHORB (Apr-May).
-     case JanMayHORB{
+     /*case JanMayHORB{
          condition  month >= JAN .AND. month <= JUN .and. int(IF_SWPorCVP_OnOff) == 1
          value  5.}
 ! HORB operations and appropriate coefficients for October - November barriers are in and operated
@@ -83,7 +86,7 @@ define casedef_HORB {
 ! HORB Fall operations and appropriate coefficients for fall months - barriers are in and operated
      case FallHORB{
          condition  month == SEP .OR. month == OCT .OR. month == NOV
-         value  6.}
+         value  6.}  */
      case default {
          condition  always
          value  casedef}
@@ -98,6 +101,7 @@ define coefA_HORB {select coefA from OMRiverFlowEq2 where cond = casedef_HORB}
 define coefB_HORB {select coefB from OMRiverFlowEq2 where cond = casedef_HORB}
 define coefC_HORB {select coefC from OMRiverFlowEq2 where cond = casedef_HORB}
 
+/* !Commented out, no longer used in DCR21 Sep 22, YC
 !Define percentage of time that HORB are open based on SJR flow
 define PerOpen_HORB {
 	case drier {
@@ -123,11 +127,14 @@ define PerOpen_HORB {
 }
 
 define PerOpen_HORBdv {alias PerOpen_HORB kind 'DEBUG' units 'FRACTION'}
+ 
+*/
 
 ! PP_ELT Refinement Scenario 4c and 4d assumptions
-define coefA{ value coefA_init * PerOpen_HORB + coefA_HORB * (1-PerOpen_HORB)}
-define coefB{ value coefB_init * PerOpen_HORB + coefB_HORB * (1-PerOpen_HORB)}
-define coefC{ value coefC_init * PerOpen_HORB + coefC_HORB * (1-PerOpen_HORB)}
+! Update definition based on DCR21, YC Sep22
+define coefA{ value coefA_init }
+define coefB{ value coefB_init }
+define coefC{ value coefC_init }
 
 define coefAdv {alias coefA kind 'DEBUG' units 'NONE'}
 define coefBdv {alias coefB kind 'DEBUG' units 'NONE'}
@@ -178,13 +185,24 @@ define coefC{
 ! Total South of Delta Pumping and Depletions
 define Qsod {lower -99999*taf_cfs upper 99999*taf_cfs kind 'FLOW-DELIVERY' units 'CFS'}
 
-goal setQsod { Qsod = D_ExpTD + D_CCWDVCOR + netDICU_SOD}
+
+!Qsod = Clifton Court Forebay Diversions + Jones Pumping Plant diversions + CCWD Old River Intake diversions + South Delta net channel depletion (Hutton_2008_OMR_Report)
+!This was before the Middle River (Victoria Canal) intake was constructed, 
+!and since Victoria Canal intake was constructed upstream of the gauges, it was added to the equation.
+!Rock Slough (CCWD PP#1) intake is downstream of the flow gauges, so it was not added to the equation. 
+goal setQsod { Qsod = EXP_TD + D_CCWDVCOR + netDICU_SODdv}
 
 ! Flow split through Indian Slough
 goal setC_IndnSl { C_IndnSl = coefB * Qsod + Qsod } ! Indian Slough component of OMR flow equation
 
 ! Flow split from San Joaquin to the Export pool
-goal setC_OldRiver { C_OldRiver = coefA * VERNQ + coefC } ! Vernalis and regression constant components of OMR flow equation
+goal setC_OldRiver {lhs C_OldRiver rhs coefA * VERNQ + coefC lhs>rhs penalty 9999. lhs<rhs penalty 9999.} ! Vernalis and regression constant components of OMR flow equation
+
+! Index for OMR flow based on Hutton (2008)
+! QOMR (cfs) = A * QVernalis + B * QSouth Delta Diversions + C
+! Where: QSouth Delta Diversions = QCCF + QJones + QCCWD + QSouth Delta NCD. This was already defined previously
+goal setC_OMR {C_OMR = coefA*VernQ + coefB*Qsod + coefC}
+
 
 define OMRFlow   {alias C_OMR  kind 'FLOW-CHANNEL' units 'CFS'} ! for output
 define QWestFlow {alias C_SJRVI kind 'FLOW-CHANNEL' units 'CFS'} ! for output

@@ -1,0 +1,8 @@
+!System file info for 64_XA for CalLite full system cycles
+
+!=============================================================
+! 64_XA - Columbia Canal Co. (Exchange Contractor) - Ag
+!=============================================================
+!zrc@20201222 goal setR_64_XA         {R_64_XA          = TW_64_XA   + LF_64_XA   + OS_64_XA   - RU_64_XA  } !overconstaint against goal combineR_64_XA
+goal setR_64_SJR185     {R_64_XA_SJR185   = R_64_XA  }
+

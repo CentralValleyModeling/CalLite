@@ -6,9 +6,9 @@
 ! SEWD Ag information is derived from Excel file SJR_input.xls "Table" of SSJ demand.
 ! SWED M&I information is derived from Excel file LU2.xls tab Urban Demand 2.  Matches Oakdale ID north.
 ! Month = month, sewd_ag = Stockton East Water District ag %, sewd_mi = Stockton East Water District M&I %,
-! ccwd_ag=Calaveras County Water District Ag %, ccwd_mi = Calaveras County Water District M&I%
+! cacwd_ag=Calaveras County Water District Ag %, cacwd_mi = Calaveras County Water District M&I%
 calaveras_dist
-month   sewd_ag   sewd_mi ccwd_ag ccwd_mi
+month   sewd_ag   sewd_mi cacwd_ag cacwd_mi
 1       2.6       6.22      2.6        5.47
 2       0.08      5.66      0.08       9.55
 3       0.0       7.00      0.0        13.38

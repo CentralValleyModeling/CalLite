@@ -1,5 +1,5 @@
 ! Snowmelt Water Year Type Classification - D1485 only
-! 1=Above normal, 2=Sub-normal
+! 1=Above normal, 2=Sub-normal	placeholders used for 2004-2015 (repeated 1992-2003 data)
 wytypeSnow
 wateryear  index
 1921			  1
@@ -85,3 +85,15 @@ wateryear  index
 2001			  1
 2002			  1
 2003			  1
+2004			  1
+2005			  1
+2006			  1
+2007			  1
+2008			  1
+2009			  2
+2010			  1
+2011			  1
+2012			  1
+2013			  1
+2014			  1
+2015			  1

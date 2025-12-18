@@ -176,7 +176,7 @@ define A2_OMR_Targ{
 define temp_trig_mo    {
     case NoClimateChange {
     	condition Climate_Proj == 0
-	select WMonth_0 from FWS_BO_A3_Temp where  YEAR= wateryear}
+	select WMonth from FWS_BO_A3_Temp where  YEAR= wateryear}
     case CC_Scenario1 {
     	condition Climate_Proj == 1
     	select WMonth_1 from FWS_BO_A3_Temp where  YEAR= wateryear}
@@ -211,7 +211,7 @@ define temp_trig_mo    {
 define temp_trig_da    {
     case NoClimateChange {
     	condition Climate_Proj == 0
-    	select Day_0 from FWS_BO_A3_Temp where  YEAR= wateryear}
+    	select Day from FWS_BO_A3_Temp where  YEAR= wateryear}
     case CC_Scenario1 {
     	condition Climate_Proj == 1
     	select Day_1 from FWS_BO_A3_Temp where  YEAR= wateryear}
@@ -567,13 +567,13 @@ define OMR_RPA_1condv {alias OMR_RPA_1con kind 'TRIGGER' units 'NONE'}
          condition month==OCT .and. wateryear==1922
          value 0.}
        case JAN {
-        condition C408(-1)<=NoA1_OMR_Targ
+        condition C_OMR014(-1)<=NoA1_OMR_Targ
         value 1.}
        case FEB {
-        condition C408(-1)<=NoA1_OMR_Targ .or. C408(-2)<=NoA1_OMR_Targ
+        condition C_OMR014(-1)<=NoA1_OMR_Targ .or. C_OMR014(-2)<=NoA1_OMR_Targ
         value 1.}
        case MAR {
-        condition C408(-1)<=NoA1_OMR_Targ .or. C408(-2)<=NoA1_OMR_Targ .or. C408(-3)<=NoA1_OMR_Targ
+        condition C_OMR014(-1)<=NoA1_OMR_Targ .or. C_OMR014(-2)<=NoA1_OMR_Targ .or. C_OMR014(-3)<=NoA1_OMR_Targ
         value 1.}
        case otherwise {
         condition always

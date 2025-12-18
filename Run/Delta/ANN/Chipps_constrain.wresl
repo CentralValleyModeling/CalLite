@@ -7,7 +7,7 @@ Holly Canada, DWR (05/02/2012)
 **************************/
 
 goal meetCH {
-  lhs D_ExpTD - exp_ann_relax
+  lhs EXP_TD - exp_ann_relax
   case DRegsOff{
                    condition CH_DLTSW == 0
                    rhs ExportCapacity

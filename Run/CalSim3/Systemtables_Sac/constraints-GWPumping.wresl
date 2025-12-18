@@ -1,0 +1,474 @@
+/*
+File Name: constraints-GWpumping.wresl
+CalSim 3.0 System File
+
+Purpose:
+
+Naming takes the following form:
+
+
+*/
+
+!Note: Constraints for demand units with no access to surface water are not meaningful.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 1       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!Not used
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 2       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 2_PA
+goal setGPmin_02_PA        {GP_02_PA > GPmin_02_PA * AWo_02_PA * (1+ RPF_02_PA - RUFo_02_PA) + GPmin_02_PA * AWr_02_PA * (1+ RPF_02_PA - RUFr_02_PA)}
+!goal setGPmax_02_PA        {GP_02_PA < GPmax_02_PA * AWo_02_PA * (1+ RPF_02_PA - RUFo_02_PA) + GPmax_02_PA * AWr_02_PA * (1+ RPF_02_PA - RUFr_02_PA)}
+define GPmin_02_PA_dv	{alias GPmin_02_PA * AWo_02_PA * (1+ RPF_02_PA - RUFo_02_PA) + GPmin_02_PA * AWr_02_PA * (1+ RPF_02_PA - RUFr_02_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 2_SA
+goal setGPmin_02_SA        {GP_02_SA > GPmin_02_SA * AWo_02_SA * (1+ RPF_02_SA - RUFo_02_SA) + GPmin_02_SA * AWr_02_SA * (1+ RPF_02_SA - RUFr_02_SA)}
+!goal setGPmax_02_SA        {GP_02_SA < GPmax_02_SA * AWo_02_SA * (1+ RPF_02_SA - RUFo_02_SA) + GPmax_02_SA * AWr_02_SA * (1+ RPF_02_SA - RUFr_02_SA)}
+define GPmin_02_SA_dv	{alias GPmin_02_SA * AWo_02_SA * (1+ RPF_02_SA - RUFo_02_SA) + GPmin_02_SA * AWr_02_SA * (1+ RPF_02_SA - RUFr_02_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 2_PU
+goal setGPmin_02_PU        {GP_02_PU > GPmin_02_PU * UD_02_PU}
+!goal setGPmax_02_PU        {GP_02_PU < GPmax_02_PU * UD_02_PU}
+
+! 2_SU
+goal setGPmin_02_SU        {GP_02_SU > GPmin_02_SU * UD_02_SU}
+!goal setGPmax_02_SU        {GP_02_SU < GPmax_02_SU * UD_02_SU}
+
+goal set_GP_WBATotal_2  {GP_WBATotal_2 - GP_02_NA - GP_02_SA - GP_02_SU - GP_02_PA - GP_02_PU - GP_02_NU=0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 3       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 3_PA
+goal setGPmin_03_PA        {GP_03_PA > GPmin_03_PA * AWo_03_PA * (1+ RPF_03_PA - RUFo_03_PA) + GPmin_03_PA * AWr_03_PA * (1+ RPF_03_PA - RUFr_03_PA)}
+!goal setGPmax_03_PA        {GP_03_PA < GPmax_03_PA * AWo_03_PA * (1+ RPF_03_PA - RUFo_03_PA) + GPmax_03_PA * AWr_03_PA * (1+ RPF_03_PA - RUFr_03_PA)}
+define GPmin_03_PA_dv	{alias GPmin_03_PA * AWo_03_PA * (1+ RPF_03_PA - RUFo_03_PA) + GPmin_03_PA * AWr_03_PA * (1+ RPF_03_PA - RUFr_03_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 3_SA
+goal setGPmin_03_SA        {GP_03_SA > GPmin_03_SA * AWo_03_SA * (1+ RPF_03_SA - RUFo_03_SA) + GPmin_03_SA * AWr_03_SA * (1+ RPF_03_SA - RUFr_03_SA)}
+!goal setGPmax_03_SA        {GP_03_SA < GPmax_03_SA * AWo_03_SA * (1+ RPF_03_SA - RUFo_03_SA) + GPmax_03_SA * AWr_03_SA * (1+ RPF_03_SA - RUFr_03_SA)}
+define GPmin_03_SA_dv	{alias GPmin_03_SA * AWo_03_SA * (1+ RPF_03_SA - RUFo_03_SA) + GPmin_03_SA * AWr_03_SA * (1+ RPF_03_SA - RUFr_03_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 3_SU
+goal setGPmin_03_SU        {GP_03_SU > GPmin_03_SU * UD_03_SU}
+!goal setGPmax_03_SU        {GP_03_SU < GPmax_03_SU * UD_03_SU}
+
+! 3_PU1
+goal setGPmin_03_PU1        {GP_03_PU1 > GPmin_03_PU1 * UD_03_PU1}
+!goal setGPmax_03_PU1        {GP_03_PU1 < GPmax_03_PU1 * UD_03_PU1}
+
+! 3_PU2
+goal setGPmin_03_PU2       {GP_03_PU2 > GPmin_03_PU2 * UD_03_PU2}
+!goal setGPmax_03_PU2       {GP_03_PU2 < GPmax_03_PU2 * UD_03_PU2}
+
+! 3_PU3
+goal setGPmin_03_PU3       {GP_03_PU3 > GPmin_03_PU3 * UD_03_PU3}
+!goal setGPmax_03_PU3       {GP_03_PU3 < GPmax_03_PU3 * UD_03_PU3}
+
+goal set_GP_WBATotal_3  {GP_WBATotal_3 	- GP_03_NA - GP_03_SA - GP_03_SU - GP_03_PA - GP_03_PU1 - GP_03_PU2 - GP_03_PU3 - GP_03_NU  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 4       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 4_PA1
+goal setGPmin_04_PA1   {GP_04_PA1 > GPmin_04_PA1 * AWo_04_PA1 * (1+ RPF_04_PA1 - RUFo_04_PA1) + GPmin_04_PA1 * AWr_04_PA1 * (1+ RPF_04_PA1 - RUFr_04_PA1)}
+!goal setGPmax_04_PA1   {GP_04_PA1 < GPmax_04_PA1 * AWo_04_PA1 * (1+ RPF_04_PA1 - RUFo_04_PA1) + GPmax_04_PA1 * AWr_04_PA1 * (1+ RPF_04_PA1 - RUFr_04_PA1)}
+define GPmin_04_PA1_dv	{alias GPmin_04_PA1 * AWo_04_PA1 * (1+ RPF_04_PA1 - RUFo_04_PA1) + GPmin_04_PA1 * AWr_04_PA1 * (1+ RPF_04_PA1 - RUFr_04_PA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 4_PA2
+goal setGPmin_04_PA2   {GP_04_PA2 > GPmin_04_PA2 * AWo_04_PA2 * (1+ RPF_04_PA2 - RUFo_04_PA2) + GPmin_04_PA2 * AWr_04_PA2 * (1+ RPF_04_PA2 - RUFr_04_PA2)}
+!goal setGPmax_04_PA2   {GP_04_PA2 < GPmax_04_PA2 * AWo_04_PA2 * (1+ RPF_04_PA2 - RUFo_04_PA2) + GPmax_04_PA2 * AWr_04_PA2 * (1+ RPF_04_PA2 - RUFr_04_PA2)}
+define GPmin_04_PA2_dv	{alias GPmin_04_PA2 * AWo_04_PA2 * (1+ RPF_04_PA2 - RUFo_04_PA2) + GPmin_04_PA2 * AWr_04_PA2 * (1+ RPF_04_PA2 - RUFr_04_PA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_4  {GP_WBATotal_4 	- GP_04_NA - GP_04_PA1 - GP_04_PA2 - GP_04_NU1 - GP_04_NU2  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 5       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+goal set_GP_WBATotal_5  {GP_WBATotal_5 - GP_05_NA - GP_05_NU = 0.} 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 6       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! 6_PA
+goal setGPmin_06_PA    {GP_06_PA > GPmin_06_PA * AWo_06_PA * (1+ RPF_06_PA - RUFo_06_PA) + GPmin_06_PA * AWr_06_PA * (1+ RPF_06_PA - RUFr_06_PA)}
+!goal setGPmax_06_PA    {GP_06_PA < GPmax_06_PA * AWo_06_PA * (1+ RPF_06_PA - RUFo_06_PA) + GPmax_06_PA * AWr_06_PA * (1+ RPF_06_PA - RUFr_06_PA)}
+define GPmin_06_PA_dv	{alias GPmin_06_PA * AWo_06_PA * (1+ RPF_06_PA - RUFo_06_PA) + GPmin_06_PA * AWr_06_PA * (1+ RPF_06_PA - RUFr_06_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_6  {GP_WBATotal_6 - GP_06_NA - GP_06_PA - GP_06_NU = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 7-North     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 7N_PA
+goal setGPmin_07N_PA   {GP_07N_PA > GPmin_07N_PA * AWo_07N_PA * (1+ RPF_07N_PA - RUFo_07N_PA) + GPmin_07N_PA * AWr_07N_PA * (1+ RPF_07N_PA - RUFr_07N_PA)}
+!goal setGPmax_07N_PA   {GP_07N_PA < GPmax_07N_PA * AWo_07N_PA * (1+ RPF_07N_PA - RUFo_07N_PA) + GPmax_07N_PA * AWr_07N_PA * (1+ RPF_07N_PA - RUFr_07N_PA)}
+define GPmin_07N_PA_dv	{alias GPmin_07N_PA * AWo_07N_PA * (1+ RPF_07N_PA - RUFo_07N_PA) + GPmin_07N_PA * AWr_07N_PA * (1+ RPF_07N_PA - RUFr_07N_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_7N  {GP_WBATotal_7N - GP_07N_NA - GP_07N_NU - GP_07N_PA  = 0.}
+						
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 7-South     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 7S_PA
+goal setGPmin_07S_PA   {GP_07S_PA > GPmin_07S_PA * AWo_07S_PA * (1+ RPF_07S_PA - RUFo_07S_PA) + GPmin_07S_PA * AWr_07S_PA * (1+ RPF_07S_PA - RUFr_07S_PA)}
+!goal setGPmax_07S_PA   {GP_07S_PA < GPmax_07S_PA * AWo_07S_PA * (1+ RPF_07S_PA - RUFo_07S_PA) + GPmax_07S_PA * AWr_07S_PA * (1+ RPF_07S_PA - RUFr_07S_PA)}
+define GPmin_07S_PA_dv	{alias GPmin_07S_PA * AWo_07S_PA * (1+ RPF_07S_PA - RUFo_07S_PA) + GPmin_07S_PA * AWr_07S_PA * (1+ RPF_07S_PA - RUFr_07S_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_7S  {GP_WBATotal_7S - GP_07S_NA - GP_07S_NU - GP_07S_PA = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 8-North     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 8N_PA
+goal setGPmin_08N_PA   {GP_08N_PA > GPmin_08N_PA * AWo_08N_PA * (1+ RPF_08N_PA - RUFo_08N_PA) + GPmin_08N_PA * AWr_08N_PA * (1+ RPF_08N_PA - RUFr_08N_PA)+ GPmin_08N_PA * AWw_08N_PA * (1+ RPF_08N_PA - RUFw_08N_PA)}
+!goal setGPmax_08N_PA   {GP_08N_PA < GPmax_08N_PA * AWo_08N_PA * (1+ RPF_08N_PA - RUFo_08N_PA) + GPmax_08N_PA * AWr_08N_PA * (1+ RPF_08N_PA - RUFr_08N_PA)+ GPmax_08N_PA * AWw_08N_PA * (1+ RPF_08N_PA - RUFw_08N_PA)}
+define GPmin_08N_PA_dv	{alias GPmin_08N_PA * AWo_08N_PA * (1+ RPF_08N_PA - RUFo_08N_PA) + GPmin_08N_PA * AWr_08N_PA * (1+ RPF_08N_PA - RUFr_08N_PA)+ GPmin_08N_PA * AWw_08N_PA * (1+ RPF_08N_PA - RUFw_08N_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8N_SA1
+goal setGPmin_08N_SA1  {GP_08N_SA1 > GPmin_08N_SA1 * AWo_08N_SA1 * (1+ RPF_08N_SA1 - RUFo_08N_SA1) + GPmin_08N_SA1 * AWr_08N_SA1 * (1+ RPF_08N_SA1 - RUFr_08N_SA1) + GPmin_08N_SA1 * AWw_08N_SA1 * (1+ RPF_08N_SA1 - RUFw_08N_SA1)}
+!goal setGPmax_08N_SA1  {GP_08N_SA1 < GPmax_08N_SA1 * AWo_08N_SA1 * (1+ RPF_08N_SA1 - RUFo_08N_SA1) + GPmax_08N_SA1 * AWr_08N_SA1 * (1+ RPF_08N_SA1 - RUFr_08N_SA1) + GPmax_08N_SA1 * AWw_08N_SA1 * (1+ RPF_08N_SA1 - RUFw_08N_SA1)}
+define GPmin_08N_SA1_dv	{alias GPmin_08N_SA1 * AWo_08N_SA1 * (1+ RPF_08N_SA1 - RUFo_08N_SA1) + GPmin_08N_SA1 * AWr_08N_SA1 * (1+ RPF_08N_SA1 - RUFr_08N_SA1) + GPmin_08N_SA1 * AWw_08N_SA1 * (1+ RPF_08N_SA1 - RUFw_08N_SA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8N_SA2
+goal setGPmin_08N_SA2  {GP_08N_SA2 > GPmin_08N_SA2 * AWo_08N_SA2 * (1+ RPF_08N_SA2 - RUFo_08N_SA2) + GPmin_08N_SA2 * AWr_08N_SA2 * (1+ RPF_08N_SA2 - RUFr_08N_SA2) + GPmin_08N_SA2 * AWw_08N_SA2 * (1+ RPF_08N_SA2 - RUFw_08N_SA2)}
+!goal setGPmax_08N_SA2  {GP_08N_SA2 < GPmax_08N_SA2 * AWo_08N_SA2 * (1+ RPF_08N_SA2 - RUFo_08N_SA2) + GPmax_08N_SA2 * AWr_08N_SA2 * (1+ RPF_08N_SA2 - RUFr_08N_SA2) + GPmax_08N_SA2 * AWw_08N_SA2 * (1+ RPF_08N_SA2 - RUFw_08N_SA2)}
+define GPmin_08N_SA2_dv	{alias GPmin_08N_SA2 * AWo_08N_SA2 * (1+ RPF_08N_SA2 - RUFo_08N_SA2) + GPmin_08N_SA2 * AWr_08N_SA2 * (1+ RPF_08N_SA2 - RUFr_08N_SA2) + GPmin_08N_SA2 * AWw_08N_SA2 * (1+ RPF_08N_SA2 - RUFw_08N_SA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8N_PR1
+goal setGPmin_08N_PR1  {GP_08N_PR1 > GPmin_08N_PR1 * AWo_08N_PR1 * (1+ RPF_08N_PR1 - RUFo_08N_PR1) + GPmin_08N_PR1 * AWr_08N_PR1 * (1+ RPF_08N_PR1 - RUFr_08N_PR1) + GPmin_08N_PR1 * AWw_08N_PR1 * (1+ RPF_08N_PR1 - RUFw_08N_PR1)}
+goal setGPmax_08N_PR1  {GP_08N_PR1 < GPmax_08N_PR1 * AWo_08N_PR1 * (1+ RPF_08N_PR1 - RUFo_08N_PR1) + GPmax_08N_PR1 * AWr_08N_PR1 * (1+ RPF_08N_PR1 - RUFr_08N_PR1) + GPmax_08N_PR1 * AWw_08N_PR1 * (1+ RPF_08N_PR1 - RUFw_08N_PR1)}
+!define GPmin_08N_PR1_dv	{alias GPmin_08N_PR1 * AWo_08N_PR1 * (1+ RPF_08N_PR1 - RUFo_08N_PR1) + GPmin_08N_PR1 * AWr_08N_PR1 * (1+ RPF_08N_PR1 - RUFr_08N_PR1) + GPmin_08N_PR1 * AWw_08N_PR1 * (1+ RPF_08N_PR1 - RUFw_08N_PR1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8N_PR2
+goal setGPmin_08N_PR2  {GP_08N_PR2 > GPmin_08N_PR2 * AWo_08N_PR2 * (1+ RPF_08N_PR2 - RUFo_08N_PR2) + GPmin_08N_PR2 * AWr_08N_PR2 * (1+ RPF_08N_PR2 - RUFr_08N_PR2) + GPmin_08N_PR2 * AWw_08N_PR2 * (1+ RPF_08N_PR2 - RUFw_08N_PR2)}
+goal setGPmax_08N_PR2  {GP_08N_PR2 < GPmax_08N_PR2 * AWo_08N_PR2 * (1+ RPF_08N_PR2 - RUFo_08N_PR2) + GPmax_08N_PR2 * AWr_08N_PR2 * (1+ RPF_08N_PR2 - RUFr_08N_PR2) + GPmax_08N_PR2 * AWw_08N_PR2 * (1+ RPF_08N_PR2 - RUFw_08N_PR2)}
+!define GPmin_08N_PR2_dv	{alias GPmin_08N_PR2 * AWo_08N_PR2 * (1+ RPF_08N_PR2 - RUFo_08N_PR2) + GPmin_08N_PR2 * AWr_08N_PR2 * (1+ RPF_08N_PR2 - RUFr_08N_PR2) + GPmin_08N_PR2 * AWw_08N_PR2 * (1+ RPF_08N_PR2 - RUFw_08N_PR2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_8N  {GP_WBATotal_8N - GP_08N_NA - GP_08N_SA1 - GP_08N_SA2 - GP_08N_PR1 - GP_08N_PR2 - GP_08N_PA - GP_08N_NU = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 8S      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 8S_PA
+goal setGPmin_08S_PA   {GP_08S_PA > GPmin_08S_PA * AWo_08S_PA * (1+ RPF_08S_PA - RUFo_08S_PA) + GPmin_08S_PA * AWr_08S_PA * (1+ RPF_08S_PA - RUFr_08S_PA)+ GPmin_08S_PA * AWw_08S_PA * (1+ RPF_08S_PA - RUFw_08S_PA)}
+!goal setGPmax_08S_PA   {GP_08S_PA < GPmax_08S_PA * AWo_08S_PA * (1+ RPF_08S_PA - RUFo_08S_PA) + GPmax_08S_PA * AWr_08S_PA * (1+ RPF_08S_PA - RUFr_08S_PA)+ GPmax_08S_PA * AWw_08S_PA * (1+ RPF_08S_PA - RUFw_08S_PA)}
+define GPmin_08S_PA_dv	{alias GPmin_08S_PA * AWo_08S_PA * (1+ RPF_08S_PA - RUFo_08S_PA) + GPmin_08S_PA * AWr_08S_PA * (1+ RPF_08S_PA - RUFr_08S_PA)+ GPmin_08S_PA * AWw_08S_PA * (1+ RPF_08S_PA - RUFw_08S_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8S_SA1
+goal setGPmin_08S_SA1  {GP_08S_SA1 > GPmin_08S_SA1 * AWo_08S_SA1 * (1+ RPF_08S_SA1 - RUFo_08S_SA1) + GPmin_08S_SA1 * AWr_08S_SA1 * (1+ RPF_08S_SA1 - RUFr_08S_SA1) + GPmin_08S_SA1 * AWw_08S_SA1 * (1+ RPF_08S_SA1 - RUFw_08S_SA1)}
+!goal setGPmax_08S_SA1  {GP_08S_SA1 < GPmax_08S_SA1 * AWo_08S_SA1 * (1+ RPF_08S_SA1 - RUFo_08S_SA1) + GPmax_08S_SA1 * AWr_08S_SA1 * (1+ RPF_08S_SA1 - RUFr_08S_SA1) + GPmax_08S_SA1 * AWw_08S_SA1 * (1+ RPF_08S_SA1 - RUFw_08S_SA1)}
+define GPmin_08S_SA1_dv	{alias GPmin_08S_SA1 * AWo_08S_SA1 * (1+ RPF_08S_SA1 - RUFo_08S_SA1) + GPmin_08S_SA1 * AWr_08S_SA1 * (1+ RPF_08S_SA1 - RUFr_08S_SA1) + GPmin_08S_SA1 * AWw_08S_SA1 * (1+ RPF_08S_SA1 - RUFw_08S_SA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8S_SA2
+goal setGPmin_08S_SA2  {GP_08S_SA2 > GPmin_08S_SA2 * AWo_08S_SA2 * (1+ RPF_08S_SA2 - RUFo_08S_SA2) + GPmin_08S_SA2 * AWr_08S_SA2 * (1+ RPF_08S_SA2 - RUFr_08S_SA2) + GPmin_08S_SA2 * AWw_08S_SA2 * (1+ RPF_08S_SA2 - RUFw_08S_SA2)}
+!goal setGPmax_08S_SA2  {GP_08S_SA2 < GPmax_08S_SA2 * AWo_08S_SA2 * (1+ RPF_08S_SA2 - RUFo_08S_SA2) + GPmax_08S_SA2 * AWr_08S_SA2 * (1+ RPF_08S_SA2 - RUFr_08S_SA2) + GPmax_08S_SA2 * AWw_08S_SA2 * (1+ RPF_08S_SA2 - RUFw_08S_SA2)}
+define GPmin_08S_SA2_dv	{alias GPmin_08S_SA2 * AWo_08S_SA2 * (1+ RPF_08S_SA2 - RUFo_08S_SA2) + GPmin_08S_SA2 * AWr_08S_SA2 * (1+ RPF_08S_SA2 - RUFr_08S_SA2) + GPmin_08S_SA2 * AWw_08S_SA2 * (1+ RPF_08S_SA2 - RUFw_08S_SA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8S_PR
+goal setGPmin_08S_PR   {GP_08S_PR > GPmin_08S_PR * AWo_08S_PR * (1+ RPF_08S_PR - RUFo_08S_PR) + GPmin_08S_PR * AWr_08S_PR * (1+ RPF_08S_PR - RUFr_08S_PR) + GPmin_08S_PR * AWw_08S_PR * (1+ RPF_08S_PR - RUFw_08S_PR)}
+goal setGPmax_08S_PR   {GP_08S_PR < GPmax_08S_PR * AWo_08S_PR * (1+ RPF_08S_PR - RUFo_08S_PR) + GPmax_08S_PR * AWr_08S_PR * (1+ RPF_08S_PR - RUFr_08S_PR) + GPmax_08S_PR * AWw_08S_PR * (1+ RPF_08S_PR - RUFw_08S_PR)}
+!define GPmin_08S_PR_dv	{alias GPmin_08S_PR * AWo_08S_PR * (1+ RPF_08S_PR - RUFo_08S_PR) + GPmin_08S_PR * AWr_08S_PR * (1+ RPF_08S_PR - RUFr_08S_PR) + GPmin_08S_PR * AWw_08S_PR * (1+ RPF_08S_PR - RUFw_08S_PR) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 8S_SA3
+goal setGPmin_08S_SA3  {GP_08S_SA3 > GPmin_08S_SA3 * AWo_08S_SA3 * (1+ RPF_08S_SA3 - RUFo_08S_SA3) + GPmin_08S_SA3 * AWr_08S_SA3 * (1+ RPF_08S_SA3 - RUFr_08S_SA3)}
+!goal setGPmax_08S_SA3  {GP_08S_SA3 < GPmax_08S_SA3 * AWo_08S_SA3 * (1+ RPF_08S_SA3 - RUFo_08S_SA3) + GPmax_08S_SA3 * AWr_08S_SA3 * (1+ RPF_08S_SA3 - RUFr_08S_SA3)}
+define GPmin_08S_SA3_dv	{alias GPmin_08S_SA3 * AWo_08S_SA3 * (1+ RPF_08S_SA3 - RUFo_08S_SA3) + GPmin_08S_SA3 * AWr_08S_SA3 * (1+ RPF_08S_SA3 - RUFr_08S_SA3) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_8S  {GP_WBATotal_8S - GP_08S_NA1 - GP_08S_NA2 - GP_08S_SA1 - GP_08S_SA2 - GP_08S_SA3 - GP_08S_PR - GP_08S_PA - GP_08S_NU = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 9       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! 9_SA1
+goal setGPmin_09_SA1   {GP_09_SA1 > GPmin_09_SA1 * AWo_09_SA1 * (1+ RPF_09_SA1 - RUFo_09_SA1) + GPmin_09_SA1 * AWr_09_SA1 * (1+ RPF_09_SA1 - RUFr_09_SA1)}
+!goal setGPmax_09_SA1   {GP_09_SA1 < GPmax_09_SA1 * AWo_09_SA1 * (1+ RPF_09_SA1 - RUFo_09_SA1) + GPmax_09_SA1 * AWr_09_SA1 * (1+ RPF_09_SA1 - RUFr_09_SA1)}
+define GPmin_09_SA1_dv	{alias GPmin_09_SA1 * AWo_09_SA1 * (1+ RPF_09_SA1 - RUFo_09_SA1) + GPmin_09_SA1 * AWr_09_SA1 * (1+ RPF_09_SA1 - RUFr_09_SA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 9_SA2
+goal setGPmin_09_SA2   {GP_09_SA2 > GPmin_09_SA2 * AWo_09_SA2 * (1+ RPF_09_SA2 - RUFo_09_SA2) + GPmin_09_SA2 * AWr_09_SA2 * (1+ RPF_09_SA2 - RUFr_09_SA2) + GPmin_09_SA2 * AWw_09_SA2 * (1+ RPF_09_SA2 - RUFw_09_SA2)}
+!goal setGPmax_09_SA2   {GP_09_SA2 < GPmax_09_SA2 * AWo_09_SA2 * (1+ RPF_09_SA2 - RUFo_09_SA2) + GPmax_09_SA2 * AWr_09_SA2 * (1+ RPF_09_SA2 - RUFr_09_SA2) + GPmax_09_SA2 * AWw_09_SA2 * (1+ RPF_09_SA2 - RUFw_09_SA2)}
+define GPmin_09_SA2_dv	{alias GPmin_09_SA2 * AWo_09_SA2 * (1+ RPF_09_SA2 - RUFo_09_SA2) + GPmin_09_SA2 * AWr_09_SA2 * (1+ RPF_09_SA2 - RUFr_09_SA2) + GPmin_09_SA2 * AWw_09_SA2 * (1+ RPF_09_SA2 - RUFw_09_SA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 9_PR
+goal setGPmin_09_PR    {GP_09_PR > GPmin_09_PR * AWo_09_PR * (1+ RPF_09_PR - RUFo_09_PR) + GPmin_09_PR * AWr_09_PR * (1+ RPF_09_PR - RUFr_09_PR) + GPmin_09_PR * AWw_09_PR * (1+ RPF_09_PR - RUFw_09_PR)}
+goal setGPmax_09_PR    {GP_09_PR < GPmax_09_PR * AWo_09_PR * (1+ RPF_09_PR - RUFo_09_PR) + GPmax_09_PR * AWr_09_PR * (1+ RPF_09_PR - RUFr_09_PR) + GPmax_09_PR * AWw_09_PR * (1+ RPF_09_PR - RUFw_09_PR)}
+!define GPmin_09_PR_dv	{alias GPmin_09_PR * AWo_09_PR * (1+ RPF_09_PR - RUFo_09_PR) + GPmin_09_PR * AWr_09_PR * (1+ RPF_09_PR - RUFr_09_PR) + GPmin_09_PR * AWw_09_PR * (1+ RPF_09_PR - RUFw_09_PR) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_9  {GP_WBATotal_9 - GP_09_NA - GP_09_NU - GP_09_SA1 - GP_09_SA2 - GP_09_PR  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 10      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+goal set_GP_WBATotal_10  {GP_WBATotal_10 - GP_10_NA - GP_10_NU1 - GP_10_NU2 = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 11      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 11_SA1
+goal setGPmin_11_SA1   {GP_11_SA1 > GPmin_11_SA1 * AWo_11_SA1 * (1+ RPF_11_SA1 - RUFo_11_SA1) + GPmin_11_SA1 * AWr_11_SA1 * (1+ RPF_11_SA1 - RUFr_11_SA1) + GPmin_11_SA1 * AWw_11_SA1 * (1+ RPF_11_SA1 - RUFw_11_SA1)}
+!goal setGPmax_11_SA1   {GP_11_SA1 < GPmax_11_SA1 * AWo_11_SA1 * (1+ RPF_11_SA1 - RUFo_11_SA1) + GPmax_11_SA1 * AWr_11_SA1 * (1+ RPF_11_SA1 - RUFr_11_SA1) + GPmax_11_SA1 * AWw_11_SA1 * (1+ RPF_11_SA1 - RUFw_11_SA1)}
+define GPmin_11_SA1_dv	{alias GPmin_11_SA1 * AWo_11_SA1 * (1+ RPF_11_SA1 - RUFo_11_SA1) + GPmin_11_SA1 * AWr_11_SA1 * (1+ RPF_11_SA1 - RUFr_11_SA1) + GPmin_11_SA1 * AWw_11_SA1 * (1+ RPF_11_SA1 - RUFw_11_SA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 11_SA2
+goal setGPmin_11_SA2   {GP_11_SA2 > GPmin_11_SA2 * AWo_11_SA2 * (1+ RPF_11_SA2 - RUFo_11_SA2) + GPmin_11_SA2 * AWr_11_SA2 * (1+ RPF_11_SA2 - RUFr_11_SA2) + GPmin_11_SA2 * AWw_11_SA2 * (1+ RPF_11_SA2 - RUFw_11_SA2)}
+!goal setGPmax_11_SA2   {GP_11_SA2 < GPmax_11_SA2 * AWo_11_SA2 * (1+ RPF_11_SA2 - RUFo_11_SA2) + GPmax_11_SA2 * AWr_11_SA2 * (1+ RPF_11_SA2 - RUFr_11_SA2) + GPmax_11_SA2 * AWw_11_SA2 * (1+ RPF_11_SA2 - RUFw_11_SA2)}
+define GPmin_11_SA2_dv	{alias GPmin_11_SA2 * AWo_11_SA2 * (1+ RPF_11_SA2 - RUFo_11_SA2) + GPmin_11_SA2 * AWr_11_SA2 * (1+ RPF_11_SA2 - RUFr_11_SA2) + GPmin_11_SA2 * AWw_11_SA2 * (1+ RPF_11_SA2 - RUFw_11_SA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 11_SA3
+goal setGPmin_11_SA3   {GP_11_SA3 > GPmin_11_SA3 * AWo_11_SA3 * (1+ RPF_11_SA3 - RUFo_11_SA3) + GPmin_11_SA3 * AWr_11_SA3 * (1+ RPF_11_SA3 - RUFr_11_SA3) + GPmin_11_SA3 * AWw_11_SA3 * (1+ RPF_11_SA3 - RUFw_11_SA3)}
+!goal setGPmax_11_SA3   {GP_11_SA3 < GPmax_11_SA3 * AWo_11_SA3 * (1+ RPF_11_SA3 - RUFo_11_SA3) + GPmax_11_SA3 * AWr_11_SA3 * (1+ RPF_11_SA3 - RUFr_11_SA3) + GPmax_11_SA3 * AWw_11_SA3 * (1+ RPF_11_SA3 - RUFw_11_SA3)}
+define GPmin_11_SA3_dv	{alias GPmin_11_SA3 * AWo_11_SA3 * (1+ RPF_11_SA3 - RUFo_11_SA3) + GPmin_11_SA3 * AWr_11_SA3 * (1+ RPF_11_SA3 - RUFr_11_SA3) + GPmin_11_SA3 * AWw_11_SA3 * (1+ RPF_11_SA3 - RUFw_11_SA3) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 11_SA4
+goal setGPmin_11_SA4   {GP_11_SA4 > GPmin_11_SA4 * AWo_11_SA4 * (1+ RPF_11_SA4 - RUFo_11_SA4) + GPmin_11_SA4 * AWr_11_SA4 * (1+ RPF_11_SA4 - RUFr_11_SA4) + GPmin_11_SA4 * AWw_11_SA4 * (1+ RPF_11_SA4 - RUFw_11_SA4)}
+!goal setGPmax_11_SA4   {GP_11_SA4 < GPmax_11_SA4 * AWo_11_SA4 * (1+ RPF_11_SA4 - RUFo_11_SA4) + GPmax_11_SA4 * AWr_11_SA4 * (1+ RPF_11_SA4 - RUFr_11_SA4) + GPmax_11_SA4 * AWw_11_SA4 * (1+ RPF_11_SA4 - RUFw_11_SA4)}
+define GPmin_11_SA4_dv	{alias GPmin_11_SA4 * AWo_11_SA4 * (1+ RPF_11_SA4 - RUFo_11_SA4) + GPmin_11_SA4 * AWr_11_SA4 * (1+ RPF_11_SA4 - RUFr_11_SA4) + GPmin_11_SA4 * AWw_11_SA4 * (1+ RPF_11_SA4 - RUFw_11_SA4) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 11_PR
+goal setGPmin_11_PR    {GP_11_PR > GPmin_11_PR * AWo_11_PR * (1+ RPF_11_PR - RUFo_11_PR) + GPmin_11_PR * AWr_11_PR * (1+ RPF_11_PR - RUFr_11_PR) + GPmin_11_PR * AWw_11_PR * (1+ RPF_11_PR - RUFw_11_PR)}
+goal setGPmax_11_PR    {GP_11_PR < GPmax_11_PR * AWo_11_PR * (1+ RPF_11_PR - RUFo_11_PR) + GPmax_11_PR * AWr_11_PR * (1+ RPF_11_PR - RUFr_11_PR) + GPmax_11_PR * AWw_11_PR * (1+ RPF_11_PR - RUFw_11_PR)}
+!define GPmin_11_PR_dv	{alias GPin_11_PR * AWo_11_PR * (1+ RPF_11_PR - RUFo_11_PR) + GPmin_11_PR * AWr_11_PR * (1+ RPF_11_PR - RUFr_11_PR) + GPmin_11_PR * AWw_11_PR * (1+ RPF_11_PR - RUFw_11_PR) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_11  {GP_WBATotal_11 -  GP_11_NU1 -  GP_11_NU2 - GP_11_SA1 -  GP_11_SA2 -  GP_11_SA3 -  GP_11_SA4 -  GP_11_PR -  GP_11_NA  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 12      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 12_SA
+goal setGPmin_12_SA    {GP_12_SA > GPmin_12_SA * AWo_12_SA * (1+ RPF_12_SA - RUFo_12_SA) + GPmin_12_SA * AWr_12_SA * (1+ RPF_12_SA - RUFr_12_SA)}
+!goal setGPmax_12_SA    {GP_12_SA < GPmax_12_SA * AWo_12_SA * (1+ RPF_12_SA - RUFo_12_SA) + GPmax_12_SA * AWr_12_SA * (1+ RPF_12_SA - RUFr_12_SA)}
+define GPmin_12_SA_dv	{alias GPmin_12_SA * AWo_12_SA * (1+ RPF_12_SA - RUFo_12_SA) + GPmin_12_SA * AWr_12_SA * (1+ RPF_12_SA - RUFr_12_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_12  {GP_WBATotal_12 - GP_12_NU1 - GP_12_NU2 - GP_12_SA - GP_12_NA = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 13      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+goal set_GP_WBATotal_13  {GP_WBATotal_13 - GP_13_NA - GP_13_NU1 - GP_13_NU2 = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 14      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+goal set_GP_WBATotal_14  {GP_WBATotal_14 - GP_14_NA - GP_14_NU = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 15-North    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! 15N_SA
+goal setGPmin_15N_SA   {GP_15N_SA > GPmin_15N_SA * AWo_15N_SA * (1+ RPF_15N_SA - RUFo_15N_SA) + GPmin_15N_SA * AWr_15N_SA * (1+ RPF_15N_SA - RUFr_15N_SA)}
+!goal setGPmax_15N_SA   {GP_15N_SA < GPmax_15N_SA * AWo_15N_SA * (1+ RPF_15N_SA - RUFo_15N_SA) + GPmax_15N_SA * AWr_15N_SA * (1+ RPF_15N_SA - RUFr_15N_SA)}
+define GPmin_15N_SA_dv	{alias GPmin_15N_SA * AWo_15N_SA * (1+ RPF_15N_SA - RUFo_15N_SA) + GPmin_15N_SA * AWr_15N_SA * (1+ RPF_15N_SA - RUFr_15N_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_15N  {GP_WBATotal_15N	- GP_15N_NA1 - GP_15N_NA2 - GP_15N_SA - GP_15N_NU  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 15-South    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+! 15S_SA
+goal setGPmin_15S_SA   {GP_15S_SA  > GPmin_15S_SA * AWo_15S_SA * (1+ RPF_15S_SA - RUFo_15S_SA) + GPmin_15S_SA * AWr_15S_SA * (1+ RPF_15S_SA - RUFr_15S_SA)}
+!goal setGPmax_15S_SA   {GP_15S_SA  < GPmax_15S_SA * AWo_15S_SA * (1+ RPF_15S_SA - RUFo_15S_SA) + GPmax_15S_SA * AWr_15S_SA * (1+ RPF_15S_SA - RUFr_15S_SA)}
+define GPmin_15S_SA_dv	{alias GPmin_15S_SA * AWo_15S_SA * (1+ RPF_15S_SA - RUFo_15S_SA) + GPmin_15S_SA * AWr_15S_SA * (1+ RPF_15S_SA - RUFr_15S_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_15S  {GP_WBATotal_15S	- GP_15S_NA1 - GP_15S_NA2 - GP_15S_NU - GP_15S_SA = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 16      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 16_PA
+goal setGPmin_16_PA    {GP_16_PA  > GPmin_16_PA * AWo_16_PA * (1+ RPF_16_PA - RUFo_16_PA) + GPmin_16_PA * AWr_16_PA * (1+ RPF_16_PA - RUFr_16_PA)}
+!goal setGPmax_16_PA    {GP_16_PA  < GPmax_16_PA * AWo_16_PA * (1+ RPF_16_PA - RUFo_16_PA) + GPmax_16_PA * AWr_16_PA * (1+ RPF_16_PA - RUFr_16_PA)}
+define GPmin_16_PA_dv	{alias GPmin_16_PA * AWo_16_PA * (1+ RPF_16_PA - RUFo_16_PA) + GPmin_16_PA * AWr_16_PA * (1+ RPF_16_PA - RUFr_16_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 16_SA
+goal setGPmin_16_SA    {GP_16_SA  > GPmin_16_SA * AWo_16_SA * (1+ RPF_16_SA - RUFo_16_SA) + GPmin_16_SA * AWr_16_SA * (1+ RPF_16_SA - RUFr_16_SA)}
+!goal setGPmax_16_SA    {GP_16_SA  < GPmax_16_SA * AWo_16_SA * (1+ RPF_16_SA - RUFo_16_SA) + GPmax_16_SA * AWr_16_SA * (1+ RPF_16_SA - RUFr_16_SA)}
+define GPmin_16_SA_dv	{alias GPmin_16_SA * AWo_16_SA * (1+ RPF_16_SA - RUFo_16_SA) + GPmin_16_SA * AWr_16_SA * (1+ RPF_16_SA - RUFr_16_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 16_PU
+goal setGPmin_16_PU   {GP_16_PU > GPmin_16_PU * UD_16_PU}
+!goal setGPmax_16_PU   {GP_16_PU < GPmax_16_PU * UD_16_PU}
+
+goal set_GP_WBATotal_16  {GP_WBATotal_16 - GP_16_PU - GP_16_NA1 - GP_16_NA2 - GP_16_PA - GP_16_SA - GP_16_NU  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 17-North    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 17N_PR
+goal setGPmin_17N_PR   {GP_17N_PR > GPmin_17N_PR * AWo_17N_PR * (1+ RPF_17N_PR - RUFo_17N_PR) + GPmin_17N_PR * AWr_17N_PR * (1+ RPF_17N_PR - RUFr_17N_PR) + GPmin_17N_PR * AWw_17N_PR * (1+ RPF_17N_PR - RUFw_17N_PR)}
+goal setGPmax_17N_PR   {GP_17N_PR < GPmax_17N_PR * AWo_17N_PR * (1+ RPF_17N_PR - RUFo_17N_PR) + GPmax_17N_PR * AWr_17N_PR * (1+ RPF_17N_PR - RUFr_17N_PR) + GPmax_17N_PR * AWw_17N_PR * (1+ RPF_17N_PR - RUFw_17N_PR)}
+!define GPmin_17N_PR_dv	{alias GPmin_17N_PR * AWo_17N_PR * (1+ RPF_17N_PR - RUFo_17N_PR) + GPmin_17N_PR * AWr_17N_PR * (1+ RPF_17N_PR - RUFr_17N_PR) + GPmin_17N_PR * AWw_17N_PR * (1+ RPF_17N_PR - RUFw_17N_PR) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 17N_NR
+goal setGPmin_17N_NR   {GP_17N_NR > GPmin_17N_NR * AWo_17N_NR * (1+ RPF_17N_NR - RUFo_17N_NR) + GPmin_17N_NR * AWr_17N_NR * (1+ RPF_17N_NR - RUFr_17N_NR) + GPmin_17N_NR * AWw_17N_NR * (1+ RPF_17N_NR - RUFw_17N_NR)}
+goal setGPmax_17N_NR   {GP_17N_NR < GPmax_17N_NR * AWo_17N_NR * (1+ RPF_17N_NR - RUFo_17N_NR) + GPmax_17N_NR * AWr_17N_NR * (1+ RPF_17N_NR - RUFr_17N_NR) + GPmax_17N_NR * AWw_17N_NR * (1+ RPF_17N_NR - RUFw_17N_NR)}
+!define GPmin_17N_NR_dv	{alias GPmin_17N_NR * AWo_17N_NR * (1+ RPF_17N_NR - RUFo_17N_NR) + GPmin_17N_NR * AWr_17N_NR * (1+ RPF_17N_NR - RUFr_17N_NR) + GPmin_17N_NR * AWw_17N_NR * (1+ RPF_17N_NR - RUFw_17N_NR) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_17N  {GP_WBATotal_17N	- GP_17N_NA - GP_17N_NR - GP_17N_PR -GP_17N_NU = 0.}  !modified by Z.Q. Richard Chen 7/2/2013
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 17-South    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 17S_SA
+goal setGPmin_17S_SA      {GP_17S_SA  > GPmin_17S_SA * AWo_17S_SA * (1+ RPF_17S_SA - RUFo_17S_SA) + GPmin_17S_SA * AWr_17S_SA * (1+ RPF_17S_SA - RUFr_17S_SA)}
+!goal setGPmax_17S_SA      {GP_17S_SA  < GPmax_17S_SA * AWo_17S_SA * (1+ RPF_17S_SA - RUFo_17S_SA) + GPmax_17S_SA * AWr_17S_SA * (1+ RPF_17S_SA - RUFr_17S_SA)}
+define GPmin_17S_SA_dv	{alias GPmin_17S_SA * AWo_17S_SA * (1+ RPF_17S_SA - RUFo_17S_SA) + GPmin_17S_SA * AWr_17S_SA * (1+ RPF_17S_SA - RUFr_17S_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 17S_PR
+goal setGPmin_17S_PR       {GP_17S_PR  > GPmin_17S_PR * AWo_17S_PR * (1+ RPF_17S_PR - RUFo_17S_PR) + GPmin_17S_PR * AWr_17S_PR * (1+ RPF_17S_PR - RUFr_17S_PR) + GPmin_17S_PR * AWw_17S_PR * (1+ RPF_17S_PR - RUFw_17S_PR)}
+goal setGPmax_17S_PR       {GP_17S_PR  < GPmax_17S_PR * AWo_17S_PR * (1+ RPF_17S_PR - RUFo_17S_PR) + GPmax_17S_PR * AWr_17S_PR * (1+ RPF_17S_PR - RUFr_17S_PR) + GPmax_17S_PR * AWw_17S_PR * (1+ RPF_17S_PR - RUFw_17S_PR)}
+!define GPmin_17S_PR_dv	{alias GPmin_17S_PR * AWo_17S_PR * (1+ RPF_17S_PR - RUFo_17S_PR) + GPmin_17S_PR * AWr_17S_PR * (1+ RPF_17S_PR - RUFr_17S_PR) + GPmin_17S_PR * AWw_17S_PR * (1+ RPF_17S_PR - RUFw_17S_PR) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_17S  {GP_WBATotal_17S - GP_17S_NA - GP_17S_NU - GP_17S_SA - GP_17S_PR  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 18      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 18_SA
+goal setGPmin_18_SA    {GP_18_SA  > GPmin_18_SA * AWo_18_SA * (1+ RPF_18_SA - RUFo_18_SA) + GPmin_18_SA * AWr_18_SA * (1+ RPF_18_SA - RUFr_18_SA)}
+!goal setGPmax_18_SA    {GP_18_SA  < GPmax_18_SA * AWo_18_SA * (1+ RPF_18_SA - RUFo_18_SA) + GPmax_18_SA * AWr_18_SA * (1+ RPF_18_SA - RUFr_18_SA)}
+define GPmin_18_SA_dv	{alias GPmin_18_SA * AWo_18_SA * (1+ RPF_18_SA - RUFo_18_SA) + GPmin_18_SA * AWr_18_SA * (1+ RPF_18_SA - RUFr_18_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_18  {GP_WBATotal_18 - GP_18_NU - GP_18_NA - GP_18_SA = 0.}
+						
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 19      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 19_SA
+goal setGPmin_19_SA    {GP_19_SA  > GPmin_19_SA * AWo_19_SA * (1+ RPF_19_SA - RUFo_19_SA) + GPmin_19_SA * AWr_19_SA * (1+ RPF_19_SA - RUFr_19_SA)}
+!goal setGPmax_19_SA    {GP_19_SA  < GPmax_19_SA * AWo_19_SA * (1+ RPF_19_SA - RUFo_19_SA) + GPmax_19_SA * AWr_19_SA * (1+ RPF_19_SA - RUFr_19_SA)}
+define GPmin_19_SA_dv	{alias GPmin_19_SA * AWo_19_SA * (1+ RPF_19_SA - RUFo_19_SA) + GPmin_19_SA * AWr_19_SA * (1+ RPF_19_SA - RUFr_19_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_19  {GP_WBATotal_19 - GP_19_SA - GP_19_NU = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 20      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 20_PA
+goal setGPmin_20_PA    {GP_20_PA  > GPmin_20_PA * AWo_20_PA * (1+ RPF_20_PA - RUFo_20_PA) + GPmin_20_PA * AWr_20_PA * (1+ RPF_20_PA - RUFr_20_PA)}
+!goal setGPmax_20_PA    {GP_20_PA  < GPmax_20_PA * AWo_20_PA * (1+ RPF_20_PA - RUFo_20_PA) + GPmax_20_PA * AWr_20_PA * (1+ RPF_20_PA - RUFr_20_PA)}
+define GPmin_20_PA_dv	{alias GPmin_20_PA * AWo_20_PA * (1+ RPF_20_PA - RUFo_20_PA) + GPmin_20_PA * AWr_20_PA * (1+ RPF_20_PA - RUFr_20_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_20  {GP_WBATotal_20 -  GP_20_NU1 -  GP_20_NU2 -  GP_20_PA -  GP_20_NA1 -  GP_20_NA2 = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 21      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! 21_PA
+goal setGPmin_21_PA    {GP_21_PA  > GPmin_21_PA * AWo_21_PA * (1+ RPF_21_PA - RUFo_21_PA) + GPmin_21_PA * AWr_21_PA * (1+ RPF_21_PA - RUFr_21_PA) + GPmin_21_PA * AWw_21_PA * (1+ RPF_21_PA - RUFw_21_PA)}
+!goal setGPmax_21_PA    {GP_21_PA  < GPmax_21_PA  * AWo_21_PA * (1+ RPF_21_PA - RUFo_21_PA) + GPmax_21_PA * AWr_21_PA * (1+ RPF_21_PA - RUFr_21_PA) + GPmax_21_PA * AWw_21_PA * (1+ RPF_21_PA - RUFw_21_PA)}
+define GPmin_21_PA_dv	{alias GPmin_21_PA * AWo_21_PA * (1+ RPF_21_PA - RUFo_21_PA) + GPmin_21_PA * AWr_21_PA * (1+ RPF_21_PA - RUFr_21_PA) + GPmin_21_PA * AWw_21_PA * (1+ RPF_21_PA - RUFw_21_PA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 21_SA
+goal setGPmin_21_SA    {GP_21_SA  > GPmin_21_SA * AWo_21_SA * (1+ RPF_21_SA - RUFo_21_SA) + GPmin_21_SA * AWr_21_SA * (1+ RPF_21_SA - RUFr_21_SA)}
+!goal setGPmax_21_SA    {GP_21_SA  < GPmax_21_SA * AWo_21_SA * (1+ RPF_21_SA - RUFo_21_SA) + GPmax_21_SA * AWr_21_SA * (1+ RPF_21_SA - RUFr_21_SA)}
+define GPmin_21_SA_dv	{alias GPmin_21_SA * AWo_21_SA * (1+ RPF_21_SA - RUFo_21_SA) + GPmin_21_SA * AWr_21_SA * (1+ RPF_21_SA - RUFr_21_SA) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 21_PU
+goal setGPmin_21_PU    {GP_21_PU > GPmin_21_PU * UD_21_PU}
+!goal setGPmax_21_PU    {GP_21_PU < GPmax_21_PU * UD_21_PU}
+
+goal set_GP_WBATotal_21  {GP_WBATotal_21 - GP_21_NA - GP_21_PA - GP_21_PU - GP_21_NU - GP_21_SA = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 22      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 22_SA1
+goal setGPmin_22_SA1   {GP_22_SA1  > GPmin_22_SA1 * AWo_22_SA1 * (1+ RPF_22_SA1 - RUFo_22_SA1) + GPmin_22_SA1 * AWr_22_SA1 * (1+ RPF_22_SA1 - RUFr_22_SA1)}
+!goal setGPmax_22_SA1   {GP_22_SA1  < GPmax_22_SA1 * AWo_22_SA1 * (1+ RPF_22_SA1 - RUFo_22_SA1) + GPmax_22_SA1 * AWr_22_SA1 * (1+ RPF_22_SA1 - RUFr_22_SA1)}
+define GPmin_22_SA1_dv	{alias GPmin_22_SA1 * AWo_22_SA1 * (1+ RPF_22_SA1 - RUFo_22_SA1) + GPmin_22_SA1 * AWr_22_SA1 * (1+ RPF_22_SA1 - RUFr_22_SA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 22_SA2
+goal setGPmin_22_SA2   {GP_22_SA2  > GPmin_22_SA2 * AWo_22_SA2 * (1+ RPF_22_SA2 - RUFo_22_SA2) + GPmin_22_SA2 * AWr_22_SA2 * (1+ RPF_22_SA2 - RUFr_22_SA2)}
+!goal setGPmax_22_SA2   {GP_22_SA2  < GPmax_22_SA2 * AWo_22_SA2 * (1+ RPF_22_SA2 - RUFo_22_SA2) + GPmax_22_SA2 * AWr_22_SA2 * (1+ RPF_22_SA2 - RUFr_22_SA2)}
+define GPmin_22_SA2_dv	{alias GPmin_22_SA2 * AWo_22_SA2 * (1+ RPF_22_SA2 - RUFo_22_SA2) + GPmin_22_SA2 * AWr_22_SA2 * (1+ RPF_22_SA2 - RUFr_22_SA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+goal set_GP_WBATotal_22  {GP_WBATotal_22 - GP_22_NU - GP_22_SA1 - GP_22_SA2 - GP_22_NA = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 23      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+goal set_GP_WBATotal_23  {GP_WBATotal_23 - GP_23_NA - GP_23_NU = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 24      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+goal set_GP_WBATotal_24  {GP_WBATotal_24 - GP_24_NA1 - GP_24_NA2 - GP_24_NA3 - GP_24_NU2 - GP_24_NU1 - GP_24_NU3 - GP_24_NU4 = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 25      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! 25_PA1
+goal setGPmin_25_PA1   {GP_25_PA1  > GPmin_25_PA1 * AWo_25_PA1 * (1+ RPF_25_PA1 - RUFo_25_PA1) + GPmin_25_PA1 * AWr_25_PA1 * (1+ RPF_25_PA1 - RUFr_25_PA1)}
+!goal setGPmax_25_PA1   {GP_25_PA1  < GPmax_25_PA1 * AWo_25_PA1 * (1+ RPF_25_PA1 - RUFo_25_PA1) + GPmax_25_PA1 * AWr_25_PA1 * (1+ RPF_25_PA1 - RUFr_25_PA1)}
+define GPmin_25_PA1_dv	{alias GPmin_25_PA1 * AWo_25_PA1 * (1+ RPF_25_PA1 - RUFo_25_PA1) + GPmin_25_PA1 * AWr_25_PA1 * (1+ RPF_25_PA1 - RUFr_25_PA1) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 25_PA2
+goal setGPmin_25_PA2   {GP_25_PA2 > GPmin_25_PA2 * AWo_25_PA2 * (1+ RPF_25_PA2 - RUFo_25_PA2) + GPmin_25_PA2 * AWr_25_PA2 * (1+ RPF_25_PA2 - RUFr_25_PA2)}
+!goal setGPmax_25_PA2   {GP_25_PA2 < GPmax_25_PA2 * AWo_25_PA2 * (1+ RPF_25_PA2 - RUFo_25_PA2) + GPmax_25_PA2 * AWr_25_PA2 * (1+ RPF_25_PA2 - RUFr_25_PA2)}
+define GPmin_25_PA2_dv	{alias GPmin_25_PA2 * AWo_25_PA2 * (1+ RPF_25_PA2 - RUFo_25_PA2) + GPmin_25_PA2 * AWr_25_PA2 * (1+ RPF_25_PA2 - RUFr_25_PA2) kind 'GW-PUMPING-LIMIT' units 'CFS'}
+
+! 25_PU (Vacaville)
+goal setGPmin_25_PU        {GP_25_PU > GPmin_25_PU * UD_25_PU}
+!goal setGPmax_25_PU        {GP_25_PU < GPmax_25_PU * UD_25_PU}
+
+! Other agricultural deliveries from Putah South Canal (external to WBA25)
+! Other urban deliveries from Putah South Canal (external to WBA25) and North Bay Aqueduct
+
+goal set_GP_WBATotal_25  {GP_WBATotal_25 - GP_25_PA2 - GP_25_NA - GP_25_PA1 - GP_25_PU - GP_25_NU  = 0.}
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 26N     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!26N_PU1
+goal setGPmin_26N_PU1      {GP_26N_PU1 > GPmin_26N_PU1 * UD_26N_PU1}
+!goal setGPmax_26N_PU1      {GP_26N_PU1 < GPmax_26N_PU1 * UD_26N_PU1}
+
+!26N_PU2
+goal setGPmin_26N_PU2      {GP_26N_PU2 > GPmin_26N_PU2 * UD_26N_PU2}
+goal setGPmax_26N_PU2      {GP_26N_PU2 < GPmax_26N_PU2 * UD_26N_PU2}
+
+!26N_PU3
+goal setGPmin_26N_PU3      {GP_26N_PU3 > GPmin_26N_PU3 * UD_26N_PU3}
+!goal setGPmax_26N_PU3      {GP_26N_PU3 < GPmax_26N_PU3 * UD_26N_PU3}
+
+goal set_GP_WBATotal_26N  {GP_WBATotal_26N - GP_26N_PU1 - GP_26N_PU2 - GP_26N_PU3 - GP_26N_NU1 - GP_26N_NU2 - GP_26N_NU3 - GP_26N_NU4 - GP_26N_NU5 - GP_26N_NA = 0.}
+						
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!! WBA 26S     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+goal setGPmin_26S_PU1      {GP_26S_PU1 > GPmin_26S_PU1 * UD_26S_PU1}
+!goal setGPmax_26S_PU1      {GP_26S_PU1 < GPmax_26S_PU1 * UD_26S_PU1}
+
+goal setGPmin_26S_PU2      {GP_26S_PU2 > GPmin_26S_PU2 * UD_26S_PU2}
+!goal setGPmax_26S_PU2      {GP_26S_PU2 < GPmax_26S_PU2 * UD_26S_PU2}
+
+goal setGPmin_26S_PU3      {GP_26S_PU3 > GPmin_26S_PU3 * UD_26S_PU3}
+!goal setGPmax_26S_PU3      {GP_26S_PU3 < GPmax_26S_PU3 * UD_26S_PU3}
+
+goal setGPmin_26S_PU4      {GP_26S_PU4 > GPmin_26S_PU4 * UD_26S_PU4}
+!goal setGPmax_26S_PU4      {GP_26S_PU4 < GPmax_26S_PU4 * UD_26S_PU4}
+
+goal setGPmin_26S_PU5      {GP_26S_PU5 > GPmin_26S_PU5 * UD_26S_PU5}
+!goal setGPmax_26S_PU5      {GP_26S_PU5 < GPmax_26S_PU5 * UD_26S_PU5}
+
+goal setGPmin_26S_PU6      {GP_26S_PU6 > GPmin_26S_PU6 * UD_26S_PU6}
+!goal setGPmax_26S_PU6      {GP_26S_PU6 < GPmax_26S_PU6 * UD_26S_PU6}
+
+
+goal set_GP_WBATotal_26S  {GP_WBATotal_26S - GP_26S_PU1 - GP_26S_PU2 - GP_26S_NU1 - GP_26S_PU4 - GP_26S_NU2 - GP_26S_PU5 - GP_26S_NU3 - GP_26S_PU3 - GP_26S_NU4
+						- GP_26S_PU6 - GP_26S_NA = 0.}

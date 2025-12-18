@@ -1,0 +1,22 @@
+! define max water release from Folsom without jeopardizing the carryover storage target
+define C_Nimbus_max {timeseries kind 'flow' units 'cfs'} 
+define C_Nimbus_max_DV   {alias C_Nimbus_max kind 'flow' units 'cfs'}
+
+goal S_FOLSM_high {  
+    LHS C_Nimbus
+    case FebMay {
+        condition   month>=FEB .and. month<=MAY                 
+        RHS C_Nimbus_max
+        LHS < RHS   penalty 0
+        LHS > RHS   penalty 1300}       !Default penalty was 4000
+    case other {
+        condition   always      
+        RHS         C_Nimbus_max
+        LHS < RHS   penalty 0
+        LHS > RHS   penalty 1300}       !Default penalty was 4000
+}
+
+define minflowFMPAmer {timeseries kind 'flow' units 'cfs'}
+define C_Nimbus_fmp_mif {std kind 'INIT_FLOW' units 'CFS'}
+goal set_C_Nimbus_fmp_mif {C_Nimbus_fmp_mif = minflowFMPAmer} 
+define C_Nimbus_fmp {alias minflowFMPAmer kind 'FLOW' units 'CFS'} 

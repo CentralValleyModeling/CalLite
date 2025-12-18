@@ -8,6 +8,8 @@ This is the top level include file for general logic for Delta
 
 Include 'SpecProjects.wresl'
 Include 'vallejo.wresl'  
+Include 'Napa_Solano.wresl'
+
 !Include 'xc-gates.wresl'    ! has to be included after the BO RPA for number of days is defined      
 Include 'delta-outflow.wresl' 
 ! MRDO

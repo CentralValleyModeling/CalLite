@@ -56,7 +56,8 @@ goal setCHmrdo {
     rhs 999999.}*/
   case Normal {
     condition always
-    rhs ((1-CH_m_sv)/CH_m_sv)*D_ExpNoWhlTD - CH_b_sv/CH_m_sv + netDeltaInflow}
+    rhs ((1-CH_m_sv)/CH_m_sv)*D_ExpNoWhlTD - CH_b_sv/CH_m_sv + DeltaInflowforNDOI - C_Hood_ANN - C_YoloBP - DeltaExportforNDOI + D_Banks_TD + D_Jones_TD
+						   + DeltaAccretionforNDOI - DeltaDepletionforNDOI}
 }
 
 !****************************************************************************************
@@ -83,5 +84,5 @@ goal set_CH_ReqSac {
     rhs 999999.}*/
   case Normal {
     condition always
-    rhs D_ExpTD/CH_m_sv - CH_b_sv/CH_m_sv}
+    rhs EXP_TD/CH_m_sv - CH_b_sv/CH_m_sv}
 }

@@ -1,0 +1,30 @@
+! This file sets CVC wheeling to the WHEELJPOD.
+
+goal fixD_DosAmigosCVP   {D_DosAmigosCVP = D_DosAmigosCVP[WHEELING]}
+
+goal fixD_Banks_CVC {D_Banks_cvc = D_Banks_cvc[WHEELING]}
+goal fixD_Banks_CVC_TD {D_Banks_CVC_TD = D_Banks_CVC_TD[WHEELING]}
+goal fixD_Banks_CVC_IF {D_Banks_CVC_IF = D_Banks_CVC_IF[WHEELING]}
+goal fixD_Banks_cvcrels {D_Banks_cvcrels = D_Banks_cvcrels[WHEELING]}
+goal fixD_Banks_cvcsurp {D_Banks_cvcsurp = D_Banks_cvcsurp[WHEELING]}
+goal fixD_Banks_cvcsurp1 {D_Banks_cvcsurp1 = D_Banks_cvcsurp1[WHEELING]}
+goal fixD_Banks_cvcsurp2 {D_Banks_cvcsurp2 = D_Banks_cvcsurp2[WHEELING]}
+goal fixD_Banks_cvcsurp_IF {D_Banks_cvcsurp_IF = D_Banks_cvcsurp_IF[WHEELING]}
+goal fixD_Banks_cvcsurp_TD {D_Banks_cvcsurp_TD = D_Banks_cvcsurp_TD[WHEELING]}
+
+!goal fixD400_WHLCV {D400_WHLCV = D400_WHLCV[WHEELING]}
+
+!goal fixNDOI_ADD_WHLCV {NDOI_ADD_whlcv = NDOI_ADD_whlcv[WHEELING]}
+goal fixC_WKYTN_whlcv {C_WKYTN_whlcv = C_WKYTN_whlcv[WHEELING]}
+goal fixD_Spring_whlcv {D_Spring_whlcv = D_Spring_whlcv[WHEELING]}
+goal fixC_KSWCK_whlcv {C_KSWCK_whlcv = C_KSWCK_whlcv[WHEELING]}
+goal fixC_NIMBUS_whlcv {C_NIMBUS_whlcv = C_NIMBUS_whlcv[WHEELING]}
+!goal fixC32_whlcv {C32_whlcv = C32_whlcv[WHEELING]}
+
+!Fix Sac Flow Reop adjustment to the WHEELJPOD.
+goal fixC_Hood_whlcv {C_Hood_whlcv = C_Hood_whlcv[WHEELING]}
+
+!goal fixReop_Rel_Bal_Err {Reop_Rel_Bal_Err = Reop_Rel_Bal_Err[WHEELING]}
+!goal fixReopSurp_Bal_Err {ReopSurp_Bal_Err = ReopSurp_Bal_Err[WHEELING]}
+
+goal Wheeling3 {D_CVP_CVC=D_Banks_cvc}

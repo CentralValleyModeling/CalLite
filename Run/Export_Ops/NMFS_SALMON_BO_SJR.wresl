@@ -73,9 +73,9 @@ define SJRatio_MaxExp{
 define SJRatio_MaxExpdv {alias SJRatio_MaxExp kind 'NMFS' units 'NONE'}
 
 define NMFS_MaxExp {
-    case AprMay {
+    /*case AprMay {
         condition month>=APR .AND. month<=MAY .and. Action_4_2_1==1
-        value SJRatio_MaxExp}
+        value SJRatio_MaxExp}*/
     case otherwise{
         condition always
         value 999999.}

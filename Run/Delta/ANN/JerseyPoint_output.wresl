@@ -59,7 +59,8 @@ goal setJPmrdo {
     rhs 0.}
   case Normal {
     condition always
-    rhs ((1-JP_m_sv)/JP_m_sv)*D_ExpNoWhlTD - JP_b_sv/JP_m_sv + netDeltaInflow }
+    rhs ((1-JP_m_sv)/JP_m_sv)*D_ExpNoWhlTD - JP_b_sv/JP_m_sv + DeltaInflowforNDOI - C_Hood_ANN - C_YoloBP - DeltaExportforNDOI + D_Banks_TD + D_Jones_TD
+						   + DeltaAccretionforNDOI - DeltaDepletionforNDOI}
 }
 
 !****************************************************************************************
@@ -86,7 +87,7 @@ goal set_JP_ReqSac {
     rhs 0.}
   case Normal {
     condition always
-    rhs D_ExpTD/JP_m_sv - JP_b_sv/JP_m_sv}
+    rhs EXP_TD/JP_m_sv - JP_b_sv/JP_m_sv}
 }
 
 

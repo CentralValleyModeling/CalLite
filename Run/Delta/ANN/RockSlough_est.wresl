@@ -80,5 +80,6 @@ define RSReqSac3 {
     value max(0.,(EstTotExpTD-RS_b_3_sv)/RS_m_3_sv)}
 }
 define RSReqSac {value max(0.,RSReqSac1,RSReqSac2,RSReqSac3)}
+!define RSReqSac {timeseries kind 'flow' units 'cfs'}
 define RSReqSacDV {alias RSReqSac kind 'FLOW' units 'CFS'}
 

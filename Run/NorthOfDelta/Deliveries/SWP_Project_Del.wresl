@@ -7,7 +7,14 @@ Final summation of Orovile, Thermolito, Daguerre Point,
 and Yuba Feather project deliveries
 **************************************/
 
-goal setD_Orovl_P{D_Orovl_P=d6_pwr}
-goal setD_Therm_P{D_Therm_P=d7a_pwr+d7a_pag+d7a_prf+d7b_pwr+d7b_pag+d7b_prf+d7c+d201_pimi+d201_pomi
-     +d202_pwr}
-goal setD_YubFea_P{D_YubFea_P=d204_pimi+d204_pomi+d206a_pag+d206b_pwr+d206b_pag+d206c_pwr+d206c_pag}
+define E_THRMF_CL {TIMESERIES KIND 'EVAPORATION' UNITS 'CFS'}! SP MBK
+define E_THRMA_CL {TIMESERIES KIND 'EVAPORATION' UNITS 'CFS'}! SP MBK
+define C_THRMA_CL {TIMESERIES KIND 'CHANNEL' UNITS 'CFS'}! SP MBK
+define demand_D_Therm_P {timeseries kind 'demand' units 'cfs'} 
+
+!goal setD_Orovl_P{D_Orovl_P=d6_pwr}!SP MBK commented out. only non project diversions
+goal setD_Therm_P{D_Therm_P = demand_D_Therm_P}
+goal setD_YubFea_P{D_YubFea_P=D_FTR045_15N_SA+D_FTR028_15S_SA+D_WTPCYC_16_PU
+	+ D_FTR021_16_PA+D_FTR021_16_SA+D_FTR018_16_SA+D_FTR018_15S_SA+D_FTR014_16_SA+D_FTR008_16_SA+D_FTR003_17S_SA+D_FTR003_22_SA2
+} ! SP MBK Shankar added
+!goal setD_Fea_P{D_Fea_P=D_FTR021_16_PA+D_FTR021_16_SA+D_FTR018_16_SA+D_FTR018_15S_SA+D_FTR014_16_SA+D_FTR008_16_SA+D_FTR003_17S_SA+D_FTR003_22_SA2}

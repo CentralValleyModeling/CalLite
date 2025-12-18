@@ -62,16 +62,19 @@ define CI {value 12}
 5 = minimum daily vlaue;6 = maximum 14-day value;7 = average for first 15 days;8 = average for last 15 days
 **/
 
+define monthly_ave {value 1}
 define monthly_avg {value 1}
 define first_day {value 2}
 define last_day {value 3}
 define max_day {value 4}
 define min_day {value 5}
+define max_14day_running_ave {value 6}
 define max_14day_running_avg {value 6}
 !define avg_first_15days {value 7}
 !define avg_last_15days {value 8}
+define ave_last_7days {value 37}
 
-define daysindv {alias daysin kind 'DAYS' units 'DAYS'}
+!define daysindv {alias daysin kind 'DAYS' units 'DAYS'}
 
 !Linegen parameters
 define slope {value 1}
@@ -116,16 +119,18 @@ define ANNcap_out {alias ANNcap kind 'FLOW' units 'CFS'}
 ! Yolo Bypass is simulated dynamically
 ! Mokelumne/Consumnes R. is simulated with SJR in previous cycles
 define sac_oth { lower unbounded kind 'FLOW-INFLOW' units 'CFS' }
-goal def_sac_oth { sac_oth = C_YoloBP + AD_Mokelumne  + AD_SJRCalALL - C_NBA } 
+goal def_sac_oth { sac_oth = C_YoloBP + AD_Mokelumne  + AD_SJRCalALL - C_NBA }!C_CSL004A + C_MOK019  + C_CLV004 used in CS3
+!goal def_sac_oth { sac_oth = C_CSL004A + C_MOK019  + C_CLV004 }!C_CSL004A + C_MOK019  + C_CLV004 used in CS3
 
 !*************************************************************************************************************
 ! Currently known inflows: Mokelumne R., Consumnes R. and Calaveras R. | Yolo Bypass not known.
-define C_cosumnes_Vamp {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
+!define C_cosumnes_Vamp {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
 define I_Mokelumne {timeseries kind 'FLOW-INFLOW' units 'CFS'} !Mokelumne inflow from EBMUDSIM
 define C_Calaveras_vamp {timeseries kind 'FLOW-CHANNEL'  units 'CFS'}
-
-define sac_oth_est { value C_cosumnes_VAMP + I_Mokelumne + C_Calaveras_vamp             
-        - demand_d_Vallejo*taf_cfs - dem_D403B_PMI*taf_cfs*perdel_27 - dem_D403C_PMI*taf_cfs*perdel_36}
+!define sac_oth_cl {timeseries kind 'flow-inflow' units 'cfs'}
+!define sac_oth_est {timeseries kind 'flow-inflow' units 'cfs'}
+define sac_oth_est { value /*C_cosumnes_VAMP +*/ I_Mokelumne + C_Calaveras_vamp             
+        - demand_d_Vallejo*taf_cfs - dem_D_BKR004_NBA009_NAPA*taf_cfs*perdel_27 - dem_D_BKR004_NBA009_SCWA*taf_cfs*perdel_36}
 define sac_oth_est_ { alias sac_oth_est kind 'FLOW-INFLOW' units 'CFS'}
 
 !*************************************************************************************************************
@@ -138,36 +143,54 @@ define D514B_VAMP {timeseries kind 'FLOW-DELIVERY' units 'CFS'}
 !define lim_CVP_ann {timeseries kind 'allocation-limit' units 'cfs'}
 
 define exp_oth { lower unbounded kind 'FLOW-EXPORTS' units 'CFS' }
-goal def_exp_oth { exp_oth = D_CCWD + D514A + D514B }
+goal def_exp_oth { exp_oth = D_CCWD + D_SJR028_WTPDWS /*D514A + D514B*/ }
 
 define D514A_2_est {value 0.0}  !DWSP, diversion for area of origin, in cfs
 !define D408D416_est {value min(demand_D420,lim_CVP_ann)}
 define D408D416_est {value demand_D420}
 
 define exp_oth_est { value D408D416_est + D514A_1_VAMP + D514A_2_est + D514B_VAMP}
-
+!define exp_oth_est {timeseries kind 'flow-exports' units 'cfs'}
 define exp_oth_est_ { alias exp_oth_est kind 'FLOW-EXPORTS' units 'CFS' }
 
 !*************************************************************************************************************
+!Update based on Idy's 10/8/2019 to input DCD data, YC 29 Sep 22
 ! define the other flows that go into making the export component
 define net_delta_cu { value                       ! Net Delta Consumptive Use
-!        DEMAND_D400B - I400 +    ! Don't include this because it occurs upstream of C400
-        DEMAND_D_BrananIs_NP - I_BrananIs +
+!        DND_SAC_North +    ! Don't include this because it occurs upstream of C_SAC041
+        DND_SAC_South +
+        DND_SAC_West +
+        DND_MOK +
+        DND_SJR_East +
+        DND_SJR_West +
+        DND_OMR + 
+        DND_50_PA2
+        /*DEMAND_D_BrananIs_NP - I_BrananIs +
         DEMAND_D_SacSJR_NP - I_SacSJR +
         DEMAND_D_Terminous_NP - I_Terminous +
         DEMAND_D_Stockton_NP - I_Stockton +
         DEMAND_D_MedfordIs_NP - I_MedfordIs +
-        DEMAND_D_ConeyIs_NP - I_ConeyIs
+        DEMAND_D_ConeyIs_NP - I_ConeyIs*/
+        
+        
 }
 
 define net_DICU{ lower unbounded kind 'DICU_FLOW' units 'CFS' }
 goal def_net_DICU{ net_DICU=
-        D_BrananIs_NP - I_BrananIS +
+!        DND_SAC_North +    ! Don't include this because it occurs upstream of C_SAC041
+        DND_SAC_South +
+        DND_SAC_West +
+        DND_MOK +
+        DND_SJR_East +
+        DND_SJR_West +
+        DND_OMR + 
+        DND_50_PA2
+        /*D_BrananIs_NP - I_BrananIS +
         D_SacSJR - I_SacSJR +
         D_Terminous - I_Terminous +
         D_Stockton - I_Stockton +
         D_MedfordIS - I_MedfordIS +
-        D_ConeyIs - I_ConeyIS
+        D_ConeyIs - I_ConeyIS*/
 }
 
 ! Net Delta Consumptive Use decision variable for calculating ANN MRDO
@@ -181,3 +204,6 @@ define VernWQfinal     {std kind 'Salinity-EC' units 'umhos/cm'}
 goal setVernWQfinal {VernWQfinal = VernWQfinalsv}
 
 !*************************************************************************************************************
+!San Joaquin flow variable needed for ANN DLL
+define SJR_ANN     {std kind 'FLOW-CHANNEL'  units 'CFS'}
+goal setSJR_ANN {SJR_ANN = C_SJRVER}

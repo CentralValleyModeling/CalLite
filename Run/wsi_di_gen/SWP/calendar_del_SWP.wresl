@@ -76,7 +76,7 @@ define swpdel_D403B {
 
        case      JAN  {
        condition month == JAN .and. wateryear > 1922
-       sum(i=-1,-12,-1) D403B_PRJ(i) * cfs_taf(i) }
+       sum(i=-1,-12,-1) D_BKR004_NBA009_NAPA_PRJ(i) * cfs_taf(i) }
 
        case      otherwise {
        condition always
@@ -87,7 +87,7 @@ define swpdel_D403C {
 
        case      JAN  {
        condition month == JAN .and. wateryear > 1922
-       sum(i=-1,-12,-1) D403C_PRJ(i) * cfs_taf(i) }
+       sum(i=-1,-12,-1) D_BKR004_NBA009_SCWA_PRJ(i) * cfs_taf(i) }
 
        case      otherwise {
        condition always

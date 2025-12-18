@@ -90,11 +90,12 @@ define inf_set_L172 {std kind 'infeas-prevention' units 'cfs'}
 goal set_L172 {0.99 * L172 = 0.01*D172 + 0.01*D174 + 0.01*D178 + 0.01*C_TC_GC - 0.01*C_StCr_TC + inf_set_L172}
 
 ! Set total project deliveries for Red Bluff and also deliveries by type
-goal setD_RedBlf_P {D_RedBlf_P = D104_PRJ + D112}
-goal setD_RedBlf_pag {D_RedBlf_pag = d104_pag + D171_pag + D172_pag + D174_pag + D178_pag}
-goal setD_RedBlf_pmi {D_RedBlf_pmi = d104_pmi}
-goal setD_RedBlf_psc {D_RedBlf_psc = d104_psc}
-
+goal setD_RedBlf_P {D_RedBlf_P = /*D_SAC296_WTPFTH+d_sac294_wtpblv + */D_SAC289_03_SA+D_SAC294_03_PA+D_SAC296_02_SA+D_CCL005_04_PA1+D_TCC022_TCCLOS_CL+D_TCC022_04_PA2+D_TCC036_07N_PA+D_TCC081_07S_PA+D_TCC111_07S_PA+D_WTPBLV_03_PU2   +D_WTPFTH_03_SU+D_WTPFTH_02_SU
+	+ D_TCC062_GCC036 + D_TCC085_GCC056
+} !SP MBK in place D104_PRJ + D112
+goal setD_RedBlf_pag {D_RedBlf_pag = D_WTPCSD_02_PA+D_SAC294_03_PA+D_CCL005_04_PA1+D_TCC022_04_PA2+D_TCC036_07N_PA+D_TCC081_07S_PA+D_TCC111_07S_PA}
+goal setD_RedBlf_pmi {D_RedBlf_pmi = D_WTPBLV_03_PU2}
+goal setD_RedBlf_psc {D_RedBlf_psc = + D_SAC289_03_SA+D_SAC296_02_SA+D_WTPFTH_03_SU+D_WTPFTH_02_SU}
 
 
 

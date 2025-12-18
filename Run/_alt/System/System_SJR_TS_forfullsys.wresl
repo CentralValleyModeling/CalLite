@@ -1,0 +1,66 @@
+! system_SJR.wresl
+
+! THIS FILE include ALL CODE FOR THE SYSTEM DESCRIPTION OF
+! SAN JOAQUIN MAINSTEM AND TRIBUTARIES AND WESTSIDE DELIVERY AREAS (SJW)
+! NOTE -- In this setup, we have one top-level system file and two system directories, 
+!         one for West-Side SJW and one for East-Side SJW. 
+
+!*******ARCS*******
+ 
+include 'SystemTables_SJRWest\arcs-Inflows.wresl'       
+include 'SystemTables_SJREast_fullsys\arcs-Inflows.wresl'
+!include 'SystemTables_SJREast_fullsys\arcs-minflows.wresl'
+!include 'SystemTables_SJRWest\arcs-Channels.wresl'
+!include 'SystemTables_SJREast_fullsys\arcs-Channels.wresl'
+include 'SystemTables_SJRWest\arcs-Deliveries.wresl'
+include 'SystemTables_SJREast_fullsys\arcs-Deliveries.wresl'
+include 'SystemTables_SJRWest\arcs-Contracts.wresl'   
+include 'SystemTables_SJREast_fullsys\arcs-Contracts.wresl'
+include 'SystemTables_SJRWest\arcs-Diversions_fullsys.wresl'
+include 'SystemTables_SJREast_fullsys\arcs-Diversions.wresl'
+include 'SystemTables_SJRWest\arcs-Reservoirs.wresl'
+!include 'SystemTables_SJREast_fullsys\arcs-Reservoirs.wresl'
+include 'SystemTables_SJRWest\arcs-Returns_fullsys.wresl'
+include 'SystemTables_SJREast_fullsys\arcs-Returns.wresl'
+include 'SystemTables_SJRWest\arcs-Seepage.wresl'
+!include 'SystemTables_SJREast_fullsys\arcs-Seepage.wresl'
+include 'SystemTables_SJRWest\arcs-GWpumping.wresl'
+include 'SystemTables_SJREast_fullsys\arcs-GWpumping.wresl'
+!@zrcinclude 'SystemTables_SJRWest\arcs-Residuals.wresl'  ! kept for SLUIS SWP residual terms              
+!@zrcinclude 'SystemTables_SJREast_fullsys\arcs-Residuals.wresl'  ! kept for WDWRD residual terms
+!include 'SystemTables_SJREast_fullsys\arcs-OperationalSpills.wresl'       ! ONLY FOR EAST SIDE, NOT FOR WEST
+include 'SystemTables_SJRWest\arcs-WUFactors.wresl' 
+include 'SystemTables_SJREast_fullsys\arcs-WUFactors.wresl'
+!include 'SystemTables_SJREast_fullsys\arcs-Spills.wresl'                  ! ONLY FOR EAST SIDE, NOT FOR WEST
+
+include 'SystemTables_SJRWest\arcs-TileDrain_TS.wresl'
+!include 'SystemTables_SJREast_fullsys\arcs-TileDrain_TS.wresl'
+
+!include 'SystemTables_SJREast_fullsys\arcs-PreOperations.wresl'                                                      
+!****CONSTRAINTS****
+
+include 'SystemTables_SJRWest\constraints-Runoff.wresl'
+!include 'SystemTables_SJREast_fullsys\constraints-Runoff.wresl'
+include 'SystemTables_SJRWest\constraints-Reservoirs.wresl'
+!include 'SystemTables_SJREast_fullsys\constraints-Reservoirs.wresl'
+!include 'SystemTables_SJREast_fullsys\constraints-OperationalSpills.wresl' ! ONLY FOR EAST SIDE, NOT FOR WEST
+include 'SystemTables_SJRWest\constraints-WUFactors.wresl'
+!include 'SystemTables_SJREast_fullsys\constraints-WUFactors.wresl'
+include 'SystemTables_SJRWest\constraints-Deliveries.wresl' 
+include 'SystemTables_SJREast_fullsys\constraints-Deliveries.wresl' 
+include 'SystemTables_SJRWest\constraints-GWpumping.wresl' 
+!include 'SystemTables_SJREast_fullsys\constraints-GWpumping.wresl'
+include 'SystemTables_SJRWest\constraints-Returns.wresl'  
+include 'SystemTables_SJREast_fullsys\constraints-Returns.wresl'
+!include 'SystemTables_SJRWest\constraints-Connectivity.wresl'
+!include 'SystemTables_SJREast_fullsys\constraints-Connectivity.wresl'
+include 'SystemTables_SJRWest\constraints-Contracts.wresl'    
+include 'SystemTables_SJREast_fullsys\constraints-Contracts.wresl'
+!include 'SystemTables_SJREast_fullsys\constraints-MinFlows.wresl'            
+include 'SystemTables_SJRWest\constraints-DeepPercolation.wresl' 
+include 'SystemTables_SJREast_fullsys\constraints-DeepPercolation.wresl' 
+!include 'SystemTables_SJREast_fullsys\constraints-PreOperations.wresl'                                                       
+!include 'SystemTables_SJREast_fullsys\constraints-FloodSpill.wresl' !zrc 2019.08.14 - high rim inflow in wet months in climate change scenarios 
+
+include 'SystemTables_SJRWest\Weight-table_fullsys.wresl'
+include 'SystemTables_SJREast_fullsys\Weight-table.wresl'

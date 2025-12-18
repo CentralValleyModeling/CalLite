@@ -10,7 +10,7 @@ B2 Action 5: CVP Export Ramping (Jun 1-30)
 
 !**** CVP Export Ramping (Jun1-30) ****************
 /*
-define minpump { value min(D418_CVP_TD[UPSTREAM] + D419_CVP_TD[UPSTREAM], 3000.)  }
+define minpump { value min(D418_CVP_TD[PRESETUP] + D419_CVP_TD[PRESETUP], 3000.)  }
 
 define JuneAcctRest {
    case Jun {

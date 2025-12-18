@@ -1,0 +1,13 @@
+!System file info for 64_XA for CalLite full system cycles
+
+!==============================
+! 64_XA - Columbia Canal Co. (Exchange Contractor) - Ag
+!==============================
+! gross surface water diversions
+goal setDG_64_XA          {DG_64_XA = D_MDOTA_64_XA}
+! net surface delivery = surface diversion - conveyance losses
+goal setDN_MDOTA_64_XA    {DN_MDOTA_64_XA = D_MDOTA_64_XA - DL_MDOTA_64_XA}
+goal setDN_64_XA          {DN_64_XA       = DG_64_XA      - DL_64_XA}
+! Total Applied Water = net surface delivery + groundwater pumping
+goal meetAW_64_XA         {AW_64_XA + RP_64_XA = DN_64_XA + GP_64_XA + RU_64_XA}
+

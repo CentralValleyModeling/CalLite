@@ -165,11 +165,11 @@ goal splitD_Hood_whljp {D_Hood_whljp = D_Banks_CVPWHL_IF}
 !Delta inflow splits for reoperations
 ! For wheeling, C_400whl** is all released water, potentially including carriage water
 
-goal splitC_Hood_whlcv {D_Banks_CVC_TD = C_Hood_whlcv - C_Delta_whlcv + D_Banks_cvcsurp_TD}
-goal splitC_Hood_whljp {D_Banks_CVPWHL_TD = C_Hood_whljp - C_Delta_whljp + D_Banks_whlsurp_TD}
+goal splitC_Hood_whlcv {D_Banks_CVC_TD = C_Hood_whlcv - NDOI_ADD_whlcv + D_Banks_cvcsurp_TD}
+goal splitC_Hood_whljp {D_Banks_CVPWHL_TD = C_Hood_whljp - NDOI_ADD_whljp + D_Banks_whlsurp_TD}
 
-goal splitCVCIFTD    {D_Banks_cvcrels = C_Hood_whlcv - C_Delta_whlcv + D_Hood_whlcv - D_Banks_CVCSURP_IF}
-goal splitJPODIFTD   {D_Banks_whlrels = C_Hood_whljp - C_Delta_whljp + D_Hood_whljp - D_Banks_WHLSURP_IF}
+goal splitCVCIFTD    {D_Banks_cvcrels = C_Hood_whlcv - NDOI_ADD_whlcv + D_Hood_whlcv - D_Banks_CVCSURP_IF}
+goal splitJPODIFTD   {D_Banks_whlrels = C_Hood_whljp - NDOI_ADD_whljp + D_Hood_whljp - D_Banks_WHLSURP_IF}
 
 define D_Banks_SWP_IF_sh {std kind 'flow-delivery' units 'cfs'}
 define D_Banks_SWP_IF_ex {std kind 'flow-delivery' units 'cfs'}
@@ -180,4 +180,9 @@ define D_Jones_CVP_IF_ex {std kind 'flow-delivery' units 'cfs'}
 goal split_Jones_share {D_Jones_CVP_IF = D_Jones_CVP_IF_sh + D_Jones_CVP_IF_ex}
 
 goal set_capacity_share {D_Jones_CVP_IF_sh = D_Banks_SWP_IF_sh} !Sharing will be given small positive weight.
+
+!Total Exports
+define TOTAL_EXP_A {alias D_Banks + D_Jones kind 'FLOW-DELIVERY' UNITS 'CFS'}
+define EXP_TD {std kind 'flow-delivery' units 'cfs'}
+goal setEXP_TD1 {EXP_TD = D_Banks_TD + D_Jones_TD}
 

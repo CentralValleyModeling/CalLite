@@ -67,9 +67,12 @@ Also removed - C17502A and - C17502B, which have to do with TCC/GCID intertie.  
 this is right, but also not sure how to account for this in CalLite ***/
 !limit Diversion at Hamilton City - this balance equation makes sure that the
 !GCC follows contract limits 
-goal limitD114 {D114 < target_114GCID                                          ! GCID contract
+/*goal limitD114 {D114 < target_114GCID                                          ! GCID contract
                      + target_14302_prf + target_18201_prf                     ! L2 Refuge demands
-                     - C_TC_GC   }                                    ! TCCA/GCID interties
+                     - C_TC_GC   }  */                                  ! TCCA/GCID interties
+goal limitD114 {lhs D114 rhs target_114GCID                                          ! GCID contract
+                     + target_14302_prf + target_18201_prf                     ! L2 Refuge demands
+                     - C_TC_GC lhs>rhs penalty 9999. lhs<rhs penalty 9999.}                                    ! TCCA/GCID interties
 
 !constraining D114 to be sum of all deliveries off GCC
 goal totalD114 {D114 = D143A + D143B + D145A + D145B + L143 - C_TC_GC}
@@ -99,9 +102,13 @@ goal limitD128SC_1 {D128 < target_D131SC + L128}
 goal splitD128  {D128 = D128_psc}
 
 ! Set total project deliveries for Wilkins Slough, and deliveries by type
-goal setD_Wilkns_P {D_Wilkns_P = D114 + D122A + D122B + D129A + D128}
+goal setD_Wilkns_P {D_Wilkns_P = D_SAC121_08S_SA3+D_SAC122_19_SA+D_SAC136_18_SA+D_SAC159_08S_SA1+D_SAC159_08N_SA1+D_SAC162_09_SA2+D_SAC178_08N_SA1+D_MTC000_09_PR+D_MTC000_09_SA1+D_GCC027_08N_SA2+D_GCC056_08S_PR+D_GCC065_08S_PA+D_GCC027_08N_PR1+D_GCC039_08N_PR2+D_GCC056_08S_SA2
+	- D_TCC062_GCC036 - D_TCC085_GCC056
+}!SP MBK Shankar corrected
+! Need to revisit these arcs equivalents for CS3 based diversions
+!goal setD_Wilkns_psc {D_Wilkns_psc = D122A_psc + D143A_psc + D122B_psc + D145A_psc + D129A_psc + D128_psc}
+!goal setD_Wilkns_SC {D_Wilkns_SC = D122A_psc + D122B_psc + D129A_psc + D128_psc}
+!goal setD_Wilkns_GCID {D_Wilkns_GCID = D143A_psc + D145A_psc}
+!goal setD_Wilkns_prf {D_Wilkns_prf = D143B_prf + D145B_prf}
 
-goal setD_Wilkns_psc {D_Wilkns_psc = D122A_psc + D143A_psc + D122B_psc + D145A_psc + D129A_psc + D128_psc}
-goal setD_Wilkns_SC {D_Wilkns_SC = D122A_psc + D122B_psc + D129A_psc + D128_psc}
-goal setD_Wilkns_GCID {D_Wilkns_GCID = D143A_psc + D145A_psc}
-goal setD_Wilkns_prf {D_Wilkns_prf = D143B_prf + D145B_prf}
+goal setD_SacFea_P {D_SacFea_P = D_SAC115_19_SA + D_SAC109_08S_SA3 + D_SAC109_19_SA + D_SAC099_19_SA + D_SAC091_19_SA + D_SAC083_21_SA}
